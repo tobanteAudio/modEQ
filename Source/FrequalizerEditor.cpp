@@ -26,17 +26,17 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   addAndMakeVisible(socialButtons);
   addAndMakeVisible(bandView);
 
-/*
-  for (int i = 0; i < processor.getNumBands(); ++i)
-  {
-    auto* bandEditor = bandEditors.add(new TA::BandEditor(i, processor));
-    addAndMakeVisible(bandEditor);
-  }*/
+  /*
+    for (int i = 0; i < processor.getNumBands(); ++i)
+    {
+      auto* bandEditor = bandEditors.add(new TA::BandEditor(i, processor));
+      addAndMakeVisible(bandEditor);
+    }*/
 
-  for (int i = 0; i < processor.getNumBands(); ++i)
+  for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
     auto* bandView = bandViews.add(new TA::BandView(i));
-	auto* bandController = bandControllers.add(new TA::BandController(i,processor, *bandView));
+    auto* bandController = bandControllers.add(new TA::BandController(i, processor, *bandView));
     addAndMakeVisible(bandView);
   }
 
@@ -45,7 +45,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   addAndMakeVisible(frame);
   addAndMakeVisible(output);
   attachments.add(new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(),
-                                                                     FrequalizerAudioProcessor::paramOutput, output));
+                                                                     TA::EqualizerProcessor::paramOutput, output));
   output.setTooltip(translate("Overall Gain"));
 
   setResizable(true, true);
@@ -133,10 +133,10 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
   g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
   g.strokePath(analyser, PathStrokeType(2.0));
 
-  for (int i = 0; i < processor.getNumBands(); ++i)
+  for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
     auto* bandEditor = bandViews.getUnchecked(i);
-    //auto* bandEditor = bandEditors.getUnchecked(i);
+    // auto* bandEditor = bandEditors.getUnchecked(i);
     auto* band = processor.getBand(i);
 
     //
@@ -200,11 +200,10 @@ void FrequalizerAudioProcessorEditor::mouseDown(const MouseEvent& e)
             < clickRadius)
         {
           contextMenu.clear();
-          for (int t = 0; t < FrequalizerAudioProcessor::LastFilterID; ++t)
+          for (int t = 0; t < TA::EqualizerProcessor::LastFilterID; ++t)
             contextMenu.addItem(
-              t + 1,
-              FrequalizerAudioProcessor::getFilterTypeName(static_cast<FrequalizerAudioProcessor::FilterType>(t)), true,
-              band->type == t);
+              t + 1, TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(t)),
+              true, band->type == t);
 
           contextMenu.showMenuAsync(
             PopupMenu::Options().withTargetComponent(this).withTargetScreenArea({e.getScreenX(), e.getScreenY(), 1, 1}),
@@ -231,7 +230,7 @@ void FrequalizerAudioProcessorEditor::mouseMove(const MouseEvent& e)
                        - e.position.getY())
               < clickRadius)
           {
-            draggingGain = processor.getPluginState().getParameter(processor.getGainParamName(i));
+            draggingGain = processor.getPluginState().getParameter(processor.getEQ().getGainParamName(i));
             setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
           }
           else
@@ -278,7 +277,7 @@ void FrequalizerAudioProcessorEditor::mouseDoubleClick(const MouseEvent& e)
                      - e.position.getX())
             < clickRadius)
         {
-          if (auto* param = processor.getPluginState().getParameter(processor.getActiveParamName(i)))
+          if (auto* param = processor.getPluginState().getParameter(processor.getEQ().getActiveParamName(i)))
             param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f : 0.0f);
         }
       }
@@ -329,9 +328,9 @@ float FrequalizerAudioProcessorEditor::getGainForPosition(float pos, float top, 
 
 
 //==============================================================================
-//namespace TA
+// namespace TA
 //{
-//BandEditor::BandEditor(const int i, FrequalizerAudioProcessor& p)
+// BandEditor::BandEditor(const int i, FrequalizerAudioProcessor& p)
 //  : index(i)
 //  , processor(p)
 //  , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
@@ -386,7 +385,7 @@ float FrequalizerAudioProcessorEditor::getGainForPosition(float pos, float top, 
 //  activate.setTooltip(translate("Activate or deactivate this filter"));
 //}
 //
-//void BandEditor::resized()
+// void BandEditor::resized()
 //{
 //  auto bounds = getLocalBounds();
 //  frame.setBounds(bounds);
@@ -406,7 +405,7 @@ float FrequalizerAudioProcessorEditor::getGainForPosition(float pos, float top, 
 //  gain.setBounds(bounds);
 //}
 //
-//void BandEditor::updateControls(FrequalizerAudioProcessor::FilterType type)
+// void BandEditor::updateControls(FrequalizerAudioProcessor::FilterType type)
 //{
 //  switch (type)
 //  {
@@ -473,15 +472,15 @@ float FrequalizerAudioProcessorEditor::getGainForPosition(float pos, float top, 
 //  }
 //}
 //
-//void BandEditor::updateSoloState(bool isSolo) { solo.setToggleState(isSolo, dontSendNotification); }
+// void BandEditor::updateSoloState(bool isSolo) { solo.setToggleState(isSolo, dontSendNotification); }
 //
-//void BandEditor::setFrequency(float freq) { frequency.setValue(freq, sendNotification); }
+// void BandEditor::setFrequency(float freq) { frequency.setValue(freq, sendNotification); }
 //
-//void BandEditor::setGain(float gainToUse) { gain.setValue(gainToUse, sendNotification); }
+// void BandEditor::setGain(float gainToUse) { gain.setValue(gainToUse, sendNotification); }
 //
-//void BandEditor::setType(int type) { filterType.setSelectedId(type + 1, sendNotification); }
+// void BandEditor::setType(int type) { filterType.setSelectedId(type + 1, sendNotification); }
 //
-//void BandEditor::buttonClicked(Button* b)
+// void BandEditor::buttonClicked(Button* b)
 //{
 //  if (b == &solo)
 //  {

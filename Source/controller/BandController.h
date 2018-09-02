@@ -27,7 +27,7 @@ public:
   void buttonClicked(Button* b) override;
 
   //==============================================================================
-  void updateControls(FrequalizerAudioProcessor::FilterType type);
+  void updateControls(TA::EqualizerProcessor::FilterType type);
   void updateSoloState(bool isSolo);
 
   //==============================================================================

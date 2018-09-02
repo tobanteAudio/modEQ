@@ -27,69 +27,69 @@ BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::Ba
 
   auto& state = processor.getPluginState();
 
-  boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
-  buttonAttachments.add(new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
+  boxAttachments.add(new ComboBoxAttachment(state, processor.getEQ().getTypeParamName(index), view.filterType));
+  buttonAttachments.add(new ButtonAttachment(state, processor.getEQ().getActiveParamName(index), view.activate));
 
-  attachments.add(new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
-  attachments.add(new SliderAttachment(state, processor.getQualityParamName(index), view.quality));
-  attachments.add(new SliderAttachment(state, processor.getGainParamName(index), view.gain));
+  attachments.add(new SliderAttachment(state, processor.getEQ().getFrequencyParamName(index), view.frequency));
+  attachments.add(new SliderAttachment(state, processor.getEQ().getQualityParamName(index), view.quality));
+  attachments.add(new SliderAttachment(state, processor.getEQ().getGainParamName(index), view.gain));
 }
 
-void BandController::updateControls(FrequalizerAudioProcessor::FilterType type)
+void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
 {
   switch (type)
   {
-  case FrequalizerAudioProcessor::LowPass:
+  case TA::EqualizerProcessor::LowPass:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::LowPass1st:
+  case TA::EqualizerProcessor::LowPass1st:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(false);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::LowShelf:
+  case TA::EqualizerProcessor::LowShelf:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(false);
     view.gain.setEnabled(true);
     break;
-  case FrequalizerAudioProcessor::BandPass:
+  case TA::EqualizerProcessor::BandPass:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::AllPass:
+  case TA::EqualizerProcessor::AllPass:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(false);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::AllPass1st:
+  case TA::EqualizerProcessor::AllPass1st:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(false);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::Notch:
+  case TA::EqualizerProcessor::Notch:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::Peak:
+  case TA::EqualizerProcessor::Peak:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(true);
     break;
-  case FrequalizerAudioProcessor::HighShelf:
+  case TA::EqualizerProcessor::HighShelf:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(true);
     break;
-  case FrequalizerAudioProcessor::HighPass1st:
+  case TA::EqualizerProcessor::HighPass1st:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(false);
     view.gain.setEnabled(false);
     break;
-  case FrequalizerAudioProcessor::HighPass:
+  case TA::EqualizerProcessor::HighPass:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
     view.gain.setEnabled(false);

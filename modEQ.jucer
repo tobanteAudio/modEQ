@@ -11,6 +11,13 @@
               cppLanguageStandard="17">
   <MAINGROUP id="QYjF1u" name="modEQ">
     <GROUP id="{85087548-8D9A-0248-9641-411914200E27}" name="Source">
+      <GROUP id="{EECC11AB-18F2-FABF-1366-15A91D3069D0}" name="processor">
+        <FILE id="ge6Dtd" name="BaseProcessor.h" compile="0" resource="0" file="Source/processor/BaseProcessor.h"/>
+        <FILE id="OLFqpD" name="EqualizerProcessor.cpp" compile="1" resource="0"
+              file="Source/processor/EqualizerProcessor.cpp"/>
+        <FILE id="CnZ0b1" name="EqualizerProcessor.h" compile="0" resource="0"
+              file="Source/processor/EqualizerProcessor.h"/>
+      </GROUP>
       <GROUP id="{AFBCEEAE-CF9A-3BFC-69AA-2F01AF53CA03}" name="controller">
         <FILE id="INxpGV" name="BandController.cpp" compile="1" resource="0"
               file="Source/controller/BandController.cpp"/>

@@ -31,9 +31,9 @@ BandView::BandView(int i)
   frame.setColour(GroupComponent::outlineColourId, Colours::blue);
   addAndMakeVisible(frame);
 
-  for (int j = 0; j < FrequalizerAudioProcessor::LastFilterID; ++j)
-    filterType.addItem(
-      FrequalizerAudioProcessor::getFilterTypeName(static_cast<FrequalizerAudioProcessor::FilterType>(j)), j + 1);
+  for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
+    filterType.addItem(TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(j)),
+                       j + 1);
 
   addAndMakeVisible(filterType);
 
