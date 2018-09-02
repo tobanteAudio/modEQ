@@ -548,16 +548,16 @@ bool FrequalizerAudioProcessor::checkForNewAnalyserData()
 //==============================================================================
 void FrequalizerAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-    MemoryOutputStream stream(destData, false);
-    state.state.writeToStream (stream);
+    //MemoryOutputStream stream(destData, false);
+    //state.state.writeToStream (stream);
 }
 
 void FrequalizerAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    ValueTree tree = ValueTree::readFromData (data, size_t (sizeInBytes));
-    if (tree.isValid()) {
-        state.state = tree;
-    }
+    //ValueTree tree = ValueTree::readFromData (data, size_t (sizeInBytes));
+    //if (tree.isValid()) {
+    //    state.state = tree;
+    //}
 }
 
 //==============================================================================

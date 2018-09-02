@@ -50,7 +50,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
 
   setResizable(true, true);
   setResizeLimits(800, 450, 2990, 1800);
-  setSize(1050, 500);
+  setSize(900, 500);
 
   updateFrequencyResponses();
 
@@ -158,7 +158,6 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 void FrequalizerAudioProcessorEditor::resized()
 {
   auto area = getLocalBounds();
-  auto testArea = area.removeFromLeft(150);
   plotFrame = area.reduced(3, 3);
 
   socialButtons.setBounds(plotFrame.removeFromBottom(35));
@@ -174,7 +173,6 @@ void FrequalizerAudioProcessorEditor::resized()
   plotFrame.reduce(3, 3);
   brandingFrame = bandSpace.reduced(5);
 
-  //bandView.setBounds(testArea);
   updateFrequencyResponses();
 }
 
