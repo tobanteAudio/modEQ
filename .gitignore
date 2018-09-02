@@ -1,0 +1,38 @@
+####################
+# Project
+####################
+build
+Builds
+Maximilian
+assets
+LEFTOFF
+playground
+
+####################
+# JUCE
+####################
+JuceLibraryCode
+
+####################
+# EDITORS
+####################
+.atom
+.vscode
+.vs
+.idea
+
+####################
+# C++
+####################
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a

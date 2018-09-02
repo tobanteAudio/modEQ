@@ -1,0 +1,13 @@
+AlignAfterOpenBracket: Align
+AlwaysBreakTemplateDeclarations: true
+AllowShortFunctionsOnASingleLine: All
+BinPackArguments: true
+BinPackParameters: false
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeBraces: Allman
+BreakConstructorInitializersBeforeComma: true
+ColumnLimit: 120
+ConstructorInitializerIndentWidth: 2
+ContinuationIndentWidth: 2
+MaxEmptyLinesToKeep: 2
+PointerAlignment: Left
