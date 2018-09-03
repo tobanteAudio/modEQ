@@ -1,3 +1,5 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # tobanteAudio - modEQ
 
 EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
