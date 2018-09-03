@@ -39,15 +39,12 @@ BandView::BandView(int i)
 
 
   addAndMakeVisible(frequency);
-  //frequency.setSkewFactorFromMidPoint(1000.0);
   frequency.setTooltip(translate("Filter's frequency"));
 
   addAndMakeVisible(quality);
-  quality.setSkewFactorFromMidPoint(1.0);
   quality.setTooltip(translate("Filter's steepness (Quality)"));
 
   addAndMakeVisible(gain);
-  gain.setSkewFactorFromMidPoint(1.0);
   gain.setTooltip(translate("Filter's gain"));
 
   solo.setClickingTogglesState(true);

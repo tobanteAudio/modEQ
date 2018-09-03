@@ -11,6 +11,14 @@
               cppLanguageStandard="17">
   <MAINGROUP id="QYjF1u" name="modEQ">
     <GROUP id="{85087548-8D9A-0248-9641-411914200E27}" name="Source">
+      <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
+        <FILE id="KWjnF9" name="TextValueConverters.h" compile="0" resource="0"
+              file="Source/utils/TextValueConverters.h"/>
+      </GROUP>
+      <GROUP id="{5CFAF4C7-CB5B-279B-9E01-243560CD4D29}" name="look_and_feel">
+        <FILE id="NB4MJI" name="TobanteLookAndFeel.h" compile="0" resource="0"
+              file="Source/look_and_feel/TobanteLookAndFeel.h"/>
+      </GROUP>
       <GROUP id="{EECC11AB-18F2-FABF-1366-15A91D3069D0}" name="processor">
         <FILE id="ge6Dtd" name="BaseProcessor.h" compile="0" resource="0" file="Source/processor/BaseProcessor.h"/>
         <FILE id="OLFqpD" name="EqualizerProcessor.cpp" compile="1" resource="0"

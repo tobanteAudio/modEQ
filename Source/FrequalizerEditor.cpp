@@ -19,19 +19,18 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   : AudioProcessorEditor(&p)
   , processor(p)
   , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-  , bandView(1)
 {
   tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
   addAndMakeVisible(socialButtons);
-  addAndMakeVisible(bandView);
-
 
 
   for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
     auto* bandView = bandViews.add(new TA::BandView(i));
     auto* bandController = bandControllers.add(new TA::BandController(i, processor, *bandView));
+    // Add lookAndFeel
+    bandView->setLookAndFeel(&tobanteLookAndFeel);
     addAndMakeVisible(bandView);
   }
 
@@ -45,7 +44,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
 
   setResizable(true, true);
   setResizeLimits(800, 450, 2990, 1800);
-  setSize(900, 500);
+  setSize(1000, 600);
 
   updateFrequencyResponses();
 
@@ -55,7 +54,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
 
   processor.getEQ().addChangeListener(this);
 
-  startTimerHz(30);
+  startTimerHz(60);
 }
 
 FrequalizerAudioProcessorEditor::~FrequalizerAudioProcessorEditor()
@@ -77,6 +76,16 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
   Graphics::ScopedSaveState state(g);
 
   g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+
+  auto area = getLocalBounds();
+  auto versionArea = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
+
+  String version = JucePlugin_VersionString;
+
+
+  g.setColour(Colours::white);
+  g.setFont(18.f);
+  g.drawText("modFilter v" + version, versionArea.reduced(10), Justification::centredTop);
 
   /*auto logo = ImageCache::getFromMemory(TobanteAudioData::LogoFF_png, TobanteAudioData::LogoFF_pngSize);
   g.drawImage(logo, brandingFrame.toFloat(), RectanglePlacement(RectanglePlacement::fillDestination));
@@ -293,12 +302,13 @@ void FrequalizerAudioProcessorEditor::updateFrequencyResponses()
       bandController->updateControls(band->type);
       bandController->frequencyResponse.clear();
       processor.getEQ().createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
-                                    plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
+                                            plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
     }
     bandController->updateSoloState(processor.getEQ().getBandSolo(i));
   }
   frequencyResponse.clear();
-  processor.getEQ().createFrequencyPlot(frequencyResponse, processor.getEQ().getMagnitudes(), plotFrame, pixelsPerDouble);
+  processor.getEQ().createFrequencyPlot(frequencyResponse, processor.getEQ().getMagnitudes(), plotFrame,
+                                        pixelsPerDouble);
 }
 
 float FrequalizerAudioProcessorEditor::getPositionForFrequency(float freq)

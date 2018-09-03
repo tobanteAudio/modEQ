@@ -64,23 +64,22 @@ public:
 
   //==============================================================================
   void reset() override;
-   void parameterChanged(const String& parameter, float newValue) override;
+  void parameterChanged(const String& parameter, float newValue) override;
 
   //==============================================================================
-  static String getFilterTypeName(const TA::EqualizerProcessor::FilterType type);
+  static String getFilterTypeName(const TA::EqualizerProcessor::FilterType);
   const String getName() const override { return "Equalizer"; }
-  Band* getBand(const int index);
+  Band* getBand(const int);
 
   //==============================================================================
-  void updateBand(const size_t index);
+  void updateBand(const size_t);
   void updateBypassedStates();
   void updatePlots();
 
   //==============================================================================
   const std::vector<double>& getMagnitudes();
-  void
-  createFrequencyPlot(Path& p, const std::vector<double>& mags, const Rectangle<int> bounds, float pixelsPerDouble);
-  void createAnalyserPlot(Path& p, const Rectangle<int> bounds, float minFreq, bool input);
+  void createFrequencyPlot(Path&, const std::vector<double>&, const Rectangle<int>, float);
+  void createAnalyserPlot(Path&, const Rectangle<int>, float, bool);
   bool checkForNewAnalyserData();
 
   //==============================================================================
@@ -91,18 +90,28 @@ public:
   static String paramGain;
   static String paramActive;
 
-  String getTypeParamName(const int index) const;
-  String getFrequencyParamName(const int index) const;
-  String getQualityParamName(const int index) const;
-  String getGainParamName(const int index) const;
-  String getActiveParamName(const int index) const;
+  String getTypeParamName(const int) const;
+  String getFrequencyParamName(const int) const;
+  String getQualityParamName(const int) const;
+  String getGainParamName(const int) const;
+  String getActiveParamName(const int) const;
 
   //==============================================================================
   int getNumBands() const;
-  String getBandName(const int index) const;
-  Colour getBandColour(const int index) const;
-  void setBandSolo(const int index);
-  bool getBandSolo(const int index) const;
+  String getBandName(const int) const;
+  Colour getBandColour(const int) const;
+  void setBandSolo(const int);
+  bool getBandSolo(const int) const;
+
+
+private:
+  //==============================================================================
+  AudioProcessorValueTreeState& state;
+
+  //==============================================================================
+  double sampleRate = 0;
+  int soloed = -1;
+  bool wasBypassed = true;
 
   //==============================================================================
   using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
@@ -112,16 +121,6 @@ public:
 
   std::vector<double> frequencies;
   std::vector<double> magnitudes;
-
-private:
-  //==============================================================================
-  AudioProcessorValueTreeState& state;
-
-
-  //==============================================================================
-  double sampleRate = 0;
-  int soloed = -1;
-  bool wasBypassed = true;
 
 
   Analyser<float> inputAnalyser;

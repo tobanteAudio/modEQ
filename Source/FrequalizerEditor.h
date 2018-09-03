@@ -12,6 +12,7 @@
 #include "FrequalizerProcessor.h"
 #include "SocialButtons.h"
 #include "view/BandView.h"
+#include "look_and_feel/TobanteLookAndFeel.h"
 #include "controller/BandController.h"
 
 
@@ -58,10 +59,10 @@ private:
   OpenGLContext openGLContext;
 #endif
 
+  TA::TobanteLookAndFeel tobanteLookAndFeel;
   OwnedArray<TA::BandView> bandViews; 
   OwnedArray<TA::BandController> bandControllers;
 
-  TA::BandView bandView;
 
   Rectangle<int> plotFrame;
   Rectangle<int> brandingFrame;
