@@ -5,19 +5,20 @@ install:
   - cmd: cd c:/
   - cmd: git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
   - cmd: git clone https://github.com/WeAreROLI/JUCE.git
+  - cmd: dir
   - cmd: cd c:/JUCE/
   - cmd: git checkout tags/5.3.2
   - cmd: cd c:/JUCE/extras/Projucer/JuceLibraryCode
   - ps: (Get-Content -Path "AppConfig.h") | ForEach-Object {$_ -Replace "#define JUCER_ENABLE_GPL_MODE 1", "#define JUCER_ENABLE_GPL_MODE 0"} | Set-Content -Path "AppConfig.h"
   - ps: (Get-Content -Path "AppConfig.h") | ForEach-Object {$_ -Replace "#define JUCE_USE_DARK_SPLASH_SCREEN 1", "#define JUCE_USE_DARK_SPLASH_SCREEN 0"} | Set-Content -Path "AppConfig.h"
+  - cmd: cd c:\JUCE\extras\Projucer\Builds\VisualStudio2017
+  - cmd: msbuild Projucer.sln /property:Platform=x64
 
 before_build:
-  - cmd: cd c:/JUCE/extras/Projucer/Builds/VisualStudio2017/
-  - cmd: msbuild Projucer.sln /property:Platform=x64
-  - cmd: cd c:/JUCE/extras/Projucer/Builds/VisualStudio2017/x64/Debug/App
+  - cmd: cd c:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Debug\App
   - cmd: Projucer.exe --help
-  - cmd: Projucer.exe --set-global-search-path windows defaultJuceModulePath c:/JUCE/modules
-  - cmd: Projucer.exe --set-global-search-path windows vst3path c:/vst3sdk
+  - cmd: Projucer.exe --set-global-search-path windows defaultJuceModulePath c:\JUCE\modules
+  - cmd: Projucer.exe --set-global-search-path windows vst3path c:\vst3sdk
   - cmd: Projucer.exe --resave c:/modEQ/modEQ.jucer
 
 build:
