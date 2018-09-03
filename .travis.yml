@@ -41,10 +41,6 @@ before_install:
   - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
   - cat AppConfig.h
   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/
-  - pwd
-  - make config=Release -j2
-  - export PATH=$TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/build:$PATH
-  - which Projucer
 
 install:
   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
