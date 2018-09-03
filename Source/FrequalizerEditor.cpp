@@ -28,7 +28,8 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
     auto* bandView = bandViews.add(new TA::BandView(i));
-    auto* bandController = bandControllers.add(new TA::BandController(i, processor, *bandView));
+    bandControllers.add(new TA::BandController(i, processor, *bandView));
+
     // Add lookAndFeel
     bandView->setLookAndFeel(&tobanteLookAndFeel);
     addAndMakeVisible(bandView);
@@ -61,7 +62,7 @@ FrequalizerAudioProcessorEditor::~FrequalizerAudioProcessorEditor()
 {
   PopupMenu::dismissAllActiveMenus();
 
-  processor.removeChangeListener(this);
+  processor.getEQ().removeChangeListener(this);
 #ifdef JUCE_OPENGL
   openGLContext.detach();
 #endif
@@ -85,11 +86,8 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 
   g.setColour(Colours::white);
   g.setFont(18.f);
-  g.drawText("modFilter v" + version, versionArea.reduced(10), Justification::centredTop);
+  g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
 
-  /*auto logo = ImageCache::getFromMemory(TobanteAudioData::LogoFF_png, TobanteAudioData::LogoFF_pngSize);
-  g.drawImage(logo, brandingFrame.toFloat(), RectanglePlacement(RectanglePlacement::fillDestination));
-*/
   g.setFont(12.0f);
   g.setColour(Colours::silver);
   g.drawRoundedRectangle(plotFrame.toFloat(), 5, 2);

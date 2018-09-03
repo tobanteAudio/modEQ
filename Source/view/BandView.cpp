@@ -36,25 +36,22 @@ BandView::BandView(int i)
                        j + 1);
 
   addAndMakeVisible(filterType);
-
-
-  addAndMakeVisible(frequency);
-  frequency.setTooltip(translate("Filter's frequency"));
-
-  addAndMakeVisible(quality);
-  quality.setTooltip(translate("Filter's steepness (Quality)"));
-
   addAndMakeVisible(gain);
+  addAndMakeVisible(quality);
+  addAndMakeVisible(frequency);
+  addAndMakeVisible(activate);
+  addAndMakeVisible(solo);
+
+  frequency.setTooltip(translate("Filter's frequency"));
+  quality.setTooltip(translate("Filter's steepness (Quality)"));
   gain.setTooltip(translate("Filter's gain"));
 
   solo.setClickingTogglesState(true);
   solo.setColour(TextButton::buttonOnColourId, Colours::yellow);
-  addAndMakeVisible(solo);
   solo.setTooltip(translate("Listen only through this filter (solo)"));
 
   activate.setClickingTogglesState(true);
   activate.setColour(TextButton::buttonOnColourId, Colours::green);
-  addAndMakeVisible(activate);
   activate.setTooltip(translate("Activate or deactivate this filter"));
 }
 
