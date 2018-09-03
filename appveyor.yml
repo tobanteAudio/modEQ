@@ -15,10 +15,10 @@ install:
   - cmd: msbuild Projucer.sln /property:Platform=x64
 
 before_build:
-  - ps: cd c:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Debug\App
-  - ps: ./Projucer --set-global-search-path windows defaultJuceModulePath c:/JUCE/modules
-  - ps: ./Projucer --set-global-search-path windows vst3path c:/vst3sdk
-  - ps: ./Projucer --resave c:/modEQ/modEQ.jucer
+  - cmd: cd c:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Debug\App
+  - cmd: Projucer.exe --set-global-search-path windows defaultJuceModulePath c:/JUCE/modules
+  - cmd: Projucer.exe --set-global-search-path windows vst3path c:/vst3sdk
+  - cmd: Projucer.exe --resave c:/modEQ/modEQ.jucer
 
 build_script:
   - ps: cd c:/modEQ
