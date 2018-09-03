@@ -21,5 +21,8 @@ before_build:
   - ps: ./Projucer --resave c:/modEQ/modEQ.jucer
 
 build_script:
-  - cmd: cd c:\modEQ\Builds\VisualStudio2017
-  - cmd: msbuild modEQ.sln /property:Platform=x64
+  - ps: cd c:/modEQ
+  - ps: ls
+  - ps: cd c:/modEQ/Builds
+  - ps: ls
+  # - cmd: msbuild modEQ.sln /property:Platform=x64
