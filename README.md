@@ -1,9 +1,20 @@
-# modEQ
+# tobanteAudio - modEQ
 
-This is a JUCE project using the new dsp module for an Equalizer.
-It features:
+EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
 
-- six individual bands
-- an input and an output analyser
-- solo each band
-- drag frequency and gain directly in the graph
+## Build
+
+### Windows
+#### Dependencies
+- [JUCE](https://github.com/WeAreRoli/JUCE)
+- Steinberg [vst-sdk](https://github.com/steinbergmedia/vst3sdk)
+#### Steps
+- Build Projucer from JUCE
+- Open modEQ.jucer with Projucer
+- Set path for vst sdk and juce modules
+- Open in Visual Studio 2017 and select "Release"
+
+
+# Acknowledgment
+
+The project started with the code from Daniel Walz's github repository [ffAudio/Frequalizer](https://github.com/ffAudio/Frequalizer), which was released under the BSD 3-Clause license.
