@@ -36,6 +36,7 @@ before_install:
   - cat AppConfig.h
   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/
   - make config=Release -j2
+  - echo "SUCESS"
 
 install:
   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
