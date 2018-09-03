@@ -21,7 +21,7 @@ class BandController : public Button::Listener
 {
 public:
   //==============================================================================
-  BandController(const int, FrequalizerAudioProcessor&, TA::BandView&);
+  BandController(const int, FrequalizerAudioProcessor&, TA::EqualizerProcessor&, TA::BandView&);
 
   //==============================================================================
   void buttonClicked(Button* b) override;
@@ -43,6 +43,7 @@ private:
   int index;
   TA::BandView& view;
   FrequalizerAudioProcessor& processor;
+  TA::EqualizerProcessor& subProcessor;
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;

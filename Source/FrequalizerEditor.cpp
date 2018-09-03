@@ -28,7 +28,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
     auto* bandView = bandViews.add(new TA::BandView(i));
-    bandControllers.add(new TA::BandController(i, processor, *bandView));
+    bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
     // Add lookAndFeel
     bandView->setLookAndFeel(&tobanteLookAndFeel);

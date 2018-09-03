@@ -12,10 +12,11 @@
 namespace TA
 {
 
-BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::BandView& v)
+BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
   : index(i)
   , view(v)
   , processor(p)
+  , subProcessor(sub)
 {
 
 
@@ -27,12 +28,12 @@ BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::Ba
 
   auto& state = processor.getPluginState();
 
-  boxAttachments.add(new ComboBoxAttachment(state, processor.getEQ().getTypeParamName(index), view.filterType));
-  buttonAttachments.add(new ButtonAttachment(state, processor.getEQ().getActiveParamName(index), view.activate));
+  boxAttachments.add(new ComboBoxAttachment(state, subProcessor.getTypeParamName(index), view.filterType));
+  buttonAttachments.add(new ButtonAttachment(state, subProcessor.getActiveParamName(index), view.activate));
 
-  attachments.add(new SliderAttachment(state, processor.getEQ().getFrequencyParamName(index), view.frequency));
-  attachments.add(new SliderAttachment(state, processor.getEQ().getQualityParamName(index), view.quality));
-  attachments.add(new SliderAttachment(state, processor.getEQ().getGainParamName(index), view.gain));
+  attachments.add(new SliderAttachment(state, subProcessor.getFrequencyParamName(index), view.frequency));
+  attachments.add(new SliderAttachment(state, subProcessor.getQualityParamName(index), view.quality));
+  attachments.add(new SliderAttachment(state, subProcessor.getGainParamName(index), view.gain));
 }
 
 void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
@@ -114,7 +115,7 @@ void BandController::buttonClicked(Button* b)
 {
   if (b == &view.solo)
   {
-    processor.getEQ().setBandSolo(view.solo.getToggleState() ? index : -1);
+    subProcessor.setBandSolo(view.solo.getToggleState() ? index : -1);
   }
 }
 
