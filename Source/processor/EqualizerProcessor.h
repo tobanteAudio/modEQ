@@ -11,7 +11,7 @@
 #pragma once
 #include "../Analyser.h"
 #include "BaseProcessor.h"
-
+#include "../utils/TextValueConverters.h"
 namespace TA
 {
 //==============================================================================
@@ -125,6 +125,11 @@ private:
 
   Analyser<float> inputAnalyser;
   Analyser<float> outputAnalyser;
+
+  GainTextConverter gainTextConverter;
+  ActiveTextConverter activeTextConverter;
+  QualityTextConverter qualityTextConverter;
+  FrequencyTextConverter frequencyTextConverter;
 };
 
 } // namespace TA

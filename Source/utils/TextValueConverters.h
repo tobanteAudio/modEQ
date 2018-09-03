@@ -10,9 +10,28 @@
 
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
+//#include "../processor/EqualizerProcessor.h"
 
 
-class BypassTextConverter
+//class FilterTypeTextConverter
+//{
+//public:
+//  String operator()(float value)
+//  {
+//    return TA::EqualizerProcessor::getFilterTypeName(
+//      static_cast<TA::EqualizerProcessor::FilterType>(static_cast<int>(value)));
+//  }
+//
+//  float operator()(const String& text)
+//  {
+//    for (int i = 0; i < TA::EqualizerProcessor::LastFilterID; ++i)
+//      if (text == TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(i)))
+//        return static_cast<TA::EqualizerProcessor::FilterType>(i);
+//    return TA::EqualizerProcessor::NoFilter;
+//  }
+//};
+
+class ActiveTextConverter
 {
 public:
   String operator()(float value) { return value > 0.5f ? translate("active") : translate("bypassed"); }
@@ -35,7 +54,7 @@ public:
   }
 };
 
-class FilterQualityTextConverter
+class QualityTextConverter
 {
 public:
   String operator()(float value) { return String(value, 1); }
