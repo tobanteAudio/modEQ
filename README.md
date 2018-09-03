@@ -6,16 +6,39 @@ EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE
 
 ## Build
 
-### Windows
-#### Dependencies
+### Dependencies
+
 - [JUCE](https://github.com/WeAreRoli/JUCE)
 - Steinberg [vst-sdk](https://github.com/steinbergmedia/vst3sdk)
-#### Steps
+
+### Windows
+
+- Download & Install Visual Studio 2017
 - Build Projucer from JUCE
 - Open modEQ.jucer with Projucer
 - Set path for vst sdk and juce modules
 - Open in Visual Studio 2017 and select "Release"
 
+### macOS
+
+- Download & Install Xcode
+- Build Projucer from JUCE
+- Open modEQ.jucer with Projucer
+- Set path for vst sdk and juce modules
+- Open in Xcode and select "Release"
+
+### Linux
+
+- Build Projucer from JUCE
+- Open modEQ.jucer with Projucer
+- Set path for vst sdk and juce modules
+
+```sh
+cd $PROJECT_ROOT
+cd Build/LinuxMakefile
+make config=Release -j8
+cp build/modEQ.so ~/.vst
+```
 
 # Acknowledgment
 
