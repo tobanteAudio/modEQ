@@ -5,9 +5,9 @@ compiler:
   - gcc
   # - clang
 
-
 before_install:
-  - brew update && brew bundle
+  - gem install xcpretty
+  - gem install xcpretty-travis-formatter
   - cd $TRAVIS_BUILD_DIR
   - git clone https://github.com/WeAreROLI/JUCE.git
   - git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
@@ -20,10 +20,12 @@ before_install:
   - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
   - cat AppConfig.h
   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
+  - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
 
 install:
   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
   # - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
 
 script:
+  - export PROJUCER=$TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer
   - echo "SUCESS"
