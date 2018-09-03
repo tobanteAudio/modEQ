@@ -9,12 +9,14 @@
 */
 
 #pragma once
+#include "../Analyser.h"
 #include "BaseProcessor.h"
 
 namespace TA
 {
 //==============================================================================
-class EqualizerProcessor : public ProcessorBase
+class EqualizerProcessor : public ProcessorBase, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
+
 {
 public:
   //==============================================================================
@@ -50,6 +52,7 @@ public:
 
   //==============================================================================
   EqualizerProcessor(AudioProcessorValueTreeState&);
+  ~EqualizerProcessor();
 
   //==============================================================================
   void prepareToPlay(double, int) override;
@@ -61,11 +64,24 @@ public:
 
   //==============================================================================
   void reset() override;
+   void parameterChanged(const String& parameter, float newValue) override;
 
   //==============================================================================
   static String getFilterTypeName(const TA::EqualizerProcessor::FilterType type);
   const String getName() const override { return "Equalizer"; }
   Band* getBand(const int index);
+
+  //==============================================================================
+  void updateBand(const size_t index);
+  void updateBypassedStates();
+  void updatePlots();
+
+  //==============================================================================
+  const std::vector<double>& getMagnitudes();
+  void
+  createFrequencyPlot(Path& p, const std::vector<double>& mags, const Rectangle<int> bounds, float pixelsPerDouble);
+  void createAnalyserPlot(Path& p, const Rectangle<int> bounds, float minFreq, bool input);
+  bool checkForNewAnalyserData();
 
   //==============================================================================
   static String paramOutput;
@@ -86,16 +102,30 @@ public:
   String getBandName(const int index) const;
   Colour getBandColour(const int index) const;
   void setBandSolo(const int index);
-  void updateBypassedStates();
   bool getBandSolo(const int index) const;
+
+  //==============================================================================
+  using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
+
+  dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand, FilterBand, FilterBand> filter;
+  std::vector<Band> bands;
+
+  std::vector<double> frequencies;
+  std::vector<double> magnitudes;
 
 private:
   //==============================================================================
   AudioProcessorValueTreeState& state;
-  std::vector<Band> bands;
 
+
+  //==============================================================================
   double sampleRate = 0;
   int soloed = -1;
+  bool wasBypassed = true;
+
+
+  Analyser<float> inputAnalyser;
+  Analyser<float> outputAnalyser;
 };
 
 } // namespace TA

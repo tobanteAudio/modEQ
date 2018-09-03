@@ -114,7 +114,7 @@ void BandController::buttonClicked(Button* b)
 {
   if (b == &view.solo)
   {
-    processor.setBandSolo(view.solo.getToggleState() ? index : -1);
+    processor.getEQ().setBandSolo(view.solo.getToggleState() ? index : -1);
   }
 }
 

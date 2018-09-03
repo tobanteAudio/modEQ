@@ -34,21 +34,9 @@ public:
   void parameterChanged(const String& parameter, float newValue) override;
 
   //==============================================================================
-  String getBandName(const int index) const;
-  Colour getBandColour(const int index) const;
-  void setBandSolo(const int index);
-  bool getBandSolo(const int index) const;
-
-  //==============================================================================
   AudioProcessorEditor* createEditor() override;
   bool hasEditor() const override;
 
-  //==============================================================================
-  const std::vector<double>& getMagnitudes();
-  void
-  createFrequencyPlot(Path& p, const std::vector<double>& mags, const Rectangle<int> bounds, float pixelsPerDouble);
-  void createAnalyserPlot(Path& p, const Rectangle<int> bounds, float minFreq, bool input);
-  bool checkForNewAnalyserData();
 
   //==============================================================================
   const String getName() const override;
@@ -70,38 +58,22 @@ public:
   void setStateInformation(const void* data, int sizeInBytes) override;
 
   //==============================================================================
-  TA::EqualizerProcessor::Band* getBand(const int index);
   TA::EqualizerProcessor& getEQ() { return eqProcessor; }
   AudioProcessorValueTreeState& getPluginState() { return state; }
 
 
 private:
   //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessor)
-
-  void updateBand(const size_t index);
-  void updateBypassedStates();
-  void updatePlots();
-
   UndoManager undo;
   AudioProcessorValueTreeState state;
 
-  std::vector<TA::EqualizerProcessor::Band> bands;
   TA::EqualizerProcessor eqProcessor;
-
-  std::vector<double> frequencies;
-  std::vector<double> magnitudes;
-
-  bool wasBypassed = true;
-
-  using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
-  using Gain = dsp::Gain<float>;
-  dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand, FilterBand, FilterBand, Gain> filter;
-
+  dsp::Gain<float> outputGain;
   double sampleRate = 0;
+  
+  //Analyser<float> inputAnalyser;
+  //Analyser<float> outputAnalyser;
 
-  int soloed = -1;
-
-  Analyser<float> inputAnalyser;
-  Analyser<float> outputAnalyser;
+  //==============================================================================
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessor)
 };

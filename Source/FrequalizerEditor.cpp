@@ -26,12 +26,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   addAndMakeVisible(socialButtons);
   addAndMakeVisible(bandView);
 
-  /*
-    for (int i = 0; i < processor.getNumBands(); ++i)
-    {
-      auto* bandEditor = bandEditors.add(new TA::BandEditor(i, processor));
-      addAndMakeVisible(bandEditor);
-    }*/
+
 
   for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
   {
@@ -58,7 +53,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   openGLContext.attachTo(*getTopLevelComponent());
 #endif
 
-  processor.addChangeListener(this);
+  processor.getEQ().addChangeListener(this);
 
   startTimerHz(30);
 }
@@ -83,9 +78,9 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 
   g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 
-  auto logo = ImageCache::getFromMemory(TobanteAudioData::LogoFF_png, TobanteAudioData::LogoFF_pngSize);
+  /*auto logo = ImageCache::getFromMemory(TobanteAudioData::LogoFF_png, TobanteAudioData::LogoFF_pngSize);
   g.drawImage(logo, brandingFrame.toFloat(), RectanglePlacement(RectanglePlacement::fillDestination));
-
+*/
   g.setFont(12.0f);
   g.setColour(Colours::silver);
   g.drawRoundedRectangle(plotFrame.toFloat(), 5, 2);
@@ -121,14 +116,14 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 
   Path analyser;
   g.setFont(16.0f);
-  processor.createAnalyserPlot(analyser, plotFrame, 20.0f, true);
+  processor.getEQ().createAnalyserPlot(analyser, plotFrame, 20.0f, true);
   //
   // Input Analyser
   //
   // g.setColour (inputColour);
   // g.drawFittedText ("Input", plotFrame.reduced (8), Justification::topRight, 1);
   // g.strokePath (analyser, PathStrokeType (1.0));
-  processor.createAnalyserPlot(analyser, plotFrame, 20.0f, false);
+  processor.getEQ().createAnalyserPlot(analyser, plotFrame, 20.0f, false);
   g.setColour(outputColour);
   g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
   g.strokePath(analyser, PathStrokeType(2.0));
@@ -137,7 +132,7 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
   {
     auto* bandEditor = bandViews.getUnchecked(i);
     // auto* bandEditor = bandEditors.getUnchecked(i);
-    auto* band = processor.getBand(i);
+    auto* band = processor.getEQ().getBand(i);
 
     //
     // Draw individual freq responses
@@ -185,7 +180,7 @@ void FrequalizerAudioProcessorEditor::changeListenerCallback(ChangeBroadcaster* 
 
 void FrequalizerAudioProcessorEditor::timerCallback()
 {
-  if (processor.checkForNewAnalyserData())
+  if (processor.getEQ().checkForNewAnalyserData())
     repaint(plotFrame);
 }
 
@@ -193,7 +188,7 @@ void FrequalizerAudioProcessorEditor::mouseDown(const MouseEvent& e)
 {
   if (e.mods.isPopupMenu() && plotFrame.contains(e.x, e.y))
     for (int i = 0; i < bandViews.size(); ++i)
-      if (auto* band = processor.getBand(i))
+      if (auto* band = processor.getEQ().getBand(i))
       {
         if (std::abs(plotFrame.getX() + getPositionForFrequency(int(band->frequency)) * plotFrame.getWidth()
                      - e.position.getX())
@@ -221,7 +216,7 @@ void FrequalizerAudioProcessorEditor::mouseMove(const MouseEvent& e)
   {
     for (int i = 0; i < bandControllers.size(); ++i)
     {
-      if (auto* band = processor.getBand(i))
+      if (auto* band = processor.getEQ().getBand(i))
       {
         auto pos = plotFrame.getX() + getPositionForFrequency(float(band->frequency)) * plotFrame.getWidth();
         if (std::abs(pos - e.position.getX()) < clickRadius)
@@ -271,7 +266,7 @@ void FrequalizerAudioProcessorEditor::mouseDoubleClick(const MouseEvent& e)
   {
     for (int i = 0; i < bandControllers.size(); ++i)
     {
-      if (auto* band = processor.getBand(i))
+      if (auto* band = processor.getEQ().getBand(i))
       {
         if (std::abs(plotFrame.getX() + getPositionForFrequency(float(band->frequency)) * plotFrame.getWidth()
                      - e.position.getX())
@@ -293,17 +288,17 @@ void FrequalizerAudioProcessorEditor::updateFrequencyResponses()
   {
     auto* bandController = bandControllers.getUnchecked(i);
     bandController->updateSoloState(i);
-    if (auto* band = processor.getBand(i))
+    if (auto* band = processor.getEQ().getBand(i))
     {
       bandController->updateControls(band->type);
       bandController->frequencyResponse.clear();
-      processor.createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
+      processor.getEQ().createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
                                     plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
     }
-    bandController->updateSoloState(processor.getBandSolo(i));
+    bandController->updateSoloState(processor.getEQ().getBandSolo(i));
   }
   frequencyResponse.clear();
-  processor.createFrequencyPlot(frequencyResponse, processor.getMagnitudes(), plotFrame, pixelsPerDouble);
+  processor.getEQ().createFrequencyPlot(frequencyResponse, processor.getEQ().getMagnitudes(), plotFrame, pixelsPerDouble);
 }
 
 float FrequalizerAudioProcessorEditor::getPositionForFrequency(float freq)
@@ -325,168 +320,3 @@ float FrequalizerAudioProcessorEditor::getGainForPosition(float pos, float top, 
 {
   return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
 }
-
-
-//==============================================================================
-// namespace TA
-//{
-// BandEditor::BandEditor(const int i, FrequalizerAudioProcessor& p)
-//  : index(i)
-//  , processor(p)
-//  , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-//  , quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-//  , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-//  , solo(translate("S"))
-//  , activate(translate("A"))
-//{
-//  frame.setText(processor.getBandName(index));
-//  frame.setTextLabelPosition(Justification::centred);
-//  frame.setColour(GroupComponent::textColourId, processor.getBandColour(index));
-//  frame.setColour(GroupComponent::outlineColourId, processor.getBandColour(index));
-//  addAndMakeVisible(frame);
-//
-//  for (int j = 0; j < FrequalizerAudioProcessor::LastFilterID; ++j)
-//    filterType.addItem(
-//      FrequalizerAudioProcessor::getFilterTypeName(static_cast<FrequalizerAudioProcessor::FilterType>(j)), j + 1);
-//
-//  addAndMakeVisible(filterType);
-//  boxAttachments.add(new AudioProcessorValueTreeState::ComboBoxAttachment(
-//    processor.getPluginState(), processor.getTypeParamName(index), filterType));
-//
-//  addAndMakeVisible(frequency);
-//  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-//    processor.getPluginState(), processor.getFrequencyParamName(index), frequency));
-//  frequency.setSkewFactorFromMidPoint(1000.0);
-//  frequency.setTooltip(translate("Filter's frequency"));
-//
-//  addAndMakeVisible(quality);
-//  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(),
-//                                                                     processor.getQualityParamName(index), quality));
-//  quality.setSkewFactorFromMidPoint(1.0);
-//  quality.setTooltip(translate("Filter's steepness (Quality)"));
-//
-//  addAndMakeVisible(gain);
-//  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(),
-//                                                                     processor.getGainParamName(index), gain));
-//  gain.setSkewFactorFromMidPoint(1.0);
-//  gain.setTooltip(translate("Filter's gain"));
-//
-//  solo.setClickingTogglesState(true);
-//  solo.addListener(this);
-//  solo.setColour(TextButton::buttonOnColourId, Colours::yellow);
-//  addAndMakeVisible(solo);
-//  solo.setTooltip(translate("Listen only through this filter (solo)"));
-//
-//  activate.setClickingTogglesState(true);
-//  activate.setColour(TextButton::buttonOnColourId, Colours::green);
-//  buttonAttachments.add(new AudioProcessorValueTreeState::ButtonAttachment(
-//    processor.getPluginState(), processor.getActiveParamName(index), activate));
-//  addAndMakeVisible(activate);
-//  activate.setTooltip(translate("Activate or deactivate this filter"));
-//}
-//
-// void BandEditor::resized()
-//{
-//  auto bounds = getLocalBounds();
-//  frame.setBounds(bounds);
-//
-//  bounds.reduce(10, 20);
-//
-//  filterType.setBounds(bounds.removeFromTop(20));
-//
-//  auto freqBounds = bounds.removeFromBottom(bounds.getHeight() * 2 / 4);
-//  frequency.setBounds(freqBounds.withTop(freqBounds.getY() + 10));
-//
-//  auto buttons = freqBounds.reduced(5).withHeight(20);
-//  solo.setBounds(buttons.removeFromLeft(20));
-//  activate.setBounds(buttons.removeFromRight(20));
-//
-//  quality.setBounds(bounds.removeFromLeft(bounds.getWidth() / 2));
-//  gain.setBounds(bounds);
-//}
-//
-// void BandEditor::updateControls(FrequalizerAudioProcessor::FilterType type)
-//{
-//  switch (type)
-//  {
-//  case FrequalizerAudioProcessor::LowPass:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::LowPass1st:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(false);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::LowShelf:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(false);
-//    gain.setEnabled(true);
-//    break;
-//  case FrequalizerAudioProcessor::BandPass:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::AllPass:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(false);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::AllPass1st:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(false);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::Notch:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::Peak:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(true);
-//    break;
-//  case FrequalizerAudioProcessor::HighShelf:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(true);
-//    break;
-//  case FrequalizerAudioProcessor::HighPass1st:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(false);
-//    gain.setEnabled(false);
-//    break;
-//  case FrequalizerAudioProcessor::HighPass:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(false);
-//    break;
-//  default:
-//    frequency.setEnabled(true);
-//    quality.setEnabled(true);
-//    gain.setEnabled(true);
-//    break;
-//  }
-//}
-//
-// void BandEditor::updateSoloState(bool isSolo) { solo.setToggleState(isSolo, dontSendNotification); }
-//
-// void BandEditor::setFrequency(float freq) { frequency.setValue(freq, sendNotification); }
-//
-// void BandEditor::setGain(float gainToUse) { gain.setValue(gainToUse, sendNotification); }
-//
-// void BandEditor::setType(int type) { filterType.setSelectedId(type + 1, sendNotification); }
-//
-// void BandEditor::buttonClicked(Button* b)
-//{
-//  if (b == &solo)
-//  {
-//    processor.setBandSolo(solo.getToggleState() ? index : -1);
-//  }
-//}
-//
-//
-//} // namespace TA
