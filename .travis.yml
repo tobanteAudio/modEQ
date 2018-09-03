@@ -14,6 +14,7 @@ before_install:
   - pwd
   - sed -i '' "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
   - sed -i '' "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
+  - sed -i '' "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
   - cat AppConfig.h
   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
   - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
