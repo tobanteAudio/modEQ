@@ -1,9 +1,6 @@
 os: osx
 sudo: false
 language: cpp
-compiler:
-  - gcc
-  # - clang
 
 before_install:
   - gem install xcpretty
@@ -21,16 +18,12 @@ before_install:
   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
   - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
 
-install:
-  - "[ $CXX = g++ ] && export CXX=g++-6 || true"
-  # - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
-
 script:
-  - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
+  - cd $TRAVIS_BUILD_DIR/
   - export PROJUCER=$TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer
-  # - $PROJUCER --set-global-search-path osx vst3path $TRAVIS_BUILD_DIR/vst3sdk
   - $PROJUCER --set-global-search-path osx defaultJuceModulePath  $TRAVIS_BUILD_DIR/JUCE/modules
-  - $PROJUCER --resave ../../modEQ.jucer
+  - $PROJUCER --resave modEQ.jucer
+  - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
   - ls
   - xcodebuild -project modEQ.xcodeproj/ clean
   - xcodebuild -project modEQ.xcodeproj/ ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter` > /dev/null
@@ -40,3 +33,11 @@ script:
 # - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
 # - sed -i "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
 # - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
+
+# install:
+#   - "[ $CXX = g++ ] && export CXX=g++-6 || true"
+#   # - "[ $CXX = clang++ ] && export CXX=clang++-3.8 || true"
+
+# compiler:
+#   - gcc
+#   # - clang
