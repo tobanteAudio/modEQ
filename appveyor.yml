@@ -14,7 +14,7 @@ install:
 before_build:
   - cmd: cd c:/JUCE/extras/Projucer/Builds/VisualStudio2017/
   - cmd: msbuild Projucer.sln /property:Platform=x64
-  - cmd: cd c:/JUCE/extras/Projucer/Builds/VisualStudio2017/x64/Release/App
+  - cmd: cd c:/JUCE/extras/Projucer/Builds/VisualStudio2017/x64/Debug/App
   - cmd: Projucer.exe --help
   - cmd: Projucer.exe --set-global-search-path windows defaultJuceModulePath c:/JUCE/modules
   - cmd: Projucer.exe --set-global-search-path windows vst3path c:/vst3sdk
