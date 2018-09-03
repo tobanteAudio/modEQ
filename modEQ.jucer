@@ -6,9 +6,9 @@
               aaxIdentifier="com.tobanteAudio.modEQ" pluginManufacturerCode="toAu"
               pluginCode="tamq" pluginName="modEQ" pluginDesc="EQ with modulation"
               reportAppUsage="0" displaySplashScreen="0" binaryDataNamespace="TobanteAudioData"
-              id="WgRqjr" pluginFormats="buildAU,buildStandalone" pluginAUMainType="'aufx'"
-              pluginVST3Category="Analyzer,EQ,Fx" pluginAAXCategory="1" version="0.0.1"
-              cppLanguageStandard="17">
+              id="WgRqjr" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
+              pluginAUMainType="'aufx'" pluginVST3Category="Analyzer,EQ,Fx"
+              pluginAAXCategory="1" version="0.0.1" cppLanguageStandard="17">
   <MAINGROUP id="QYjF1u" name="modEQ">
     <GROUP id="{85087548-8D9A-0248-9641-411914200E27}" name="Source">
       <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
