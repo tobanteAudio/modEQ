@@ -101,8 +101,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
     band.magnitudes.resize(frequencies.size(), 1.0);
 
     state.createAndAddParameter(
-      getTypeParamName(i), band.name + " Type", TRANS("Filter Type"),
-      filterTypeRange, (float)band.type,
+      getTypeParamName(i), band.name + " Type", TRANS("Filter Type"), filterTypeRange, (float)band.type,
       [](float value) {
         return TA::EqualizerProcessor::getFilterTypeName(
           static_cast<TA::EqualizerProcessor::FilterType>(static_cast<int>(value)));
@@ -116,26 +115,22 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
       false, true, true);
 
     state.createAndAddParameter(
-      getFrequencyParamName(i), band.name + " freq", "Frequency", frequencyRange,
-      band.frequency,
+      getFrequencyParamName(i), band.name + " freq", "Frequency", frequencyRange, band.frequency,
       [](float value) { return (value < 1000) ? String(value, 0) + " Hz" : String(value / 1000.0, 2) + " kHz"; },
       [](String text) {
         return text.endsWith(" kHz") ? text.dropLastCharacters(4).getFloatValue() * 1000.0
                                      : text.dropLastCharacters(3).getFloatValue();
       },
       false, true, false);
-    state.createAndAddParameter(getQualityParamName(i), band.name + " Q", TRANS("Quality"),
-                                qualityRange, band.quality,
+    state.createAndAddParameter(getQualityParamName(i), band.name + " Q", TRANS("Quality"), qualityRange, band.quality,
                                 [](float value) { return String(value, 1); },
                                 [](const String& text) { return text.getFloatValue(); }, false, true, false);
     state.createAndAddParameter(
-      getGainParamName(i), band.name + " gain", TRANS("Gain"),
-      gainRange, band.gain,
+      getGainParamName(i), band.name + " gain", TRANS("Gain"), gainRange, band.gain,
       [](float value) { return String(Decibels::gainToDecibels(value), 1) + " dB"; },
       [](String text) { return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue()); }, false, true,
       false);
-    state.createAndAddParameter(getActiveParamName(i), band.name + " active", TRANS("Active"),
-                                activeRange, band.active,
+    state.createAndAddParameter(getActiveParamName(i), band.name + " active", TRANS("Active"), activeRange, band.active,
                                 [](float value) { return value > 0.5f ? TRANS("active") : TRANS("bypassed"); },
                                 [](String text) { return text == TRANS("active"); }, false, true, true);
 

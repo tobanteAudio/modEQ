@@ -18,8 +18,8 @@ BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::Ba
   , processor(p)
 {
 
-	
-   view.solo.addListener(this);
+
+  view.solo.addListener(this);
   // Link GUI components to ValueTree
   using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
   using ComboBoxAttachment = AudioProcessorValueTreeState::ComboBoxAttachment;

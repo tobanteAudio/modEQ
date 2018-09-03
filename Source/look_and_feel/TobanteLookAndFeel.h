@@ -66,7 +66,7 @@ public:
     g.setColour(Colours::darkblue);
     g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
-	Rectangle<int> textArea{50,50};
+    Rectangle<int> textArea{50, 50};
     textArea.setCentre(centreX, centreY);
 
     g.setFont(18.f);
@@ -99,4 +99,4 @@ public:
   }
 };
 
-} // namespace tobanteAudio
+} // namespace TA

@@ -70,9 +70,9 @@ private:
   TA::EqualizerProcessor eqProcessor;
   dsp::Gain<float> outputGain;
   double sampleRate = 0;
-  
-  //Analyser<float> inputAnalyser;
-  //Analyser<float> outputAnalyser;
+
+  // Analyser<float> inputAnalyser;
+  // Analyser<float> outputAnalyser;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessor)

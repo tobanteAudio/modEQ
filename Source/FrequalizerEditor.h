@@ -11,9 +11,9 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "FrequalizerProcessor.h"
 #include "SocialButtons.h"
-#include "view/BandView.h"
-#include "look_and_feel/TobanteLookAndFeel.h"
 #include "controller/BandController.h"
+#include "look_and_feel/TobanteLookAndFeel.h"
+#include "view/BandView.h"
 
 
 //==============================================================================
@@ -60,7 +60,7 @@ private:
 #endif
 
   TA::TobanteLookAndFeel tobanteLookAndFeel;
-  OwnedArray<TA::BandView> bandViews; 
+  OwnedArray<TA::BandView> bandViews;
   OwnedArray<TA::BandController> bandControllers;
 
 

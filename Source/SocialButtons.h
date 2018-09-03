@@ -21,7 +21,7 @@ public:
   SocialButtons()
   {
     setOpaque(false);
-	   
+
     auto* b = buttons.add(new ImageButton());
     b->addListener(this);
     auto fbLogo = ImageCache::getFromMemory(TobanteAudioData::FBlogo_png, TobanteAudioData::FBlogo_pngSize);

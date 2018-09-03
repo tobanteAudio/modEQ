@@ -9,6 +9,8 @@
 */
 
 #pragma once
+#include "../../JuceLibraryCode/JuceHeader.h"
+
 
 class BypassTextConverter
 {

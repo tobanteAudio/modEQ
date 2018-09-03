@@ -1,6 +1,5 @@
 AlignAfterOpenBracket: Align
 AlwaysBreakTemplateDeclarations: true
-AllowShortFunctionsOnASingleLine: All
 BinPackArguments: true
 BinPackParameters: false
 BreakBeforeBinaryOperators: NonAssignment
