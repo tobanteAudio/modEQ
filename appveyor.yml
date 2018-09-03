@@ -16,7 +16,6 @@ install:
 
 before_build:
   - cmd: cd c:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Debug\App
-  - cmd: ./Projucer --help
   - cmd: ./Projucer --set-global-search-path windows defaultJuceModulePath c:/JUCE/modules
   - cmd: ./Projucer --set-global-search-path windows vst3path c:/vst3sdk
   - cmd: ./Projucer --resave c:/modEQ/modEQ.jucer
