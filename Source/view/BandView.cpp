@@ -9,7 +9,6 @@
 */
 
 #include "BandView.h"
-#include "../../JuceLibraryCode/JuceHeader.h"
 #include "../FrequalizerProcessor.h"
 
 //==============================================================================
