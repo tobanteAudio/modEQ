@@ -1,7 +1,7 @@
+# tobanteAudio - modEQ
+
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.org/tobanteAudio/modEQ.svg?branch=master)](https://travis-ci.org/tobanteAudio/modEQ)
-
-# tobanteAudio - modEQ
 
 EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
 
@@ -37,6 +37,6 @@ make config=Release -j8
 cp build/modEQ.so ~/.vst
 ```
 
-# Acknowledgment
+## Acknowledgment
 
 The project started with the code from Daniel Walz's github repository [ffAudio/Frequalizer](https://github.com/ffAudio/Frequalizer), which was released under the BSD 3-Clause license.
