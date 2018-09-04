@@ -88,9 +88,9 @@ void EqualizerPlotView::paint(Graphics& g)
   //
   // Input Analyser
   //
-  // g.setColour (inputColour);
-  // g.drawFittedText ("Input", plotFrame.reduced (8), Justification::topRight, 1);
-  // g.strokePath (analyser, PathStrokeType (1.0));
+  g.setColour(inputColour);
+  g.drawFittedText("Input", plotFrame.reduced(8), Justification::topRight, 1);
+  g.strokePath(analyser, PathStrokeType(1.0));
   processor.createAnalyserPlot(analyser, plotFrame, 20.0f, false);
   g.setColour(outputColour);
   g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
