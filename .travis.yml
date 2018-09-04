@@ -66,7 +66,6 @@ script:
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - gcc -v && g++ -v && cmake --version
   - ls
-  # - $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --set-global-search-path linux defaultJuceModulePath $TRAVIS_BUILD_DIR/JUCE/modules
   - $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
   - ls
   - cd Builds/LinuxMakefile
