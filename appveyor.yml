@@ -16,7 +16,7 @@ install:
   - cmd: msbuild Projucer.sln /property:Platform=x64 /property:Configuration=Release
 
 before_build:
-  ~- cmd: C:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Release\App\Projucer.exe  --set-global-search-path windows defaultJuceModulePath c:\JUCE\modules
+  - cmd: C:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Release\App\Projucer.exe --set-global-search-path windows defaultJuceModulePath c:\JUCE\modules
   - cmd: C:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Release\App\Projucer.exe --resave c:\modEQ\modEQ.jucer
 
 build_script:
