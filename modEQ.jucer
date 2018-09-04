@@ -8,7 +8,8 @@
               reportAppUsage="0" displaySplashScreen="0" binaryDataNamespace="TobanteAudioData"
               id="WgRqjr" pluginFormats="buildAU,buildStandalone,buildVST,buildVST3"
               pluginAUMainType="'aufx'" pluginVST3Category="Analyzer,EQ,Fx"
-              pluginAAXCategory="1" version="0.0.1" cppLanguageStandard="17">
+              pluginAAXCategory="1" version="0.1.0" cppLanguageStandard="17"
+              companyEmail="tobanteAudio@gmail.com" companyWebsite="https://github.com/tobanteAudio">
   <MAINGROUP id="QYjF1u" name="modEQ">
     <GROUP id="{85087548-8D9A-0248-9641-411914200E27}" name="Source">
       <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
@@ -60,7 +61,7 @@
         <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="1" vst3BinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST3"
                        vstBinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST"/>
         <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="1" vst3BinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST3"
-                       vstBinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST"/>
+                       vstBinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST3"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
