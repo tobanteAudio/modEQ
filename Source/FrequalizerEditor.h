@@ -14,12 +14,13 @@
 #include "controller/BandController.h"
 #include "look_and_feel/TobanteLookAndFeel.h"
 #include "view/BandView.h"
+#include "view/EqualizerPlotView.h"
 
 
 //==============================================================================
 /**
  */
-class FrequalizerAudioProcessorEditor : public AudioProcessorEditor, public ChangeListener, public Timer
+class FrequalizerAudioProcessorEditor : public AudioProcessorEditor, public ChangeListener
 {
 public:
   FrequalizerAudioProcessorEditor(FrequalizerAudioProcessor&);
@@ -31,23 +32,8 @@ public:
   void resized() override;
 
   void changeListenerCallback(ChangeBroadcaster* sender) override;
-  void timerCallback() override;
-
-  void mouseDown(const MouseEvent& e) override;
-  void mouseMove(const MouseEvent& e) override;
-  void mouseDrag(const MouseEvent& e) override;
-  void mouseDoubleClick(const MouseEvent& e) override;
 
 private:
-  void updateFrequencyResponses();
-
-  static float getPositionForFrequency(float freq);
-
-  static float getFrequencyForPosition(float pos);
-
-  static float getPositionForGain(float gain, float top, float bottom);
-
-  static float getGainForPosition(float pos, float top, float bottom);
 
   // This reference is provided as a quick way for your editor to
   // access the processor object that created it.
@@ -62,7 +48,7 @@ private:
   TA::TobanteLookAndFeel tobanteLookAndFeel;
   OwnedArray<TA::BandView> bandViews;
   OwnedArray<TA::BandController> bandControllers;
-
+  EqualizerPlotView plotView;
 
   Rectangle<int> plotFrame;
   Rectangle<int> brandingFrame;

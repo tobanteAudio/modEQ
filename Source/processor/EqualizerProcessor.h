@@ -10,8 +10,8 @@
 
 #pragma once
 #include "../Analyser.h"
-#include "BaseProcessor.h"
 #include "../utils/TextValueConverters.h"
+#include "BaseProcessor.h"
 namespace TA
 {
 //==============================================================================
@@ -103,6 +103,7 @@ public:
   void setBandSolo(const int);
   bool getBandSolo(const int) const;
 
+  AudioProcessorValueTreeState& getPluginState() { return state; }
 
 private:
   //==============================================================================

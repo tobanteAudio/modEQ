@@ -36,6 +36,10 @@
       <GROUP id="{E1AB739F-7F64-B3FB-942B-61798B09653D}" name="view">
         <FILE id="JRp1la" name="BandView.cpp" compile="1" resource="0" file="Source/view/BandView.cpp"/>
         <FILE id="d2SkUe" name="BandView.h" compile="0" resource="0" file="Source/view/BandView.h"/>
+        <FILE id="pUiGZ7" name="EqualizerPlotView.cpp" compile="1" resource="0"
+              file="Source/view/EqualizerPlotView.cpp"/>
+        <FILE id="tYEP4H" name="EqualizerPlotView.h" compile="0" resource="0"
+              file="Source/view/EqualizerPlotView.h"/>
       </GROUP>
       <FILE id="jQNfxl" name="FrequalizerProcessor.cpp" compile="1" resource="0"
             file="Source/FrequalizerProcessor.cpp"/>
