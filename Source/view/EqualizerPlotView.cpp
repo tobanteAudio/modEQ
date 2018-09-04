@@ -26,10 +26,6 @@ EqualizerPlotView::EqualizerPlotView(TA::EqualizerProcessor& p, OwnedArray<TA::B
   // initialise any special settings that your component needs.
   processor.addChangeListener(this);
 
-  //#ifdef JUCE_OPENGL
-  //  openGLContext.attachTo(*getTopLevelComponent());
-  //#endif
-
   startTimerHz(30);
 }
 
@@ -37,9 +33,6 @@ EqualizerPlotView::~EqualizerPlotView()
 {
   processor.removeChangeListener(this);
 
-  //#ifdef JUCE_OPENGL
-  //  openGLContext.detach();
-  //#endif
 }
 
 void EqualizerPlotView::paint(Graphics& g)
@@ -84,13 +77,16 @@ void EqualizerPlotView::paint(Graphics& g)
 
   Path analyser;
   g.setFont(16.0f);
-  processor.createAnalyserPlot(analyser, plotFrame, 20.0f, true);
   //
   // Input Analyser
   //
+  processor.createAnalyserPlot(analyser, plotFrame, 20.0f, true);
   g.setColour(inputColour);
   g.drawFittedText("Input", plotFrame.reduced(8), Justification::topRight, 1);
   g.strokePath(analyser, PathStrokeType(1.0));
+  //
+  // Output Analyser
+  //
   processor.createAnalyserPlot(analyser, plotFrame, 20.0f, false);
   g.setColour(outputColour);
   g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
@@ -102,17 +98,17 @@ void EqualizerPlotView::paint(Graphics& g)
   //  // auto* bandEditor = bandEditors.getUnchecked(i);
   //  auto* band = processor.getEQ().getBand(i);
 
-  //  //
-  //  // Draw individual freq responses
-  //  //
-  //  // g.setColour (band->active ? band->colour : band->colour.withAlpha (0.3f));
-  //  // g.strokePath (bandEditor->frequencyResponse, PathStrokeType (1.0));
-  //  // g.setColour (draggingBand == i ? band->colour : band->colour.withAlpha (0.3f));
-  //  // auto x = roundToInt (plotFrame.getX() + plotFrame.getWidth() * getPositionForFrequency (float
-  //  // (band->frequency))); auto y = roundToInt (getPositionForGain (float (band->gain), (float)plotFrame.getY(),
-  //  // (float)plotFrame.getBottom())); g.drawVerticalLine (x, (float)plotFrame.getY(), (float(y - 5)));
-  //  // g.drawVerticalLine (x, (float(y + 5)), (float)plotFrame.getBottom());
-  //  // g.fillEllipse ((float(x - 3)), (float(y - 3)), (float)6, (float)6);
+  //  
+  //   Draw individual freq responses
+  //  
+  //   g.setColour (band->active ? band->colour : band->colour.withAlpha (0.3f));
+  //   g.strokePath (bandEditor->frequencyResponse, PathStrokeType (1.0));
+  //   g.setColour (draggingBand == i ? band->colour : band->colour.withAlpha (0.3f));
+  //   auto x = roundToInt (plotFrame.getX() + plotFrame.getWidth() * getPositionForFrequency (float
+  //   (band->frequency))); auto y = roundToInt (getPositionForGain (float (band->gain), (float)plotFrame.getY(),
+  //   (float)plotFrame.getBottom())); g.drawVerticalLine (x, (float)plotFrame.getY(), (float(y - 5)));
+  //   g.drawVerticalLine (x, (float(y + 5)), (float)plotFrame.getBottom());
+  //   g.fillEllipse ((float(x - 3)), (float(y - 3)), (float)6, (float)6);
   //}
   g.setColour(Colours::cadetblue);
   g.strokePath(frequencyResponse, PathStrokeType(3.0));
