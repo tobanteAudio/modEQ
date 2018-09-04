@@ -106,10 +106,7 @@ void FrequalizerAudioProcessorEditor::resized()
 
 }
 
-void FrequalizerAudioProcessorEditor::changeListenerCallback(ChangeBroadcaster* sender)
-{
-  ignoreUnused(sender);
-}
+
 
 
 

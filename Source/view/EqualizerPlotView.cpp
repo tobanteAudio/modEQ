@@ -3,7 +3,7 @@
 
     EqualizerPlotView.cpp
     Created: 4 Sep 2018 8:21:00pm
-    Author:  tobante
+    Author:  Tobias Hienzsch
 
   ==============================================================================
 */
