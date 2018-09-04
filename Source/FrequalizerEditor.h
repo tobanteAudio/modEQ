@@ -35,19 +35,16 @@ public:
 
 private:
   //==============================================================================
-  // This reference is provided as a quick way for your editor to
-  // access the processor object that created it.
   FrequalizerAudioProcessor& processor;
 
   //==============================================================================
   TA::TobanteLookAndFeel tobanteLookAndFeel;
   OwnedArray<TA::BandView> bandViews;
   OwnedArray<TA::BandController> bandControllers;
-  EqualizerPlotView plotView;
+  TA::EqualizerPlotView plotView;
 
   //==============================================================================
-  Rectangle<int> plotFrame;
-  Rectangle<int> brandingFrame;
+  Rectangle<int> plotArea;
 
   //==============================================================================
   SocialButtons socialButtons;

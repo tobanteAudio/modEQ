@@ -89,20 +89,23 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 void FrequalizerAudioProcessorEditor::resized()
 {
   auto area = getLocalBounds();
-  plotFrame = area.reduced(3, 3);
 
-  socialButtons.setBounds(plotFrame.removeFromBottom(35));
+  // Facebook & Gitub
+  socialButtons.setBounds(area.removeFromBottom(35));
 
-  auto bandSpace = plotFrame.removeFromBottom(getHeight() / 2);
+  // EQ Bands
+  auto bandSpace = area.removeFromBottom(getHeight() / 2);
   auto width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
   for (auto* bandView : bandViews)
     bandView->setBounds(bandSpace.removeFromLeft(width));
 
+  // Frame around output
   frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));
   output.setBounds(frame.getBounds().reduced(8));
 
-  plotView.setBounds(plotFrame);
-  brandingFrame = bandSpace.reduced(5);
+  // FFT
+  plotView.setBounds(area);
+
 
 }
 

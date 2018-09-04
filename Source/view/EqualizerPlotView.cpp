@@ -11,6 +11,9 @@
 #include "EqualizerPlotView.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
+namespace TA
+{
+
 static int clickRadius = 10;
 static float maxDB = 24.0f;
 
@@ -23,9 +26,9 @@ EqualizerPlotView::EqualizerPlotView(TA::EqualizerProcessor& p, OwnedArray<TA::B
   // initialise any special settings that your component needs.
   processor.addChangeListener(this);
 
-//#ifdef JUCE_OPENGL
-//  openGLContext.attachTo(*getTopLevelComponent());
-//#endif
+  //#ifdef JUCE_OPENGL
+  //  openGLContext.attachTo(*getTopLevelComponent());
+  //#endif
 
   startTimerHz(30);
 }
@@ -34,9 +37,9 @@ EqualizerPlotView::~EqualizerPlotView()
 {
   processor.removeChangeListener(this);
 
-//#ifdef JUCE_OPENGL
-//  openGLContext.detach();
-//#endif
+  //#ifdef JUCE_OPENGL
+  //  openGLContext.detach();
+  //#endif
 }
 
 void EqualizerPlotView::paint(Graphics& g)
@@ -137,7 +140,7 @@ void EqualizerPlotView::timerCallback()
 
 void EqualizerPlotView::mouseDown(const MouseEvent& e)
 {
-   if (e.mods.isPopupMenu() && plotFrame.contains(e.x, e.y))
+  if (e.mods.isPopupMenu() && plotFrame.contains(e.x, e.y))
     for (int i = 0; i < bandControllers.size(); ++i)
       if (auto* band = processor.getBand(i))
       {
@@ -152,8 +155,8 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
               true, band->type == t);
 
           contextMenu.showMenuAsync(
-            PopupMenu::Options().withTargetComponent(this).withTargetScreenArea({e.getScreenX(), e.getScreenY(), 1,
-            1}), [this, i](int selected) {
+            PopupMenu::Options().withTargetComponent(this).withTargetScreenArea({e.getScreenX(), e.getScreenY(), 1, 1}),
+            [this, i](int selected) {
               if (selected > 0)
                 bandControllers.getUnchecked(i)->setType(selected - 1);
             });
@@ -268,3 +271,5 @@ float EqualizerPlotView::getGainForPosition(float pos, float top, float bottom)
 {
   return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
 }
+
+} // namespace TA

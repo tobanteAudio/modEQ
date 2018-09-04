@@ -14,6 +14,9 @@
 #include "../processor/EqualizerProcessor.h"
 #include "JuceHeader.h"
 
+namespace TA
+{
+
 //==============================================================================
 /*
  */
@@ -55,14 +58,14 @@ private:
   //==============================================================================
   Rectangle<int> plotFrame;
   Path frequencyResponse;
-  GroupComponent frame;
   PopupMenu contextMenu;
 
   //==============================================================================
   int draggingBand = -1;
   bool draggingGain = false;
 
-
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerPlotView)
 };
+
+} // namespace TA
