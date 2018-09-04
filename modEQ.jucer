@@ -68,21 +68,21 @@
                        vstBinaryLocation="C:\Users\tobante\Documents\tobanteAudio\install\VST3"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_dsp" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_basics" path="3rd_party\JUCE\modules"/>
       </MODULEPATHS>
     </VS2017>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
