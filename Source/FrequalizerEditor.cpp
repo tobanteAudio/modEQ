@@ -11,7 +11,7 @@
 #include "FrequalizerProcessor.h"
 #include "SocialButtons.h"
 
-static int clickRadius = 4;
+static int clickRadius = 10;
 static float maxDB = 24.0f;
 
 //==============================================================================
