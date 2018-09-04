@@ -26,8 +26,8 @@ BandView::BandView(int i)
 {
   frame.setText(String(index)); // processor.getBandName(index)
   frame.setTextLabelPosition(Justification::centred);
-  frame.setColour(GroupComponent::textColourId, Colours::blue); // processor.getBandColour(index)
-  frame.setColour(GroupComponent::outlineColourId, Colours::blue);
+  frame.setColour(GroupComponent::textColourId, Colours::silver); // processor.getBandColour(index)
+  frame.setColour(GroupComponent::outlineColourId, Colour(0xff00ff08));
   addAndMakeVisible(frame);
 
   for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)

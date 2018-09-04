@@ -44,21 +44,21 @@ void EqualizerPlotView::paint(Graphics& g)
 
   g.setFont(12.0f);
   g.setColour(Colours::silver);
-  g.drawRoundedRectangle(plotFrame.toFloat(), 5, 2);
+  g.drawRoundedRectangle(plotFrame.toFloat(), 5, 4);
   for (int i = 0; i < 10; ++i)
   {
-    g.setColour(Colours::silver.withAlpha(0.3f));
+    g.setColour(Colours::silver.withAlpha(0.4f));
     auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
     if (i > 0)
       g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(), (float)plotFrame.getBottom());
 
-    g.setColour(Colours::silver);
+    g.setColour(Colour(0xffb9f6ca));
     auto freq = getFrequencyForPosition(i * 0.1f);
     g.drawFittedText((freq < 1000) ? String(freq) + " Hz" : String(freq / 1000, 1) + " kHz", roundToInt(x + 3),
                      plotFrame.getBottom() - 18, 50, 15, Justification::left, 1);
   }
 
-  g.setColour(Colours::silver.withAlpha(0.3f));
+  g.setColour(Colours::silver.withAlpha(0.4f));
   g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()), (float)plotFrame.getX(),
                        (float)plotFrame.getRight());
   g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()), (float)plotFrame.getX(),
@@ -110,7 +110,7 @@ void EqualizerPlotView::paint(Graphics& g)
   //   g.drawVerticalLine (x, (float(y + 5)), (float)plotFrame.getBottom());
   //   g.fillEllipse ((float(x - 3)), (float(y - 3)), (float)6, (float)6);
   //}
-  g.setColour(Colours::cadetblue);
+  g.setColour(Colour(0xff00ff08));
   g.strokePath(frequencyResponse, PathStrokeType(3.0));
 }
 

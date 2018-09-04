@@ -32,7 +32,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
     bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
     // Add lookAndFeel
-    bandView->setLookAndFeel(&tobanteLookAndFeel);
+    //bandView->setLookAndFeel(&tobanteLookAndFeel);
     addAndMakeVisible(bandView);
   }
 

@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Analyser.h"
 #include "processor/EqualizerProcessor.h"
+#include "utils/TextValueConverters.h"
 
 //==============================================================================
 class FrequalizerAudioProcessor : public AudioProcessor,
@@ -71,8 +72,7 @@ private:
   dsp::Gain<float> outputGain;
   double sampleRate = 0;
 
-  // Analyser<float> inputAnalyser;
-  // Analyser<float> outputAnalyser;
+  GainTextConverter gainTextConverter;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessor)

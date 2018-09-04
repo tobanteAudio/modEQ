@@ -26,12 +26,9 @@ FrequalizerAudioProcessor::FrequalizerAudioProcessor()
 {
   const float maxGain = Decibels::decibelsToGain(24.0f);
 
-  state.createAndAddParameter(
-    TA::EqualizerProcessor::paramOutput, TRANS("Output"), TRANS("Output level"),
-    NormalisableRange<float>(0.0f, 2.0f, 0.01f), 1.0f,
-    [](float value) { return String(Decibels::gainToDecibels(value), 1) + " dB"; },
-    [](String text) { return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue()); }, false, true,
-    false);
+  state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"), translate("Output level"),
+                              NormalisableRange<float>(0.0f, 2.0f, 0.01f), 1.0f, gainTextConverter, gainTextConverter,
+                              false, true, false);
 
 
   state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
