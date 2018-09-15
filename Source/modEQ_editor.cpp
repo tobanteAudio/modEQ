@@ -20,7 +20,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
   , processor(p)
   , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
   , plotView(processor.getEQ(), bandControllers)
-  , modView(processor.modSource)
+  , modController(1, processor.modSource, modView)
 {
   tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
@@ -33,7 +33,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
     // Add lookAndFeel
-    //bandView->setLookAndFeel(&tobanteLookAndFeel);
+    // bandView->setLookAndFeel(&tobanteLookAndFeel);
     addAndMakeVisible(bandView);
   }
 
@@ -56,9 +56,6 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 #ifdef JUCE_OPENGL
   openGLContext.attachTo(*getTopLevelComponent());
 #endif
-
-
- 
 }
 
 ModEQEditor::~ModEQEditor()
@@ -85,7 +82,6 @@ void ModEQEditor::paint(Graphics& g)
   g.setColour(Colours::white);
   g.setFont(18.f);
   g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
-
 }
 
 void ModEQEditor::resized()
@@ -94,14 +90,14 @@ void ModEQEditor::resized()
 
   // Facebook & Gitub
   socialButtons.setBounds(area.removeFromBottom(35));
-  
-  
-  auto modArea = area.removeFromBottom(getHeight() / 5);
-  modView.setBounds(modArea.removeFromLeft(modArea.getWidth()/4));
 
+  // Modulators
+  auto modArea = area.removeFromBottom(getHeight() / 6);
+  auto modSourceWidth = modArea.getWidth() / 3;
+  modView.setBounds(modArea.removeFromLeft(modSourceWidth));
 
   // EQ Bands
-  auto bandSpace = area.removeFromBottom(getHeight() / 2);
+  auto bandSpace = area.removeFromBottom(getHeight() / 3);
   auto width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
   for (auto* bandView : bandViews)
     bandView->setBounds(bandSpace.removeFromLeft(width));
@@ -112,13 +108,4 @@ void ModEQEditor::resized()
 
   // FFT
   plotView.setBounds(area);
-
-
 }
-
-
-
-
-
-
-

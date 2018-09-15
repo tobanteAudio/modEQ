@@ -3,7 +3,7 @@
 
     modulation_source_view.h
     Created: 12 Sep 2018 10:35:39pm
-    Author:  tobante
+    Author:  Tobias Hienzsch
 
   ==============================================================================
 */
@@ -18,13 +18,11 @@
 namespace TA
 {
 //==============================================================================
-/*
- */
-class ModulationSourceView : public Component, public ChangeListener, public Timer
+class ModulationSourceView : public Component
 {
 public:
   //==============================================================================
-  ModulationSourceView(TA::ModulationSourceProcessor&);
+  ModulationSourceView();
   ~ModulationSourceView();
 
   //==============================================================================
@@ -32,19 +30,13 @@ public:
   void resized() override;
 
   //==============================================================================
-  void changeListenerCallback(ChangeBroadcaster* sender) override;
-  void timerCallback() override;
-
-
-private:
-  //==============================================================================
-  TA::ModulationSourceProcessor& processor;
-
-  //==============================================================================
+  Slider frequency;
+  Slider gain;
   Rectangle<int> plotFrame;
   Path modulationPath;
 
-
+private:
+  //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 

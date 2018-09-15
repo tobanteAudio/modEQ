@@ -37,6 +37,11 @@ make config=Release -j8
 cp build/modEQ.so ~/.vst
 ```
 
+## ToDo
+
+- GainProcessor/Controller/View class
+- Dials for modulation source
+
 ## Acknowledgment
 
 The project started with the code from Daniel Walz's github repository [ffAudio/Frequalizer](https://github.com/ffAudio/Frequalizer), which was released under the BSD 3-Clause license.

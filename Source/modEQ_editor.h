@@ -13,6 +13,7 @@
 //==============================================================================
 #include "modEQ_processor.h"
 #include "controller/band_controller.h"
+#include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "view/band_view.h"
 #include "view/equalizer_plot_view.h"
@@ -42,6 +43,7 @@ private:
   TA::TobanteLookAndFeel tobanteLookAndFeel;
   OwnedArray<TA::BandView> bandViews;
   OwnedArray<TA::BandController> bandControllers;
+  TA::ModulationSourceController modController;
   TA::ModulationSourceView modView;
   TA::EqualizerPlotView plotView;
 
