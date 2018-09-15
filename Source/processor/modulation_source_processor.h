@@ -37,13 +37,11 @@ public:
   bool checkForNewAnalyserData();
 
   //==============================================================================
-  AudioProcessorValueTreeState& getPluginState() { return state; }
   void reset() override { oscillator.reset(); }
 
 private:
   //==============================================================================
   double sampleRate;
-  AudioProcessorValueTreeState& state;
   dsp::Oscillator<float> oscillator;
   TA::ModulationSourceAnalyser<float> analyser;
 

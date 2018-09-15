@@ -20,7 +20,7 @@ class ProcessorBase : public AudioProcessor
 {
 public:
   //==============================================================================
-  ProcessorBase() {}
+  ProcessorBase(AudioProcessorValueTreeState& vts): state(vts) {}
   ~ProcessorBase() {}
 
   //==============================================================================
@@ -49,7 +49,14 @@ public:
   void getStateInformation(MemoryBlock&) override {}
   void setStateInformation(const void*, int) override {}
 
+  //==============================================================================
+  AudioProcessorValueTreeState& getPluginState() { return state; }
+  AudioProcessorValueTreeState& state;
+
 private:
+  //==============================================================================
+  
+
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProcessorBase)
 };

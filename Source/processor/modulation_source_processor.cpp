@@ -14,7 +14,7 @@ namespace TA
 {
 
 ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
-  : state(vts)
+  : ProcessorBase(vts)
 {
   oscillator.setFrequency(0.08f);
   oscillator.initialise([](float x) { return std::sin(x); });
@@ -28,7 +28,7 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 
   dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
   oscillator.prepare(spec);
-  
+
   analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 

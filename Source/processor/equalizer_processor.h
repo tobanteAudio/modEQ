@@ -103,11 +103,11 @@ public:
   void setBandSolo(const int);
   bool getBandSolo(const int) const;
 
-  AudioProcessorValueTreeState& getPluginState() { return state; }
+  //AudioProcessorValueTreeState& getPluginState() { return state; }
 
 private:
   //==============================================================================
-  AudioProcessorValueTreeState& state;
+  //AudioProcessorValueTreeState& state;
 
   //==============================================================================
   double sampleRate = 0;
