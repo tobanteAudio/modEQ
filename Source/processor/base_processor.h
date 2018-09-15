@@ -52,6 +52,10 @@ public:
   //==============================================================================
   AudioProcessorValueTreeState& getPluginState() { return state; }
   AudioProcessorValueTreeState& state;
+  double sampleRate;
+
+protected:
+
 
 private:
   //==============================================================================

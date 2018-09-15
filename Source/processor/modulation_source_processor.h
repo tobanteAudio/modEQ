@@ -17,7 +17,7 @@
 namespace TA
 {
 //==============================================================================
-class ModulationSourceProcessor : public BaseProcessor, public AudioProcessorValueTreeState::Listener
+class ModulationSourceProcessor : public BaseProcessor, AudioProcessorValueTreeState::Listener
 
 {
 public:
@@ -41,7 +41,6 @@ public:
 
 private:
   //==============================================================================
-  double sampleRate;
   dsp::Oscillator<float> oscillator;
   TA::ModulationSourceAnalyser<float> analyser;
 

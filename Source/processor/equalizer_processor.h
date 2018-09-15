@@ -103,14 +103,8 @@ public:
   void setBandSolo(const int);
   bool getBandSolo(const int) const;
 
-  //AudioProcessorValueTreeState& getPluginState() { return state; }
-
 private:
   //==============================================================================
-  //AudioProcessorValueTreeState& state;
-
-  //==============================================================================
-  double sampleRate = 0;
   int soloed = -1;
   bool wasBypassed = true;
 
@@ -132,7 +126,7 @@ private:
   QualityTextConverter qualityTextConverter;
   FrequencyTextConverter frequencyTextConverter;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
 };
 
 } // namespace TA

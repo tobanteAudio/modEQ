@@ -116,15 +116,25 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
   modBuffer.clear();
   modSource.processBlock(modBuffer, midiMessages);
-  auto peakModValue = modBuffer.getMagnitude(0, modBuffer.getNumSamples());
+  auto modRange = .8f;
+  // auto peakModValue = modBuffer.getMagnitude(0, modBuffer.getNumSamples());q
+  auto peakModValue = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples()/2));
   auto gainValue = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
+  auto gainMod = gainValue + (modRange * peakModValue);
 
-  outputGain.setGainLinear(gainValue * peakModValue);
+  if (gainMod < -0.0f)
+    gainMod = 0.0;
+  if (gainMod > 1.0f)
+    gainMod = 1.0;
+
+  outputGain.setGainLinear(gainMod);
 
   equalizerProcessor.processBlock(buffer, midiMessages);
 
   dsp::AudioBlock<float> ioBuffer(buffer);
   dsp::ProcessContextReplacing<float> context(ioBuffer);
+
+  // equalizerProcessor.process(context);
   outputGain.process(context);
 }
 
