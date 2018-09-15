@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "JuceHeader.h"
+#include "../../JuceLibraryCode/JuceHeader.h"
 
 
 //==============================================================================
@@ -104,12 +104,12 @@ public:
 
     const auto factor = bounds.getWidth() / 20.0f;
 
-    //p.startNewSubPath(bounds.getX() + factor * indexToX(0, numSamples, bounds), ampToY(reader[0], bounds));
-   
-	p.startNewSubPath(bounds.getX(), bounds.getY());
+    // p.startNewSubPath(bounds.getX() + factor * indexToX(0, numSamples, bounds), ampToY(reader[0], bounds));
+
+    p.startNewSubPath(bounds.getX(), bounds.getY());
     p.lineTo(bounds.getRight(), ampToY(reader[0], bounds));
-    
-    //for (int i = 0; i < numSamples; ++i)
+
+    // for (int i = 0; i < numSamples; ++i)
     //  p.lineTo(bounds.getX() + factor * indexToX(i, numSamples, bounds), ampToY(reader[i], bounds));
   }
 

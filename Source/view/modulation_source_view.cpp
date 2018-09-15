@@ -9,7 +9,6 @@
 */
 
 #include "modulation_source_view.h"
-#include "../../JuceLibraryCode/JuceHeader.h"
 
 
 namespace TA

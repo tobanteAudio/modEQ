@@ -10,9 +10,9 @@
 
 #pragma once
 
+#include "../../JuceLibraryCode/JuceHeader.h"
 #include "../controller/band_controller.h"
 #include "../processor/equalizer_processor.h"
-#include "JuceHeader.h"
 
 namespace TA
 {
