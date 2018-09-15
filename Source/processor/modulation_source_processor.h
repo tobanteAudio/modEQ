@@ -17,7 +17,7 @@
 namespace TA
 {
 //==============================================================================
-class ModulationSourceProcessor : public ProcessorBase, public AudioProcessorValueTreeState::Listener
+class ModulationSourceProcessor : public BaseProcessor, public AudioProcessorValueTreeState::Listener
 
 {
 public:

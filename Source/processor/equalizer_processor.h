@@ -15,7 +15,7 @@
 namespace TA
 {
 //==============================================================================
-class EqualizerProcessor : public ProcessorBase, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
+class EqualizerProcessor : public BaseProcessor, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
 
 {
 public:

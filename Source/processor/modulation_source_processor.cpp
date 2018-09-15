@@ -14,7 +14,7 @@ namespace TA
 {
 
 ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
-  : ProcessorBase(vts)
+  : BaseProcessor(vts)
 {
   oscillator.setFrequency(0.08f);
   oscillator.initialise([](float x) { return std::sin(x); });

@@ -16,12 +16,12 @@ namespace TA
 {
 
 //==============================================================================
-class ProcessorBase : public AudioProcessor
+class BaseProcessor : public AudioProcessor
 {
 public:
   //==============================================================================
-  ProcessorBase(AudioProcessorValueTreeState& vts): state(vts) {}
-  ~ProcessorBase() {}
+  BaseProcessor(AudioProcessorValueTreeState& vts): state(vts) {}
+  ~BaseProcessor() {}
 
   //==============================================================================
   void prepareToPlay(double, int) override {}
@@ -58,7 +58,7 @@ private:
   
 
   //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ProcessorBase)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BaseProcessor)
 };
 
 

@@ -24,7 +24,7 @@ String EqualizerProcessor::paramActive("active");
 
 //==============================================================================
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
-  : ProcessorBase(vts)
+  : BaseProcessor(vts)
 {
   const float maxGain = Decibels::decibelsToGain(24.0f);
 
