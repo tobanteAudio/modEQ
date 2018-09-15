@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    Analyser.h
+    SpectrumAnalyser.h
     Created: 12 Jul 2018 11:27:50pm
     Author:  Daniel Walz
 
@@ -13,20 +13,22 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
+namespace TA
+{
 //==============================================================================
 template <typename Type>
-class Analyser : public Thread
+class SpectrumAnalyser : public Thread
 {
 public:
-  Analyser()
-    : Thread("EQ-Analyser")
+  SpectrumAnalyser()
+    : Thread("SpectrumAnalyser")
     , abstractFifo(48000)
     , fft(12)
     , windowing(size_t(fft.getSize()), dsp::WindowingFunction<Type>::kaiser)
   {
   }
 
-  virtual ~Analyser() = default;
+  virtual ~SpectrumAnalyser() = default;
 
   void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
   {
@@ -144,5 +146,7 @@ private:
   dsp::FFT fft;
   dsp::WindowingFunction<Type> windowing;
 
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Analyser)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SpectrumAnalyser)
 };
+
+} // namespace TA

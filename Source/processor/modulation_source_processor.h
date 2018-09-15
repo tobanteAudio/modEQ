@@ -45,7 +45,7 @@ private:
   float sampleRate;
   AudioProcessorValueTreeState& state;
   dsp::Oscillator<float> oscillator;
-  ModulationSourceAnalyser<float> analyser;
+  TA::ModulationSourceAnalyser<float> analyser;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceProcessor)

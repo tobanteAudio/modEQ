@@ -124,8 +124,8 @@ private:
   std::vector<double> magnitudes;
 
 
-  Analyser<float> inputAnalyser;
-  Analyser<float> outputAnalyser;
+  TA::SpectrumAnalyser<float> inputAnalyser;
+  TA::SpectrumAnalyser<float> outputAnalyser;
 
   GainTextConverter gainTextConverter;
   ActiveTextConverter activeTextConverter;

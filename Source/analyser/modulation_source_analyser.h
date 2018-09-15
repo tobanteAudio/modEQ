@@ -14,6 +14,8 @@
 
 
 //==============================================================================
+namespace TA
+{
 /*
  */
 template <typename Type>
@@ -100,13 +102,12 @@ public:
     const auto* reader = analyserBuffer.getReadPointer(0);
     const auto numSamples = analyserBuffer.getNumSamples();
 
-	const auto factor = bounds.getWidth() / 10.0f;
+    const auto factor = bounds.getWidth() / 10.0f;
 
     p.startNewSubPath(bounds.getX() + factor * indexToX(0, numSamples, bounds), ampToY(reader[0], bounds));
-    
-	for (int i = 0; i < numSamples; ++i)
-      p.lineTo(bounds.getX() + factor * indexToX(i, numSamples, bounds), ampToY(reader[i], bounds));
 
+    for (int i = 0; i < numSamples; ++i)
+      p.lineTo(bounds.getX() + factor * indexToX(i, numSamples, bounds), ampToY(reader[i], bounds));
   }
 
   bool checkForNewData()
@@ -140,3 +141,5 @@ private:
 
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceAnalyser)
 };
+
+} // namespace TA
