@@ -7,15 +7,15 @@
 */
 
 //#include "Analyser.h"
-#include "FrequalizerEditor.h"
-#include "FrequalizerProcessor.h"
+#include "modEQ_editor.h"
+#include "modEQ_processor.h"
 #include "view/social_buttons.h"
 
 static int clickRadius = 10;
 static float maxDB = 24.0f;
 
 //==============================================================================
-FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudioProcessor& p)
+ModEQEditor::ModEQEditor(ModEQProcessor& p)
   : AudioProcessorEditor(&p)
   , processor(p)
   , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
@@ -61,7 +61,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
  
 }
 
-FrequalizerAudioProcessorEditor::~FrequalizerAudioProcessorEditor()
+ModEQEditor::~ModEQEditor()
 {
   PopupMenu::dismissAllActiveMenus();
 
@@ -71,7 +71,7 @@ FrequalizerAudioProcessorEditor::~FrequalizerAudioProcessorEditor()
 }
 
 //==============================================================================
-void FrequalizerAudioProcessorEditor::paint(Graphics& g)
+void ModEQEditor::paint(Graphics& g)
 {
   const Colour inputColour = Colours::greenyellow;
   const Colour outputColour = Colours::red;
@@ -88,7 +88,7 @@ void FrequalizerAudioProcessorEditor::paint(Graphics& g)
 
 }
 
-void FrequalizerAudioProcessorEditor::resized()
+void ModEQEditor::resized()
 {
   auto area = getLocalBounds();
 

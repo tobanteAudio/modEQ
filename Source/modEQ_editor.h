@@ -9,10 +9,9 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "FrequalizerProcessor.h"
 
 //==============================================================================
-
+#include "modEQ_processor.h"
 #include "controller/band_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "view/band_view.h"
@@ -24,12 +23,12 @@
 //==============================================================================
 /**
  */
-class FrequalizerAudioProcessorEditor : public AudioProcessorEditor
+class ModEQEditor : public AudioProcessorEditor
 {
 public:
   //==============================================================================
-  FrequalizerAudioProcessorEditor(FrequalizerAudioProcessor&);
-  ~FrequalizerAudioProcessorEditor();
+  ModEQEditor(ModEQProcessor&);
+  ~ModEQEditor();
 
   //==============================================================================
   void paint(Graphics&) override;
@@ -37,7 +36,7 @@ public:
 
 private:
   //==============================================================================
-  FrequalizerAudioProcessor& processor;
+  ModEQProcessor& processor;
 
   //==============================================================================
   TA::TobanteLookAndFeel tobanteLookAndFeel;
@@ -64,5 +63,5 @@ private:
 #endif
 
   //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessorEditor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQEditor)
 };

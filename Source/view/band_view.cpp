@@ -9,7 +9,7 @@
 */
 
 #include "band_view.h"
-#include "../FrequalizerProcessor.h"
+#include "../modEQ_processor.h"
 
 //==============================================================================
 

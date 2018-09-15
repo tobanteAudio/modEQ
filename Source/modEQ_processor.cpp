@@ -6,13 +6,13 @@
   ==============================================================================
 */
 
-#include "FrequalizerProcessor.h"
-#include "FrequalizerEditor.h"
+#include "modEQ_processor.h"
+#include "modEQ_editor.h"
 #include "view/social_buttons.h"
 
 
 //==============================================================================
-FrequalizerAudioProcessor::FrequalizerAudioProcessor()
+ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
   : AudioProcessor(BusesProperties()
                      .withInput("Input", AudioChannelSet::stereo(), true)
@@ -37,12 +37,12 @@ FrequalizerAudioProcessor::FrequalizerAudioProcessor()
   state.state = ValueTree(JucePlugin_Name);
 }
 
-FrequalizerAudioProcessor::~FrequalizerAudioProcessor() {}
+ModEQProcessor::~ModEQProcessor() {}
 
 //==============================================================================
-const String FrequalizerAudioProcessor::getName() const { return JucePlugin_Name; }
+const String ModEQProcessor::getName() const { return JucePlugin_Name; }
 
-bool FrequalizerAudioProcessor::acceptsMidi() const
+bool ModEQProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
   return true;
@@ -51,7 +51,7 @@ bool FrequalizerAudioProcessor::acceptsMidi() const
 #endif
 }
 
-bool FrequalizerAudioProcessor::producesMidi() const
+bool ModEQProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
   return true;
@@ -61,16 +61,16 @@ bool FrequalizerAudioProcessor::producesMidi() const
 }
 
 //==============================================================================
-bool FrequalizerAudioProcessor::isMidiEffect() const { return false; }
-double FrequalizerAudioProcessor::getTailLengthSeconds() const { return 0.0; }
-int FrequalizerAudioProcessor::getNumPrograms() { return 1; }
-int FrequalizerAudioProcessor::getCurrentProgram() { return 0; }
-void FrequalizerAudioProcessor::setCurrentProgram(int) {}
-const String FrequalizerAudioProcessor::getProgramName(int) { return {}; }
-void FrequalizerAudioProcessor::changeProgramName(int, const String&) {}
+bool ModEQProcessor::isMidiEffect() const { return false; }
+double ModEQProcessor::getTailLengthSeconds() const { return 0.0; }
+int ModEQProcessor::getNumPrograms() { return 1; }
+int ModEQProcessor::getCurrentProgram() { return 0; }
+void ModEQProcessor::setCurrentProgram(int) {}
+const String ModEQProcessor::getProgramName(int) { return {}; }
+void ModEQProcessor::changeProgramName(int, const String&) {}
 
 //==============================================================================
-void FrequalizerAudioProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
+void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 {
   sampleRate = newSampleRate;
   modBuffer.setSize(1, newSamplesPerBlock, false, false, true);
@@ -88,10 +88,10 @@ void FrequalizerAudioProcessor::prepareToPlay(double newSampleRate, int newSampl
   outputGain.setGainLinear(*state.getRawParameterValue(TA::EqualizerProcessor::paramOutput));
 }
 
-void FrequalizerAudioProcessor::releaseResources() {}
+void ModEQProcessor::releaseResources() {}
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool FrequalizerAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
+bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
   // This checks if the input layout matches the output layout
   if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
@@ -101,7 +101,7 @@ bool FrequalizerAudioProcessor::isBusesLayoutSupported(const BusesLayout& layout
 }
 #endif
 
-void FrequalizerAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
   ignoreUnused(midiMessages);
   ScopedNoDenormals noDenormals;
@@ -125,7 +125,7 @@ void FrequalizerAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
 }
 
 
-void FrequalizerAudioProcessor::parameterChanged(const String& parameter, float newValue)
+void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
 {
   if (parameter == TA::EqualizerProcessor::paramOutput)
   {
@@ -136,19 +136,19 @@ void FrequalizerAudioProcessor::parameterChanged(const String& parameter, float 
 
 
 //==============================================================================
-bool FrequalizerAudioProcessor::hasEditor() const { return true; }
+bool ModEQProcessor::hasEditor() const { return true; }
 
-AudioProcessorEditor* FrequalizerAudioProcessor::createEditor() { return new FrequalizerAudioProcessorEditor(*this); }
+AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*this); }
 
 
 //==============================================================================
-void FrequalizerAudioProcessor::getStateInformation(MemoryBlock& destData)
+void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
    MemoryOutputStream stream(destData, false);
    state.state.writeToStream (stream);
 }
 
-void FrequalizerAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
    ValueTree tree = ValueTree::readFromData (data, size_t (sizeInBytes));
    if (tree.isValid()) {
@@ -158,4 +158,4 @@ void FrequalizerAudioProcessor::setStateInformation(const void* data, int sizeIn
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new FrequalizerAudioProcessor(); }
+AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new ModEQProcessor(); }

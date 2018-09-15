@@ -10,7 +10,7 @@
 
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "../FrequalizerProcessor.h"
+#include "../modEQ_processor.h"
 #include "../view/band_view.h"
 
 //==============================================================================
@@ -21,7 +21,7 @@ class BandController : public Button::Listener
 {
 public:
   //==============================================================================
-  BandController(const int, FrequalizerAudioProcessor&, TA::EqualizerProcessor&, TA::BandView&);
+  BandController(const int, ModEQProcessor&, TA::EqualizerProcessor&, TA::BandView&);
 
   //==============================================================================
   void buttonClicked(Button* b) override;
@@ -42,7 +42,7 @@ private:
   //==============================================================================
   int index;
   TA::BandView& view;
-  FrequalizerAudioProcessor& processor;
+  ModEQProcessor& processor;
   TA::EqualizerProcessor& subProcessor;
 
   //==============================================================================

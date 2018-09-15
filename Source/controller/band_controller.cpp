@@ -12,7 +12,7 @@
 namespace TA
 {
 
-BandController::BandController(const int i, FrequalizerAudioProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
+BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
   : index(i)
   , view(v)
   , processor(p)

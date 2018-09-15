@@ -9,20 +9,22 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+
+//==============================================================================
 #include "analyser/spectrum_analyser.h"
 #include "processor/equalizer_processor.h"
 #include "processor/modulation_source_processor.h"
 #include "utils/text_value_converter.h"
 
 //==============================================================================
-class FrequalizerAudioProcessor : public AudioProcessor,
+class ModEQProcessor : public AudioProcessor,
                                   public AudioProcessorValueTreeState::Listener,
                                   public ChangeBroadcaster
 {
 public:
   //==============================================================================
-  FrequalizerAudioProcessor();
-  ~FrequalizerAudioProcessor();
+  ModEQProcessor();
+  ~ModEQProcessor();
 
   //==============================================================================
   void prepareToPlay(double newSampleRate, int newSamplesPerBlock) override;
@@ -79,5 +81,5 @@ private:
   GainTextConverter gainTextConverter;
 
   //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(FrequalizerAudioProcessor)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQProcessor)
 };

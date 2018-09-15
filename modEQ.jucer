@@ -58,14 +58,13 @@
         <FILE id="AOLQ0t" name="social_buttons.h" compile="0" resource="0"
               file="Source/view/social_buttons.h"/>
       </GROUP>
-      <FILE id="jQNfxl" name="FrequalizerProcessor.cpp" compile="1" resource="0"
-            file="Source/FrequalizerProcessor.cpp"/>
-      <FILE id="sLV09t" name="FrequalizerProcessor.h" compile="0" resource="0"
-            file="Source/FrequalizerProcessor.h"/>
-      <FILE id="AwcYSk" name="FrequalizerEditor.cpp" compile="1" resource="0"
-            file="Source/FrequalizerEditor.cpp"/>
-      <FILE id="JWCkWt" name="FrequalizerEditor.h" compile="0" resource="0"
-            file="Source/FrequalizerEditor.h"/>
+      <FILE id="jQNfxl" name="modEQ_processor.cpp" compile="1" resource="0"
+            file="Source/modEQ_processor.cpp"/>
+      <FILE id="sLV09t" name="modEQ_processor.h" compile="0" resource="0"
+            file="Source/modEQ_processor.h"/>
+      <FILE id="AwcYSk" name="modEQ_editor.cpp" compile="1" resource="0"
+            file="Source/modEQ_editor.cpp"/>
+      <FILE id="JWCkWt" name="modEQ_editor.h" compile="0" resource="0" file="Source/modEQ_editor.h"/>
     </GROUP>
     <GROUP id="{EF796692-87A3-0277-8502-8CC33FE3BE62}" name="Resources">
       <FILE id="WzcnpZ" name="tobanteAudio-text.png" compile="0" resource="1"
