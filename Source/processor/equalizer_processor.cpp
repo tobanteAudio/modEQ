@@ -137,7 +137,7 @@ EqualizerProcessor::~EqualizerProcessor()
   outputAnalyser.stopThread(1000);
 }
 //==============================================================================
-void EqualizerProcessor::prepareToPlay(double newSampleRate, int samplesPerBlock)
+void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlock*/)
 {
   sampleRate = newSampleRate;
 
@@ -423,7 +423,9 @@ void EqualizerProcessor::createFrequencyPlot(Path& p,
                                              const Rectangle<int> bounds,
                                              float pixelsPerDouble)
 {
-  p.startNewSubPath(bounds.getX(), roundToInt(bounds.getCentreY() - pixelsPerDouble * std::log(mags[0]) / std::log(2)));
+  p.startNewSubPath(
+    static_cast<float>(bounds.getX()),
+    static_cast<float>(roundToInt(bounds.getCentreY() - pixelsPerDouble * std::log(mags[0]) / std::log(2))));
   const double xFactor = static_cast<double>(bounds.getWidth()) / frequencies.size();
   for (size_t i = 1; i < frequencies.size(); ++i)
   {

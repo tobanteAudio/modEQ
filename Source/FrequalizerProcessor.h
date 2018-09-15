@@ -60,7 +60,7 @@ public:
   void setStateInformation(const void* data, int sizeInBytes) override;
 
   //==============================================================================
-  TA::EqualizerProcessor& getEQ() { return eqProcessor; }
+  TA::EqualizerProcessor& getEQ() { return equalizerProcessor; }
   AudioProcessorValueTreeState& getPluginState() { return state; }
   TA::ModulationSourceProcessor modSource;
 
@@ -69,7 +69,7 @@ private:
   UndoManager undo;
   AudioProcessorValueTreeState state;
 
-  TA::EqualizerProcessor eqProcessor;
+  TA::EqualizerProcessor equalizerProcessor;
   
   AudioBuffer<float> modBuffer;
 

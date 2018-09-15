@@ -29,11 +29,7 @@ EqualizerPlotView::EqualizerPlotView(TA::EqualizerProcessor& p, OwnedArray<TA::B
   startTimerHz(30);
 }
 
-EqualizerPlotView::~EqualizerPlotView()
-{
-  processor.removeChangeListener(this);
-
-}
+EqualizerPlotView::~EqualizerPlotView() { processor.removeChangeListener(this); }
 
 void EqualizerPlotView::paint(Graphics& g)
 {
@@ -127,7 +123,8 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
     for (int i = 0; i < bandControllers.size(); ++i)
       if (auto* band = processor.getBand(i))
       {
-        if (std::abs(plotFrame.getX() + getPositionForFrequency(int(band->frequency)) * plotFrame.getWidth()
+        if (std::abs(static_cast<float>(plotFrame.getX())
+                     + getPositionForFrequency(int(band->frequency)) * static_cast<float>(plotFrame.getWidth())
                      - e.position.getX())
             < clickRadius)
         {
