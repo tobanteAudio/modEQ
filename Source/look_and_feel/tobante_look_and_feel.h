@@ -67,7 +67,7 @@ public:
     g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
     Rectangle<int> textArea{50, 50};
-    textArea.setCentre(centreX, centreY);
+    textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
 
     g.setFont(18.f);
     g.drawText(slider.getName(), textArea, Justification::centred);

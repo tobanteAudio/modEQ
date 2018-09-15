@@ -42,7 +42,7 @@ public:
 
 private:
   //==============================================================================
-  float sampleRate;
+  double sampleRate;
   AudioProcessorValueTreeState& state;
   dsp::Oscillator<float> oscillator;
   TA::ModulationSourceAnalyser<float> analyser;
