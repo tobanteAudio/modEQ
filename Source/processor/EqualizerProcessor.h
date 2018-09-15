@@ -131,6 +131,8 @@ private:
   ActiveTextConverter activeTextConverter;
   QualityTextConverter qualityTextConverter;
   FrequencyTextConverter frequencyTextConverter;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
 };
 
 } // namespace TA

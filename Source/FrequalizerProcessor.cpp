@@ -23,6 +23,7 @@ FrequalizerAudioProcessor::FrequalizerAudioProcessor()
 #endif
   state(*this, &undo)
   , eqProcessor(state)
+  , modSource(state)
 {
   const float maxGain = Decibels::decibelsToGain(24.0f);
 
@@ -73,6 +74,7 @@ void FrequalizerAudioProcessor::prepareToPlay(double newSampleRate, int newSampl
 {
   sampleRate = newSampleRate;
 
+  modBuffer.setSize(1, newSamplesPerBlock, false, false, true);
   dsp::ProcessSpec spec;
   spec.sampleRate = newSampleRate;
   spec.maximumBlockSize = uint32(newSamplesPerBlock);
@@ -81,6 +83,7 @@ void FrequalizerAudioProcessor::prepareToPlay(double newSampleRate, int newSampl
   eqProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
   eqProcessor.prepare(spec);
   outputGain.prepare(spec);
+  modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
   outputGain.setGainLinear(*state.getRawParameterValue(TA::EqualizerProcessor::paramOutput));
 }
 
@@ -99,13 +102,18 @@ bool FrequalizerAudioProcessor::isBusesLayoutSupported(const BusesLayout& layout
 
 void FrequalizerAudioProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
 {
-  ScopedNoDenormals noDenormals;
   ignoreUnused(midiMessages);
+  ScopedNoDenormals noDenormals;
 
-  // if (getActiveEditor() != nullptr)
-  //  inputAnalyser.addAudioData(buffer, 0, getTotalNumInputChannels());
+  auto totalNumInputChannels = getTotalNumInputChannels();
+  auto totalNumOutputChannels = getTotalNumOutputChannels();
 
+  for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+    buffer.clear(i, 0, buffer.getNumSamples());
+
+  modBuffer.clear();
   eqProcessor.processBlock(buffer, midiMessages);
+  modSource.processBlock(modBuffer, midiMessages);
 
   dsp::AudioBlock<float> ioBuffer(buffer);
   dsp::ProcessContextReplacing<float> context(ioBuffer);

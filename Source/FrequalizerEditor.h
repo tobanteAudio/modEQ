@@ -17,6 +17,7 @@
 #include "look_and_feel/TobanteLookAndFeel.h"
 #include "view/BandView.h"
 #include "view/EqualizerPlotView.h"
+#include "view/modulation_source_view.h"
 
 
 //==============================================================================
@@ -41,6 +42,7 @@ private:
   TA::TobanteLookAndFeel tobanteLookAndFeel;
   OwnedArray<TA::BandView> bandViews;
   OwnedArray<TA::BandController> bandControllers;
+  TA::ModulationSourceView modView;
   TA::EqualizerPlotView plotView;
 
   //==============================================================================

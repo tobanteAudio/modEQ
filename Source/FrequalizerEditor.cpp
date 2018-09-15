@@ -20,6 +20,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   , processor(p)
   , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
   , plotView(processor.getEQ(), bandControllers)
+  , modView(processor.modSource)
 {
   tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
@@ -37,6 +38,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
   }
 
   addAndMakeVisible(plotView);
+  addAndMakeVisible(modView);
 
   frame.setText(translate("Output"));
   frame.setTextLabelPosition(Justification::centred);
@@ -48,7 +50,7 @@ FrequalizerAudioProcessorEditor::FrequalizerAudioProcessorEditor(FrequalizerAudi
 
   setResizable(true, true);
   setResizeLimits(800, 450, 2990, 1800);
-  setSize(1000, 600);
+  setSize(1000, 750);
 
 
 #ifdef JUCE_OPENGL
@@ -92,6 +94,11 @@ void FrequalizerAudioProcessorEditor::resized()
 
   // Facebook & Gitub
   socialButtons.setBounds(area.removeFromBottom(35));
+  
+  
+  auto modArea = area.removeFromBottom(getHeight() / 5);
+  modView.setBounds(modArea.removeFromLeft(modArea.getWidth()/4));
+
 
   // EQ Bands
   auto bandSpace = area.removeFromBottom(getHeight() / 2);

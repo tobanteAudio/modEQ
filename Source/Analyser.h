@@ -13,14 +13,13 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-/*
- */
+//==============================================================================
 template <typename Type>
 class Analyser : public Thread
 {
 public:
   Analyser()
-    : Thread("Frequaliser-Analyser")
+    : Thread("EQ-Analyser")
     , abstractFifo(48000)
     , fft(12)
     , windowing(size_t(fft.getSize()), dsp::WindowingFunction<Type>::kaiser)

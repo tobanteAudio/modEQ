@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "Analyser.h"
 #include "processor/EqualizerProcessor.h"
+#include "processor/modulation_source_processor.h"
 #include "utils/TextValueConverters.h"
 
 //==============================================================================
@@ -61,7 +62,7 @@ public:
   //==============================================================================
   TA::EqualizerProcessor& getEQ() { return eqProcessor; }
   AudioProcessorValueTreeState& getPluginState() { return state; }
-
+  TA::ModulationSourceProcessor modSource;
 
 private:
   //==============================================================================
@@ -69,6 +70,9 @@ private:
   AudioProcessorValueTreeState state;
 
   TA::EqualizerProcessor eqProcessor;
+  
+  AudioBuffer<float> modBuffer;
+
   dsp::Gain<float> outputGain;
   double sampleRate = 0;
 
