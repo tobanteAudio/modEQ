@@ -26,7 +26,7 @@ public:
   //==============================================================================
   void prepareToPlay(double, int) override {}
   void releaseResources() override {}
-  void processBlock(AudioSampleBuffer&, MidiBuffer&) override {}
+  void processBlock(AudioBuffer<float>&, MidiBuffer&) override {}
 
   //==============================================================================
   AudioProcessorEditor* createEditor() override { return nullptr; }

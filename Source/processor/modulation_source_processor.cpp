@@ -16,7 +16,7 @@ namespace TA
 ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
   : state(vts)
 {
-  oscillator.setFrequency(0.3f);
+  oscillator.setFrequency(0.08f);
   oscillator.initialise([](float x) { return std::sin(x); });
 }
 
@@ -32,7 +32,7 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
   analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
-void ModulationSourceProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer&)
+void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
   dsp::AudioBlock<float> block(buffer);
   dsp::ProcessContextReplacing<float> context(block);

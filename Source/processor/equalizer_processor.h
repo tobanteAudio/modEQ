@@ -60,7 +60,7 @@ public:
 
   //==============================================================================
   void process(const dsp::ProcessContextReplacing<float>&);
-  void processBlock(AudioSampleBuffer&, MidiBuffer&) override;
+  void processBlock(AudioBuffer<float>&, MidiBuffer&) override;
 
   //==============================================================================
   void reset() override;

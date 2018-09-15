@@ -74,12 +74,12 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 {
   sampleRate = newSampleRate;
   modBuffer.setSize(1, newSamplesPerBlock, false, false, true);
-  
+
   dsp::ProcessSpec spec;
   spec.sampleRate = newSampleRate;
   spec.maximumBlockSize = uint32(newSamplesPerBlock);
   spec.numChannels = uint32(getTotalNumOutputChannels());
-  
+
   modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
   equalizerProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
   equalizerProcessor.prepare(spec);
@@ -116,9 +116,13 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
   modBuffer.clear();
   modSource.processBlock(modBuffer, midiMessages);
+  auto peakModValue = modBuffer.getMagnitude(0, modBuffer.getNumSamples());
+  auto gainValue = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
+
+  outputGain.setGainLinear(gainValue * peakModValue);
 
   equalizerProcessor.processBlock(buffer, midiMessages);
-  
+
   dsp::AudioBlock<float> ioBuffer(buffer);
   dsp::ProcessContextReplacing<float> context(ioBuffer);
   outputGain.process(context);
@@ -144,15 +148,16 @@ AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*t
 //==============================================================================
 void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
-   MemoryOutputStream stream(destData, false);
-   state.state.writeToStream (stream);
+  MemoryOutputStream stream(destData, false);
+  state.state.writeToStream(stream);
 }
 
 void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
-   ValueTree tree = ValueTree::readFromData (data, size_t (sizeInBytes));
-   if (tree.isValid()) {
-      state.state = tree;
+  ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
+  if (tree.isValid())
+  {
+    state.state = tree;
   }
 }
 

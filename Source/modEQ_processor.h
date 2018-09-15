@@ -17,9 +17,7 @@
 #include "utils/text_value_converter.h"
 
 //==============================================================================
-class ModEQProcessor : public AudioProcessor,
-                                  public AudioProcessorValueTreeState::Listener,
-                                  public ChangeBroadcaster
+class ModEQProcessor : public AudioProcessor, public AudioProcessorValueTreeState::Listener, public ChangeBroadcaster
 {
 public:
   //==============================================================================
@@ -72,7 +70,7 @@ private:
   AudioProcessorValueTreeState state;
 
   TA::EqualizerProcessor equalizerProcessor;
-  
+
   AudioBuffer<float> modBuffer;
 
   dsp::Gain<float> outputGain;

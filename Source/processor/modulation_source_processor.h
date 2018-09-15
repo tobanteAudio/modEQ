@@ -27,7 +27,7 @@ public:
 
   //==============================================================================
   void prepareToPlay(double, int) override;
-  void processBlock(AudioSampleBuffer&, MidiBuffer&) override;
+  void processBlock(AudioBuffer<float>&, MidiBuffer&) override;
 
   //==============================================================================
   void parameterChanged(const String& parameter, float newValue) override;
