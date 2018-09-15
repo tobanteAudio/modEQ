@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../analyser/modulation_source_analyser.h"
-#include "BaseProcessor.h"
+#include "base_processor.h"
 
 
 namespace TA

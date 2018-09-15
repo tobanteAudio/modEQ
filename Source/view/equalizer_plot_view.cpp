@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "EqualizerPlotView.h"
+#include "equalizer_plot_view.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 namespace TA

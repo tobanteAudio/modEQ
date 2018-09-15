@@ -117,7 +117,7 @@ public:
   }
 
 private:
-  inline float indexToX(int index, float numSamples, const Rectangle<float> bounds) const
+  inline float indexToX(int index, int numSamples, const Rectangle<float> bounds) const
   {
     return jmap(static_cast<float>(index), 0.0f, static_cast<float>(numSamples), bounds.getX(), bounds.getRight());
   }

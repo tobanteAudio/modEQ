@@ -15,54 +15,57 @@
       <GROUP id="{FC9DFA38-539E-51EA-6DC8-969838BBC957}" name="analyser">
         <FILE id="N0Rwtq" name="modulation_source_analyser.h" compile="0" resource="0"
               file="Source/analyser/modulation_source_analyser.h"/>
+        <FILE id="CT7Vb5" name="spectrum_analyser.h" compile="0" resource="0"
+              file="Source/analyser/spectrum_analyser.h"/>
       </GROUP>
       <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
-        <FILE id="KWjnF9" name="TextValueConverters.h" compile="0" resource="0"
-              file="Source/utils/TextValueConverters.h"/>
+        <FILE id="KWjnF9" name="text_value_converter.h" compile="0" resource="0"
+              file="Source/utils/text_value_converter.h"/>
       </GROUP>
       <GROUP id="{5CFAF4C7-CB5B-279B-9E01-243560CD4D29}" name="look_and_feel">
-        <FILE id="NB4MJI" name="TobanteLookAndFeel.h" compile="0" resource="0"
-              file="Source/look_and_feel/TobanteLookAndFeel.h"/>
+        <FILE id="NB4MJI" name="tobante_look_and_feel.h" compile="0" resource="0"
+              file="Source/look_and_feel/tobante_look_and_feel.h"/>
       </GROUP>
       <GROUP id="{EECC11AB-18F2-FABF-1366-15A91D3069D0}" name="processor">
-        <FILE id="ge6Dtd" name="BaseProcessor.h" compile="0" resource="0" file="Source/processor/BaseProcessor.h"/>
-        <FILE id="OLFqpD" name="EqualizerProcessor.cpp" compile="1" resource="0"
-              file="Source/processor/EqualizerProcessor.cpp"/>
-        <FILE id="CnZ0b1" name="EqualizerProcessor.h" compile="0" resource="0"
-              file="Source/processor/EqualizerProcessor.h"/>
+        <FILE id="ge6Dtd" name="base_processor.h" compile="0" resource="0"
+              file="Source/processor/base_processor.h"/>
+        <FILE id="OLFqpD" name="equalizer_processor.cpp" compile="1" resource="0"
+              file="Source/processor/equalizer_processor.cpp"/>
+        <FILE id="CnZ0b1" name="equalizer_processor.h" compile="0" resource="0"
+              file="Source/processor/equalizer_processor.h"/>
         <FILE id="mUL6EH" name="modulation_source_processor.cpp" compile="1"
               resource="0" file="Source/processor/modulation_source_processor.cpp"/>
         <FILE id="O6OJ0M" name="modulation_source_processor.h" compile="0"
               resource="0" file="Source/processor/modulation_source_processor.h"/>
       </GROUP>
       <GROUP id="{AFBCEEAE-CF9A-3BFC-69AA-2F01AF53CA03}" name="controller">
-        <FILE id="INxpGV" name="BandController.cpp" compile="1" resource="0"
-              file="Source/controller/BandController.cpp"/>
-        <FILE id="ouDHoU" name="BandController.h" compile="0" resource="0"
-              file="Source/controller/BandController.h"/>
+        <FILE id="INxpGV" name="band_controller.cpp" compile="1" resource="0"
+              file="Source/controller/band_controller.cpp"/>
+        <FILE id="ouDHoU" name="band_controller.h" compile="0" resource="0"
+              file="Source/controller/band_controller.h"/>
       </GROUP>
       <GROUP id="{E1AB739F-7F64-B3FB-942B-61798B09653D}" name="view">
-        <FILE id="JRp1la" name="BandView.cpp" compile="1" resource="0" file="Source/view/BandView.cpp"/>
-        <FILE id="d2SkUe" name="BandView.h" compile="0" resource="0" file="Source/view/BandView.h"/>
-        <FILE id="pUiGZ7" name="EqualizerPlotView.cpp" compile="1" resource="0"
-              file="Source/view/EqualizerPlotView.cpp"/>
-        <FILE id="tYEP4H" name="EqualizerPlotView.h" compile="0" resource="0"
-              file="Source/view/EqualizerPlotView.h"/>
+        <FILE id="JRp1la" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
+        <FILE id="d2SkUe" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
+        <FILE id="pUiGZ7" name="equalizer_plot_view.cpp" compile="1" resource="0"
+              file="Source/view/equalizer_plot_view.cpp"/>
+        <FILE id="tYEP4H" name="equalizer_plot_view.h" compile="0" resource="0"
+              file="Source/view/equalizer_plot_view.h"/>
         <FILE id="p1TENC" name="modulation_source_view.cpp" compile="1" resource="0"
               file="Source/view/modulation_source_view.cpp"/>
         <FILE id="BgnkN6" name="modulation_source_view.h" compile="0" resource="0"
               file="Source/view/modulation_source_view.h"/>
+        <FILE id="AOLQ0t" name="social_buttons.h" compile="0" resource="0"
+              file="Source/view/social_buttons.h"/>
       </GROUP>
       <FILE id="jQNfxl" name="FrequalizerProcessor.cpp" compile="1" resource="0"
             file="Source/FrequalizerProcessor.cpp"/>
       <FILE id="sLV09t" name="FrequalizerProcessor.h" compile="0" resource="0"
             file="Source/FrequalizerProcessor.h"/>
-      <FILE id="gnvopl" name="Analyser.h" compile="0" resource="0" file="Source/Analyser.h"/>
       <FILE id="AwcYSk" name="FrequalizerEditor.cpp" compile="1" resource="0"
             file="Source/FrequalizerEditor.cpp"/>
       <FILE id="JWCkWt" name="FrequalizerEditor.h" compile="0" resource="0"
             file="Source/FrequalizerEditor.h"/>
-      <FILE id="IXCqaS" name="SocialButtons.h" compile="0" resource="0" file="Source/SocialButtons.h"/>
     </GROUP>
     <GROUP id="{EF796692-87A3-0277-8502-8CC33FE3BE62}" name="Resources">
       <FILE id="WzcnpZ" name="tobanteAudio-text.png" compile="0" resource="1"
@@ -165,7 +168,7 @@
   <JUCEOPTIONS/>
   <LIVE_SETTINGS>
     <OSX/>
-    <WINDOWS/>
+    <WINDOWS buildEnabled="1"/>
     <LINUX/>
   </LIVE_SETTINGS>
 </JUCERPROJECT>

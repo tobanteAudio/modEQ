@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "BandController.h"
+#include "band_controller.h"
 namespace TA
 {
 

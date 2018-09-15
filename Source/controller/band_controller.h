@@ -11,7 +11,7 @@
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../FrequalizerProcessor.h"
-#include "../view/BandView.h"
+#include "../view/band_view.h"
 
 //==============================================================================
 namespace TA

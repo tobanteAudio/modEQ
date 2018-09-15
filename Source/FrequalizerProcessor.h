@@ -9,10 +9,10 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "Analyser.h"
-#include "processor/EqualizerProcessor.h"
+#include "analyser/spectrum_analyser.h"
+#include "processor/equalizer_processor.h"
 #include "processor/modulation_source_processor.h"
-#include "utils/TextValueConverters.h"
+#include "utils/text_value_converter.h"
 
 //==============================================================================
 class FrequalizerAudioProcessor : public AudioProcessor,

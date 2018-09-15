@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "../controller/BandController.h"
-#include "../processor/EqualizerProcessor.h"
+#include "../controller/band_controller.h"
+#include "../processor/equalizer_processor.h"
 #include "JuceHeader.h"
 
 namespace TA

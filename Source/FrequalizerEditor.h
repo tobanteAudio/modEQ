@@ -12,12 +12,13 @@
 #include "FrequalizerProcessor.h"
 
 //==============================================================================
-#include "SocialButtons.h"
-#include "controller/BandController.h"
-#include "look_and_feel/TobanteLookAndFeel.h"
-#include "view/BandView.h"
-#include "view/EqualizerPlotView.h"
+
+#include "controller/band_controller.h"
+#include "look_and_feel/tobante_look_and_feel.h"
+#include "view/band_view.h"
+#include "view/equalizer_plot_view.h"
 #include "view/modulation_source_view.h"
+#include "view/social_buttons.h"
 
 
 //==============================================================================

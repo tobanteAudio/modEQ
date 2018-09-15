@@ -9,9 +9,9 @@
 */
 
 #pragma once
-#include "../Analyser.h"
-#include "../utils/TextValueConverters.h"
-#include "BaseProcessor.h"
+#include "../analyser/spectrum_analyser.h"
+#include "../utils/text_value_converter.h"
+#include "base_processor.h"
 namespace TA
 {
 //==============================================================================
