@@ -27,7 +27,7 @@ class BandController : public Button::Listener
 {
 public:
   //==============================================================================
-  BandController(const int, ModEQProcessor&, TA::EqualizerProcessor&, TA::BandView&);
+  BandController(int, ModEQProcessor&, TA::EqualizerProcessor&, TA::BandView&);
 
   //==============================================================================
   void buttonClicked(Button* b) override;
@@ -37,9 +37,9 @@ public:
   void updateSoloState(bool isSolo);
 
   //==============================================================================
-  void setFrequency(float frequency);
-  void setGain(float gain);
-  void setType(int type);
+  void setFrequency(float newFreq);
+  void setGain(float newGain);
+  void setType(int newType);
 
   //==============================================================================
   Path frequencyResponse;

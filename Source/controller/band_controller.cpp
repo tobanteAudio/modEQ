@@ -112,11 +112,11 @@ void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
 
 void BandController::updateSoloState(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
 
-void BandController::setFrequency(float freq) { view.frequency.setValue(freq, sendNotification); }
+void BandController::setFrequency(float newFreq) { view.frequency.setValue(newFreq, sendNotification); }
 
-void BandController::setGain(float gainToUse) { view.gain.setValue(gainToUse, sendNotification); }
+void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
-void BandController::setType(int type) { view.filterType.setSelectedId(type + 1, sendNotification); }
+void BandController::setType(int newType) { view.filterType.setSelectedId(newType + 1, sendNotification); }
 
 void BandController::buttonClicked(Button* b)
 {

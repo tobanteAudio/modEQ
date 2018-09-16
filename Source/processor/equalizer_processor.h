@@ -73,19 +73,19 @@ public:
   void parameterChanged(const String& parameter, float newValue) override;
 
   //==============================================================================
-  static String getFilterTypeName(const TA::EqualizerProcessor::FilterType);
+  static String getFilterTypeName(TA::EqualizerProcessor::FilterType);
   const String getName() const override { return "Equalizer"; }
-  Band* getBand(const int);
+  Band* getBand(int);
 
   //==============================================================================
-  void updateBand(const size_t);
+  void updateBand(size_t);
   void updateBypassedStates();
   void updatePlots();
 
   //==============================================================================
   const std::vector<double>& getMagnitudes();
-  void createFrequencyPlot(Path&, const std::vector<double>&, const Rectangle<int>, float);
-  void createAnalyserPlot(Path&, const Rectangle<int>, float, bool);
+  void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
+  void createAnalyserPlot(Path&, Rectangle<int>, float, bool);
   bool checkForNewAnalyserData();
 
   //==============================================================================
@@ -96,18 +96,18 @@ public:
   static String paramGain;
   static String paramActive;
 
-  String getTypeParamName(const int) const;
-  String getFrequencyParamName(const int) const;
-  String getQualityParamName(const int) const;
-  String getGainParamName(const int) const;
-  String getActiveParamName(const int) const;
+  String getTypeParamName(int index) const;
+  String getFrequencyParamName(int index) const;
+  String getQualityParamName(int index) const;
+  String getGainParamName(int index) const;
+  String getActiveParamName(int index) const;
 
   //==============================================================================
   int getNumBands() const;
-  String getBandName(const int) const;
-  Colour getBandColour(const int) const;
-  void setBandSolo(const int);
-  bool getBandSolo(const int) const;
+  String getBandName(int index) const;
+  Colour getBandColour(int index) const;
+  void setBandSolo(int index);
+  bool getBandSolo(int index) const;
 
 private:
   //==============================================================================

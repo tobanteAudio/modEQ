@@ -28,7 +28,7 @@ class BandView : public Component
 public:
   //==============================================================================
   BandView(int);
-  ~BandView();
+  ~BandView() override;
 
   //==============================================================================
   void resized() override;

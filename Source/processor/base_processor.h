@@ -25,8 +25,11 @@ class BaseProcessor : public AudioProcessor
 {
 public:
   //==============================================================================
-  BaseProcessor(AudioProcessorValueTreeState& vts): state(vts) {}
-  ~BaseProcessor() {}
+  BaseProcessor(AudioProcessorValueTreeState& vts)
+    : state(vts)
+  {
+  }
+  ~BaseProcessor() override {}
 
   //==============================================================================
   void prepareToPlay(double, int) override {}
@@ -58,15 +61,13 @@ public:
   AudioProcessorValueTreeState& getPluginState() { return state; }
   AudioProcessorValueTreeState& state;
 
-  
-  double sampleRate;
+
+  double sampleRate{};
 
 protected:
-
-
 private:
   //==============================================================================
-  
+
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BaseProcessor)
