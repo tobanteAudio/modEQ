@@ -15,25 +15,25 @@ namespace TA
 BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
   : index(i)
   , view(v)
-  , processor(p)
-  , subProcessor(sub)
+  , mainProcessor(p)
+  , processor(sub)
 {
-
-
-  view.solo.addListener(this);
   // Link GUI components to ValueTree
   using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
   using ComboBoxAttachment = AudioProcessorValueTreeState::ComboBoxAttachment;
   using ButtonAttachment = AudioProcessorValueTreeState::ButtonAttachment;
 
-  auto& state = processor.getPluginState();
+  auto& state = mainProcessor.getPluginState();
 
-  boxAttachments.add(new ComboBoxAttachment(state, subProcessor.getTypeParamName(index), view.filterType));
-  buttonAttachments.add(new ButtonAttachment(state, subProcessor.getActiveParamName(index), view.activate));
+  boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
+  buttonAttachments.add(new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
 
-  attachments.add(new SliderAttachment(state, subProcessor.getFrequencyParamName(index), view.frequency));
-  attachments.add(new SliderAttachment(state, subProcessor.getQualityParamName(index), view.quality));
-  attachments.add(new SliderAttachment(state, subProcessor.getGainParamName(index), view.gain));
+  attachments.add(new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
+  attachments.add(new SliderAttachment(state, processor.getQualityParamName(index), view.quality));
+  attachments.add(new SliderAttachment(state, processor.getGainParamName(index), view.gain));
+
+  // Add listner
+  view.solo.addListener(this);
 }
 
 void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
@@ -115,7 +115,7 @@ void BandController::buttonClicked(Button* b)
 {
   if (b == &view.solo)
   {
-    subProcessor.setBandSolo(view.solo.getToggleState() ? index : -1);
+    processor.setBandSolo(view.solo.getToggleState() ? index : -1);
   }
 }
 

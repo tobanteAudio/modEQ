@@ -14,12 +14,15 @@ namespace TA
 {
 
 ModulationSourceController::ModulationSourceController(const int i,
+                                                       ModEQProcessor& mp,
                                                        ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
   : index(i)
+  , mainProcessor(mp)
   , processor(p)
   , view(v)
 {
+  // Start Timer
   startTimerHz(25);
 }
 

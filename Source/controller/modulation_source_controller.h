@@ -10,6 +10,7 @@
 
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "../modEQ_processor.h"
 #include "../processor/modulation_source_processor.h"
 #include "../view/modulation_source_view.h"
 
@@ -21,7 +22,7 @@ class ModulationSourceController : public ChangeListener, public Timer
 {
 public:
   //==============================================================================
-  ModulationSourceController(const int,TA::ModulationSourceProcessor&, TA::ModulationSourceView&);
+  ModulationSourceController(const int, ModEQProcessor&, TA::ModulationSourceProcessor&, TA::ModulationSourceView&);
 
   //==============================================================================
   void changeListenerCallback(ChangeBroadcaster* sender) override;
@@ -30,8 +31,9 @@ public:
 private:
   //==============================================================================
   int index;
-  TA::ModulationSourceView& view;
+  ModEQProcessor& mainProcessor;
   TA::ModulationSourceProcessor& processor;
+  TA::ModulationSourceView& view;
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;

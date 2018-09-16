@@ -77,6 +77,7 @@ private:
   double sampleRate = 0;
 
   GainTextConverter gainTextConverter;
+  FrequencyTextConverter freqTextConverter;
 
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQProcessor)

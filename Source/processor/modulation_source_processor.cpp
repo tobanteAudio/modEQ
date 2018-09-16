@@ -14,10 +14,13 @@ namespace TA
 {
 
 ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
-  : BaseProcessor(vts)
+  : index(1)
+  , BaseProcessor(vts)
 {
   oscillator.setFrequency(1.f);
   oscillator.initialise([](float x) { return std::sin(x); });
+
+  auto lfoRange = NormalisableRange<float>(0.0, 15.0, 0.01);
 }
 
 ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }

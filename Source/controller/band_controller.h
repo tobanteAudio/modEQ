@@ -42,8 +42,8 @@ private:
   //==============================================================================
   int index;
   TA::BandView& view;
-  ModEQProcessor& processor;
-  TA::EqualizerProcessor& subProcessor;
+  ModEQProcessor& mainProcessor;
+  TA::EqualizerProcessor& processor;
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
