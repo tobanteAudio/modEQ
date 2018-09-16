@@ -33,6 +33,10 @@
               file="Source/processor/equalizer_processor.cpp"/>
         <FILE id="CnZ0b1" name="equalizer_processor.h" compile="0" resource="0"
               file="Source/processor/equalizer_processor.h"/>
+        <FILE id="pH3Ko1" name="gain_processor.cpp" compile="1" resource="0"
+              file="Source/processor/gain_processor.cpp"/>
+        <FILE id="YKVwya" name="gain_processor.h" compile="0" resource="0"
+              file="Source/processor/gain_processor.h"/>
         <FILE id="mUL6EH" name="modulation_source_processor.cpp" compile="1"
               resource="0" file="Source/processor/modulation_source_processor.cpp"/>
         <FILE id="O6OJ0M" name="modulation_source_processor.h" compile="0"
@@ -43,6 +47,10 @@
               file="Source/controller/band_controller.cpp"/>
         <FILE id="ouDHoU" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
+        <FILE id="QE7l7n" name="gain_controller.cpp" compile="1" resource="0"
+              file="Source/controller/gain_controller.cpp"/>
+        <FILE id="pz38Ar" name="gain_controller.h" compile="0" resource="0"
+              file="Source/controller/gain_controller.h"/>
         <FILE id="ermO0m" name="modulation_source_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_source_controller.cpp"/>
         <FILE id="bdu8NR" name="modulation_source_controller.h" compile="0"
@@ -55,6 +63,8 @@
               file="Source/view/equalizer_plot_view.cpp"/>
         <FILE id="tYEP4H" name="equalizer_plot_view.h" compile="0" resource="0"
               file="Source/view/equalizer_plot_view.h"/>
+        <FILE id="p1Ecja" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
+        <FILE id="iRljId" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
         <FILE id="p1TENC" name="modulation_source_view.cpp" compile="1" resource="0"
               file="Source/view/modulation_source_view.cpp"/>
         <FILE id="BgnkN6" name="modulation_source_view.h" compile="0" resource="0"
