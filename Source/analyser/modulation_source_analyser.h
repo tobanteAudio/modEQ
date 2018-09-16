@@ -35,7 +35,7 @@ public:
   {
   }
 
-  virtual ~ModulationSourceAnalyser() = default;
+  ~ModulationSourceAnalyser() override = default;
 
   void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
   {

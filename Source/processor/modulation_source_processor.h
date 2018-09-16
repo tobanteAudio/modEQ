@@ -29,11 +29,11 @@ class ModulationSourceProcessor : public BaseProcessor, AudioProcessorValueTreeS
 public:
   //==============================================================================
   ModulationSourceProcessor(AudioProcessorValueTreeState&);
-  ~ModulationSourceProcessor();
+  ~ModulationSourceProcessor() override;
 
   //==============================================================================
-  void prepareToPlay(double, int) override;
-  void processBlock(AudioBuffer<float>&, MidiBuffer&) override;
+  void prepareToPlay(double /*unused*/, int /*unused*/) override;
+  void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
   //==============================================================================
   void parameterChanged(const String& parameter, float newValue) override;

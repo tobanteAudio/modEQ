@@ -27,7 +27,7 @@ class BandController : public Button::Listener
 {
 public:
   //==============================================================================
-  BandController(int, ModEQProcessor&, TA::EqualizerProcessor&, TA::BandView&);
+  BandController(int /*i*/, ModEQProcessor& /*p*/, TA::EqualizerProcessor& /*sub*/, TA::BandView& /*v*/);
 
   //==============================================================================
   void buttonClicked(Button* b) override;

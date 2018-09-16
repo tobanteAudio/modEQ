@@ -64,10 +64,12 @@ public:
 
   float operator()(const String& text)
   {
-    if (text == "Normal")
+    if (text == "Normal") {
       return 0.0f;
-    if (text == "Inverted")
+}
+    if (text == "Inverted") {
       return 1.0f;
+}
     return 0.0f;
   }
 };

@@ -58,15 +58,15 @@ public:
 
   //==============================================================================
   EqualizerProcessor(AudioProcessorValueTreeState&);
-  ~EqualizerProcessor();
+  ~EqualizerProcessor() override;
 
   //==============================================================================
-  void prepareToPlay(double, int) override;
+  void prepareToPlay(double /*unused*/, int /*unused*/) override;
   void prepare(const dsp::ProcessSpec&);
 
   //==============================================================================
   void process(const dsp::ProcessContextReplacing<float>&);
-  void processBlock(AudioBuffer<float>&, MidiBuffer&) override;
+  void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
   //==============================================================================
   void reset() override;

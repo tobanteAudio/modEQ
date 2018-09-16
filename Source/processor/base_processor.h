@@ -29,12 +29,12 @@ public:
     : state(vts)
   {
   }
-  ~BaseProcessor() override {}
+  ~BaseProcessor() override = default;
 
   //==============================================================================
-  void prepareToPlay(double, int) override {}
+  void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
   void releaseResources() override {}
-  void processBlock(AudioBuffer<float>&, MidiBuffer&) override {}
+  void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override {}
 
   //==============================================================================
   AudioProcessorEditor* createEditor() override { return nullptr; }
@@ -49,13 +49,13 @@ public:
   //==============================================================================
   int getNumPrograms() override { return 0; }
   int getCurrentProgram() override { return 0; }
-  void setCurrentProgram(int) override {}
-  const String getProgramName(int) override { return {}; }
-  void changeProgramName(int, const String&) override {}
+  void setCurrentProgram(int /*index*/) override {}
+  const String getProgramName(int /*index*/) override { return {}; }
+  void changeProgramName(int /*index*/, const String& /*newName*/) override {}
 
   //==============================================================================
-  void getStateInformation(MemoryBlock&) override {}
-  void setStateInformation(const void*, int) override {}
+  void getStateInformation(MemoryBlock& /*destData*/) override {}
+  void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
 
   //==============================================================================
   AudioProcessorValueTreeState& getPluginState() { return state; }

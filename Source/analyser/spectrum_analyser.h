@@ -34,7 +34,7 @@ public:
   {
   }
 
-  virtual ~SpectrumAnalyser() = default;
+  ~SpectrumAnalyser() override = default;
 
   void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
   {

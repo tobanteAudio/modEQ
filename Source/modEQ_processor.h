@@ -30,7 +30,7 @@ class ModEQProcessor : public AudioProcessor, public AudioProcessorValueTreeStat
 public:
   //==============================================================================
   ModEQProcessor();
-  ~ModEQProcessor();
+  ~ModEQProcessor() override;
 
   //==============================================================================
   void prepareToPlay(double newSampleRate, int newSamplesPerBlock) override;
@@ -40,7 +40,7 @@ public:
   bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
 #endif
 
-  void processBlock(AudioBuffer<float>&, MidiBuffer&) override;
+  void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override;
   void parameterChanged(const String& parameter, float newValue) override;
 
   //==============================================================================
