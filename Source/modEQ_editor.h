@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with helm.  If not, see <http://www.gnu.org/licenses/>.
+ * along with modEQ.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
@@ -19,10 +19,10 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-#include "modEQ_processor.h"
 #include "controller/band_controller.h"
 #include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
+#include "modEQ_processor.h"
 #include "view/band_view.h"
 #include "view/equalizer_plot_view.h"
 #include "view/modulation_source_view.h"

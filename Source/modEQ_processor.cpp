@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with helm.  If not, see <http://www.gnu.org/licenses/>.
+ * along with modEQ.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "modEQ_processor.h"
@@ -36,9 +36,7 @@ ModEQProcessor::ModEQProcessor()
   auto gainRange = NormalisableRange<float>(0.0, 2.0, 0.01);
 
   state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"), translate("Output level"),
-                              gainRange, 1.0, gainTextConverter, gainTextConverter,
-                              false, true, false);
-
+                              gainRange, 1.0, gainTextConverter, gainTextConverter, false, true, false);
 
 
   state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
@@ -166,8 +164,8 @@ AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*t
 //==============================================================================
 void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
-   //MemoryOutputStream stream(destData, false);
-   //state.state.writeToStream(stream);
+  // MemoryOutputStream stream(destData, false);
+  // state.state.writeToStream(stream);
 }
 
 void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)

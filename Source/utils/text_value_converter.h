@@ -11,7 +11,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with helm.  If not, see <http://www.gnu.org/licenses/>.
+ * along with modEQ.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
@@ -64,12 +64,14 @@ public:
 
   float operator()(const String& text)
   {
-    if (text == "Normal") {
+    if (text == "Normal")
+    {
       return 0.0f;
-}
-    if (text == "Inverted") {
+    }
+    if (text == "Inverted")
+    {
       return 1.0f;
-}
+    }
     return 0.0f;
   }
 };
