@@ -25,13 +25,19 @@ namespace TA
 class GainView : public Component
 {
 public:
+  //==============================================================================
   GainView();
   ~GainView();
 
+  //==============================================================================
   void paint(Graphics&) override;
   void resized() override;
 
+  //==============================================================================
+  Slider gain;
+
 private:
+  //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainView)
 };
 

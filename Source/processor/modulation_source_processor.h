@@ -51,6 +51,7 @@ private:
   dsp::Oscillator<float> oscillator;
   TA::ModulationSourceAnalyser<float> analyser;
   FrequencyTextConverter frequencyTextConverter;
+
   //==============================================================================
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceProcessor)
 };
