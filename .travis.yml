@@ -44,11 +44,9 @@ before_script:
   - sudo apt-get install libsndfile1
 
   - cd $TRAVIS_BUILD_DIR
-  - git clone https://github.com/WeAreROLI/JUCE.git
   - git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
 
-  - cd JUCE
-  - git checkout tags/5.3.2
+  - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE
   - cd extras/Projucer/JuceLibraryCode
   - pwd
   - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
@@ -66,7 +64,7 @@ script:
   - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
   - gcc -v && g++ -v && cmake --version
   - ls
-  - $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
+  - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
   - ls
   - cd Builds/LinuxMakefile
   - make -j4 CONFIG=Release
