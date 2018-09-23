@@ -23,20 +23,25 @@ ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
   : AudioProcessor(BusesProperties()
                      .withInput("Input", AudioChannelSet::stereo(), true)
-                     .withOutput("Output", AudioChannelSet::stereo(), true))
-  ,
+                     .withOutput("Output", AudioChannelSet::stereo(), true)),
 #else
   :
 #endif
-  state(*this, &undo)
-  , equalizerProcessor(state)
-  , modSource(state)
+    state(*this, &undo), equalizerProcessor(state), modSource(state)
 {
   const float maxGain = Decibels::decibelsToGain(24.0f);
   auto gainRange = NormalisableRange<float>(0.0, 2.0, 0.01);
 
-  state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"), translate("Output level"),
-                              gainRange, 1.0, gainTextConverter, gainTextConverter, false, true, false);
+  state.createAndAddParameter(TA::EqualizerProcessor::paramOutput,
+    translate("Output"),
+    translate("Output level"),
+    gainRange,
+    1.0,
+    gainTextConverter,
+    gainTextConverter,
+    false,
+    true,
+    false);
 
 
   state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
@@ -74,7 +79,7 @@ int ModEQProcessor::getNumPrograms() { return 1; }
 int ModEQProcessor::getCurrentProgram() { return 0; }
 void ModEQProcessor::setCurrentProgram(int) {}
 const String ModEQProcessor::getProgramName(int) { return {}; }
-void ModEQProcessor::changeProgramName(int, const String&) {}
+void ModEQProcessor::changeProgramName(int, const String &) {}
 
 //==============================================================================
 void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
@@ -98,17 +103,16 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 void ModEQProcessor::releaseResources() {}
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
+bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
   // This checks if the input layout matches the output layout
-  if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-    return false;
+  if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet()) return false;
 
   return true;
 }
 #endif
 
-void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMessages)
+void ModEQProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
 {
   ignoreUnused(midiMessages);
   ScopedNoDenormals noDenormals;
@@ -129,10 +133,8 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
   auto gainValue = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
   auto gainMod = gainValue + (modRange * modValue);
 
-  if (gainMod < -0.0f)
-    gainMod = 0.0;
-  if (gainMod > 2.0f)
-    gainMod = 2.0;
+  if (gainMod < -0.0f) gainMod = 0.0;
+  if (gainMod > 2.0f) gainMod = 2.0;
 
   outputGain.setGainLinear(gainMod);
 
@@ -145,10 +147,9 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 }
 
 
-void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
+void ModEQProcessor::parameterChanged(const String &parameter, float newValue)
 {
-  if (parameter == TA::EqualizerProcessor::paramOutput)
-  {
+  if (parameter == TA::EqualizerProcessor::paramOutput) {
     outputGain.setGainLinear(newValue);
     return;
   }
@@ -158,17 +159,17 @@ void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
 //==============================================================================
 bool ModEQProcessor::hasEditor() const { return true; }
 
-AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*this); }
+AudioProcessorEditor *ModEQProcessor::createEditor() { return new ModEQEditor(*this); }
 
 
 //==============================================================================
-void ModEQProcessor::getStateInformation(MemoryBlock& destData)
+void ModEQProcessor::getStateInformation(MemoryBlock &destData)
 {
   // MemoryOutputStream stream(destData, false);
   // state.state.writeToStream(stream);
 }
 
-void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
+void ModEQProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
   // ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
   // if (tree.isValid())
@@ -179,4 +180,4 @@ void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new ModEQProcessor(); }
+AudioProcessor *JUCE_CALLTYPE createPluginFilter() { return new ModEQProcessor(); }

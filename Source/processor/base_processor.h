@@ -17,27 +17,23 @@
 #pragma once
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-namespace TA
-{
+namespace TA {
 
 //==============================================================================
 class BaseProcessor : public AudioProcessor
 {
 public:
   //==============================================================================
-  BaseProcessor(AudioProcessorValueTreeState& vts)
-    : state(vts)
-  {
-  }
+  BaseProcessor(AudioProcessorValueTreeState &vts) : state(vts) {}
   ~BaseProcessor() override = default;
 
   //==============================================================================
   void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
   void releaseResources() override {}
-  void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override {}
+  void processBlock(AudioBuffer<float> & /*buffer*/, MidiBuffer & /*midiMessages*/) override {}
 
   //==============================================================================
-  AudioProcessorEditor* createEditor() override { return nullptr; }
+  AudioProcessorEditor *createEditor() override { return nullptr; }
   bool hasEditor() const override { return false; }
 
   //==============================================================================
@@ -51,15 +47,15 @@ public:
   int getCurrentProgram() override { return 0; }
   void setCurrentProgram(int /*index*/) override {}
   const String getProgramName(int /*index*/) override { return {}; }
-  void changeProgramName(int /*index*/, const String& /*newName*/) override {}
+  void changeProgramName(int /*index*/, const String & /*newName*/) override {}
 
   //==============================================================================
-  void getStateInformation(MemoryBlock& /*destData*/) override {}
-  void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
+  void getStateInformation(MemoryBlock & /*destData*/) override {}
+  void setStateInformation(const void * /*data*/, int /*sizeInBytes*/) override {}
 
   //==============================================================================
-  AudioProcessorValueTreeState& getPluginState() { return state; }
-  AudioProcessorValueTreeState& state;
+  AudioProcessorValueTreeState &getPluginState() { return state; }
+  AudioProcessorValueTreeState &state;
 
 
   double sampleRate{};
@@ -74,4 +70,4 @@ private:
 };
 
 
-} // namespace TA
+}// namespace TA

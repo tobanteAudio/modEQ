@@ -19,26 +19,24 @@
 
 //==============================================================================
 
-namespace TA
-{
+namespace TA {
 
 BandView::BandView(int i)
-  : index(i)
-  , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-  , quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-  , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-  , solo(translate("S"))
-  , activate(translate("A"))
+  : index(i), frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow),
+    quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow),
+    gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow), solo(translate("S")),
+    activate(translate("A"))
 {
-  frame.setText(String(index)); // processor.getBandName(index)
+  frame.setText(String(index));// processor.getBandName(index)
   frame.setTextLabelPosition(Justification::centred);
-  frame.setColour(GroupComponent::textColourId, Colours::silver); // processor.getBandColour(index)
+  frame.setColour(GroupComponent::textColourId, Colours::silver);// processor.getBandColour(index)
   frame.setColour(GroupComponent::outlineColourId, Colour(0xff00ff08));
   addAndMakeVisible(frame);
 
   for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
-    filterType.addItem(TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(j)),
-                       j + 1);
+    filterType.addItem(
+      TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(j)),
+      j + 1);
 
   addAndMakeVisible(filterType);
   addAndMakeVisible(gain);
@@ -82,4 +80,4 @@ void BandView::resized()
   quality.setBounds(bounds.removeFromLeft(bounds.getWidth() / 2));
   gain.setBounds(bounds);
 }
-} // namespace TA
+}// namespace TA

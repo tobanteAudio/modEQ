@@ -17,13 +17,12 @@
 #include "modulation_source_view.h"
 
 
-namespace TA
-{
+namespace TA {
 
 //==============================================================================
 ModulationSourceView::ModulationSourceView()
-  : frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
-  , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
+  : frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox),
+    gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
 {
   addAndMakeVisible(frequency);
   addAndMakeVisible(gain);
@@ -31,7 +30,7 @@ ModulationSourceView::ModulationSourceView()
 
 ModulationSourceView::~ModulationSourceView() {}
 
-void ModulationSourceView::paint(Graphics& g)
+void ModulationSourceView::paint(Graphics &g)
 {
   const Colour inputColour = Colours::greenyellow;
   const Colour outputColour = Colours::red;
@@ -41,8 +40,7 @@ void ModulationSourceView::paint(Graphics& g)
   g.setFont(12.0f);
   g.setColour(Colours::silver);
   g.drawRoundedRectangle(plotFrame.toFloat(), 6, 5);
-  for (int i = 0; i < 10; ++i)
-  {
+  for (int i = 0; i < 10; ++i) {
     g.setColour(Colours::silver.withAlpha(0.4f));
     auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
     if (i > 0)
@@ -50,15 +48,18 @@ void ModulationSourceView::paint(Graphics& g)
 
     //  // g.setColour(Colour(0xffb9f6ca));
     //  // auto freq = getFrequencyForPosition(i * 0.1f);
-    //  // g.drawFittedText((freq < 1000) ? String(freq) + " Hz" : String(freq / 1000, 1) + " kHz", roundToInt(x + 3),
+    //  // g.drawFittedText((freq < 1000) ? String(freq) + " Hz" : String(freq / 1000, 1) + " kHz",
+    //  roundToInt(x + 3),
     //  //                 plotFrame.getBottom() - 18, 50, 15, Justification::left, 1);
   }
 
   g.setColour(Colours::silver.withAlpha(0.4f));
-  g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()), (float)plotFrame.getX(),
-                       (float)plotFrame.getRight());
-  g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()), (float)plotFrame.getX(),
-                       (float)plotFrame.getRight());
+  g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
+    (float)plotFrame.getX(),
+    (float)plotFrame.getRight());
+  g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
+    (float)plotFrame.getX(),
+    (float)plotFrame.getRight());
 
   g.reduceClipRegion(plotFrame);
 
@@ -81,4 +82,4 @@ void ModulationSourceView::resized()
 }
 
 
-} // namespace TA
+}// namespace TA

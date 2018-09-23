@@ -16,26 +16,28 @@
 
 #include "band_controller.h"
 
-namespace TA
-{
+namespace TA {
 
-BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
-  : index(i)
-  , view(v)
-  , mainProcessor(p)
-  , processor(sub)
+BandController::BandController(const int i,
+  ModEQProcessor &p,
+  TA::EqualizerProcessor &sub,
+  TA::BandView &v)
+  : index(i), view(v), mainProcessor(p), processor(sub)
 {
   // Link GUI components to ValueTree
   using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
   using ComboBoxAttachment = AudioProcessorValueTreeState::ComboBoxAttachment;
   using ButtonAttachment = AudioProcessorValueTreeState::ButtonAttachment;
 
-  auto& state = mainProcessor.getPluginState();
+  auto &state = mainProcessor.getPluginState();
 
-  boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
-  buttonAttachments.add(new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
+  boxAttachments.add(
+    new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
+  buttonAttachments.add(
+    new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
 
-  attachments.add(new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
+  attachments.add(
+    new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
   attachments.add(new SliderAttachment(state, processor.getQualityParamName(index), view.quality));
   attachments.add(new SliderAttachment(state, processor.getGainParamName(index), view.gain));
 
@@ -45,8 +47,7 @@ BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProc
 
 void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
 {
-  switch (type)
-  {
+  switch (type) {
   case TA::EqualizerProcessor::LowPass:
     view.frequency.setEnabled(true);
     view.quality.setEnabled(true);
@@ -110,20 +111,26 @@ void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
   }
 }
 
-void BandController::updateSoloState(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
+void BandController::updateSoloState(bool isSolo)
+{
+  view.solo.setToggleState(isSolo, dontSendNotification);
+}
 
-void BandController::setFrequency(float newFreq) { view.frequency.setValue(newFreq, sendNotification); }
+void BandController::setFrequency(float newFreq)
+{
+  view.frequency.setValue(newFreq, sendNotification);
+}
 
 void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
-void BandController::setType(int newType) { view.filterType.setSelectedId(newType + 1, sendNotification); }
-
-void BandController::buttonClicked(Button* b)
+void BandController::setType(int newType)
 {
-  if (b == &view.solo)
-  {
-    processor.setBandSolo(view.solo.getToggleState() ? index : -1);
-  }
+  view.filterType.setSelectedId(newType + 1, sendNotification);
 }
 
-} // namespace TA
+void BandController::buttonClicked(Button *b)
+{
+  if (b == &view.solo) { processor.setBandSolo(view.solo.getToggleState() ? index : -1); }
+}
+
+}// namespace TA

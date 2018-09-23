@@ -20,37 +20,39 @@
 #include "../controller/band_controller.h"
 #include "../processor/equalizer_processor.h"
 
-namespace TA
-{
+namespace TA {
 
 //==============================================================================
 /*
  */
-class EqualizerPlotView : public Component, public ChangeListener, public Timer
+class EqualizerPlotView
+  : public Component
+  , public ChangeListener
+  , public Timer
 {
 public:
   //==============================================================================
-  EqualizerPlotView(TA::EqualizerProcessor&, OwnedArray<TA::BandController>&);
+  EqualizerPlotView(TA::EqualizerProcessor &, OwnedArray<TA::BandController> &);
   ~EqualizerPlotView();
 
   //==============================================================================
-  void paint(Graphics&) override;
+  void paint(Graphics &) override;
   void resized() override;
 
   //==============================================================================
-  void changeListenerCallback(ChangeBroadcaster* sender) override;
+  void changeListenerCallback(ChangeBroadcaster *sender) override;
   void timerCallback() override;
 
   //==============================================================================
-  void mouseDown(const MouseEvent& e) override;
-  void mouseMove(const MouseEvent& e) override;
-  void mouseDrag(const MouseEvent& e) override;
-  void mouseDoubleClick(const MouseEvent& e) override;
+  void mouseDown(const MouseEvent &e) override;
+  void mouseMove(const MouseEvent &e) override;
+  void mouseDrag(const MouseEvent &e) override;
+  void mouseDoubleClick(const MouseEvent &e) override;
 
 private:
   //==============================================================================
-  TA::EqualizerProcessor& processor;
-  OwnedArray<TA::BandController>& bandControllers;
+  TA::EqualizerProcessor &processor;
+  OwnedArray<TA::BandController> &bandControllers;
 
   //==============================================================================
   void updateFrequencyResponses();
@@ -74,4 +76,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerPlotView)
 };
 
-} // namespace TA
+}// namespace TA

@@ -17,23 +17,21 @@
 #include "gain_view.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-namespace TA
-{
+namespace TA {
 
 //==============================================================================
-GainView::GainView()
-  : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
   addAndMakeVisible(gain);
 }
 
 GainView::~GainView() {}
 
-void GainView::paint(Graphics& /*g*/) {}
+void GainView::paint(Graphics & /*g*/) {}
 
 void GainView::resized()
 {
   auto area = getLocalBounds();
   gain.setBounds(area);
 }
-} // namespace TA
+}// namespace TA

@@ -20,17 +20,19 @@
 #include "../view/band_view.h"
 
 //==============================================================================
-namespace TA
-{
+namespace TA {
 
 class BandController : public Button::Listener
 {
 public:
   //==============================================================================
-  BandController(int /*i*/, ModEQProcessor& /*p*/, TA::EqualizerProcessor& /*sub*/, TA::BandView& /*v*/);
+  BandController(int /*i*/,
+    ModEQProcessor & /*p*/,
+    TA::EqualizerProcessor & /*sub*/,
+    TA::BandView & /*v*/);
 
   //==============================================================================
-  void buttonClicked(Button* b) override;
+  void buttonClicked(Button *b) override;
 
   //==============================================================================
   void updateControls(TA::EqualizerProcessor::FilterType type);
@@ -47,9 +49,9 @@ public:
 private:
   //==============================================================================
   int index;
-  TA::BandView& view;
-  ModEQProcessor& mainProcessor;
-  TA::EqualizerProcessor& processor;
+  TA::BandView &view;
+  ModEQProcessor &mainProcessor;
+  TA::EqualizerProcessor &processor;
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
@@ -60,4 +62,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)
 };
 
-} // namespace TA
+}// namespace TA

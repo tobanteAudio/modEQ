@@ -22,21 +22,19 @@ static int clickRadius = 10;
 static float maxDB = 24.0f;
 
 //==============================================================================
-ModEQEditor::ModEQEditor(ModEQProcessor& p)
-  : AudioProcessorEditor(&p)
-  , processor(p)
-  , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-  , plotView(processor.getEQ(), bandControllers)
-  , modController(1, processor, processor.modSource, modView)
+ModEQEditor::ModEQEditor(ModEQProcessor &p)
+  : AudioProcessorEditor(&p), processor(p),
+    output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow),
+    plotView(processor.getEQ(), bandControllers),
+    modController(1, processor, processor.modSource, modView)
 {
   tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
   addAndMakeVisible(socialButtons);
 
 
-  for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
-  {
-    auto* bandView = bandViews.add(new TA::BandView(i));
+  for (int i = 0; i < processor.getEQ().getNumBands(); ++i) {
+    auto *bandView = bandViews.add(new TA::BandView(i));
     bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
     // Add lookAndFeel
@@ -51,8 +49,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
   frame.setTextLabelPosition(Justification::centred);
   addAndMakeVisible(frame);
   addAndMakeVisible(output);
-  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(),
-                                                                     TA::EqualizerProcessor::paramOutput, output));
+  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
+    processor.getPluginState(), TA::EqualizerProcessor::paramOutput, output));
   output.setTooltip(translate("Overall Gain"));
 
   setResizable(true, true);
@@ -75,7 +73,7 @@ ModEQEditor::~ModEQEditor()
 }
 
 //==============================================================================
-void ModEQEditor::paint(Graphics& g)
+void ModEQEditor::paint(Graphics &g)
 {
   const Colour inputColour = Colours::greenyellow;
   const Colour outputColour = Colours::red;
@@ -106,8 +104,7 @@ void ModEQEditor::resized()
   // EQ Bands
   auto bandSpace = area.removeFromBottom(getHeight() / 3);
   auto width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-  for (auto* bandView : bandViews)
-    bandView->setBounds(bandSpace.removeFromLeft(width));
+  for (auto *bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
   // Frame around output
   frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));

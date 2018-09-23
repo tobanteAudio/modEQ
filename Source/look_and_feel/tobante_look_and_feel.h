@@ -18,8 +18,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-namespace TA
-{
+namespace TA {
 
 class TobanteLookAndFeel : public LookAndFeel_V4
 {
@@ -44,15 +43,15 @@ public:
     setColour(PopupMenu::highlightedTextColourId, Colours::blue);
   }
 
-  void drawRotarySlider(Graphics& g,
-                        int x,
-                        int y,
-                        int width,
-                        int height,
-                        float sliderPos,
-                        const float rotaryStartAngle,
-                        const float rotaryEndAngle,
-                        Slider& slider) override
+  void drawRotarySlider(Graphics &g,
+    int x,
+    int y,
+    int width,
+    int height,
+    float sliderPos,
+    const float rotaryStartAngle,
+    const float rotaryEndAngle,
+    Slider &slider) override
   {
     ignoreUnused(slider);
 
@@ -72,7 +71,7 @@ public:
     g.setColour(Colours::darkblue);
     g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
-    Rectangle<int> textArea{50, 50};
+    Rectangle<int> textArea{ 50, 50 };
     textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
 
     g.setFont(18.f);
@@ -90,7 +89,7 @@ public:
   }
 
   // layout slider and value label
-  Slider::SliderLayout getSliderLayout(Slider& slider) override
+  Slider::SliderLayout getSliderLayout(Slider &slider) override
   {
     Slider::SliderLayout layout;
 
@@ -105,4 +104,4 @@ public:
   }
 };
 
-} // namespace TA
+}// namespace TA

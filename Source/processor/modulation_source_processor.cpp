@@ -16,12 +16,10 @@
 
 #include "modulation_source_processor.h"
 
-namespace TA
-{
+namespace TA {
 
-ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
-  : index(1)
-  , BaseProcessor(vts)
+ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState &vts)
+  : index(1), BaseProcessor(vts)
 {
   oscillator.setFrequency(1.f);
   oscillator.initialise([](float x) { return std::sin(x); });
@@ -35,13 +33,13 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 {
   sampleRate = newSampleRate;
 
-  dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
+  dsp::ProcessSpec spec{ sampleRate, static_cast<uint32>(samplesPerBlock) };
   oscillator.prepare(spec);
 
   analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
-void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
+void ModulationSourceProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &)
 {
   dsp::AudioBlock<float> block(buffer);
   dsp::ProcessContextReplacing<float> context(block);
@@ -50,13 +48,13 @@ void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
   analyser.addAudioData(buffer, 0, 1);
 }
 
-void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/, float /*newValue*/) {}
+void ModulationSourceProcessor::parameterChanged(const String & /*parameter*/, float /*newValue*/) {}
 
-void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& bounds, float minFreq)
+void ModulationSourceProcessor::createAnalyserPlot(Path &p, Rectangle<int> &bounds, float minFreq)
 {
   analyser.createPath(p, bounds.toFloat(), minFreq);
 }
 
 bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
 
-} // namespace TA
+}// namespace TA

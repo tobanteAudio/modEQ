@@ -22,25 +22,29 @@
 #include "../view/modulation_source_view.h"
 
 //==============================================================================
-namespace TA
-{
+namespace TA {
 
-class ModulationSourceController : public ChangeListener, public Timer
+class ModulationSourceController
+  : public ChangeListener
+  , public Timer
 {
 public:
   //==============================================================================
-  ModulationSourceController(const int, ModEQProcessor&, TA::ModulationSourceProcessor&, TA::ModulationSourceView&);
+  ModulationSourceController(const int,
+    ModEQProcessor &,
+    TA::ModulationSourceProcessor &,
+    TA::ModulationSourceView &);
 
   //==============================================================================
-  void changeListenerCallback(ChangeBroadcaster* sender) override;
+  void changeListenerCallback(ChangeBroadcaster *sender) override;
   void timerCallback() override;
 
 private:
   //==============================================================================
   int index;
-  ModEQProcessor& mainProcessor;
-  TA::ModulationSourceProcessor& processor;
-  TA::ModulationSourceView& view;
+  ModEQProcessor &mainProcessor;
+  TA::ModulationSourceProcessor &processor;
+  TA::ModulationSourceView &view;
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
@@ -49,4 +53,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceController)
 };
 
-} // namespace TA
+}// namespace TA

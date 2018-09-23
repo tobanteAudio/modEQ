@@ -16,23 +16,19 @@
 
 #include "modulation_source_controller.h"
 
-namespace TA
-{
+namespace TA {
 
 ModulationSourceController::ModulationSourceController(const int i,
-                                                       ModEQProcessor& mp,
-                                                       ModulationSourceProcessor& p,
-                                                       ModulationSourceView& v)
-  : index(i)
-  , mainProcessor(mp)
-  , processor(p)
-  , view(v)
+  ModEQProcessor &mp,
+  ModulationSourceProcessor &p,
+  ModulationSourceView &v)
+  : index(i), mainProcessor(mp), processor(p), view(v)
 {
   // Start Timer
   startTimerHz(25);
 }
 
-void ModulationSourceController::changeListenerCallback(ChangeBroadcaster* sender) {}
+void ModulationSourceController::changeListenerCallback(ChangeBroadcaster *sender) {}
 
 void ModulationSourceController::timerCallback()
 {
@@ -42,4 +38,4 @@ void ModulationSourceController::timerCallback()
 }
 
 
-} // namespace TA
+}// namespace TA

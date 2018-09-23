@@ -19,27 +19,21 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-namespace TA
-{
+namespace TA {
 //==============================================================================
-template <typename Type>
-class SpectrumAnalyser : public Thread
+template<typename Type> class SpectrumAnalyser : public Thread
 {
 public:
   SpectrumAnalyser()
-    : Thread("SpectrumAnalyser")
-    , abstractFifo(48000)
-    , fft(12)
-    , windowing(size_t(fft.getSize()), dsp::WindowingFunction<Type>::kaiser)
-  {
-  }
+    : Thread("SpectrumAnalyser"), abstractFifo(48000), fft(12),
+      windowing(size_t(fft.getSize()), dsp::WindowingFunction<Type>::kaiser)
+  {}
 
   ~SpectrumAnalyser() override = default;
 
-  void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
+  void addAudioData(const AudioBuffer<Type> &buffer, int startChannel, int numChannels)
   {
-    if (abstractFifo.getFreeSpace() < buffer.getNumSamples())
-      return;
+    if (abstractFifo.getFreeSpace() < buffer.getNumSamples()) return;
 
     int start1, block1, start2, block2;
     abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1, start2, block2);
@@ -47,12 +41,9 @@ public:
     if (block2 > 0)
       audioFifo.copyFrom(0, start2, buffer.getReadPointer(startChannel, block1), block2);
 
-    for (int channel = startChannel + 1; channel < startChannel + numChannels; ++channel)
-    {
-      if (block1 > 0)
-        audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
-      if (block2 > 0)
-        audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1), block2);
+    for (int channel = startChannel + 1; channel < startChannel + numChannels; ++channel) {
+      if (block1 > 0) audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
+      if (block2 > 0) audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1), block2);
     }
     abstractFifo.finishedWrite(block1 + block2);
     waitForData.signal();
@@ -71,18 +62,14 @@ public:
 
   void run() override
   {
-    while (!threadShouldExit())
-    {
-      if (abstractFifo.getNumReady() >= fft.getSize())
-      {
+    while (!threadShouldExit()) {
+      if (abstractFifo.getNumReady() >= fft.getSize()) {
         fftBuffer.clear();
 
         int start1, block1, start2, block2;
         abstractFifo.prepareToRead(fft.getSize(), start1, block1, start2, block2);
-        if (block1 > 0)
-          fftBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
-        if (block2 > 0)
-          fftBuffer.copyFrom(0, block1, audioFifo.getReadPointer(0, start2), block2);
+        if (block1 > 0) fftBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
+        if (block2 > 0) fftBuffer.copyFrom(0, block1, audioFifo.getReadPointer(0, start2), block2);
         abstractFifo.finishedRead(block1 + block2);
 
         windowing.multiplyWithWindowingTable(fftBuffer.getWritePointer(0), size_t(fft.getSize()));
@@ -90,26 +77,27 @@ public:
 
         ScopedLock lockedForWriting(pathCreationLock);
         averager.addFrom(0, 0, averager.getReadPointer(averagerPtr), averager.getNumSamples(), -1.0f);
-        averager.copyFrom(averagerPtr, 0, fftBuffer.getReadPointer(0), averager.getNumSamples(),
-                          1.0f / (averager.getNumSamples() * (averager.getNumChannels() - 1)));
+        averager.copyFrom(averagerPtr,
+          0,
+          fftBuffer.getReadPointer(0),
+          averager.getNumSamples(),
+          1.0f / (averager.getNumSamples() * (averager.getNumChannels() - 1)));
         averager.addFrom(0, 0, averager.getReadPointer(averagerPtr), averager.getNumSamples());
-        if (++averagerPtr == averager.getNumChannels())
-          averagerPtr = 1;
+        if (++averagerPtr == averager.getNumChannels()) averagerPtr = 1;
 
         newDataAvailable = true;
       }
 
-      if (abstractFifo.getNumReady() < fft.getSize())
-        waitForData.wait(100);
+      if (abstractFifo.getNumReady() < fft.getSize()) waitForData.wait(100);
     }
   }
 
-  void createPath(Path& p, const Rectangle<float> bounds, float minFreq)
+  void createPath(Path &p, const Rectangle<float> bounds, float minFreq)
   {
     p.clear();
 
     ScopedLock lockedForReading(pathCreationLock);
-    const auto* fftData = averager.getReadPointer(0);
+    const auto *fftData = averager.getReadPointer(0);
     const auto factor = bounds.getWidth() / 10.0f;
 
     p.startNewSubPath(bounds.getX() + factor * indexToX(0, minFreq), binToY(fftData[0], bounds));
@@ -134,7 +122,8 @@ private:
   inline float binToY(float bin, const Rectangle<float> bounds) const
   {
     const float infinity = -80.0f;
-    return jmap(Decibels::gainToDecibels(bin, infinity), infinity, 0.0f, bounds.getBottom(), bounds.getY());
+    return jmap(
+      Decibels::gainToDecibels(bin, infinity), infinity, 0.0f, bounds.getBottom(), bounds.getY());
   }
 
   Type sampleRate{};
@@ -155,4 +144,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SpectrumAnalyser)
 };
 
-} // namespace TA
+}// namespace TA

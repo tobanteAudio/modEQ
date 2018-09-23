@@ -21,8 +21,7 @@
 #include "../processor/modulation_source_processor.h"
 
 
-namespace TA
-{
+namespace TA {
 //==============================================================================
 class ModulationSourceView : public Component
 {
@@ -32,7 +31,7 @@ public:
   ~ModulationSourceView();
 
   //==============================================================================
-  void paint(Graphics&) override;
+  void paint(Graphics &) override;
   void resized() override;
 
   //==============================================================================
@@ -46,4 +45,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 
-} // namespace TA
+}// namespace TA

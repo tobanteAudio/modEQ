@@ -20,26 +20,27 @@
 #include "../utils/text_value_converter.h"
 #include "base_processor.h"
 
-namespace TA
-{
+namespace TA {
 //==============================================================================
-class ModulationSourceProcessor : public BaseProcessor, AudioProcessorValueTreeState::Listener
+class ModulationSourceProcessor
+  : public BaseProcessor
+  , AudioProcessorValueTreeState::Listener
 
 {
 public:
   //==============================================================================
-  ModulationSourceProcessor(AudioProcessorValueTreeState&);
+  ModulationSourceProcessor(AudioProcessorValueTreeState &);
   ~ModulationSourceProcessor() override;
 
   //==============================================================================
   void prepareToPlay(double /*unused*/, int /*unused*/) override;
-  void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
+  void processBlock(AudioBuffer<float> & /*unused*/, MidiBuffer & /*unused*/) override;
 
   //==============================================================================
-  void parameterChanged(const String& parameter, float newValue) override;
+  void parameterChanged(const String &parameter, float newValue) override;
 
   //==============================================================================
-  void createAnalyserPlot(Path&, Rectangle<int>&, float);
+  void createAnalyserPlot(Path &, Rectangle<int> &, float);
   bool checkForNewAnalyserData();
 
   //==============================================================================
@@ -56,4 +57,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceProcessor)
 };
 
-} // namespace TA
+}// namespace TA

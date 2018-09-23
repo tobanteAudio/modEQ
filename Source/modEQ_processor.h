@@ -25,7 +25,10 @@
 #include "utils/text_value_converter.h"
 
 //==============================================================================
-class ModEQProcessor : public AudioProcessor, public AudioProcessorValueTreeState::Listener, public ChangeBroadcaster
+class ModEQProcessor
+  : public AudioProcessor
+  , public AudioProcessorValueTreeState::Listener
+  , public ChangeBroadcaster
 {
 public:
   //==============================================================================
@@ -37,14 +40,14 @@ public:
   void releaseResources() override;
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-  bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
+  bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 #endif
 
-  void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override;
-  void parameterChanged(const String& parameter, float newValue) override;
+  void processBlock(AudioBuffer<float> & /*buffer*/, MidiBuffer & /*midiMessages*/) override;
+  void parameterChanged(const String &parameter, float newValue) override;
 
   //==============================================================================
-  AudioProcessorEditor* createEditor() override;
+  AudioProcessorEditor *createEditor() override;
   bool hasEditor() const override;
 
 
@@ -61,15 +64,15 @@ public:
   int getCurrentProgram() override;
   void setCurrentProgram(int index) override;
   const String getProgramName(int index) override;
-  void changeProgramName(int index, const String& newName) override;
+  void changeProgramName(int index, const String &newName) override;
 
   //==============================================================================
-  void getStateInformation(MemoryBlock& destData) override;
-  void setStateInformation(const void* data, int sizeInBytes) override;
+  void getStateInformation(MemoryBlock &destData) override;
+  void setStateInformation(const void *data, int sizeInBytes) override;
 
   //==============================================================================
-  TA::EqualizerProcessor& getEQ() { return equalizerProcessor; }
-  AudioProcessorValueTreeState& getPluginState() { return state; }
+  TA::EqualizerProcessor &getEQ() { return equalizerProcessor; }
+  AudioProcessorValueTreeState &getPluginState() { return state; }
   TA::ModulationSourceProcessor modSource;
 
 private:

@@ -36,16 +36,16 @@ class ModEQEditor : public AudioProcessorEditor
 {
 public:
   //==============================================================================
-  ModEQEditor(ModEQProcessor&);
+  ModEQEditor(ModEQProcessor &);
   ~ModEQEditor();
 
   //==============================================================================
-  void paint(Graphics&) override;
+  void paint(Graphics &) override;
   void resized() override;
 
 private:
   //==============================================================================
-  ModEQProcessor& processor;
+  ModEQProcessor &processor;
 
   //==============================================================================
   TA::TobanteLookAndFeel tobanteLookAndFeel;
@@ -61,7 +61,7 @@ private:
   //==============================================================================
   SocialButtons socialButtons;
   Slider output;
-  GroupComponent frame; // for output slider
+  GroupComponent frame;// for output slider
 
   //==============================================================================
   OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;

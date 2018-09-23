@@ -18,16 +18,17 @@
 #include "../analyser/spectrum_analyser.h"
 #include "../utils/text_value_converter.h"
 #include "base_processor.h"
-namespace TA
-{
+namespace TA {
 //==============================================================================
-class EqualizerProcessor : public BaseProcessor, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
+class EqualizerProcessor
+  : public BaseProcessor
+  , public ChangeBroadcaster
+  , AudioProcessorValueTreeState::Listener
 
 {
 public:
   //==============================================================================
-  enum FilterType
-  {
+  enum FilterType {
     NoFilter = 0,
     HighPass,
     HighPass1st,
@@ -57,25 +58,25 @@ public:
   };
 
   //==============================================================================
-  EqualizerProcessor(AudioProcessorValueTreeState&);
+  EqualizerProcessor(AudioProcessorValueTreeState &);
   ~EqualizerProcessor() override;
 
   //==============================================================================
   void prepareToPlay(double /*unused*/, int /*unused*/) override;
-  void prepare(const dsp::ProcessSpec&);
+  void prepare(const dsp::ProcessSpec &);
 
   //==============================================================================
-  void process(const dsp::ProcessContextReplacing<float>&);
-  void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
+  void process(const dsp::ProcessContextReplacing<float> &);
+  void processBlock(AudioBuffer<float> & /*unused*/, MidiBuffer & /*unused*/) override;
 
   //==============================================================================
   void reset() override;
-  void parameterChanged(const String& parameter, float newValue) override;
+  void parameterChanged(const String &parameter, float newValue) override;
 
   //==============================================================================
   static String getFilterTypeName(TA::EqualizerProcessor::FilterType);
   const String getName() const override { return "Equalizer"; }
-  Band* getBand(int);
+  Band *getBand(int);
 
   //==============================================================================
   void updateBand(size_t);
@@ -83,9 +84,9 @@ public:
   void updatePlots();
 
   //==============================================================================
-  const std::vector<double>& getMagnitudes();
-  void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
-  void createAnalyserPlot(Path&, Rectangle<int>, float, bool);
+  const std::vector<double> &getMagnitudes();
+  void createFrequencyPlot(Path &, const std::vector<double> &, Rectangle<int>, float);
+  void createAnalyserPlot(Path &, Rectangle<int>, float, bool);
   bool checkForNewAnalyserData();
 
   //==============================================================================
@@ -135,4 +136,4 @@ private:
   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
 };
 
-} // namespace TA
+}// namespace TA
