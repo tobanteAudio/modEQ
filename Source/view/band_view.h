@@ -20,33 +20,33 @@
 //==============================================================================
 /*
  */
-namespace TA {
-
+namespace TA
+{
 class BandView : public Component
 {
 public:
-  //==============================================================================
-  BandView(int);
-  ~BandView() override;
+    //==============================================================================
+    BandView(int);
+    ~BandView() override;
 
-  //==============================================================================
-  void resized() override;
+    //==============================================================================
+    void resized() override;
 
-  //==============================================================================
-  GroupComponent frame;
-  ComboBox filterType;
-  Slider frequency;
-  Slider quality;
-  Slider gain;
-  TextButton solo;
-  TextButton activate;
+    //==============================================================================
+    GroupComponent frame;
+    ComboBox filterType;
+    Slider frequency;
+    Slider quality;
+    Slider gain;
+    TextButton solo;
+    TextButton activate;
 
 private:
-  //==============================================================================
-  int index;
+    //==============================================================================
+    int index;
 
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandView)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandView)
 };
 
-}// namespace TA
+}  // namespace TA

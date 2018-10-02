@@ -28,50 +28,49 @@
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
 
-
 //==============================================================================
 /**
  */
 class ModEQEditor : public AudioProcessorEditor
 {
 public:
-  //==============================================================================
-  ModEQEditor(ModEQProcessor &);
-  ~ModEQEditor();
+    //==============================================================================
+    ModEQEditor(ModEQProcessor&);
+    ~ModEQEditor();
 
-  //==============================================================================
-  void paint(Graphics &) override;
-  void resized() override;
+    //==============================================================================
+    void paint(Graphics&) override;
+    void resized() override;
 
 private:
-  //==============================================================================
-  ModEQProcessor &processor;
+    //==============================================================================
+    ModEQProcessor& processor;
 
-  //==============================================================================
-  TA::TobanteLookAndFeel tobanteLookAndFeel;
-  OwnedArray<TA::BandView> bandViews;
-  OwnedArray<TA::BandController> bandControllers;
-  TA::ModulationSourceController modController;
-  TA::ModulationSourceView modView;
-  TA::EqualizerPlotView plotView;
+    //==============================================================================
+    TA::TobanteLookAndFeel tobanteLookAndFeel;
+    OwnedArray<TA::BandView> bandViews;
+    OwnedArray<TA::BandController> bandControllers;
+    TA::ModulationSourceController modController;
+    TA::ModulationSourceView modView;
+    TA::EqualizerPlotView plotView;
 
-  //==============================================================================
-  Rectangle<int> plotArea;
+    //==============================================================================
+    Rectangle<int> plotArea;
 
-  //==============================================================================
-  SocialButtons socialButtons;
-  Slider output;
-  GroupComponent frame;// for output slider
+    //==============================================================================
+    SocialButtons socialButtons;
+    Slider output;
+    GroupComponent frame;  // for output slider
 
-  //==============================================================================
-  OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-  SharedResourcePointer<TooltipWindow> tooltipWindow;
+    //==============================================================================
+    OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
+    SharedResourcePointer<TooltipWindow> tooltipWindow;
 
-  //==============================================================================
+    //==============================================================================
 #ifdef JUCE_OPENGL
-  OpenGLContext openGLContext;
+    OpenGLContext openGLContext;
 #endif
 
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQEditor)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQEditor)
 };

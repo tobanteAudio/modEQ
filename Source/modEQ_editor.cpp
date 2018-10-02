@@ -19,97 +19,102 @@
 #include "view/social_buttons.h"
 
 static int clickRadius = 10;
-static float maxDB = 24.0f;
+static float maxDB     = 24.0f;
 
 //==============================================================================
-ModEQEditor::ModEQEditor(ModEQProcessor &p)
-  : AudioProcessorEditor(&p), processor(p),
-    output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow),
-    plotView(processor.getEQ(), bandControllers),
-    modController(1, processor, processor.modSource, modView)
+ModEQEditor::ModEQEditor(ModEQProcessor& p)
+    : AudioProcessorEditor(&p)
+    , processor(p)
+    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+    , plotView(processor.getEQ(), bandControllers)
+    , modController(1, processor, processor.modSource, modView)
 {
-  tooltipWindow->setMillisecondsBeforeTipAppears(1000);
+    tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
-  addAndMakeVisible(socialButtons);
+    addAndMakeVisible(socialButtons);
 
+    for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
+    {
+        auto* bandView = bandViews.add(new TA::BandView(i));
+        bandControllers.add(
+            new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
-  for (int i = 0; i < processor.getEQ().getNumBands(); ++i) {
-    auto *bandView = bandViews.add(new TA::BandView(i));
-    bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
+        // Add lookAndFeel
+        // bandView->setLookAndFeel(&tobanteLookAndFeel);
+        addAndMakeVisible(bandView);
+    }
 
-    // Add lookAndFeel
-    // bandView->setLookAndFeel(&tobanteLookAndFeel);
-    addAndMakeVisible(bandView);
-  }
+    addAndMakeVisible(plotView);
+    addAndMakeVisible(modView);
 
-  addAndMakeVisible(plotView);
-  addAndMakeVisible(modView);
+    frame.setText(translate("Output"));
+    frame.setTextLabelPosition(Justification::centred);
+    addAndMakeVisible(frame);
+    addAndMakeVisible(output);
+    attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
+        processor.getPluginState(), TA::EqualizerProcessor::paramOutput,
+        output));
+    output.setTooltip(translate("Overall Gain"));
 
-  frame.setText(translate("Output"));
-  frame.setTextLabelPosition(Justification::centred);
-  addAndMakeVisible(frame);
-  addAndMakeVisible(output);
-  attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-    processor.getPluginState(), TA::EqualizerProcessor::paramOutput, output));
-  output.setTooltip(translate("Overall Gain"));
-
-  setResizable(true, true);
-  setResizeLimits(800, 450, 2990, 1800);
-  setSize(1000, 750);
-
+    setResizable(true, true);
+    setResizeLimits(800, 450, 2990, 1800);
+    setSize(1000, 750);
 
 #ifdef JUCE_OPENGL
-  openGLContext.attachTo(*getTopLevelComponent());
+    openGLContext.attachTo(*getTopLevelComponent());
 #endif
 }
 
 ModEQEditor::~ModEQEditor()
 {
-  PopupMenu::dismissAllActiveMenus();
+    PopupMenu::dismissAllActiveMenus();
 
 #ifdef JUCE_OPENGL
-  openGLContext.detach();
+    openGLContext.detach();
 #endif
 }
 
 //==============================================================================
-void ModEQEditor::paint(Graphics &g)
+void ModEQEditor::paint(Graphics& g)
 {
-  const Colour inputColour = Colours::greenyellow;
-  const Colour outputColour = Colours::red;
+    const Colour inputColour  = Colours::greenyellow;
+    const Colour outputColour = Colours::red;
 
-  g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+    g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 
-  auto area = getLocalBounds();
-  auto versionArea = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
+    auto area = getLocalBounds();
+    auto versionArea
+        = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
 
-  String version = JucePlugin_VersionString;
-  g.setColour(Colours::white);
-  g.setFont(18.f);
-  g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
+    String version = JucePlugin_VersionString;
+    g.setColour(Colours::white);
+    g.setFont(18.f);
+    g.drawText("modEQ v" + version, versionArea.reduced(10),
+               Justification::centredTop);
 }
 
 void ModEQEditor::resized()
 {
-  auto area = getLocalBounds();
+    auto area = getLocalBounds();
 
-  // Facebook & Gitub
-  socialButtons.setBounds(area.removeFromBottom(35));
+    // Facebook & Gitub
+    socialButtons.setBounds(area.removeFromBottom(35));
 
-  // Modulators
-  auto modArea = area.removeFromBottom(getHeight() / 6);
-  auto modSourceWidth = modArea.getWidth() / 3;
-  modView.setBounds(modArea.removeFromLeft(modSourceWidth));
+    // Modulators
+    auto modArea        = area.removeFromBottom(getHeight() / 6);
+    auto modSourceWidth = modArea.getWidth() / 3;
+    modView.setBounds(modArea.removeFromLeft(modSourceWidth));
 
-  // EQ Bands
-  auto bandSpace = area.removeFromBottom(getHeight() / 3);
-  auto width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-  for (auto *bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
+    // EQ Bands
+    auto bandSpace = area.removeFromBottom(getHeight() / 3);
+    auto width     = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
+    for (auto* bandView : bandViews)
+        bandView->setBounds(bandSpace.removeFromLeft(width));
 
-  // Frame around output
-  frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));
-  output.setBounds(frame.getBounds().reduced(8));
+    // Frame around output
+    frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));
+    output.setBounds(frame.getBounds().reduced(8));
 
-  // FFT
-  plotView.setBounds(area);
+    // FFT
+    plotView.setBounds(area);
 }

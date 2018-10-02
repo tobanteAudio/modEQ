@@ -16,5 +16,6 @@
 
 #pragma once
 
-namespace TA {
+namespace TA
+{
 }

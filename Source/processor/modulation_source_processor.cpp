@@ -16,45 +16,59 @@
 
 #include "modulation_source_processor.h"
 
-namespace TA {
-
-ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState &vts)
-  : index(1), BaseProcessor(vts)
+namespace TA
 {
-  oscillator.setFrequency(1.f);
-  oscillator.initialise([](float x) { return std::sin(x); });
+ModulationSourceProcessor::ModulationSourceProcessor(
+    AudioProcessorValueTreeState& vts)
+    : index(1), BaseProcessor(vts)
+{
+    oscillator.setFrequency(1.f);
+    oscillator.initialise([](float x) { return std::sin(x); });
 
-  auto lfoRange = NormalisableRange<float>(0.0, 15.0, 0.01);
+    auto lfoRange = NormalisableRange<float>(0.0, 15.0, 0.01);
 }
 
-ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }
-
-void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesPerBlock)
+ModulationSourceProcessor::~ModulationSourceProcessor()
 {
-  sampleRate = newSampleRate;
-
-  dsp::ProcessSpec spec{ sampleRate, static_cast<uint32>(samplesPerBlock) };
-  oscillator.prepare(spec);
-
-  analyser.setupAnalyser(int(sampleRate), float(sampleRate));
+    analyser.stopThread(1000);
 }
 
-void ModulationSourceProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &)
+void ModulationSourceProcessor::prepareToPlay(double newSampleRate,
+                                              int samplesPerBlock)
 {
-  dsp::AudioBlock<float> block(buffer);
-  dsp::ProcessContextReplacing<float> context(block);
-  oscillator.process(context);
+    sampleRate = newSampleRate;
 
-  analyser.addAudioData(buffer, 0, 1);
+    dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
+    oscillator.prepare(spec);
+
+    analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
-void ModulationSourceProcessor::parameterChanged(const String & /*parameter*/, float /*newValue*/) {}
-
-void ModulationSourceProcessor::createAnalyserPlot(Path &p, Rectangle<int> &bounds, float minFreq)
+void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer,
+                                             MidiBuffer&)
 {
-  analyser.createPath(p, bounds.toFloat(), minFreq);
+    dsp::AudioBlock<float> block(buffer);
+    dsp::ProcessContextReplacing<float> context(block);
+    oscillator.process(context);
+
+    analyser.addAudioData(buffer, 0, 1);
 }
 
-bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
+void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/,
+                                                 float /*newValue*/)
+{
+}
 
-}// namespace TA
+void ModulationSourceProcessor::createAnalyserPlot(Path& p,
+                                                   Rectangle<int>& bounds,
+                                                   float minFreq)
+{
+    analyser.createPath(p, bounds.toFloat(), minFreq);
+}
+
+bool ModulationSourceProcessor::checkForNewAnalyserData()
+{
+    return analyser.checkForNewData();
+}
+
+}  // namespace TA

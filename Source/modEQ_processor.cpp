@@ -21,32 +21,28 @@
 //==============================================================================
 ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-  : AudioProcessor(BusesProperties()
-                     .withInput("Input", AudioChannelSet::stereo(), true)
-                     .withOutput("Output", AudioChannelSet::stereo(), true)),
+    : AudioProcessor(BusesProperties()
+                         .withInput("Input", AudioChannelSet::stereo(), true)
+                         .withOutput("Output", AudioChannelSet::stereo(), true))
+    ,
 #else
-  :
+    :
 #endif
-    state(*this, &undo), equalizerProcessor(state), modSource(state)
+    state(*this, &undo)
+    , equalizerProcessor(state)
+    , modSource(state)
 {
-  const float maxGain = Decibels::decibelsToGain(24.0f);
-  auto gainRange = NormalisableRange<float>(0.0, 2.0, 0.01);
+    const float maxGain = Decibels::decibelsToGain(24.0f);
+    auto gainRange      = NormalisableRange<float>(0.0, 2.0, 0.01);
 
-  state.createAndAddParameter(TA::EqualizerProcessor::paramOutput,
-    translate("Output"),
-    translate("Output level"),
-    gainRange,
-    1.0,
-    gainTextConverter,
-    gainTextConverter,
-    false,
-    true,
-    false);
+    state.createAndAddParameter(TA::EqualizerProcessor::paramOutput,
+                                translate("Output"), translate("Output level"),
+                                gainRange, 1.0, gainTextConverter,
+                                gainTextConverter, false, true, false);
 
+    state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
 
-  state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
-
-  state.state = ValueTree(JucePlugin_Name);
+    state.state = ValueTree(JucePlugin_Name);
 }
 
 ModEQProcessor::~ModEQProcessor() {}
@@ -57,18 +53,18 @@ const String ModEQProcessor::getName() const { return JucePlugin_Name; }
 bool ModEQProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
-  return true;
+    return true;
 #else
-  return false;
+    return false;
 #endif
 }
 
 bool ModEQProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
-  return true;
+    return true;
 #else
-  return false;
+    return false;
 #endif
 }
 
@@ -79,105 +75,114 @@ int ModEQProcessor::getNumPrograms() { return 1; }
 int ModEQProcessor::getCurrentProgram() { return 0; }
 void ModEQProcessor::setCurrentProgram(int) {}
 const String ModEQProcessor::getProgramName(int) { return {}; }
-void ModEQProcessor::changeProgramName(int, const String &) {}
+void ModEQProcessor::changeProgramName(int, const String&) {}
 
 //==============================================================================
 void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 {
-  sampleRate = newSampleRate;
-  modBuffer.setSize(1, newSamplesPerBlock, false, false, true);
+    sampleRate = newSampleRate;
+    modBuffer.setSize(1, newSamplesPerBlock, false, false, true);
 
-  dsp::ProcessSpec spec;
-  spec.sampleRate = newSampleRate;
-  spec.maximumBlockSize = uint32(newSamplesPerBlock);
-  spec.numChannels = uint32(getTotalNumOutputChannels());
+    dsp::ProcessSpec spec;
+    spec.sampleRate       = newSampleRate;
+    spec.maximumBlockSize = uint32(newSamplesPerBlock);
+    spec.numChannels      = uint32(getTotalNumOutputChannels());
 
-  modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
-  equalizerProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
-  equalizerProcessor.prepare(spec);
-  outputGain.prepare(spec);
+    modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
+    equalizerProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
+    equalizerProcessor.prepare(spec);
+    outputGain.prepare(spec);
 
-  outputGain.setGainLinear(*state.getRawParameterValue(TA::EqualizerProcessor::paramOutput));
+    outputGain.setGainLinear(
+        *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput));
 }
 
 void ModEQProcessor::releaseResources() {}
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
+bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
-  // This checks if the input layout matches the output layout
-  if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet()) return false;
+    // This checks if the input layout matches the output layout
+    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
+        return false;
 
-  return true;
+    return true;
 }
 #endif
 
-void ModEQProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
+void ModEQProcessor::processBlock(AudioBuffer<float>& buffer,
+                                  MidiBuffer& midiMessages)
 {
-  ignoreUnused(midiMessages);
-  ScopedNoDenormals noDenormals;
+    ignoreUnused(midiMessages);
+    ScopedNoDenormals noDenormals;
 
-  auto totalNumInputChannels = getTotalNumInputChannels();
-  auto totalNumOutputChannels = getTotalNumOutputChannels();
+    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-  // if (getActiveEditor() != nullptr) {}
+    // if (getActiveEditor() != nullptr) {}
 
-  for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-    buffer.clear(i, 0, buffer.getNumSamples());
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear(i, 0, buffer.getNumSamples());
 
-  modBuffer.clear();
-  modSource.processBlock(modBuffer, midiMessages);
+    modBuffer.clear();
+    modSource.processBlock(modBuffer, midiMessages);
 
-  auto modRange = .8f;
-  auto modValue = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
-  auto gainValue = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
-  auto gainMod = gainValue + (modRange * modValue);
+    auto modRange = .8f;
+    auto modValue = modBuffer.getSample(
+        0, static_cast<int>(modBuffer.getNumSamples() / 2));
+    auto gainValue
+        = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
+    auto gainMod = gainValue + (modRange * modValue);
 
-  if (gainMod < -0.0f) gainMod = 0.0;
-  if (gainMod > 2.0f) gainMod = 2.0;
+    if (gainMod < -0.0f) gainMod = 0.0;
+    if (gainMod > 2.0f) gainMod = 2.0;
 
-  outputGain.setGainLinear(gainMod);
+    outputGain.setGainLinear(gainMod);
 
-  equalizerProcessor.processBlock(buffer, midiMessages);
+    equalizerProcessor.processBlock(buffer, midiMessages);
 
-  dsp::AudioBlock<float> ioBuffer(buffer);
-  dsp::ProcessContextReplacing<float> context(ioBuffer);
+    dsp::AudioBlock<float> ioBuffer(buffer);
+    dsp::ProcessContextReplacing<float> context(ioBuffer);
 
-  outputGain.process(context);
+    outputGain.process(context);
 }
 
-
-void ModEQProcessor::parameterChanged(const String &parameter, float newValue)
+void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
 {
-  if (parameter == TA::EqualizerProcessor::paramOutput) {
-    outputGain.setGainLinear(newValue);
-    return;
-  }
+    if (parameter == TA::EqualizerProcessor::paramOutput)
+    {
+        outputGain.setGainLinear(newValue);
+        return;
+    }
 }
-
 
 //==============================================================================
 bool ModEQProcessor::hasEditor() const { return true; }
 
-AudioProcessorEditor *ModEQProcessor::createEditor() { return new ModEQEditor(*this); }
-
-
-//==============================================================================
-void ModEQProcessor::getStateInformation(MemoryBlock &destData)
+AudioProcessorEditor* ModEQProcessor::createEditor()
 {
-  // MemoryOutputStream stream(destData, false);
-  // state.state.writeToStream(stream);
+    return new ModEQEditor(*this);
 }
 
-void ModEQProcessor::setStateInformation(const void *data, int sizeInBytes)
+//==============================================================================
+void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
-  // ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
-  // if (tree.isValid())
-  //{
-  //  state.state = tree;
-  //}
+    // MemoryOutputStream stream(destData, false);
+    // state.state.writeToStream(stream);
+}
+
+void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
+{
+    // ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
+    // if (tree.isValid())
+    //{
+    //  state.state = tree;
+    //}
 }
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor *JUCE_CALLTYPE createPluginFilter() { return new ModEQProcessor(); }
+AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+{
+    return new ModEQProcessor();
+}

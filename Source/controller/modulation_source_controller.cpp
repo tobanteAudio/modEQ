@@ -16,26 +16,28 @@
 
 #include "modulation_source_controller.h"
 
-namespace TA {
-
-ModulationSourceController::ModulationSourceController(const int i,
-  ModEQProcessor &mp,
-  ModulationSourceProcessor &p,
-  ModulationSourceView &v)
-  : index(i), mainProcessor(mp), processor(p), view(v)
+namespace TA
 {
-  // Start Timer
-  startTimerHz(25);
+ModulationSourceController::ModulationSourceController(
+    const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
+    ModulationSourceView& v)
+    : index(i), mainProcessor(mp), processor(p), view(v)
+{
+    // Start Timer
+    startTimerHz(25);
 }
 
-void ModulationSourceController::changeListenerCallback(ChangeBroadcaster *sender) {}
+void ModulationSourceController::changeListenerCallback(
+    ChangeBroadcaster* sender)
+{
+}
 
 void ModulationSourceController::timerCallback()
 {
-  if (processor.checkForNewAnalyserData())
-    processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
-  view.repaint(view.plotFrame);
+    if (processor.checkForNewAnalyserData())
+        processor.createAnalyserPlot(view.modulationPath, view.plotFrame,
+                                     20.0f);
+    view.repaint(view.plotFrame);
 }
 
-
-}// namespace TA
+}  // namespace TA

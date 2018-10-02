@@ -22,35 +22,32 @@
 #include "../view/modulation_source_view.h"
 
 //==============================================================================
-namespace TA {
-
-class ModulationSourceController
-  : public ChangeListener
-  , public Timer
+namespace TA
+{
+class ModulationSourceController : public ChangeListener, public Timer
 {
 public:
-  //==============================================================================
-  ModulationSourceController(const int,
-    ModEQProcessor &,
-    TA::ModulationSourceProcessor &,
-    TA::ModulationSourceView &);
+    //==============================================================================
+    ModulationSourceController(const int, ModEQProcessor&,
+                               TA::ModulationSourceProcessor&,
+                               TA::ModulationSourceView&);
 
-  //==============================================================================
-  void changeListenerCallback(ChangeBroadcaster *sender) override;
-  void timerCallback() override;
+    //==============================================================================
+    void changeListenerCallback(ChangeBroadcaster* sender) override;
+    void timerCallback() override;
 
 private:
-  //==============================================================================
-  int index;
-  ModEQProcessor &mainProcessor;
-  TA::ModulationSourceProcessor &processor;
-  TA::ModulationSourceView &view;
+    //==============================================================================
+    int index;
+    ModEQProcessor& mainProcessor;
+    TA::ModulationSourceProcessor& processor;
+    TA::ModulationSourceView& view;
 
-  //==============================================================================
-  OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
+    //==============================================================================
+    OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
 
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceController)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceController)
 };
 
-}// namespace TA
+}  // namespace TA

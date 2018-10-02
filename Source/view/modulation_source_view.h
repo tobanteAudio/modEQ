@@ -20,29 +20,29 @@
 #include "../analyser/modulation_source_analyser.h"
 #include "../processor/modulation_source_processor.h"
 
-
-namespace TA {
+namespace TA
+{
 //==============================================================================
 class ModulationSourceView : public Component
 {
 public:
-  //==============================================================================
-  ModulationSourceView();
-  ~ModulationSourceView();
+    //==============================================================================
+    ModulationSourceView();
+    ~ModulationSourceView();
 
-  //==============================================================================
-  void paint(Graphics &) override;
-  void resized() override;
+    //==============================================================================
+    void paint(Graphics&) override;
+    void resized() override;
 
-  //==============================================================================
-  Slider frequency;
-  Slider gain;
-  Rectangle<int> plotFrame;
-  Path modulationPath;
+    //==============================================================================
+    Slider frequency;
+    Slider gain;
+    Rectangle<int> plotFrame;
+    Path modulationPath;
 
 private:
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 
-}// namespace TA
+}  // namespace TA

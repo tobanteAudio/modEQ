@@ -20,46 +20,45 @@
 #include "../view/band_view.h"
 
 //==============================================================================
-namespace TA {
-
+namespace TA
+{
 class BandController : public Button::Listener
 {
 public:
-  //==============================================================================
-  BandController(int /*i*/,
-    ModEQProcessor & /*p*/,
-    TA::EqualizerProcessor & /*sub*/,
-    TA::BandView & /*v*/);
+    //==============================================================================
+    BandController(int /*i*/, ModEQProcessor& /*p*/,
+                   TA::EqualizerProcessor& /*sub*/, TA::BandView& /*v*/);
 
-  //==============================================================================
-  void buttonClicked(Button *b) override;
+    //==============================================================================
+    void buttonClicked(Button* b) override;
 
-  //==============================================================================
-  void updateControls(TA::EqualizerProcessor::FilterType type);
-  void updateSoloState(bool isSolo);
+    //==============================================================================
+    void updateControls(TA::EqualizerProcessor::FilterType type);
+    void updateSoloState(bool isSolo);
 
-  //==============================================================================
-  void setFrequency(float newFreq);
-  void setGain(float newGain);
-  void setType(int newType);
+    //==============================================================================
+    void setFrequency(float newFreq);
+    void setGain(float newGain);
+    void setType(int newType);
 
-  //==============================================================================
-  Path frequencyResponse;
+    //==============================================================================
+    Path frequencyResponse;
 
 private:
-  //==============================================================================
-  int index;
-  TA::BandView &view;
-  ModEQProcessor &mainProcessor;
-  TA::EqualizerProcessor &processor;
+    //==============================================================================
+    int index;
+    TA::BandView& view;
+    ModEQProcessor& mainProcessor;
+    TA::EqualizerProcessor& processor;
 
-  //==============================================================================
-  OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
-  OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-  OwnedArray<AudioProcessorValueTreeState::ButtonAttachment> buttonAttachments;
+    //==============================================================================
+    OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
+    OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
+    OwnedArray<AudioProcessorValueTreeState::ButtonAttachment>
+        buttonAttachments;
 
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)
 };
 
-}// namespace TA
+}  // namespace TA

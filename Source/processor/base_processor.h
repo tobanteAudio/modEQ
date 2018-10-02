@@ -17,57 +17,62 @@
 #pragma once
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-namespace TA {
-
+namespace TA
+{
 //==============================================================================
 class BaseProcessor : public AudioProcessor
 {
 public:
-  //==============================================================================
-  BaseProcessor(AudioProcessorValueTreeState &vts) : state(vts) {}
-  ~BaseProcessor() override = default;
+    //==============================================================================
+    BaseProcessor(AudioProcessorValueTreeState& vts) : state(vts) {}
+    ~BaseProcessor() override = default;
 
-  //==============================================================================
-  void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
-  void releaseResources() override {}
-  void processBlock(AudioBuffer<float> & /*buffer*/, MidiBuffer & /*midiMessages*/) override {}
+    //==============================================================================
+    void prepareToPlay(double /*sampleRate*/,
+                       int /*maximumExpectedSamplesPerBlock*/) override
+    {
+    }
+    void releaseResources() override {}
+    void processBlock(AudioBuffer<float>& /*buffer*/,
+                      MidiBuffer& /*midiMessages*/) override
+    {
+    }
 
-  //==============================================================================
-  AudioProcessorEditor *createEditor() override { return nullptr; }
-  bool hasEditor() const override { return false; }
+    //==============================================================================
+    AudioProcessorEditor* createEditor() override { return nullptr; }
+    bool hasEditor() const override { return false; }
 
-  //==============================================================================
-  const String getName() const override { return {}; }
-  bool acceptsMidi() const override { return false; }
-  bool producesMidi() const override { return false; }
-  double getTailLengthSeconds() const override { return 0; }
+    //==============================================================================
+    const String getName() const override { return {}; }
+    bool acceptsMidi() const override { return false; }
+    bool producesMidi() const override { return false; }
+    double getTailLengthSeconds() const override { return 0; }
 
-  //==============================================================================
-  int getNumPrograms() override { return 0; }
-  int getCurrentProgram() override { return 0; }
-  void setCurrentProgram(int /*index*/) override {}
-  const String getProgramName(int /*index*/) override { return {}; }
-  void changeProgramName(int /*index*/, const String & /*newName*/) override {}
+    //==============================================================================
+    int getNumPrograms() override { return 0; }
+    int getCurrentProgram() override { return 0; }
+    void setCurrentProgram(int /*index*/) override {}
+    const String getProgramName(int /*index*/) override { return {}; }
+    void changeProgramName(int /*index*/, const String& /*newName*/) override {}
 
-  //==============================================================================
-  void getStateInformation(MemoryBlock & /*destData*/) override {}
-  void setStateInformation(const void * /*data*/, int /*sizeInBytes*/) override {}
+    //==============================================================================
+    void getStateInformation(MemoryBlock& /*destData*/) override {}
+    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override
+    {
+    }
 
-  //==============================================================================
-  AudioProcessorValueTreeState &getPluginState() { return state; }
-  AudioProcessorValueTreeState &state;
+    //==============================================================================
+    AudioProcessorValueTreeState& getPluginState() { return state; }
+    AudioProcessorValueTreeState& state;
 
-
-  double sampleRate{};
+    double sampleRate{};
 
 protected:
 private:
-  //==============================================================================
+    //==============================================================================
 
-
-  //==============================================================================
-  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BaseProcessor)
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BaseProcessor)
 };
 
-
-}// namespace TA
+}  // namespace TA
