@@ -48,7 +48,9 @@ public:
 private:
     //==============================================================================
     int index;
+    String paramIDGain, paramIDFrequency;
     dsp::Oscillator<float> oscillator;
+    dsp::Gain<float> gain;
     TA::ModulationSourceAnalyser<float> analyser;
     FrequencyTextConverter frequencyTextConverter;
 

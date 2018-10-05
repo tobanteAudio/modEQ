@@ -28,6 +28,7 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
     auto& state            = mainProcessor.getPluginState();
 
     attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Start Timer
     startTimerHz(25);

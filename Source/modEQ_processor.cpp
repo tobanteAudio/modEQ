@@ -35,15 +35,20 @@ ModEQProcessor::ModEQProcessor()
 {
     const float maxGain = Decibels::decibelsToGain(24.0f);
     auto gainRange      = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
-    auto freqRange      = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
-    freqRange.setSkewForCentre(1.0f);
+    auto lfoGainRange   = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
+    auto lfoFreqRange   = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
+
+    lfoFreqRange.setSkewForCentre(1.0f);
 
     state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"),
                                 translate("Output level"), gainRange, 1.0, gainTextConverter,
                                 gainTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"), freqRange,
-                                0.3f, nullptr, nullptr, false, true, false);
+    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"),
+                                lfoFreqRange, 0.3f, nullptr, nullptr, false, true, false);
+
+    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"),
+                                lfoGainRange, 1.0f, nullptr, nullptr, false, true, false);
 
     state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
 
@@ -164,17 +169,17 @@ AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*t
 //==============================================================================
 void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
-    // MemoryOutputStream stream(destData, false);
-    // state.state.writeToStream(stream);
+    MemoryOutputStream stream(destData, false);
+    state.state.writeToStream(stream);
 }
 
 void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
-    // ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
-    // if (tree.isValid())
-    //{
-    //  state.state = tree;
-    //}
+    ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
+    if (tree.isValid())
+    {
+        state.state = tree;
+    }
 }
 
 //==============================================================================

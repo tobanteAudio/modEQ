@@ -19,7 +19,10 @@
 namespace TA
 {
 ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
-    : index(i), BaseProcessor(vts)
+    : index(i)
+    , BaseProcessor(vts)
+    , paramIDGain("lfo_" + String(index) + "_gain")
+    , paramIDFrequency("lfo_" + String(index) + "_freq")
 {
     oscillator.setFrequency(1.f);
     oscillator.initialise([](float x) { return std::sin(x); });
@@ -40,19 +43,26 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 
     dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
     oscillator.prepare(spec);
+    gain.prepare(spec);
+
+    auto freqValue = *state.getRawParameterValue(paramIDFrequency);
+    oscillator.setFrequency(freqValue);
 
     analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
 void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
-    auto freqValue = *state.getRawParameterValue("lfo_" + String(index) + "_freq");
+    float freqValue = *state.getRawParameterValue(paramIDFrequency);
+    float gainValue = *state.getRawParameterValue(paramIDGain);
 
     oscillator.setFrequency(freqValue);
+    gain.setGainLinear(gainValue);
 
     dsp::AudioBlock<float> block(buffer);
     dsp::ProcessContextReplacing<float> context(block);
     oscillator.process(context);
+    gain.process(context);
 
     analyser.addAudioData(buffer, 0, 1);
 }
