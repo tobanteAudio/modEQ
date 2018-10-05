@@ -18,8 +18,7 @@
 
 namespace TA
 {
-ModulationSourceProcessor::ModulationSourceProcessor(
-    AudioProcessorValueTreeState& vts)
+ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
     : index(1), BaseProcessor(vts)
 {
     oscillator.setFrequency(1.f);
@@ -28,13 +27,9 @@ ModulationSourceProcessor::ModulationSourceProcessor(
     auto lfoRange = NormalisableRange<float>(0.0, 15.0, 0.01);
 }
 
-ModulationSourceProcessor::~ModulationSourceProcessor()
-{
-    analyser.stopThread(1000);
-}
+ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }
 
-void ModulationSourceProcessor::prepareToPlay(double newSampleRate,
-                                              int samplesPerBlock)
+void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesPerBlock)
 {
     sampleRate = newSampleRate;
 
@@ -44,9 +39,12 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate,
     analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
-void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer,
-                                             MidiBuffer&)
+void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
+    auto freqValue = *state.getRawParameterValue("lfo_freq");
+
+	oscillator.setFrequency(freqValue);
+
     dsp::AudioBlock<float> block(buffer);
     dsp::ProcessContextReplacing<float> context(block);
     oscillator.process(context);
@@ -54,21 +52,13 @@ void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer,
     analyser.addAudioData(buffer, 0, 1);
 }
 
-void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/,
-                                                 float /*newValue*/)
-{
-}
+void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/, float /*newValue*/) {}
 
-void ModulationSourceProcessor::createAnalyserPlot(Path& p,
-                                                   Rectangle<int>& bounds,
-                                                   float minFreq)
+void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& bounds, float minFreq)
 {
     analyser.createPath(p, bounds.toFloat(), minFreq);
 }
 
-bool ModulationSourceProcessor::checkForNewAnalyserData()
-{
-    return analyser.checkForNewData();
-}
+bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
 
 }  // namespace TA

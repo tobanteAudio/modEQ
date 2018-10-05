@@ -27,17 +27,18 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     , processor(p)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , plotView(processor.getEQ(), bandControllers)
-    , modController(1, processor, processor.modSource, modView)
+    //, modController(1, processor, processor.modSource, modView)
 {
     tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
     addAndMakeVisible(socialButtons);
 
+    modController.add(new TA::ModulationSourceController(1, processor, processor.modSource, modView));
+
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
         auto* bandView = bandViews.add(new TA::BandView(i));
-        bandControllers.add(
-            new TA::BandController(i, processor, processor.getEQ(), *bandView));
+        bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
         // Add lookAndFeel
         // bandView->setLookAndFeel(&tobanteLookAndFeel);
@@ -52,8 +53,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
     attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-        processor.getPluginState(), TA::EqualizerProcessor::paramOutput,
-        output));
+        processor.getPluginState(), TA::EqualizerProcessor::paramOutput, output));
     output.setTooltip(translate("Overall Gain"));
 
     setResizable(true, true);
@@ -82,15 +82,13 @@ void ModEQEditor::paint(Graphics& g)
 
     g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
 
-    auto area = getLocalBounds();
-    auto versionArea
-        = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
+    auto area        = getLocalBounds();
+    auto versionArea = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
 
     String version = JucePlugin_VersionString;
     g.setColour(Colours::white);
     g.setFont(18.f);
-    g.drawText("modEQ v" + version, versionArea.reduced(10),
-               Justification::centredTop);
+    g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
 }
 
 void ModEQEditor::resized()
@@ -108,8 +106,7 @@ void ModEQEditor::resized()
     // EQ Bands
     auto bandSpace = area.removeFromBottom(getHeight() / 3);
     auto width     = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-    for (auto* bandView : bandViews)
-        bandView->setBounds(bandSpace.removeFromLeft(width));
+    for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output
     frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));

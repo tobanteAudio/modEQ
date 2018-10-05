@@ -23,6 +23,12 @@ ModulationSourceController::ModulationSourceController(
     ModulationSourceView& v)
     : index(i), mainProcessor(mp), processor(p), view(v)
 {
+    // Link GUI components to ValueTree
+    using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
+    auto& state            = mainProcessor.getPluginState();
+
+    attachments.add(new SliderAttachment(state, "lfo_freq", view.frequency));
+
     // Start Timer
     startTimerHz(25);
 }
