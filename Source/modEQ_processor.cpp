@@ -17,6 +17,7 @@
 #include "modEQ_processor.h"
 #include "modEQ_editor.h"
 #include "view/social_buttons.h"
+#include "utils/parameters.h"
 
 //==============================================================================
 ModEQProcessor::ModEQProcessor()
@@ -40,7 +41,7 @@ ModEQProcessor::ModEQProcessor()
 
     lfoFreqRange.setSkewForCentre(1.0f);
 
-    state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"),
+    state.createAndAddParameter(TA::Parameters::Output, translate("Output"),
                                 translate("Output level"), gainRange, 1.0, gainTextConverter,
                                 gainTextConverter, false, true, false);
 
@@ -50,7 +51,7 @@ ModEQProcessor::ModEQProcessor()
     state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"),
                                 lfoGainRange, 1.0f, nullptr, nullptr, false, true, false);
 
-    state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);
+    state.addParameterListener(TA::Parameters::Output, this);
 
     state.state = ValueTree(JucePlugin_Name);
 }
@@ -103,7 +104,7 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
     equalizerProcessor.prepare(spec);
     outputGain.prepare(spec);
 
-    outputGain.setGainLinear(*state.getRawParameterValue(TA::EqualizerProcessor::paramOutput));
+    outputGain.setGainLinear(*state.getRawParameterValue(TA::Parameters::Output));
 }
 
 void ModEQProcessor::releaseResources() {}
@@ -136,7 +137,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     auto modRange  = .8f;
     auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
-    auto gainValue = *state.getRawParameterValue(TA::EqualizerProcessor::paramOutput);
+    auto gainValue = *state.getRawParameterValue(TA::Parameters::Output);
     auto gainMod   = gainValue + (modRange * modValue);
 
     if (gainMod < -0.0f) gainMod = 0.0;
@@ -154,7 +155,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
 void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
 {
-    if (parameter == TA::EqualizerProcessor::paramOutput)
+    if (parameter == TA::Parameters::Output)
     {
         outputGain.setGainLinear(newValue);
         return;

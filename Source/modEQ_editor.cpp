@@ -17,6 +17,7 @@
 #include "modEQ_editor.h"
 #include "modEQ_processor.h"
 #include "view/social_buttons.h"
+#include "utils/parameters.h"
 
 static int clickRadius = 10;
 static float maxDB     = 24.0f;
@@ -53,7 +54,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
     attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-        processor.getPluginState(), TA::EqualizerProcessor::paramOutput, output));
+        processor.getPluginState(), TA::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
 
     setResizable(true, true);

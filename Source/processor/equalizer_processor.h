@@ -91,13 +91,6 @@ public:
     bool checkForNewAnalyserData();
 
     //==============================================================================
-    static String paramOutput;
-    static String paramType;
-    static String paramFrequency;
-    static String paramQuality;
-    static String paramGain;
-    static String paramActive;
-
     String getTypeParamName(int index) const;
     String getFrequencyParamName(int index) const;
     String getQualityParamName(int index) const;

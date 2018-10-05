@@ -15,18 +15,11 @@
  */
 
 #include "equalizer_processor.h"
+#include "../utils/parameters.h"
 
 //==============================================================================
 namespace TA
 {
-//==============================================================================
-String EqualizerProcessor::paramOutput("output");
-String EqualizerProcessor::paramType("type");
-String EqualizerProcessor::paramFrequency("frequency");
-String EqualizerProcessor::paramQuality("quality");
-String EqualizerProcessor::paramGain("gain");
-String EqualizerProcessor::paramActive("active");
-
 //==============================================================================
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : BaseProcessor(vts)
 {
@@ -193,23 +186,23 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
     {
         if (parameter.startsWith(getBandName(int(i)) + "-"))
         {
-            if (parameter.endsWith(TA::EqualizerProcessor::paramType))
+            if (parameter.endsWith(TA::Parameters::Type))
             {
                 bands[i].type = static_cast<FilterType>(static_cast<int>(newValue));
             }
-            else if (parameter.endsWith(TA::EqualizerProcessor::paramFrequency))
+            else if (parameter.endsWith(TA::Parameters::Frequency))
             {
                 bands[i].frequency = newValue;
             }
-            else if (parameter.endsWith(TA::EqualizerProcessor::paramQuality))
+            else if (parameter.endsWith(TA::Parameters::Quality))
             {
                 bands[i].quality = newValue;
             }
-            else if (parameter.endsWith(TA::EqualizerProcessor::paramGain))
+            else if (parameter.endsWith(TA::Parameters::Gain))
             {
                 bands[i].gain = newValue;
             }
-            else if (parameter.endsWith(TA::EqualizerProcessor::paramActive))
+            else if (parameter.endsWith(TA::Parameters::Active))
             {
                 bands[i].active = newValue >= 0.5f;
             }
@@ -414,27 +407,27 @@ void EqualizerProcessor::updateBand(const size_t index)
 
 String EqualizerProcessor::getTypeParamName(const int index) const
 {
-    return getBandName(index) + "-" + paramType;
+    return getBandName(index) + "-" + TA::Parameters::Type;
 }
 
 String EqualizerProcessor::getFrequencyParamName(const int index) const
 {
-    return getBandName(index) + "-" + paramFrequency;
+    return getBandName(index) + "-" + TA::Parameters::Frequency;
 }
 
 String EqualizerProcessor::getQualityParamName(const int index) const
 {
-    return getBandName(index) + "-" + paramQuality;
+    return getBandName(index) + "-" + TA::Parameters::Quality;
 }
 
 String EqualizerProcessor::getGainParamName(const int index) const
 {
-    return getBandName(index) + "-" + paramGain;
+    return getBandName(index) + "-" + TA::Parameters::Gain;
 }
 
 String EqualizerProcessor::getActiveParamName(const int index) const
 {
-    return getBandName(index) + "-" + paramActive;
+    return getBandName(index) + "-" + TA::Parameters::Active;
 }
 
 const std::vector<double>& EqualizerProcessor::getMagnitudes() { return magnitudes; }

@@ -19,6 +19,8 @@
               file="Source/analyser/spectrum_analyser.h"/>
       </GROUP>
       <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
+        <FILE id="tUDWQV" name="parameters.cpp" compile="1" resource="0" file="Source/utils/parameters.cpp"/>
+        <FILE id="npU4Gp" name="parameters.h" compile="0" resource="0" file="Source/utils/parameters.h"/>
         <FILE id="KWjnF9" name="text_value_converter.h" compile="0" resource="0"
               file="Source/utils/text_value_converter.h"/>
       </GROUP>
