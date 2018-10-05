@@ -20,11 +20,14 @@ namespace TA
 {
 //==============================================================================
 ModulationSourceView::ModulationSourceView()
-    : frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
-    , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
+    : frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+    , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     addAndMakeVisible(frequency);
     addAndMakeVisible(gain);
+
+    frequency.setTextBoxStyle(Slider::TextBoxBelow, false, 60, 25);
+    gain.setTextBoxStyle(Slider::TextBoxBelow, false, 60, 25);
 }
 
 ModulationSourceView::~ModulationSourceView() {}

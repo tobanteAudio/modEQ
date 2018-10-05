@@ -26,13 +26,6 @@ ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueT
 {
     oscillator.setFrequency(1.f);
     oscillator.initialise([](float x) { return std::sin(x); });
-
-    // auto lfoRange = NormalisableRange<float>(0.01, 10.0, 0.01);
-    // lfoRange.setSkewForCentre(1.0f);
-
-    // state.createAndAddParameter("lfo_" + String(index) + "_freq", translate("lfo freq"),
-    //                            translate("lfo freq"), lfoRange,
-    //                            0.3f, nullptr, nullptr, false, true, false);
 }
 
 ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }

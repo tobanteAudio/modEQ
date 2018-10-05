@@ -35,52 +35,9 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     // needs to be in sync with the ProcessorChain filter
     bands.resize(6);
 
-    // setting defaults
-    {
-        auto& band     = bands[0];
-        band.name      = "Lowest";
-        band.colour    = Colours::blue;
-        band.frequency = 20.0f;
-        band.quality   = 0.707f;
-        band.type      = TA::EqualizerProcessor::HighPass;
-    }
-    {
-        auto& band     = bands[1];
-        band.name      = "Low";
-        band.colour    = Colours::brown;
-        band.frequency = 250.0f;
-        band.type      = TA::EqualizerProcessor::LowShelf;
-    }
-    {
-        auto& band     = bands[2];
-        band.name      = "Low Mids";
-        band.colour    = Colours::green;
-        band.frequency = 500.0f;
-        band.type      = TA::EqualizerProcessor::Peak;
-    }
-    {
-        auto& band     = bands[3];
-        band.name      = "High Mids";
-        band.colour    = Colours::coral;
-        band.frequency = 1000.0f;
-        band.type      = TA::EqualizerProcessor::Peak;
-    }
-    {
-        auto& band     = bands[4];
-        band.name      = "High";
-        band.colour    = Colours::orange;
-        band.frequency = 5000.0f;
-        band.type      = TA::EqualizerProcessor::HighShelf;
-    }
-    {
-        auto& band     = bands[5];
-        band.name      = "Highest";
-        band.colour    = Colours::red;
-        band.frequency = 12000.0f;
-        band.quality   = 0.707f;
-        band.type      = TA::EqualizerProcessor::LowPass;
-    }
+    setDefaults();
 
+    // Create Ranges for parameters
     NormalisableRange<float> filterTypeRange(0, TA::EqualizerProcessor::LastFilterID, 1);
     NormalisableRange<float> frequencyRange(20.0, 20000.0, 1.0);
     NormalisableRange<float> qualityRange(0.1f, 10.0f, 0.1f);
@@ -97,8 +54,21 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
 
         band.magnitudes.resize(frequencies.size(), 1.0);
 
+        state.createAndAddParameter(getFrequencyParamName(i), band.name + " freq", "Frequency",
+                                    frequencyRange, band.frequency, frequencyTextConverter,
+                                    frequencyTextConverter, false, true, false);
+        state.createAndAddParameter(getQualityParamName(i), band.name + " Q", translate("Quality"),
+                                    qualityRange, band.quality, qualityTextConverter,
+                                    qualityTextConverter, false, true, false);
+        state.createAndAddParameter(getGainParamName(i), band.name + " gain", translate("Gain"),
+                                    gainRange, band.gain, gainTextConverter, gainTextConverter, false,
+                                    true, false);
+        state.createAndAddParameter(getActiveParamName(i), band.name + " active", translate("Active"),
+                                    activeRange, band.active, activeTextConverter,
+                                    activeTextConverter, false, true, true);
+
         state.createAndAddParameter(
-            getTypeParamName(i), band.name + " Type", TRANS("Filter Type"), filterTypeRange,
+            getTypeParamName(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
             (float)band.type,
             [](float value) {
                 return TA::EqualizerProcessor::getFilterTypeName(
@@ -113,19 +83,6 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
                 return TA::EqualizerProcessor::NoFilter;
             },
             false, true, true);
-
-        state.createAndAddParameter(getFrequencyParamName(i), band.name + " freq", "Frequency",
-                                    frequencyRange, band.frequency, frequencyTextConverter,
-                                    frequencyTextConverter, false, true, false);
-        state.createAndAddParameter(getQualityParamName(i), band.name + " Q", TRANS("Quality"),
-                                    qualityRange, band.quality, qualityTextConverter,
-                                    qualityTextConverter, false, true, false);
-        state.createAndAddParameter(getGainParamName(i), band.name + " gain", TRANS("Gain"),
-                                    gainRange, band.gain, gainTextConverter, gainTextConverter, false,
-                                    true, false);
-        state.createAndAddParameter(getActiveParamName(i), band.name + " active", TRANS("Active"),
-                                    activeRange, band.active, activeTextConverter,
-                                    activeTextConverter, false, true, true);
 
         state.addParameterListener(getTypeParamName(i), this);
         state.addParameterListener(getFrequencyParamName(i), this);
@@ -219,31 +176,31 @@ String EqualizerProcessor::getFilterTypeName(const TA::EqualizerProcessor::Filte
     switch (type)
     {
     case NoFilter:
-        return TRANS("No Filter");
+        return translate("No Filter");
     case HighPass:
-        return TRANS("High Pass");
+        return translate("High Pass");
     case HighPass1st:
-        return TRANS("1st High Pass");
+        return translate("1st High Pass");
     case LowShelf:
-        return TRANS("Low Shelf");
+        return translate("Low Shelf");
     case BandPass:
-        return TRANS("Band Pass");
+        return translate("Band Pass");
     case AllPass:
-        return TRANS("All Pass");
+        return translate("All Pass");
     case AllPass1st:
-        return TRANS("1st All Pass");
+        return translate("1st All Pass");
     case Notch:
-        return TRANS("Notch");
+        return translate("Notch");
     case Peak:
-        return TRANS("Peak");
+        return translate("Peak");
     case HighShelf:
-        return TRANS("High Shelf");
+        return translate("High Shelf");
     case LowPass1st:
-        return TRANS("1st Low Pass");
+        return translate("1st Low Pass");
     case LowPass:
-        return TRANS("Low Pass");
+        return translate("Low Pass");
     default:
-        return TRANS("unknown");
+        return translate("unknown");
     }
 }
 
@@ -252,7 +209,7 @@ int EqualizerProcessor::getNumBands() const { return static_cast<int>(bands.size
 String EqualizerProcessor::getBandName(const int index) const
 {
     if (isPositiveAndBelow(index, bands.size())) return bands[size_t(index)].name;
-    return TRANS("unknown");
+    return translate("unknown");
 }
 Colour EqualizerProcessor::getBandColour(const int index) const
 {
@@ -313,6 +270,55 @@ void EqualizerProcessor::updatePlots()
 
 //==============================================================================
 bool EqualizerProcessor::getBandSolo(const int index) const { return index == soloed; }
+
+void EqualizerProcessor::setDefaults()
+{
+    // setting defaults
+    {
+        auto& band     = bands[0];
+        band.name      = "Lowest";
+        band.colour    = Colours::blue;
+        band.frequency = 20.0f;
+        band.quality   = 0.707f;
+        band.type      = TA::EqualizerProcessor::HighPass;
+    }
+    {
+        auto& band     = bands[1];
+        band.name      = "Low";
+        band.colour    = Colours::brown;
+        band.frequency = 250.0f;
+        band.type      = TA::EqualizerProcessor::LowShelf;
+    }
+    {
+        auto& band     = bands[2];
+        band.name      = "Low Mids";
+        band.colour    = Colours::green;
+        band.frequency = 500.0f;
+        band.type      = TA::EqualizerProcessor::Peak;
+    }
+    {
+        auto& band     = bands[3];
+        band.name      = "High Mids";
+        band.colour    = Colours::coral;
+        band.frequency = 1000.0f;
+        band.type      = TA::EqualizerProcessor::Peak;
+    }
+    {
+        auto& band     = bands[4];
+        band.name      = "High";
+        band.colour    = Colours::orange;
+        band.frequency = 5000.0f;
+        band.type      = TA::EqualizerProcessor::HighShelf;
+    }
+    {
+        auto& band     = bands[5];
+        band.name      = "Highest";
+        band.colour    = Colours::red;
+        band.frequency = 12000.0f;
+        band.quality   = 0.707f;
+        band.type      = TA::EqualizerProcessor::LowPass;
+    }
+}
 
 EqualizerProcessor::Band* EqualizerProcessor::getBand(const int index)
 {

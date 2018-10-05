@@ -28,5 +28,6 @@ struct Parameters
     static String Quality;
     static String Gain;
     static String Active;
+    static String Phase;
 };
-}
+}  // namespace TA

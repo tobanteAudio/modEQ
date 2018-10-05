@@ -128,6 +128,8 @@ private:
     QualityTextConverter qualityTextConverter;
     FrequencyTextConverter frequencyTextConverter;
 
+    void setDefaults();
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
 };
 

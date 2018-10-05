@@ -46,10 +46,10 @@ ModEQProcessor::ModEQProcessor()
                                 gainTextConverter, false, true, false);
 
     state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"),
-                                lfoFreqRange, 0.3f, nullptr, nullptr, false, true, false);
+                                lfoFreqRange, 0.3f, freqTextConverter, freqTextConverter, false, true, false);
 
     state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"),
-                                lfoGainRange, 1.0f, nullptr, nullptr, false, true, false);
+                                lfoGainRange, 1.0f, gainTextConverter, gainTextConverter, false, true, false);
 
     state.addParameterListener(TA::Parameters::Output, this);
 

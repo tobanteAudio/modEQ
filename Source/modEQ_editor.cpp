@@ -100,7 +100,7 @@ void ModEQEditor::resized()
     socialButtons.setBounds(area.removeFromBottom(35));
 
     // Modulators
-    auto modArea        = area.removeFromBottom(getHeight() / 6);
+    auto modArea        = area.removeFromBottom(getHeight() / 5);
     auto modSourceWidth = modArea.getWidth() / 3;
     modView.setBounds(modArea.removeFromLeft(modSourceWidth));
 

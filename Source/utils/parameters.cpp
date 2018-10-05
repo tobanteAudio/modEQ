@@ -25,4 +25,5 @@ String Parameters::Frequency("frequency");
 String Parameters::Quality("quality");
 String Parameters::Gain("gain");
 String Parameters::Active("active");
-}
+String Parameters::Phase("phase");
+}  // namespace TA
