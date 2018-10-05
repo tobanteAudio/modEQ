@@ -28,8 +28,7 @@ class ModulationSourceController : public ChangeListener, public Timer
 {
 public:
     //==============================================================================
-    ModulationSourceController(const int, ModEQProcessor&,
-                               TA::ModulationSourceProcessor&,
+    ModulationSourceController(int, ModEQProcessor&, TA::ModulationSourceProcessor&,
                                TA::ModulationSourceView&);
 
     //==============================================================================

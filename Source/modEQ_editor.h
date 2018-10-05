@@ -50,7 +50,7 @@ private:
     TA::TobanteLookAndFeel tobanteLookAndFeel;
     OwnedArray<TA::BandView> bandViews;
     OwnedArray<TA::BandController> bandControllers;
-    OwnedArray <TA::ModulationSourceController> modController;
+    OwnedArray<TA::ModulationSourceController> modController;
     TA::ModulationSourceView modView;
     TA::EqualizerPlotView plotView;
 

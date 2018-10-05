@@ -18,8 +18,8 @@
 
 namespace TA
 {
-BandController::BandController(const int i, ModEQProcessor& p,
-                               TA::EqualizerProcessor& sub, TA::BandView& v)
+BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub,
+                               TA::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
     // Link GUI components to ValueTree
@@ -29,17 +29,15 @@ BandController::BandController(const int i, ModEQProcessor& p,
 
     auto& state = mainProcessor.getPluginState();
 
-    boxAttachments.add(new ComboBoxAttachment(
-        state, processor.getTypeParamName(index), view.filterType));
-    buttonAttachments.add(new ButtonAttachment(
-        state, processor.getActiveParamName(index), view.activate));
+    boxAttachments.add(
+        new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
+    buttonAttachments.add(
+        new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
 
-    attachments.add(new SliderAttachment(
-        state, processor.getFrequencyParamName(index), view.frequency));
-    attachments.add(new SliderAttachment(
-        state, processor.getQualityParamName(index), view.quality));
-    attachments.add(new SliderAttachment(
-        state, processor.getGainParamName(index), view.gain));
+    attachments.add(
+        new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
+    attachments.add(new SliderAttachment(state, processor.getQualityParamName(index), view.quality));
+    attachments.add(new SliderAttachment(state, processor.getGainParamName(index), view.gain));
 
     // Add listner
     view.solo.addListener(this);
@@ -122,10 +120,7 @@ void BandController::setFrequency(float newFreq)
     view.frequency.setValue(newFreq, sendNotification);
 }
 
-void BandController::setGain(float newGain)
-{
-    view.gain.setValue(newGain, sendNotification);
-}
+void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
 void BandController::setType(int newType)
 {

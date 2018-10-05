@@ -29,19 +29,20 @@ ModEQProcessor::ModEQProcessor()
     :
 #endif
     state(*this, &undo)
+    , modSource(1, state)
     , equalizerProcessor(state)
-    , modSource(state)
+
 {
     const float maxGain = Decibels::decibelsToGain(24.0f);
-    auto gainRange      = NormalisableRange<float>(0.0, 2.0, 0.01);
-    auto freqRange      = NormalisableRange<float>(0.01, 10.0, 0.01);
+    auto gainRange      = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
+    auto freqRange      = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
     freqRange.setSkewForCentre(1.0f);
 
     state.createAndAddParameter(TA::EqualizerProcessor::paramOutput, translate("Output"),
                                 translate("Output level"), gainRange, 1.0, gainTextConverter,
                                 gainTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_freq", translate("lfo freq"), translate("lfo freq"), freqRange,
+    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"), freqRange,
                                 0.3f, nullptr, nullptr, false, true, false);
 
     state.addParameterListener(TA::EqualizerProcessor::paramOutput, this);

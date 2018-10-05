@@ -28,15 +28,9 @@ public:
     ~BaseProcessor() override = default;
 
     //==============================================================================
-    void prepareToPlay(double /*sampleRate*/,
-                       int /*maximumExpectedSamplesPerBlock*/) override
-    {
-    }
+    void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
     void releaseResources() override {}
-    void processBlock(AudioBuffer<float>& /*buffer*/,
-                      MidiBuffer& /*midiMessages*/) override
-    {
-    }
+    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override {}
 
     //==============================================================================
     AudioProcessorEditor* createEditor() override { return nullptr; }
@@ -57,15 +51,12 @@ public:
 
     //==============================================================================
     void getStateInformation(MemoryBlock& /*destData*/) override {}
-    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override
-    {
-    }
+    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
 
     //==============================================================================
-    AudioProcessorValueTreeState& getPluginState() { return state; }
     AudioProcessorValueTreeState& state;
 
-    double sampleRate{};
+    double sampleRate{0};
 
 protected:
 private:

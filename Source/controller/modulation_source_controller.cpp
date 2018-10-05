@@ -18,31 +18,27 @@
 
 namespace TA
 {
-ModulationSourceController::ModulationSourceController(
-    const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
-    ModulationSourceView& v)
+ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
+                                                       ModulationSourceProcessor& p,
+                                                       ModulationSourceView& v)
     : index(i), mainProcessor(mp), processor(p), view(v)
 {
     // Link GUI components to ValueTree
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = mainProcessor.getPluginState();
 
-    attachments.add(new SliderAttachment(state, "lfo_freq", view.frequency));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
 
     // Start Timer
     startTimerHz(25);
 }
 
-void ModulationSourceController::changeListenerCallback(
-    ChangeBroadcaster* sender)
-{
-}
+void ModulationSourceController::changeListenerCallback(ChangeBroadcaster* sender) {}
 
 void ModulationSourceController::timerCallback()
 {
     if (processor.checkForNewAnalyserData())
-        processor.createAnalyserPlot(view.modulationPath, view.plotFrame,
-                                     20.0f);
+        processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
     view.repaint(view.plotFrame);
 }
 

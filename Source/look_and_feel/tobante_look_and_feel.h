@@ -38,15 +38,14 @@ public:
 
         // PopupMenu (in ComboxBox)
         setColour(PopupMenu::backgroundColourId, Colours::aliceblue);
-        setColour(PopupMenu::highlightedBackgroundColourId,
-                  Colours::whitesmoke);
+        setColour(PopupMenu::highlightedBackgroundColourId, Colours::whitesmoke);
         setColour(PopupMenu::textColourId, Colours::black);
         setColour(PopupMenu::highlightedTextColourId, Colours::blue);
     }
 
-    void drawRotarySlider(Graphics& g, int x, int y, int width, int height,
-                          float sliderPos, const float rotaryStartAngle,
-                          const float rotaryEndAngle, Slider& slider) override
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+                          const float rotaryStartAngle, const float rotaryEndAngle,
+                          Slider& slider) override
     {
         ignoreUnused(slider);
 
@@ -56,8 +55,7 @@ public:
         auto rx      = centreX - radius;
         auto ry      = centreY - radius;
         auto rw      = radius * 2.0f;
-        auto angle   = rotaryStartAngle
-                     + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+        auto angle   = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
 
         // fill
         g.setColour(Colours::aliceblue);
@@ -68,8 +66,7 @@ public:
         g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
         Rectangle<int> textArea{50, 50};
-        textArea.setCentre(static_cast<int>(centreX),
-                           static_cast<int>(centreY));
+        textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
 
         g.setFont(18.f);
         g.drawText(slider.getName(), textArea, Justification::centred);
@@ -77,10 +74,8 @@ public:
         Path p;
         auto pointerLength    = radius * 0.33f;
         auto pointerThickness = 8.0f;
-        p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness,
-                       pointerLength);
-        p.applyTransform(
-            AffineTransform::rotation(angle).translated(centreX, centreY));
+        p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
+        p.applyTransform(AffineTransform::rotation(angle).translated(centreX, centreY));
 
         // pointer
         g.setColour(Colours::black);
@@ -96,9 +91,8 @@ public:
         // area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1)); //
         // empty space on bottom
 
-        layout.textBoxBounds
-            = area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1));
-        layout.sliderBounds = area;
+        layout.textBoxBounds = area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1));
+        layout.sliderBounds  = area;
 
         return layout;
     }

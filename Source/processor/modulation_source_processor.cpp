@@ -18,13 +18,18 @@
 
 namespace TA
 {
-ModulationSourceProcessor::ModulationSourceProcessor(AudioProcessorValueTreeState& vts)
-    : index(1), BaseProcessor(vts)
+ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
+    : index(i), BaseProcessor(vts)
 {
     oscillator.setFrequency(1.f);
     oscillator.initialise([](float x) { return std::sin(x); });
 
-    auto lfoRange = NormalisableRange<float>(0.0, 15.0, 0.01);
+    // auto lfoRange = NormalisableRange<float>(0.01, 10.0, 0.01);
+    // lfoRange.setSkewForCentre(1.0f);
+
+    // state.createAndAddParameter("lfo_" + String(index) + "_freq", translate("lfo freq"),
+    //                            translate("lfo freq"), lfoRange,
+    //                            0.3f, nullptr, nullptr, false, true, false);
 }
 
 ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }
@@ -41,9 +46,9 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 
 void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
-    auto freqValue = *state.getRawParameterValue("lfo_freq");
+    auto freqValue = *state.getRawParameterValue("lfo_" + String(index) + "_freq");
 
-	oscillator.setFrequency(freqValue);
+    oscillator.setFrequency(freqValue);
 
     dsp::AudioBlock<float> block(buffer);
     dsp::ProcessContextReplacing<float> context(block);

@@ -68,8 +68,7 @@ public:
 
     //==============================================================================
     void process(const dsp::ProcessContextReplacing<float>&);
-    void processBlock(AudioBuffer<float>& /*unused*/,
-                      MidiBuffer& /*unused*/) override;
+    void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
     //==============================================================================
     void reset() override;
@@ -87,8 +86,7 @@ public:
 
     //==============================================================================
     const std::vector<double>& getMagnitudes();
-    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>,
-                             float);
+    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
     void createAnalyserPlot(Path&, Rectangle<int>, float, bool);
     bool checkForNewAnalyserData();
 
@@ -119,11 +117,10 @@ private:
     bool wasBypassed = true;
 
     //==============================================================================
-    using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>,
-                                                dsp::IIR::Coefficients<float>>;
+    using FilterBand
+        = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
 
-    dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand,
-                        FilterBand, FilterBand>
+    dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand, FilterBand, FilterBand>
         filter;
     std::vector<Band> bands;
 

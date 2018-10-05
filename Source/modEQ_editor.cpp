@@ -27,7 +27,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     , processor(p)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , plotView(processor.getEQ(), bandControllers)
-    //, modController(1, processor, processor.modSource, modView)
+//, modController(1, processor, processor.modSource, modView)
 {
     tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 

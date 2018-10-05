@@ -37,10 +37,9 @@ BandView::BandView(int i)
     addAndMakeVisible(frame);
 
     for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
-        filterType.addItem(
-            TA::EqualizerProcessor::getFilterTypeName(
-                static_cast<TA::EqualizerProcessor::FilterType>(j)),
-            j + 1);
+        filterType.addItem(TA::EqualizerProcessor::getFilterTypeName(
+                               static_cast<TA::EqualizerProcessor::FilterType>(j)),
+                           j + 1);
 
     addAndMakeVisible(filterType);
     addAndMakeVisible(gain);

@@ -28,7 +28,7 @@ class ModulationSourceView : public Component
 public:
     //==============================================================================
     ModulationSourceView();
-    ~ModulationSourceView();
+    ~ModulationSourceView() override;
 
     //==============================================================================
     void paint(Graphics&) override;

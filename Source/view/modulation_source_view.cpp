@@ -44,8 +44,7 @@ void ModulationSourceView::paint(Graphics& g)
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
         if (i > 0)
-            g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(),
-                               (float)plotFrame.getBottom());
+            g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(), (float)plotFrame.getBottom());
 
         //  // g.setColour(Colour(0xffb9f6ca));
         //  // auto freq = getFrequencyForPosition(i * 0.1f);
@@ -56,12 +55,10 @@ void ModulationSourceView::paint(Graphics& g)
     }
 
     g.setColour(Colours::silver.withAlpha(0.4f));
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-        (float)plotFrame.getX(), (float)plotFrame.getRight());
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-        (float)plotFrame.getX(), (float)plotFrame.getRight());
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
+                         (float)plotFrame.getX(), (float)plotFrame.getRight());
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
+                         (float)plotFrame.getX(), (float)plotFrame.getRight());
 
     g.reduceClipRegion(plotFrame);
 
