@@ -19,4 +19,4 @@
 namespace TA
 {
 const int GLOBAL_REFRESH_RATE_HZ = 60;
-}
+}  // namespace TA

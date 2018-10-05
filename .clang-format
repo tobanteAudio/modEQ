@@ -7,10 +7,10 @@ AlignTrailingComments: 'true'
 AllowShortIfStatementsOnASingleLine: 'true'
 AllowShortLoopsOnASingleLine: 'true'
 BreakBeforeBraces: Allman
-FixNamespaceComments: true
 ColumnLimit: '120'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 Cpp11BracedListStyle: 'true'
+FixNamespaceComments: 'true'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'
 Language: Cpp
 MaxEmptyLinesToKeep: '1'
@@ -20,5 +20,4 @@ ReflowComments: 'true'
 SortIncludes: 'true'
 SpaceBeforeAssignmentOperators: 'true'
 SpacesBeforeTrailingComments: '2'
-
 ...
