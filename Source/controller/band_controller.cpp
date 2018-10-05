@@ -29,15 +29,14 @@ BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProc
 
     auto& state = mainProcessor.getPluginState();
 
-    boxAttachments.add(
-        new ComboBoxAttachment(state, processor.getTypeParamName(index), view.filterType));
+    boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
     buttonAttachments.add(
-        new ButtonAttachment(state, processor.getActiveParamName(index), view.activate));
+        new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
 
     attachments.add(
-        new SliderAttachment(state, processor.getFrequencyParamName(index), view.frequency));
-    attachments.add(new SliderAttachment(state, processor.getQualityParamName(index), view.quality));
-    attachments.add(new SliderAttachment(state, processor.getGainParamName(index), view.gain));
+        new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
+    attachments.add(new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
+    attachments.add(new SliderAttachment(state, processor.getGainParamID(index), view.gain));
 
     // Add listner
     view.solo.addListener(this);
@@ -122,10 +121,7 @@ void BandController::setFrequency(float newFreq)
 
 void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
-void BandController::setType(int newType)
-{
-    view.filterType.setSelectedId(newType + 1, sendNotification);
-}
+void BandController::setType(int newType) { view.type.setSelectedId(newType + 1, sendNotification); }
 
 void BandController::buttonClicked(Button* b)
 {

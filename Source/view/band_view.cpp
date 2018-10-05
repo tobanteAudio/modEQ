@@ -29,33 +29,38 @@ BandView::BandView(int i)
     , solo(translate("S"))
     , activate(translate("A"))
 {
-    frame.setText(String(index));  // processor.getBandName(index)
+	// Frame for individual band controls
+    frame.setText(String(index));  
     frame.setTextLabelPosition(Justification::centred);
-    frame.setColour(GroupComponent::textColourId,
-                    Colours::silver);  // processor.getBandColour(index)
+    frame.setColour(GroupComponent::textColourId, Colours::silver);  
     frame.setColour(GroupComponent::outlineColourId, Colour(0xff00ff08));
     addAndMakeVisible(frame);
 
+	// Add all filter options to combo box
     for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
-        filterType.addItem(TA::EqualizerProcessor::getFilterTypeName(
+        type.addItem(TA::EqualizerProcessor::getFilterTypeName(
                                static_cast<TA::EqualizerProcessor::FilterType>(j)),
                            j + 1);
 
-    addAndMakeVisible(filterType);
+	// Make controls visible
+    addAndMakeVisible(type);
     addAndMakeVisible(gain);
     addAndMakeVisible(quality);
     addAndMakeVisible(frequency);
     addAndMakeVisible(activate);
     addAndMakeVisible(solo);
 
+	// Tooltip
     frequency.setTooltip(translate("Filter's frequency"));
     quality.setTooltip(translate("Filter's steepness (Quality)"));
     gain.setTooltip(translate("Filter's gain"));
 
+	// Solo
     solo.setClickingTogglesState(true);
     solo.setColour(TextButton::buttonOnColourId, Colours::yellow);
     solo.setTooltip(translate("Listen only through this filter (solo)"));
 
+	// Activate / Bypass
     activate.setClickingTogglesState(true);
     activate.setColour(TextButton::buttonOnColourId, Colours::green);
     activate.setTooltip(translate("Activate or deactivate this filter"));
@@ -70,7 +75,7 @@ void BandView::resized()
 
     bounds.reduce(10, 20);
 
-    filterType.setBounds(bounds.removeFromTop(20));
+    type.setBounds(bounds.removeFromTop(20));
 
     auto freqBounds = bounds.removeFromBottom(bounds.getHeight() * 2 / 4);
     frequency.setBounds(freqBounds.withTop(freqBounds.getY() + 10));

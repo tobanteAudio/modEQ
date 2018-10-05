@@ -25,10 +25,7 @@ static float maxDB     = 24.0f;
 EqualizerPlotView::EqualizerPlotView(TA::EqualizerProcessor& p, OwnedArray<TA::BandController>& bands)
     : processor(p), bandControllers(bands)
 {
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
     processor.addChangeListener(this);
-
     startTimerHz(30);
 }
 
@@ -36,14 +33,19 @@ EqualizerPlotView::~EqualizerPlotView() { processor.removeChangeListener(this); 
 
 void EqualizerPlotView::paint(Graphics& g)
 {
+	// Setup
     const Colour inputColour  = Colours::greenyellow;
     const Colour outputColour = Colours::red;
-
+    
+	// Save graphics state
     Graphics::ScopedSaveState state(g);
 
-    g.setFont(12.0f);
+	// Frame
     g.setColour(Colours::silver);
     g.drawRoundedRectangle(plotFrame.toFloat(), 5, 4);
+
+	// Vertical lines & frequency labels
+    g.setFont(12.0f);
     for (int i = 0; i < 10; ++i)
     {
         g.setColour(Colours::silver.withAlpha(0.4f));
@@ -58,12 +60,14 @@ void EqualizerPlotView::paint(Graphics& g)
                          1);
     }
 
+	// Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
                          (float)plotFrame.getX(), (float)plotFrame.getRight());
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
                          (float)plotFrame.getX(), (float)plotFrame.getRight());
 
+	// dB labels
     g.setColour(Colours::silver);
     g.drawFittedText(String(maxDB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
                      Justification::left, 1);
@@ -79,6 +83,7 @@ void EqualizerPlotView::paint(Graphics& g)
 
     g.reduceClipRegion(plotFrame);
 
+	// Analysers
     Path analyser;
     g.setFont(16.0f);
 
@@ -170,7 +175,7 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
                                  - e.position.getY())
                         < clickRadius)
                     {
-                        draggingGain = processor.state.getParameter(processor.getGainParamName(i));
+                        draggingGain = processor.state.getParameter(processor.getGainParamID(i));
                         setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
                     }
                     else
@@ -218,7 +223,7 @@ void EqualizerPlotView::mouseDoubleClick(const MouseEvent& e)
                              - e.position.getX())
                     < clickRadius)
                 {
-                    if (auto* param = processor.state.getParameter(processor.getActiveParamName(i)))
+                    if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
                         param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f : 0.0f);
                 }
             }

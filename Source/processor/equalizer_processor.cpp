@@ -54,21 +54,21 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
 
         band.magnitudes.resize(frequencies.size(), 1.0);
 
-        state.createAndAddParameter(getFrequencyParamName(i), band.name + " freq", "Frequency",
+        state.createAndAddParameter(getFrequencyParamID(i), band.name + " freq", "Frequency",
                                     frequencyRange, band.frequency, frequencyTextConverter,
                                     frequencyTextConverter, false, true, false);
-        state.createAndAddParameter(getQualityParamName(i), band.name + " Q", translate("Quality"),
+        state.createAndAddParameter(getQualityParamID(i), band.name + " Q", translate("Quality"),
                                     qualityRange, band.quality, qualityTextConverter,
                                     qualityTextConverter, false, true, false);
-        state.createAndAddParameter(getGainParamName(i), band.name + " gain", translate("Gain"),
+        state.createAndAddParameter(getGainParamID(i), band.name + " gain", translate("Gain"),
                                     gainRange, band.gain, gainTextConverter, gainTextConverter, false,
                                     true, false);
-        state.createAndAddParameter(getActiveParamName(i), band.name + " active", translate("Active"),
+        state.createAndAddParameter(getActiveParamID(i), band.name + " active", translate("Active"),
                                     activeRange, band.active, activeTextConverter,
                                     activeTextConverter, false, true, true);
 
         state.createAndAddParameter(
-            getTypeParamName(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
+            getTypeParamID(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
             (float)band.type,
             [](float value) {
                 return TA::EqualizerProcessor::getFilterTypeName(
@@ -84,11 +84,11 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
             },
             false, true, true);
 
-        state.addParameterListener(getTypeParamName(i), this);
-        state.addParameterListener(getFrequencyParamName(i), this);
-        state.addParameterListener(getQualityParamName(i), this);
-        state.addParameterListener(getGainParamName(i), this);
-        state.addParameterListener(getActiveParamName(i), this);
+        state.addParameterListener(getTypeParamID(i), this);
+        state.addParameterListener(getFrequencyParamID(i), this);
+        state.addParameterListener(getQualityParamID(i), this);
+        state.addParameterListener(getGainParamID(i), this);
+        state.addParameterListener(getActiveParamID(i), this);
     }
 }
 
@@ -411,27 +411,27 @@ void EqualizerProcessor::updateBand(const size_t index)
     }
 }
 
-String EqualizerProcessor::getTypeParamName(const int index) const
+String EqualizerProcessor::getTypeParamID(const int index) const
 {
     return getBandName(index) + "-" + TA::Parameters::Type;
 }
 
-String EqualizerProcessor::getFrequencyParamName(const int index) const
+String EqualizerProcessor::getFrequencyParamID(const int index) const
 {
     return getBandName(index) + "-" + TA::Parameters::Frequency;
 }
 
-String EqualizerProcessor::getQualityParamName(const int index) const
+String EqualizerProcessor::getQualityParamID(const int index) const
 {
     return getBandName(index) + "-" + TA::Parameters::Quality;
 }
 
-String EqualizerProcessor::getGainParamName(const int index) const
+String EqualizerProcessor::getGainParamID(const int index) const
 {
     return getBandName(index) + "-" + TA::Parameters::Gain;
 }
 
-String EqualizerProcessor::getActiveParamName(const int index) const
+String EqualizerProcessor::getActiveParamID(const int index) const
 {
     return getBandName(index) + "-" + TA::Parameters::Active;
 }

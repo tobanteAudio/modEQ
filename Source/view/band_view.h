@@ -34,7 +34,7 @@ public:
 
     //==============================================================================
     GroupComponent frame;
-    ComboBox filterType;
+    ComboBox type;
     Slider frequency;
     Slider quality;
     Slider gain;

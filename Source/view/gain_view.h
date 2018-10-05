@@ -21,9 +21,8 @@
 //==============================================================================
 namespace TA
 {
-class GainView : public Component
+struct GainView : public Component
 {
-public:
     //==============================================================================
     GainView();
     ~GainView();

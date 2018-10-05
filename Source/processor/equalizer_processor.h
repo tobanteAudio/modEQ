@@ -91,11 +91,11 @@ public:
     bool checkForNewAnalyserData();
 
     //==============================================================================
-    String getTypeParamName(int index) const;
-    String getFrequencyParamName(int index) const;
-    String getQualityParamName(int index) const;
-    String getGainParamName(int index) const;
-    String getActiveParamName(int index) const;
+    String getTypeParamID(int index) const;
+    String getFrequencyParamID(int index) const;
+    String getQualityParamID(int index) const;
+    String getGainParamID(int index) const;
+    String getActiveParamID(int index) const;
 
     //==============================================================================
     int getNumBands() const;
