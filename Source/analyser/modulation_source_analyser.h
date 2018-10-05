@@ -96,17 +96,16 @@ public:
         const auto* reader    = analyserBuffer.getReadPointer(0);
         const auto numSamples = analyserBuffer.getNumSamples();
 
-        const auto factor = bounds.getWidth() / 20.0f;
+        const auto factor = bounds.getWidth() / 10.0f;
 
-        // p.startNewSubPath(bounds.getX() + factor * indexToX(0, numSamples,
-        // bounds), ampToY(reader[0], bounds));
+        p.startNewSubPath(bounds.getX(), ampToY(reader[1], bounds));
 
-        p.startNewSubPath(bounds.getX(), bounds.getY());
-        p.lineTo(bounds.getRight(), ampToY(reader[0], bounds));
-
-        // for (int i = 0; i < numSamples; ++i)
-        //  p.lineTo(bounds.getX() + factor * indexToX(i, numSamples, bounds),
-        //  ampToY(reader[i], bounds));
+        for (int i = 0; i < numSamples; ++i)
+        {
+            p.lineTo(bounds.getX() + factor * indexToX(i, numSamples, bounds),
+                     ampToY(reader[i], bounds));
+            i += 25;
+        }
     }
 
     bool checkForNewData()
