@@ -29,20 +29,19 @@ BandView::BandView(int i)
     , solo(translate("S"))
     , activate(translate("A"))
 {
-	// Frame for individual band controls
-    frame.setText(String(index));  
+    // Frame for individual band controls
+    frame.setText(String(index));
     frame.setTextLabelPosition(Justification::centred);
-    frame.setColour(GroupComponent::textColourId, Colours::silver);  
+    frame.setColour(GroupComponent::textColourId, Colours::silver);
     frame.setColour(GroupComponent::outlineColourId, Colour(0xff00ff08));
     addAndMakeVisible(frame);
 
-	// Add all filter options to combo box
+    // Add all filter options to combo box
     for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
-        type.addItem(TA::EqualizerProcessor::getFilterTypeName(
-                               static_cast<TA::EqualizerProcessor::FilterType>(j)),
-                           j + 1);
+        type.addItem(TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(j)),
+                     j + 1);
 
-	// Make controls visible
+    // Make controls visible
     addAndMakeVisible(type);
     addAndMakeVisible(gain);
     addAndMakeVisible(quality);
@@ -50,17 +49,17 @@ BandView::BandView(int i)
     addAndMakeVisible(activate);
     addAndMakeVisible(solo);
 
-	// Tooltip
+    // Tooltip
     frequency.setTooltip(translate("Filter's frequency"));
     quality.setTooltip(translate("Filter's steepness (Quality)"));
     gain.setTooltip(translate("Filter's gain"));
 
-	// Solo
+    // Solo
     solo.setClickingTogglesState(true);
     solo.setColour(TextButton::buttonOnColourId, Colours::yellow);
     solo.setTooltip(translate("Listen only through this filter (solo)"));
 
-	// Activate / Bypass
+    // Activate / Bypass
     activate.setClickingTogglesState(true);
     activate.setColour(TextButton::buttonOnColourId, Colours::green);
     activate.setTooltip(translate("Activate or deactivate this filter"));

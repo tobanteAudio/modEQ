@@ -18,8 +18,7 @@
 
 namespace TA
 {
-BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub,
-                               TA::BandView& v)
+BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
     // Link GUI components to ValueTree
@@ -30,11 +29,9 @@ BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProc
     auto& state = mainProcessor.getPluginState();
 
     boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
-    buttonAttachments.add(
-        new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
+    buttonAttachments.add(new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
 
-    attachments.add(
-        new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
+    attachments.add(new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
     attachments.add(new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
     attachments.add(new SliderAttachment(state, processor.getGainParamID(index), view.gain));
 
@@ -109,15 +106,9 @@ void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
     }
 }
 
-void BandController::updateSoloState(bool isSolo)
-{
-    view.solo.setToggleState(isSolo, dontSendNotification);
-}
+void BandController::updateSoloState(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
 
-void BandController::setFrequency(float newFreq)
-{
-    view.frequency.setValue(newFreq, sendNotification);
-}
+void BandController::setFrequency(float newFreq) { view.frequency.setValue(newFreq, sendNotification); }
 
 void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 

@@ -52,7 +52,7 @@ private:
     OwnedArray<TA::BandController> bandControllers;
     OwnedArray<TA::ModulationSourceView> modViews;
     OwnedArray<TA::ModulationSourceController> modController;
-    //TA::ModulationSourceView modView;
+    // TA::ModulationSourceView modView;
     TA::EqualizerPlotView plotView;
 
     //==============================================================================

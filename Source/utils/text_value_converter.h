@@ -20,10 +20,7 @@
 class ActiveTextConverter
 {
 public:
-    String operator()(float value)
-    {
-        return value > 0.5f ? translate("active") : translate("bypassed");
-    }
+    String operator()(float value) { return value > 0.5f ? translate("active") : translate("bypassed"); }
 
     float operator()(const String& text) { return text == translate("active"); }
 };
@@ -38,9 +35,8 @@ public:
 
     float operator()(const String& text)
     {
-        return text.endsWith(" kHz")
-                   ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
-                   : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
+        return text.endsWith(" kHz") ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
+                                     : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
     }
 };
 

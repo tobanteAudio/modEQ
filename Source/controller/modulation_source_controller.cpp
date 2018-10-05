@@ -15,11 +15,11 @@
  */
 
 #include "modulation_source_controller.h"
+#include "../utils/constants.h"
 
 namespace TA
 {
-ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
-                                                       ModulationSourceProcessor& p,
+ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
     : index(i), mainProcessor(mp), processor(p), view(v)
 {
@@ -31,15 +31,14 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
     attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Start Timer
-    startTimerHz(25);
+    startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
 void ModulationSourceController::changeListenerCallback(ChangeBroadcaster* sender) {}
 
 void ModulationSourceController::timerCallback()
 {
-    if (processor.checkForNewAnalyserData())
-        processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
+    if (processor.checkForNewAnalyserData()) processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
     view.repaint(view.plotFrame);
 }
 

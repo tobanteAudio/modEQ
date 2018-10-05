@@ -14,21 +14,9 @@
  * along with modEQ.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gain_view.h"
-#include "../../JuceLibraryCode/JuceHeader.h"
+#pragma once
 
 namespace TA
 {
-//==============================================================================
-GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow) { addAndMakeVisible(gain); }
-
-GainView::~GainView() {}
-
-void GainView::paint(Graphics& /*g*/) {}
-
-void GainView::resized()
-{
-    auto area = getLocalBounds();
-    gain.setBounds(area);
+const int GLOBAL_REFRESH_RATE_HZ = 60;
 }
-}  // namespace TA

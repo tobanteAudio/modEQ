@@ -28,8 +28,7 @@ class ModulationSourceController : public ChangeListener, public Timer
 {
 public:
     //==============================================================================
-    ModulationSourceController(int, ModEQProcessor&, TA::ModulationSourceProcessor&,
-                               TA::ModulationSourceView&);
+    ModulationSourceController(int, ModEQProcessor&, TA::ModulationSourceProcessor&, TA::ModulationSourceView&);
 
     //==============================================================================
     void changeListenerCallback(ChangeBroadcaster* sender) override;

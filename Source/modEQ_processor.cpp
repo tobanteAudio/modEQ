@@ -16,8 +16,8 @@
 
 #include "modEQ_processor.h"
 #include "modEQ_editor.h"
-#include "view/social_buttons.h"
 #include "utils/parameters.h"
+#include "view/social_buttons.h"
 
 //==============================================================================
 ModEQProcessor::ModEQProcessor()
@@ -41,15 +41,14 @@ ModEQProcessor::ModEQProcessor()
 
     lfoFreqRange.setSkewForCentre(1.0f);
 
-    state.createAndAddParameter(TA::Parameters::Output, translate("Output"),
-                                translate("Output level"), gainRange, 1.0, gainTextConverter,
-                                gainTextConverter, false, true, false);
+    state.createAndAddParameter(TA::Parameters::Output, translate("Output"), translate("Output level"), gainRange, 1.0,
+                                gainTextConverter, gainTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"),
-                                lfoFreqRange, 0.3f, freqTextConverter, freqTextConverter, false, true, false);
+    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
+                                freqTextConverter, freqTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"),
-                                lfoGainRange, 1.0f, gainTextConverter, gainTextConverter, false, true, false);
+    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, 1.0f,
+                                gainTextConverter, gainTextConverter, false, true, false);
 
     state.addParameterListener(TA::Parameters::Output, this);
 
@@ -129,8 +128,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     // if (getActiveEditor() != nullptr) {}
 
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear(i, 0, buffer.getNumSamples());
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) buffer.clear(i, 0, buffer.getNumSamples());
 
     modBuffer.clear();
     modSource.processBlock(modBuffer, midiMessages);
