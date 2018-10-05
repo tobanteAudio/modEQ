@@ -27,7 +27,7 @@ class ModulationSourceView : public Component
 {
 public:
     //==============================================================================
-    ModulationSourceView();
+    ModulationSourceView(int);
     ~ModulationSourceView() override;
 
     //==============================================================================
@@ -41,6 +41,7 @@ public:
     Path modulationPath;
 
 private:
+    int index;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };

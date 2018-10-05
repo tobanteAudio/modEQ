@@ -16,8 +16,8 @@
 
 #include "modEQ_editor.h"
 #include "modEQ_processor.h"
-#include "view/social_buttons.h"
 #include "utils/parameters.h"
+#include "view/social_buttons.h"
 
 static int clickRadius = 10;
 static float maxDB     = 24.0f;
@@ -28,33 +28,37 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     , processor(p)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , plotView(processor.getEQ(), bandControllers)
-//, modController(1, processor, processor.modSource, modView)
 {
     tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
     addAndMakeVisible(socialButtons);
 
-    modController.add(new TA::ModulationSourceController(1, processor, processor.modSource, modView));
+    for (int i = 1; i < 2; ++i)
+    {
+        auto* modView = modViews.add(new TA::ModulationSourceView(i));
+        modController.add(new TA::ModulationSourceController(i, processor, processor.modSource, *modView));
+
+        // bandView->setLookAndFeel(&tobanteLookAndFeel);
+        addAndMakeVisible(modView);
+    }
 
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
         auto* bandView = bandViews.add(new TA::BandView(i));
         bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
-        // Add lookAndFeel
         // bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
 
     addAndMakeVisible(plotView);
-    addAndMakeVisible(modView);
 
     frame.setText(translate("Output"));
     frame.setTextLabelPosition(Justification::centred);
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
-    attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-        processor.getPluginState(), TA::Parameters::Output, output));
+    attachments.add(
+        new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(), TA::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
 
     setResizable(true, true);
@@ -102,7 +106,7 @@ void ModEQEditor::resized()
     // Modulators
     auto modArea        = area.removeFromBottom(getHeight() / 5);
     auto modSourceWidth = modArea.getWidth() / 3;
-    modView.setBounds(modArea.removeFromLeft(modSourceWidth));
+    for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
     auto bandSpace = area.removeFromBottom(getHeight() / 3);

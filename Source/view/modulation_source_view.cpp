@@ -19,8 +19,9 @@
 namespace TA
 {
 //==============================================================================
-ModulationSourceView::ModulationSourceView()
-    : frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+ModulationSourceView::ModulationSourceView(int i)
+    : index(i)
+    , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     addAndMakeVisible(frequency);
