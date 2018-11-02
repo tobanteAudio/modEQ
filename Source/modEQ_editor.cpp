@@ -38,7 +38,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         auto* modView = modViews.add(new TA::ModulationSourceView(i));
         modController.add(new TA::ModulationSourceController(i, processor, processor.modSource, *modView));
 
-        // bandView->setLookAndFeel(&tobanteLookAndFeel);
+        modView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(modView);
     }
 
@@ -47,7 +47,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         auto* bandView = bandViews.add(new TA::BandView(i));
         bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
 
-        // bandView->setLookAndFeel(&tobanteLookAndFeel);
+        bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
 
@@ -60,6 +60,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     attachments.add(
         new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(), TA::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
+    output.setColour(Slider::thumbColourId, Colours::red);
 
     setResizable(true, true);
     setResizeLimits(800, 450, 2990, 1800);

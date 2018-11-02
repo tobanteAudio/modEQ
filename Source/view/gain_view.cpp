@@ -20,7 +20,11 @@
 namespace TA
 {
 //==============================================================================
-GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow) { addAndMakeVisible(gain); }
+GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+{
+  gain.setColour(Slider::thumbColourId, Colours::red);
+  addAndMakeVisible(gain);
+}
 
 GainView::~GainView() {}
 

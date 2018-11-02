@@ -23,7 +23,7 @@
 namespace TA
 {
 //==============================================================================
-class ModulationSourceView : public Component
+class ModulationSourceView : public Component, public Slider::Listener
 {
 public:
     //==============================================================================
@@ -35,10 +35,14 @@ public:
     void resized() override;
 
     //==============================================================================
+    void sliderValueChanged (Slider *slider) override;
+
+    //==============================================================================
     Slider frequency;
     Slider gain;
     Rectangle<int> plotFrame;
     Path modulationPath;
+    Label freqLabel, gainLabel;
 
 private:
     int index;

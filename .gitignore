@@ -20,6 +20,11 @@ JuceLibraryCode
 .idea
 
 ####################
+# AutoComplete
+####################
+compile_commands.json
+
+####################
 # C++
 ####################
 # Compiled Object files
