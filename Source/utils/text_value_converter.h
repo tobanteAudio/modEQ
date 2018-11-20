@@ -20,20 +20,20 @@
 class ActiveTextConverter
 {
 public:
-    String operator()(float value) { return value > 0.5f ? translate("active") : translate("bypassed"); }
+    String operator()(float const value) const { return value > 0.5f ? translate("active") : translate("bypassed"); }
 
-    float operator()(const String& text) { return text == translate("active"); }
+    float operator()(const String& text) const { return text == translate("active"); }
 };
 
 class FrequencyTextConverter
 {
 public:
-    String operator()(float value)
+    String operator()(float const value) const
     {
         return (value < 1000) ? String(value, 0) + " Hz" : String(value / 1000.0, 2) + " kHz";
     }
 
-    float operator()(const String& text)
+    float operator()(const String& text) const
     {
         return text.endsWith(" kHz") ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
                                      : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
@@ -43,17 +43,17 @@ public:
 class QualityTextConverter
 {
 public:
-    String operator()(float value) { return String(value, 1); }
+    String operator()(float const value) const { return String(value, 1); }
 
-    float operator()(const String& text) { return text.getFloatValue(); }
+    float operator()(const String& text) const { return text.getFloatValue(); }
 };
 
 class GainTextConverter
 {
 public:
-    String operator()(float value) { return String(Decibels::gainToDecibels(value), 1) + " dB"; }
+    String operator()(float const value) const { return String(Decibels::gainToDecibels(value), 1) + " dB"; }
 
-    float operator()(const String& text)
+    float operator()(const String& text) const
     {
         return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue());
     }
@@ -62,9 +62,9 @@ public:
 class InvertPhaseTextConverter
 {
 public:
-    String operator()(float value) { return value < 0.5 ? "Normal" : "Inverted"; }
+    String operator()(float const value) const { return value < 0.5 ? "Normal" : "Inverted"; }
 
-    float operator()(const String& text)
+    float operator()(const String& text) const
     {
         if (text == "Normal")
         {

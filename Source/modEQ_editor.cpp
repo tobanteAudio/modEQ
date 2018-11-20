@@ -17,17 +17,13 @@
 #include "modEQ_editor.h"
 #include "modEQ_processor.h"
 #include "utils/parameters.h"
-#include "view/social_buttons.h"
-
-static int clickRadius = 10;
-static float maxDB     = 24.0f;
 
 //==============================================================================
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
-    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , plotView(processor.getEQ(), bandControllers)
+    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
@@ -91,7 +87,7 @@ void ModEQEditor::paint(Graphics& g)
     auto area        = getLocalBounds();
     auto versionArea = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
 
-    String version = JucePlugin_VersionString;
+    String const version = JucePlugin_VersionString;
     g.setColour(Colours::white);
     g.setFont(18.f);
     g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
@@ -106,12 +102,12 @@ void ModEQEditor::resized()
 
     // Modulators
     auto modArea        = area.removeFromBottom(getHeight() / 5);
-    auto modSourceWidth = modArea.getWidth() / 3;
+    auto const modSourceWidth = modArea.getWidth() / 3;
     for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
     auto bandSpace = area.removeFromBottom(getHeight() / 3);
-    auto width     = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
+    auto const width     = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output

@@ -30,7 +30,7 @@ public:
 
         auto* b = buttons.add(new ImageButton());
         b->addListener(this);
-        auto fbLogo = ImageCache::getFromMemory(TobanteAudioData::FBlogo_png, TobanteAudioData::FBlogo_pngSize);
+        auto const fbLogo = ImageCache::getFromMemory(TobanteAudioData::FBlogo_png, TobanteAudioData::FBlogo_pngSize);
         b->setImages(false, true, true, fbLogo, 1.0f, Colours::transparentWhite, fbLogo, 0.7f,
                      Colours::transparentWhite, fbLogo, 0.7f, Colours::transparentWhite);
         b->setComponentID("https://www.fb.com/tobanteAudio/");
@@ -39,7 +39,7 @@ public:
 
         b = buttons.add(new ImageButton());
         b->addListener(this);
-        auto githubLogo
+        auto const githubLogo
             = ImageCache::getFromMemory(TobanteAudioData::GitHublogo_png, TobanteAudioData::GitHublogo_pngSize);
         b->setImages(false, true, true, githubLogo, 1.0f, Colours::transparentWhite, githubLogo, 0.7f,
                      Colours::transparentWhite, githubLogo, 0.7f, Colours::transparentWhite);

@@ -21,7 +21,7 @@
 
 namespace TA
 {
-BandView::BandView(int i)
+BandView::BandView(int const i)
     : index(i)
     , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)

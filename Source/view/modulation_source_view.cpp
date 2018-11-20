@@ -58,15 +58,15 @@ void ModulationSourceView::paint(Graphics& g)
     {
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
-        if (i > 0) g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(), (float)plotFrame.getBottom());
+        if (i > 0) g.drawVerticalLine(roundToInt(x), static_cast<float>(plotFrame.getY()), static_cast<float>(plotFrame.getBottom()));
     }
 
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
-    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()), (float)plotFrame.getX(),
-                         (float)plotFrame.getRight());
-    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()), (float)plotFrame.getX(),
-                         (float)plotFrame.getRight());
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()), static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()), static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
 
     g.reduceClipRegion(plotFrame);
 
@@ -84,7 +84,7 @@ void ModulationSourceView::resized()
     auto area       = getLocalBounds();
     auto sliderArea = area.removeFromRight(area.getWidth() / 4);
 
-    int labelHeight = sliderArea.getHeight()/ 2 / 5;
+    int const labelHeight = sliderArea.getHeight()/ 2 / 5;
 
     // Labels
     freqLabel.setBounds(sliderArea.removeFromTop(labelHeight));
@@ -103,13 +103,11 @@ void ModulationSourceView::sliderValueChanged (Slider *slider)
   if (slider == &frequency)
   {
     freqLabel.setText(frequency.getTextFromValue(frequency.getValue()), NotificationType::dontSendNotification );
-    //freqLabel.setText("Test", NotificationType::dontSendNotification );
   }
 
 if (slider == &gain)
   {
     gainLabel.setText(gain.getTextFromValue(gain.getValue()), NotificationType::dontSendNotification );
-    //freqLabel.setText("Test", NotificationType::dontSendNotification );
   }
 }
 }  // namespace TA

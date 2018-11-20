@@ -32,7 +32,7 @@ void GainView::paint(Graphics& /*g*/) {}
 
 void GainView::resized()
 {
-    auto area = getLocalBounds();
+    auto const area = getLocalBounds();
     gain.setBounds(area);
 }
 }  // namespace TA

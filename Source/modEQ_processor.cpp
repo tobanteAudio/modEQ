@@ -35,8 +35,8 @@ ModEQProcessor::ModEQProcessor()
 
 {
     const float maxGain = Decibels::decibelsToGain(24.0f);
-    auto gainRange      = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
-    auto lfoGainRange   = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
+    auto const gainRange      = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
+    auto const lfoGainRange   = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
     auto lfoFreqRange   = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
 
     lfoFreqRange.setSkewForCentre(1.0f);
