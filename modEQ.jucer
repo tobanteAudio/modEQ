@@ -1,167 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="modEQ" projectType="audioplug" buildStandalone="0" jucerVersion="5.4.3"
-              bundleIdentifier="com.tobanteAudio.modEQ" companyName="tobanteAudio"
-              pluginManufacturer="tobanteAudio" pluginAUExportPrefix="modEQAU"
-              aaxIdentifier="com.tobanteAudio.modEQ" pluginManufacturerCode="toAu"
-              pluginCode="tamq" pluginName="modEQ" pluginDesc="EQ with modulation"
-              reportAppUsage="0" displaySplashScreen="0" binaryDataNamespace="TobanteAudioData"
-              id="WgRqjr" pluginFormats="buildAU,buildStandalone,buildVST3"
-              pluginAUMainType="'aufx'" pluginVST3Category="Analyzer,EQ,Fx"
-              pluginAAXCategory="1" version="0.1.0" cppLanguageStandard="17"
-              companyEmail="tobanteAudio@gmail.com" companyWebsite="https://github.com/tobanteAudio">
-  <MAINGROUP id="QYjF1u" name="modEQ">
-    <GROUP id="{85087548-8D9A-0248-9641-411914200E27}" name="Source">
-      <GROUP id="{FC9DFA38-539E-51EA-6DC8-969838BBC957}" name="analyser">
-        <FILE id="N0Rwtq" name="modulation_source_analyser.h" compile="0" resource="0"
+<JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="5.4.3"
+              version="0.1.0" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio"
+              companyEmail="tobanteAudio@gmail.com" bundleIdentifier="com.tobanteAudio.modEQ"
+              pluginName="modEQ" pluginDesc="EQ with modulation" pluginManufacturer="tobanteAudio"
+              pluginManufacturerCode="toAu" pluginCode="tamq" pluginAUExportPrefix="modEQAU"
+              aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx"
+              binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17"
+              pluginFormats="buildAU,buildStandalone,buildVST3">
+  <MAINGROUP id="EssRVE" name="modEQ">
+    <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
+      <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
+        <FILE id="Xvpwgz" name="modulation_source_analyser.h" compile="0" resource="0"
               file="Source/analyser/modulation_source_analyser.h"/>
-        <FILE id="CT7Vb5" name="spectrum_analyser.h" compile="0" resource="0"
+        <FILE id="YPzjeA" name="spectrum_analyser.h" compile="0" resource="0"
               file="Source/analyser/spectrum_analyser.h"/>
       </GROUP>
-      <GROUP id="{CC4E5B39-10F2-AF63-23F9-0E671023A782}" name="utils">
-        <FILE id="wPx7cu" name="constants.h" compile="0" resource="0" file="Source/utils/constants.h"/>
-        <FILE id="tUDWQV" name="parameters.cpp" compile="1" resource="0" file="Source/utils/parameters.cpp"/>
-        <FILE id="npU4Gp" name="parameters.h" compile="0" resource="0" file="Source/utils/parameters.h"/>
-        <FILE id="KWjnF9" name="text_value_converter.h" compile="0" resource="0"
-              file="Source/utils/text_value_converter.h"/>
-      </GROUP>
-      <GROUP id="{5CFAF4C7-CB5B-279B-9E01-243560CD4D29}" name="look_and_feel">
-        <FILE id="NB4MJI" name="tobante_look_and_feel.h" compile="0" resource="0"
-              file="Source/look_and_feel/tobante_look_and_feel.h"/>
-      </GROUP>
-      <GROUP id="{EECC11AB-18F2-FABF-1366-15A91D3069D0}" name="processor">
-        <FILE id="ge6Dtd" name="base_processor.h" compile="0" resource="0"
-              file="Source/processor/base_processor.h"/>
-        <FILE id="OLFqpD" name="equalizer_processor.cpp" compile="1" resource="0"
-              file="Source/processor/equalizer_processor.cpp"/>
-        <FILE id="CnZ0b1" name="equalizer_processor.h" compile="0" resource="0"
-              file="Source/processor/equalizer_processor.h"/>
-        <FILE id="pH3Ko1" name="gain_processor.cpp" compile="1" resource="0"
-              file="Source/processor/gain_processor.cpp"/>
-        <FILE id="YKVwya" name="gain_processor.h" compile="0" resource="0"
-              file="Source/processor/gain_processor.h"/>
-        <FILE id="mUL6EH" name="modulation_source_processor.cpp" compile="1"
-              resource="0" file="Source/processor/modulation_source_processor.cpp"/>
-        <FILE id="O6OJ0M" name="modulation_source_processor.h" compile="0"
-              resource="0" file="Source/processor/modulation_source_processor.h"/>
-      </GROUP>
-      <GROUP id="{AFBCEEAE-CF9A-3BFC-69AA-2F01AF53CA03}" name="controller">
-        <FILE id="INxpGV" name="band_controller.cpp" compile="1" resource="0"
+      <GROUP id="{D1D70FC5-BC47-31EF-50DF-052ED29AE9A1}" name="controller">
+        <FILE id="PK42nw" name="band_controller.cpp" compile="1" resource="0"
               file="Source/controller/band_controller.cpp"/>
-        <FILE id="ouDHoU" name="band_controller.h" compile="0" resource="0"
+        <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
-        <FILE id="QE7l7n" name="gain_controller.cpp" compile="1" resource="0"
+        <FILE id="jrTSqM" name="gain_controller.cpp" compile="1" resource="0"
               file="Source/controller/gain_controller.cpp"/>
-        <FILE id="pz38Ar" name="gain_controller.h" compile="0" resource="0"
+        <FILE id="cTa1h8" name="gain_controller.h" compile="0" resource="0"
               file="Source/controller/gain_controller.h"/>
-        <FILE id="ermO0m" name="modulation_source_controller.cpp" compile="1"
+        <FILE id="Hte4ox" name="modulation_source_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_source_controller.cpp"/>
-        <FILE id="bdu8NR" name="modulation_source_controller.h" compile="0"
+        <FILE id="g0jlaN" name="modulation_source_controller.h" compile="0"
               resource="0" file="Source/controller/modulation_source_controller.h"/>
       </GROUP>
-      <GROUP id="{E1AB739F-7F64-B3FB-942B-61798B09653D}" name="view">
-        <FILE id="JRp1la" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
-        <FILE id="d2SkUe" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
-        <FILE id="pUiGZ7" name="equalizer_plot_view.cpp" compile="1" resource="0"
+      <GROUP id="{12FBCE62-A8E3-78E5-B4D1-40F0EAF9EB75}" name="look_and_feel">
+        <FILE id="JFS7h9" name="tobante_look_and_feel.h" compile="0" resource="0"
+              file="Source/look_and_feel/tobante_look_and_feel.h"/>
+      </GROUP>
+      <GROUP id="{CDE0EA6F-D246-9914-9531-36D7C9EE98EB}" name="processor">
+        <FILE id="bHkOhA" name="base_processor.h" compile="0" resource="0"
+              file="Source/processor/base_processor.h"/>
+        <FILE id="hQHtcH" name="equalizer_processor.cpp" compile="1" resource="0"
+              file="Source/processor/equalizer_processor.cpp"/>
+        <FILE id="F9i1iV" name="equalizer_processor.h" compile="0" resource="0"
+              file="Source/processor/equalizer_processor.h"/>
+        <FILE id="ra3ZEj" name="gain_processor.cpp" compile="1" resource="0"
+              file="Source/processor/gain_processor.cpp"/>
+        <FILE id="k2RGD9" name="gain_processor.h" compile="0" resource="0"
+              file="Source/processor/gain_processor.h"/>
+        <FILE id="pIZQs2" name="modulation_source_processor.cpp" compile="1"
+              resource="0" file="Source/processor/modulation_source_processor.cpp"/>
+        <FILE id="moOkIU" name="modulation_source_processor.h" compile="0"
+              resource="0" file="Source/processor/modulation_source_processor.h"/>
+      </GROUP>
+      <GROUP id="{E4A99C46-1C12-C178-361D-EF4AD1B9F3BD}" name="utils">
+        <FILE id="oIuClN" name="constants.h" compile="0" resource="0" file="Source/utils/constants.h"/>
+        <FILE id="xvy5Me" name="parameters.cpp" compile="1" resource="0" file="Source/utils/parameters.cpp"/>
+        <FILE id="pEjPUY" name="parameters.h" compile="0" resource="0" file="Source/utils/parameters.h"/>
+        <FILE id="W4ENUw" name="text_value_converter.h" compile="0" resource="0"
+              file="Source/utils/text_value_converter.h"/>
+      </GROUP>
+      <GROUP id="{FD3FFB1B-0DCE-BD90-F50C-6E1B4F5A5C15}" name="view">
+        <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
+        <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
+        <FILE id="CPb2Oz" name="equalizer_plot_view.cpp" compile="1" resource="0"
               file="Source/view/equalizer_plot_view.cpp"/>
-        <FILE id="tYEP4H" name="equalizer_plot_view.h" compile="0" resource="0"
+        <FILE id="Hl15v0" name="equalizer_plot_view.h" compile="0" resource="0"
               file="Source/view/equalizer_plot_view.h"/>
-        <FILE id="p1Ecja" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
-        <FILE id="iRljId" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
-        <FILE id="p1TENC" name="modulation_source_view.cpp" compile="1" resource="0"
+        <FILE id="JYNG5D" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
+        <FILE id="LZxGYt" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
+        <FILE id="Sndw7F" name="modulation_source_view.cpp" compile="1" resource="0"
               file="Source/view/modulation_source_view.cpp"/>
-        <FILE id="BgnkN6" name="modulation_source_view.h" compile="0" resource="0"
+        <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0"
               file="Source/view/modulation_source_view.h"/>
-        <FILE id="AOLQ0t" name="social_buttons.h" compile="0" resource="0"
+        <FILE id="SFKS9r" name="social_buttons.h" compile="0" resource="0"
               file="Source/view/social_buttons.h"/>
       </GROUP>
-      <FILE id="jQNfxl" name="modEQ_processor.cpp" compile="1" resource="0"
-            file="Source/modEQ_processor.cpp"/>
-      <FILE id="sLV09t" name="modEQ_processor.h" compile="0" resource="0"
-            file="Source/modEQ_processor.h"/>
-      <FILE id="AwcYSk" name="modEQ_editor.cpp" compile="1" resource="0"
+      <FILE id="R7sLSP" name="modEQ_editor.cpp" compile="1" resource="0"
             file="Source/modEQ_editor.cpp"/>
-      <FILE id="JWCkWt" name="modEQ_editor.h" compile="0" resource="0" file="Source/modEQ_editor.h"/>
+      <FILE id="b3Aodl" name="modEQ_editor.h" compile="0" resource="0" file="Source/modEQ_editor.h"/>
+      <FILE id="iVjDW0" name="modEQ_processor.cpp" compile="1" resource="0"
+            file="Source/modEQ_processor.cpp"/>
+      <FILE id="CH9QNv" name="modEQ_processor.h" compile="0" resource="0"
+            file="Source/modEQ_processor.h"/>
     </GROUP>
-    <GROUP id="{EF796692-87A3-0277-8502-8CC33FE3BE62}" name="Resources">
-      <FILE id="WzcnpZ" name="tobanteAudio-text.png" compile="0" resource="1"
+    <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
+      <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
+      <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
+      <FILE id="WXATF6" name="tobanteAudio-text.png" compile="0" resource="1"
             file="Resources/tobanteAudio-text.png"/>
-      <FILE id="wsX6qO" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
-      <FILE id="AGfmdK" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <VS2017 targetFolder="Builds/VisualStudio2017">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="1" winWarningLevel="3"
-                       vst3BinaryLocation="C:\VSTPlugIns\tobanteAudio" vstBinaryLocation="C:\VSTPlugIns\tobanteAudio"/>
-        <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="1" winWarningLevel="3"
-                       vst3BinaryLocation="C:\VSTPlugIns\tobanteAudio" vstBinaryLocation="C:\VSTPlugIns\tobanteAudio"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_opengl" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party\JUCE\modules"/>
-      </MODULEPATHS>
-    </VS2017>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
-        <CONFIGURATION isDebug="0" name="Release"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
-      </MODULEPATHS>
-    </LINUX_MAKE>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
-        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
         <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="1" vst3BinaryLocation="C:\VSTPlugIns\tobanteAudio"
+                       winWarningLevel="4" multiProcessorCompilation="1"/>
+        <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="1" vst3BinaryLocation="C:\VSTPlugIns\tobanteAudio"
+                       winWarningLevel="4"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_devices" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_formats" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_processors" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_audio_utils" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_core" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_cryptography" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_data_structures" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_events" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_graphics" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_basics" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_gui_extra" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_opengl" path="3rd_party\JUCE\modules"/>
+        <MODULEPATH id="juce_dsp" path="3rd_party\JUCE\modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" optimisation="4"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
   </EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
@@ -181,10 +179,8 @@
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS/>
   <LIVE_SETTINGS>
-    <OSX/>
-    <WINDOWS buildEnabled="1"/>
-    <LINUX/>
+    <WINDOWS/>
   </LIVE_SETTINGS>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>
