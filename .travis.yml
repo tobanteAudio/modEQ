@@ -14,15 +14,15 @@ addons:
 
 before_install:
   # Install dependencies
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./ci/linux-before_install.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
 
 before_script:
   # Build PROJECER
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./ci/linux-before_script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_script.sh; fi
 
 script:
   # BUILD PROJECT
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./ci/linux-build_script.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-build_script.sh; fi
 
 # os: osx
 # sudo: false
