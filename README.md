@@ -27,8 +27,9 @@ git clone --recursive https://github.com/tobanteAudio/modEQ.git
 
 ### Linux
 
+- Install dependencies
 - Build Projucer from JUCE
-- Open modEQ.jucer with Projucer
+- Resave modEQ.jucer with Projucer
 
 ```sh
 cd $PROJECT_ROOT
@@ -39,8 +40,14 @@ cp build/modEQ.so ~/.vst
 
 ## ToDo
 
-- GainProcessor/Controller/View class
-- Dials for modulation source
+- JUCE Deprecated
+  - [createAndAddParameter](https://docs.juce.com/master/tutorial_audio_processor_value_tree_state.html)
+- EQ
+  - Mousewheel changes Q width
+  - Markers for band selection in analyser
+- Modulation
+  - Fix drawing of LFO
+  - Add waveforms
 
 ## Acknowledgment
 
