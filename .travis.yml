@@ -9,7 +9,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
 
 script-anchors:
-  - &script-LINUX
+  - &script-linux
     # Fake display
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
@@ -44,9 +44,32 @@ script-anchors:
     - cd Builds/LinuxMakefile
     - make -j4 CONFIG=Release
 
-  - &script-OSX
+  - &script-macOS
+    - gem install xcpretty
+    - gem install xcpretty-travis-formatter
+
+    # Set PROJUCER to GPL mode
+    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/JuceLibraryCode
+    - pwd
+    - sed -i '' "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
+    - sed -i '' "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
+    - sed -i '' "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
+    - cat AppConfig.h
+
+    # Build PROJUCER
+    - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
+    - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
+
+    # Generate XCode project
     - cd $TRAVIS_BUILD_DIR
+    - $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer --resave modEQ.jucer
+
+    # Build Project
+    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
     - ls
+    - xcodebuild -project modEQ.xcodeproj/ clean
+    - xcodebuild -project modEQ.xcodeproj/ ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter` > /dev/null
+
 
 matrix:
   include:
@@ -60,8 +83,8 @@ matrix:
           packages:
             - gcc-6
             - g++-6
-      script: *script-LINUX
+      script: *script-linux
 
     - os: osx
       osx_image: xcode9.4
-      script: *script-OSX
+      script: *script-macOS
