@@ -1,0 +1,20 @@
+# GENERAL
+version: 0.1.0.{build}
+branches:
+  only:
+    - master
+image:
+  - Visual Studio 2017
+clone_folder: c:\
+
+# SETUP
+install:
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
+  - cmd: git submodule update --init --recursive
+  - ps: (Get-Content -Path "c:/modEQ/3rd_party/JUCE/extras/Projucer/JuceLibraryCode/AppConfig.h") | ForEach-Object {$_ -Replace "#define JUCER_ENABLE_GPL_MODE 0", "#define JUCER_ENABLE_GPL_MODE 1"} | Set-Content -Path "c:/modEQ/3rd_party/JUCE/extras/Projucer/JuceLibraryCode/AppConfig.h"
+  - cmd: msbuild c:/modEQ/3rd_party/JUCE/extras/Projucer/Builds/VisualStudio2017/Projucer.sln /property:Platform=x64
+  - cmd: c:\JUCE\extras\Projucer\Builds\VisualStudio2017\x64\Debug\App\Projucer.exe --resave C:\modEQ\modEQ.jucer
+
+# BUILD
+build_script:
+  - cmd: msbuild c:/modEQ/Builds/VisualStudio2017/modEQ.sln /property:Platform=x64
