@@ -57,12 +57,12 @@ script-anchors:
     - cat AppConfig.h
 
     # Build PROJUCER
-    - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
+    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/MacOSX/
     - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
 
     # Generate XCode project
     - cd $TRAVIS_BUILD_DIR
-    - $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer --resave modEQ.jucer
+    - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer --resave modEQ.jucer
 
     # Build Project
     - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
