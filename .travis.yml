@@ -1,63 +1,67 @@
-sudo: required
-dist: trusty
+branches:
+  only:
+    - master
 
 language: cpp
-compiler: gcc
-
-addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - gcc-6
-      - g++-6
 
 before_install:
   # Install dependencies
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
 
-before_script:
-  # Linux fake display
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0 ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3 # give xvfb some time to start ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libsndfile1 ; fi
-  
-  # Build PROJUCER
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_script.sh; fi
+script-anchors:
+  - &script-LINUX
+    # Fake display
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 # give xvfb some time to start
+    - sudo apt-get install libsndfile1
 
-script:
-  # BUILD PROJECT
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-build_script.sh; fi
+    # Set PROJUCER to GPL mode
+    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE
+    - cd extras/Projucer/JuceLibraryCode
+    - pwd
+    - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
+    - sed -i "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
+    - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
+    - cat AppConfig.h
 
-# os: osx
-# sudo: false
-# language: cpp
+    # Build PROJUCER
+    - cd ../Builds/LinuxMakefile
+    - make -j4 CONFIG=Release
+    - cd $TRAVIS_BUILD_DIR
 
-# before_install:
-#   - gem install xcpretty
-#   - gem install xcpretty-travis-formatter
-#   - cd $TRAVIS_BUILD_DIR
-#   - git clone https://github.com/WeAreROLI/JUCE.git
-#   - git clone --recursive https://github.com/steinbergmedia/vst3sdk.git
-#   - cd JUCE
-#   - git checkout tags/5.3.2
-#   - cd extras/Projucer/JuceLibraryCode
-#   - pwd
-#   - sed -i '' "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
-#   - sed -i '' "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
-#   - sed -i '' "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
-#   - cat AppConfig.h
-#   - cd $TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/
-#   - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
+    # Set gcc version
+    - ls
+    - cd $TRAVIS_BUILD_DIR
+    - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+    - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+    - gcc -v && g++ -v
 
-# script:
-#   - cd $TRAVIS_BUILD_DIR/
-#   - export PROJUCER=$TRAVIS_BUILD_DIR/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer
-#   # - $PROJUCER --set-global-search-path osx defaultJuceModulePath  $TRAVIS_BUILD_DIR/JUCE/modules
-#   # - $PROJUCER --resave modEQ.jucer
-#   # - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
-#   # - ls
-#   # - xcodebuild -project modEQ.xcodeproj/ clean
-#   # - xcodebuild -project modEQ.xcodeproj/ ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter` > /dev/null
-#   - echo "SUCESS"
+    # Generate Makefile
+    - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
+    
+    # Build
+    - cd Builds/LinuxMakefile
+    - make -j4 CONFIG=Release
+
+  - &script-OSX
+    - cd $TRAVIS_BUILD_DIR
+    - ls
+
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+      script: *script-LINUX
+
+    - os: osx
+      osx_image: xcode9.4
+      script: *script-OSX
