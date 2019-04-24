@@ -89,15 +89,3 @@ matrix:
             - g++-6
       script: *script-linux
 
-    - os: linux
-      dist: xenial
-      sudo: required
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - gcc-6
-            - g++-6
-      script: *script-linux
-
