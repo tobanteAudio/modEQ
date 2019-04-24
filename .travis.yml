@@ -17,7 +17,13 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
 
 before_script:
-  # Build PROJECER
+  # Linux fake display
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export DISPLAY=:99.0 ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sh -e /etc/init.d/xvfb start ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sleep 3 # give xvfb some time to start ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install libsndfile1 ; fi
+  
+  # Build PROJUCER
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_script.sh; fi
 
 script:

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# Fake display
-export DISPLAY=:99.0
-sh -e /etc/init.d/xvfb start
-sleep 3 # give xvfb some time to start
-sudo apt-get install libsndfile1
+# # Fake display
+# export DISPLAY=:99.0
+# sh -e /etc/init.d/xvfb start
+# sleep 3 # give xvfb some time to start
+# sudo apt-get install libsndfile1
 
 # Set PROJUCER to GPL mode
 cd $TRAVIS_BUILD_DIR/3rd_party/JUCE
