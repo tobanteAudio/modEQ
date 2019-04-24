@@ -58,7 +58,7 @@ script-anchors:
 
     # Build PROJUCER
     - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/MacOSX/
-    - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`  > /dev/null
+    - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`
 
     # Generate XCode project
     - cd $TRAVIS_BUILD_DIR
@@ -68,7 +68,7 @@ script-anchors:
     - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
     - ls
     - xcodebuild -project modEQ.xcodeproj/ clean
-    - xcodebuild -project modEQ.xcodeproj/ ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter` > /dev/null
+    - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
 
 
 matrix:
@@ -79,6 +79,18 @@ matrix:
       
     - os: linux
       dist: trusty
+      sudo: required
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+      script: *script-linux
+
+    - os: linux
+      dist: xenial
       sudo: required
       addons:
         apt:
