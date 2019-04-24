@@ -7,8 +7,15 @@
               pluginManufacturerCode="toAu" pluginCode="tamq" pluginAUExportPrefix="modEQAU"
               aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx"
               binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17"
-              pluginFormats="buildAU,buildStandalone,buildVST3">
+              pluginFormats="buildAU,buildStandalone,buildVST3" companyCopyright="GNU GENERAL PUBLIC LICENSE Version 3"
+              displaySplashScreen="0" reportAppUsage="0">
   <MAINGROUP id="EssRVE" name="modEQ">
+    <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
+      <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
+      <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
+      <FILE id="WXATF6" name="tobanteAudio-text.png" compile="0" resource="1"
+            file="Resources/tobanteAudio-text.png"/>
+    </GROUP>
     <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
       <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
         <FILE id="Xvpwgz" name="modulation_source_analyser.h" compile="0" resource="0"
@@ -80,12 +87,6 @@
             file="Source/modEQ_processor.cpp"/>
       <FILE id="CH9QNv" name="modEQ_processor.h" compile="0" resource="0"
             file="Source/modEQ_processor.h"/>
-    </GROUP>
-    <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
-      <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
-      <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
-      <FILE id="WXATF6" name="tobanteAudio-text.png" compile="0" resource="1"
-            file="Resources/tobanteAudio-text.png"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
