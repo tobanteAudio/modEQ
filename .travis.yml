@@ -73,6 +73,10 @@ script-anchors:
 
 matrix:
   include:
+    - os: osx
+      osx_image: xcode9.4
+      script: *script-macOS
+      
     - os: linux
       dist: trusty
       sudo: required
@@ -85,6 +89,3 @@ matrix:
             - g++-6
       script: *script-linux
 
-    - os: osx
-      osx_image: xcode9.4
-      script: *script-macOS
