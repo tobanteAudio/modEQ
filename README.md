@@ -2,6 +2,8 @@
 
 EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
 
+[**Documentation**](https://tobanteaudio.github.io/modEQ/)
+
 ## Status
 
 |                                                      LICENSE                                                       |                                                      Linux / macOS                                                      |                                                                  Windows                                                                  |
