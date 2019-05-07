@@ -45,6 +45,11 @@ private:
     //==============================================================================
     int index;
 
+#if TOBANTEAUDIO_LIVE_MOCK
+public:
+    BandView() : BandView(1) { setSize(100, 100); }
+#endif  // TOBANTEAUDIO_LIVE_MOCK
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandView)
 };
