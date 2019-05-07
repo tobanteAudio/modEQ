@@ -35,10 +35,6 @@ EqualizerPlotView::~EqualizerPlotView() { processor.removeChangeListener(this); 
 
 void EqualizerPlotView::paint(Graphics& g)
 {
-    // Setup
-    const Colour inputColour  = Colours::greenyellow;
-    const Colour outputColour = Colours::red;
-
     // Save graphics state
     Graphics::ScopedSaveState state(g);
 
@@ -90,6 +86,8 @@ void EqualizerPlotView::paint(Graphics& g)
     g.reduceClipRegion(plotFrame);
 
     // Analysers
+    const Colour inputColour  = Colours::greenyellow;
+    const Colour outputColour = Colours::red;
     Path analyser;
     g.setFont(16.0f);
 
@@ -144,7 +142,7 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
             if (auto* band = processor.getBand(i))
             {
                 if (std::abs(static_cast<float>(plotFrame.getX())
-                             + getPositionForFrequency(int(band->frequency))
+                             + getPositionForFrequency(static_cast<int>(band->frequency))
                                    * static_cast<float>(plotFrame.getWidth())
                              - e.position.getX())
                     < clickRadius)
@@ -288,7 +286,7 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
                         {
                             const auto wheelMovement = wheel.deltaY * 0.05;
                             const auto newValue      = param->getValue() + wheelMovement;
-                            param->setValueNotifyingHost(newValue);
+                            param->setValueNotifyingHost(static_cast<float>(newValue));
                         }
                     }  // If mouse & band match on y-axis
                 }      // If mouse & band match on x-axis

@@ -44,10 +44,7 @@ cp build/modEQ.so ~/.vst
 
 ## ToDo
 
-- JUCE Deprecated
-  - [createAndAddParameter](https://docs.juce.com/master/tutorial_audio_processor_value_tree_state.html)
 - EQ
-  - Mousewheel changes Q width
   - Markers for band selection in analyser
 - Modulation
   - Fix drawing of LFO

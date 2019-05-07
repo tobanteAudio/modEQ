@@ -50,27 +50,30 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
     qualityRange.setSkewForCentre(1.0f);
     gainRange.setSkewForCentre(1.0f);
 
+    using Parameter = AudioProcessorValueTreeState::Parameter;
+
     for (int i = 0; i < int(bands.size()); ++i)
     {
         auto& band = bands[size_t(i)];
 
         band.magnitudes.resize(frequencies.size(), 1.0);
 
-        state.createAndAddParameter(getFrequencyParamID(i), band.name + " freq",
-                                    "Frequency", frequencyRange, band.frequency,
-                                    frequencyTextConverter, frequencyTextConverter, false,
-                                    true, false);
-        state.createAndAddParameter(
+        state.createAndAddParameter(std::make_unique<Parameter>(
+            getFrequencyParamID(i), band.name + " freq", "Frequency", frequencyRange,
+            band.frequency, frequencyTextConverter, frequencyTextConverter, false, true,
+            false));
+        state.createAndAddParameter(std::make_unique<Parameter>(
             getQualityParamID(i), band.name + " Q", translate("Quality"), qualityRange,
-            band.quality, qualityTextConverter, qualityTextConverter, false, true, false);
-        state.createAndAddParameter(
+            band.quality, qualityTextConverter, qualityTextConverter, false, true,
+            false));
+        state.createAndAddParameter(std::make_unique<Parameter>(
             getGainParamID(i), band.name + " gain", translate("Gain"), gainRange,
-            band.gain, gainTextConverter, gainTextConverter, false, true, false);
-        state.createAndAddParameter(
+            band.gain, gainTextConverter, gainTextConverter, false, true, false));
+        state.createAndAddParameter(std::make_unique<Parameter>(
             getActiveParamID(i), band.name + " active", translate("Active"), activeRange,
-            band.active, activeTextConverter, activeTextConverter, false, true, true);
+            band.active, activeTextConverter, activeTextConverter, false, true, true));
 
-        state.createAndAddParameter(
+        state.createAndAddParameter(std::make_unique<Parameter>(
             getTypeParamID(i), band.name + " Type", translate("Filter Type"),
             filterTypeRange, (float)band.type,
             [](float value) {
@@ -87,7 +90,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
                             i);
                 return tobanteAudio::EqualizerProcessor::NoFilter;
             },
-            false, true, true);
+            false, true, true));
 
         state.addParameterListener(getTypeParamID(i), this);
         state.addParameterListener(getFrequencyParamID(i), this);
@@ -461,9 +464,11 @@ void EqualizerProcessor::createFrequencyPlot(Path& p, const std::vector<double>&
     const double xFactor = static_cast<double>(bounds.getWidth()) / frequencies.size();
     for (size_t i = 1; i < frequencies.size(); ++i)
     {
-        p.lineTo(roundToInt(bounds.getX() + i * xFactor),
-                 roundToInt(bounds.getCentreY()
-                            - pixelsPerDouble * std::log(mags[i]) / std::log(2)));
+        const auto x = roundToInt(bounds.getX() + i * xFactor);
+        const auto y = roundToInt(bounds.getCentreY()
+                                  - pixelsPerDouble * std::log(mags[i]) / std::log(2));
+
+        p.lineTo(static_cast<float>(x), static_cast<float>(y));
     }
 }
 

@@ -41,17 +41,19 @@ ModEQProcessor::ModEQProcessor()
 
     lfoFreqRange.setSkewForCentre(1.0f);
 
-    state.createAndAddParameter(tobanteAudio::Parameters::Output, translate("Output"),
-                                translate("Output level"), gainRange, 1.0,
-                                gainTextConverter, gainTextConverter, false, true, false);
+    using Parameter = AudioProcessorValueTreeState::Parameter;
 
-    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"),
-                                translate("lfo freq"), lfoFreqRange, 0.3f,
-                                freqTextConverter, freqTextConverter, false, true, false);
+    state.createAndAddParameter(std::make_unique<Parameter>(
+        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"),
+        gainRange, 1.0, gainTextConverter, gainTextConverter, false, true, false));
 
-    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"),
-                                translate("lfo gain"), lfoGainRange, 1.0f,
-                                gainTextConverter, gainTextConverter, false, true, false);
+    state.createAndAddParameter(std::make_unique<Parameter>(
+        "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
+        freqTextConverter, freqTextConverter, false, true, false));
+
+    state.createAndAddParameter(std::make_unique<Parameter>(
+        "lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, 1.0f,
+        gainTextConverter, gainTextConverter, false, true, false));
 
     state.addParameterListener(tobanteAudio::Parameters::Output, this);
 

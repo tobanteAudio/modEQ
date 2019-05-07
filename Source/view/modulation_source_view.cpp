@@ -109,7 +109,7 @@ void ModulationSourceView::resized()
 
     // LFO plot
     auto reduced_area = area.reduced(3, 3);
-    plotFrame = reduced_area;
+    plotFrame         = reduced_area;
 
     // Connect
     modConnect1.setBounds(reduced_area.removeFromTop(area.getHeight() / 2));
