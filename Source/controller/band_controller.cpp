@@ -22,21 +22,26 @@ BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::Equ
                                tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
+    auto& state              = mainProcessor.getPluginState();
+    const auto& type_id      = processor.getTypeParamID(index);
+    const auto& active_id    = processor.getActiveParamID(index);
+    const auto& frequency_id = processor.getFrequencyParamID(index);
+    const auto& quality_id   = processor.getQualityParamID(index);
+    const auto& gain_id      = processor.getGainParamID(index);
+
     // Link GUI components to ValueTree
     using SliderAttachment   = AudioProcessorValueTreeState::SliderAttachment;
     using ComboBoxAttachment = AudioProcessorValueTreeState::ComboBoxAttachment;
     using ButtonAttachment   = AudioProcessorValueTreeState::ButtonAttachment;
 
-    auto& state = mainProcessor.getPluginState();
+    // Type & Bypass
+    boxAttachments.add(new ComboBoxAttachment(state, type_id, view.type));
+    buttonAttachments.add(new ButtonAttachment(state, active_id, view.activate));
 
-    boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
-    buttonAttachments.add(
-        new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
-
-    attachments.add(
-        new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
-    attachments.add(new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
-    attachments.add(new SliderAttachment(state, processor.getGainParamID(index), view.gain));
+    // Slider
+    attachments.add(new SliderAttachment(state, frequency_id, view.frequency));
+    attachments.add(new SliderAttachment(state, quality_id, view.quality));
+    attachments.add(new SliderAttachment(state, gain_id, view.gain));
 
     // Add listner
     view.solo.addListener(this);
