@@ -25,7 +25,7 @@ ModulationSourceView::ModulationSourceView(int i)
     , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
     , toggleConnectView(translate("Connect"))
     , modConnect1(i)
-    , modConnect2(i+1)
+    , modConnect2(i + 1)
 {
     // Slider
     addAndMakeVisible(frequency);
@@ -76,9 +76,11 @@ void ModulationSourceView::paint(Graphics& g)
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
 
     g.reduceClipRegion(plotFrame);
 
@@ -113,12 +115,8 @@ void ModulationSourceView::resized()
     plotFrame = area.reduced(3, 3);
 
     // Connect
-    modConnect1.setBounds(area.removeFromTop(area.getHeight()/2));
+    modConnect1.setBounds(area.removeFromTop(area.getHeight() / 2));
     modConnect2.setBounds(area);
 }
-
-
-
-
 
 }  // namespace tobanteAudio

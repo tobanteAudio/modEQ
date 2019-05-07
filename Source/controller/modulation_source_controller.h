@@ -39,7 +39,7 @@ public:
     void buttonClicked(Button* b) override;
     void sliderValueChanged(Slider* slider) override;
     void timerCallback() override;
-    void changeListenerCallback(ChangeBroadcaster* sender) override{};
+    void changeListenerCallback(ChangeBroadcaster* sender) override {};
 
 private:
     //==============================================================================

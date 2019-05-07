@@ -34,20 +34,23 @@ ModEQProcessor::ModEQProcessor()
     , equalizerProcessor(state)
 
 {
-    const float maxGain = Decibels::decibelsToGain(24.0f);
-    auto const gainRange      = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
-    auto const lfoGainRange   = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
-    auto lfoFreqRange   = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
+    const float maxGain     = Decibels::decibelsToGain(24.0f);
+    auto const gainRange    = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
+    auto const lfoGainRange = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
+    auto lfoFreqRange       = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
 
     lfoFreqRange.setSkewForCentre(1.0f);
 
-    state.createAndAddParameter(tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange, 1.0,
+    state.createAndAddParameter(tobanteAudio::Parameters::Output, translate("Output"),
+                                translate("Output level"), gainRange, 1.0,
                                 gainTextConverter, gainTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
+    state.createAndAddParameter("lfo_1_freq", translate("lfo freq"),
+                                translate("lfo freq"), lfoFreqRange, 0.3f,
                                 freqTextConverter, freqTextConverter, false, true, false);
 
-    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, 1.0f,
+    state.createAndAddParameter("lfo_1_gain", translate("lfo gain"),
+                                translate("lfo gain"), lfoGainRange, 1.0f,
                                 gainTextConverter, gainTextConverter, false, true, false);
 
     state.addParameterListener(tobanteAudio::Parameters::Output, this);
@@ -103,7 +106,8 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
     equalizerProcessor.prepare(spec);
     outputGain.prepare(spec);
 
-    outputGain.setGainLinear(*state.getRawParameterValue(tobanteAudio::Parameters::Output));
+    outputGain.setGainLinear(
+        *state.getRawParameterValue(tobanteAudio::Parameters::Output));
 }
 
 void ModEQProcessor::releaseResources() {}
@@ -112,7 +116,8 @@ void ModEQProcessor::releaseResources() {}
 bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
     // This checks if the input layout matches the output layout
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet()) return false;
+    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
+        return false;
 
     return true;
 }
@@ -128,13 +133,15 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     // if (getActiveEditor() != nullptr) {}
 
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i) buffer.clear(i, 0, buffer.getNumSamples());
+    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+        buffer.clear(i, 0, buffer.getNumSamples());
 
     modBuffer.clear();
     modSource.processBlock(modBuffer, midiMessages);
 
-    auto modRange  = .8f;
-    auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
+    auto modRange = .8f;
+    auto modValue
+        = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
     auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
     auto gainMod   = gainValue + (modRange * modValue);
 

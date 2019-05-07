@@ -18,7 +18,9 @@
 
 namespace tobanteAudio
 {
-BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::EqualizerProcessor& sub, tobanteAudio::BandView& v)
+BandController::BandController(const int i, ModEQProcessor& p,
+                               tobanteAudio::EqualizerProcessor& sub,
+                               tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
     // Link GUI components to ValueTree
@@ -28,12 +30,17 @@ BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::Equ
 
     auto& state = mainProcessor.getPluginState();
 
-    boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
-    buttonAttachments.add(new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
+    boxAttachments.add(
+        new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
+    buttonAttachments.add(
+        new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
 
-    attachments.add(new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
-    attachments.add(new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
-    attachments.add(new SliderAttachment(state, processor.getGainParamID(index), view.gain));
+    attachments.add(new SliderAttachment(state, processor.getFrequencyParamID(index),
+                                         view.frequency));
+    attachments.add(
+        new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
+    attachments.add(
+        new SliderAttachment(state, processor.getGainParamID(index), view.gain));
 
     // Add listner
     view.solo.addListener(this);
@@ -106,13 +113,25 @@ void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType
     }
 }
 
-void BandController::updateSoloState(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
+void BandController::updateSoloState(bool isSolo)
+{
+    view.solo.setToggleState(isSolo, dontSendNotification);
+}
 
-void BandController::setFrequency(float newFreq) { view.frequency.setValue(newFreq, sendNotification); }
+void BandController::setFrequency(float newFreq)
+{
+    view.frequency.setValue(newFreq, sendNotification);
+}
 
-void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
+void BandController::setGain(float newGain)
+{
+    view.gain.setValue(newGain, sendNotification);
+}
 
-void BandController::setType(int newType) { view.type.setSelectedId(newType + 1, sendNotification); }
+void BandController::setType(int newType)
+{
+    view.type.setSelectedId(newType + 1, sendNotification);
+}
 
 void BandController::buttonClicked(Button* b)
 {

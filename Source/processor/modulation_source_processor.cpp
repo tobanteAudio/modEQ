@@ -18,7 +18,8 @@
 
 namespace tobanteAudio
 {
-ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
+ModulationSourceProcessor::ModulationSourceProcessor(int i,
+                                                     AudioProcessorValueTreeState& vts)
     : index(i)
     , BaseProcessor(vts)
     , paramIDGain("lfo_" + String(index) + "_gain")
@@ -34,7 +35,7 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 {
     sampleRate = newSampleRate;
 
-    dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
+    dsp::ProcessSpec spec {sampleRate, static_cast<uint32>(samplesPerBlock)};
     oscillator.prepare(spec);
     gain.prepare(spec);
 
@@ -60,13 +61,20 @@ void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
     analyser.addAudioData(buffer, 0, 1);
 }
 
-void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/, float /*newValue*/) {}
+void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/,
+                                                 float /*newValue*/)
+{
+}
 
-void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& bounds, float minFreq)
+void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& bounds,
+                                                   float minFreq)
 {
     analyser.createPath(p, bounds.toFloat(), minFreq);
 }
 
-bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
+bool ModulationSourceProcessor::checkForNewAnalyserData()
+{
+    return analyser.checkForNewData();
+}
 
 }  // namespace tobanteAudio

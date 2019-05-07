@@ -29,7 +29,8 @@ class EqualizerPlotView : public Component, public ChangeListener, public Timer
 {
 public:
     //==============================================================================
-    EqualizerPlotView(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&);
+    EqualizerPlotView(tobanteAudio::EqualizerProcessor&,
+                      OwnedArray<tobanteAudio::BandController>&);
     ~EqualizerPlotView();
 
     //==============================================================================

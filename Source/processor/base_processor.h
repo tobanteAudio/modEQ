@@ -28,9 +28,15 @@ public:
     ~BaseProcessor() override = default;
 
     //==============================================================================
-    void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
+    void prepareToPlay(double /*sampleRate*/,
+                       int /*maximumExpectedSamplesPerBlock*/) override
+    {
+    }
     void releaseResources() override {}
-    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override {}
+    void processBlock(AudioBuffer<float>& /*buffer*/,
+                      MidiBuffer& /*midiMessages*/) override
+    {
+    }
 
     //==============================================================================
     AudioProcessorEditor* createEditor() override { return nullptr; }
@@ -56,7 +62,7 @@ public:
     //==============================================================================
     AudioProcessorValueTreeState& state;
 
-    double sampleRate{0};
+    double sampleRate {0};
 
 protected:
 private:

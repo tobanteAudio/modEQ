@@ -25,7 +25,9 @@
 #include "utils/text_value_converter.h"
 
 //==============================================================================
-class ModEQProcessor : public AudioProcessor, public AudioProcessorValueTreeState::Listener, public ChangeBroadcaster
+class ModEQProcessor : public AudioProcessor,
+                       public AudioProcessorValueTreeState::Listener,
+                       public ChangeBroadcaster
 {
 public:
     //==============================================================================
@@ -40,7 +42,8 @@ public:
     bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
 #endif
 
-    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override;
+    void processBlock(AudioBuffer<float>& /*buffer*/,
+                      MidiBuffer& /*midiMessages*/) override;
     void parameterChanged(const String& parameter, float newValue) override;
 
     //==============================================================================

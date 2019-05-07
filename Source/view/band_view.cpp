@@ -38,7 +38,8 @@ BandView::BandView(int const i)
 
     // Add all filter options to combo box
     for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
-        type.addItem(tobanteAudio::EqualizerProcessor::getFilterTypeName(static_cast<tobanteAudio::EqualizerProcessor::FilterType>(j)),
+        type.addItem(tobanteAudio::EqualizerProcessor::getFilterTypeName(
+                         static_cast<tobanteAudio::EqualizerProcessor::FilterType>(j)),
                      j + 1);
 
     // Make controls visible

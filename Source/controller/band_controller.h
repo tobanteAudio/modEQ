@@ -26,7 +26,9 @@ class BandController : public Button::Listener
 {
 public:
     //==============================================================================
-    BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/, tobanteAudio::BandView& /*v*/);
+    BandController(int /*i*/, ModEQProcessor& /*p*/,
+                   tobanteAudio::EqualizerProcessor& /*sub*/,
+                   tobanteAudio::BandView& /*v*/);
 
     //==============================================================================
     void buttonClicked(Button* b) override;

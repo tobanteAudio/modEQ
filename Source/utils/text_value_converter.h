@@ -20,7 +20,10 @@
 class ActiveTextConverter
 {
 public:
-    String operator()(float const value) const { return value > 0.5f ? translate("active") : translate("bypassed"); }
+    String operator()(float const value) const
+    {
+        return value > 0.5f ? translate("active") : translate("bypassed");
+    }
 
     float operator()(const String& text) const { return text == translate("active"); }
 };
@@ -30,13 +33,16 @@ class FrequencyTextConverter
 public:
     String operator()(float const value) const
     {
-        return (value < 1000) ? String(value, 0) + " Hz" : String(value / 1000.0, 2) + " kHz";
+        return (value < 1000) ? String(value, 0) + " Hz"
+                              : String(value / 1000.0, 2) + " kHz";
     }
 
     float operator()(const String& text) const
     {
-        return text.endsWith(" kHz") ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
-                                     : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
+        return text.endsWith(" kHz")
+                   ? static_cast<float>(text.dropLastCharacters(4).getFloatValue()
+                                        * 1000.0)
+                   : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
     }
 };
 
@@ -51,7 +57,10 @@ public:
 class GainTextConverter
 {
 public:
-    String operator()(float const value) const { return String(Decibels::gainToDecibels(value), 1) + " dB"; }
+    String operator()(float const value) const
+    {
+        return String(Decibels::gainToDecibels(value), 1) + " dB";
+    }
 
     float operator()(const String& text) const
     {
@@ -62,7 +71,10 @@ public:
 class InvertPhaseTextConverter
 {
 public:
-    String operator()(float const value) const { return value < 0.5 ? "Normal" : "Inverted"; }
+    String operator()(float const value) const
+    {
+        return value < 0.5 ? "Normal" : "Inverted";
+    }
 
     float operator()(const String& text) const
     {

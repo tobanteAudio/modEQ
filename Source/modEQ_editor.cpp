@@ -32,18 +32,20 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     for (int i = 1; i < 2; ++i)
     {
         auto* modView = modViews.add(new tobanteAudio::ModulationSourceView(i));
-        modController.add(new tobanteAudio::ModulationSourceController(i, processor, processor.modSource, *modView));
+        modController.add(new tobanteAudio::ModulationSourceController(
+            i, processor, processor.modSource, *modView));
 
-        //modView->setLookAndFeel(&tobanteLookAndFeel);
+        // modView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(modView);
     }
 
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
         auto* bandView = bandViews.add(new tobanteAudio::BandView(i));
-        bandControllers.add(new tobanteAudio::BandController(i, processor, processor.getEQ(), *bandView));
+        bandControllers.add(
+            new tobanteAudio::BandController(i, processor, processor.getEQ(), *bandView));
 
-        //bandView->setLookAndFeel(&tobanteLookAndFeel);
+        // bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
 
@@ -53,8 +55,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     frame.setTextLabelPosition(Justification::centred);
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
-    attachments.add(
-        new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(), tobanteAudio::Parameters::Output, output));
+    attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
+        processor.getPluginState(), tobanteAudio::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
     output.setColour(Slider::thumbColourId, Colours::red);
 
@@ -101,13 +103,14 @@ void ModEQEditor::resized()
     socialButtons.setBounds(area.removeFromBottom(35));
 
     // Modulators
-    auto modArea        = area.removeFromBottom(getHeight() / 5);
+    auto modArea              = area.removeFromBottom(getHeight() / 5);
     auto const modSourceWidth = modArea.getWidth() / 3;
-    for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
+    for (auto* modView : modViews)
+        modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace = area.removeFromBottom(getHeight() / 3);
-    auto const width     = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
+    auto bandSpace   = area.removeFromBottom(getHeight() / 3);
+    auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output

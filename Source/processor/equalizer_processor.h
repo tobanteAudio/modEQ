@@ -21,7 +21,9 @@
 namespace tobanteAudio
 {
 //==============================================================================
-class EqualizerProcessor : public BaseProcessor, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
+class EqualizerProcessor : public BaseProcessor,
+                           public ChangeBroadcaster,
+                           AudioProcessorValueTreeState::Listener
 
 {
 public:
@@ -108,9 +110,12 @@ private:
     bool wasBypassed = true;
 
     //==============================================================================
-    using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
+    using FilterBand = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>,
+                                                dsp::IIR::Coefficients<float>>;
 
-    dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand, FilterBand, FilterBand> filter;
+    dsp::ProcessorChain<FilterBand, FilterBand, FilterBand, FilterBand, FilterBand,
+                        FilterBand>
+        filter;
     std::vector<Band> bands;
 
     std::vector<double> frequencies;
