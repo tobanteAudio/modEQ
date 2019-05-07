@@ -108,11 +108,12 @@ void ModulationSourceView::resized()
     toggleConnectView.setBounds(area.removeFromBottom(area.getHeight() / 6));
 
     // LFO plot
-    plotFrame = area.reduced(3, 3);
+    auto reduced_area = area.reduced(3, 3);
+    plotFrame = reduced_area;
 
     // Connect
-    modConnect1.setBounds(area.removeFromTop(area.getHeight() / 2));
-    modConnect2.setBounds(area);
+    modConnect1.setBounds(reduced_area.removeFromTop(area.getHeight() / 2));
+    modConnect2.setBounds(reduced_area);
 }
 
 }  // namespace tobanteAudio

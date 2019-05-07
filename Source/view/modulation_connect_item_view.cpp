@@ -24,8 +24,13 @@ namespace tobanteAudio
 {
 //==============================================================================
 ModulationConnectItemView::ModulationConnectItemView(int i)
-    : index(i), amount(Slider::LinearHorizontal, Slider::NoTextBox)
+    : index(i)
+    , active(translate("A"))
+    , amount(Slider::LinearHorizontal, Slider::NoTextBox)
 {
+    // Toogle Button
+    addAndMakeVisible(active);
+
     // Slider
     amount.setRange(-1.0, 1.0, 0.0);
     addAndMakeVisible(amount);
@@ -33,7 +38,6 @@ ModulationConnectItemView::ModulationConnectItemView(int i)
     // Label
     target.setJustificationType(Justification::centred);
     target.setText("Target: " + String(index), NotificationType::dontSendNotification);
-
     addAndMakeVisible(target);
 }
 
@@ -44,6 +48,8 @@ void ModulationConnectItemView::resized()
     auto area             = getLocalBounds();
     const auto sliderArea = area.removeFromRight(area.getWidth() / 2);
 
+    // Button
+    active.setBounds(area.removeFromRight(area.getWidth() / 6).reduced(0, 5));
     // Labels
     target.setBounds(area);
 

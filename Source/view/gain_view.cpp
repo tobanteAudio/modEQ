@@ -20,7 +20,8 @@
 namespace tobanteAudio
 {
 //==============================================================================
-GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+GainView::GainView(const int i)
+    : index(i), gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     gain.setColour(Slider::thumbColourId, Colours::red);
     addAndMakeVisible(gain);

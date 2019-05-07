@@ -21,10 +21,14 @@
 //==============================================================================
 namespace tobanteAudio
 {
-struct GainView : public Component
+class GainView : public Component
 {
+private:
+    int index;
+
+public:
     //==============================================================================
-    GainView();
+    GainView(int i);
     ~GainView();
 
     //==============================================================================
@@ -34,7 +38,12 @@ struct GainView : public Component
     //==============================================================================
     Slider gain;
 
-private:
+    //==============================================================================
+#if TOBANTEAUDIO_LIVE_MOCK
+public:
+    GainView() : GainView(1) { setSize(100, 100); }
+#endif  // TOBANTEAUDIO_LIVE_MOCK
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainView)
 };

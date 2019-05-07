@@ -32,6 +32,7 @@ public:
     void resized() override;
 
     //==============================================================================
+    TextButton active;
     Slider amount;
     Label target;
 
