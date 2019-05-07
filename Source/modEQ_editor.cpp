@@ -105,7 +105,7 @@ void ModEQEditor::paint(Graphics& g)
     }();
     g.setColour(Colours::white);
     g.setFont(16.f);
-    g.drawText("modEQ v" + version, versionArea.reduced(5), Justification::centredTop);
+    g.drawText("modEQ v" + version, versionArea.reduced(5), Justification::centred);
 }
 
 void ModEQEditor::resized()
