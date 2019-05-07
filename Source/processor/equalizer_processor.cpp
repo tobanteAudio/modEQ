@@ -50,15 +50,22 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
 
     for (int i = 0; i < static_cast<int>(bands.size()); ++i)
     {
-        using Parameter = AudioProcessorValueTreeState::Parameter;
-
         auto& band = bands[size_t(i)];
 
-        auto& random = Random::getSystemRandom();
-        Colour colour(random.nextInt(255), random.nextInt(255), random.nextInt(255));
+        // Generate random rgb colour
+        const auto colour = []() -> Colour {
+            auto& random = Random::getSystemRandom();
+            const auto r = static_cast<uint8>(random.nextInt(256));
+            const auto g = static_cast<uint8>(random.nextInt(256));
+            const auto b = static_cast<uint8>(random.nextInt(256));
+            return Colour(r, g, b);
+        }();
         band.colour = colour;
 
         band.magnitudes.resize(frequencies.size(), 1.0);
+
+        // ValueTree parameters
+        using Parameter = AudioProcessorValueTreeState::Parameter;
 
         state.createAndAddParameter(std::make_unique<Parameter>(
             getFrequencyParamID(i), band.name + " freq", "Frequency", frequencyRange, band.frequency,
@@ -77,17 +84,16 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
             getTypeParamID(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
             (float)band.type,
             [](float value) {
-                return tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                    static_cast<tobanteAudio::EqualizerProcessor::FilterType>(
-                        static_cast<int>(value)));
+                using EP = tobanteAudio::EqualizerProcessor;
+                return EP::getFilterTypeName(static_cast<EP::FilterType>(static_cast<int>(value)));
             },
             [](String text) {
-                for (int i = 0; i < tobanteAudio::EqualizerProcessor::LastFilterID; ++i)
-                    if (text
-                        == tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                               static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
-                        return static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i);
-                return tobanteAudio::EqualizerProcessor::NoFilter;
+                using EP = tobanteAudio::EqualizerProcessor;
+
+                for (int i = 0; i < EP::LastFilterID; ++i)
+                    if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
+                        return static_cast<EP::FilterType>(i);
+                return EP::NoFilter;
             },
             false, true, true));
 

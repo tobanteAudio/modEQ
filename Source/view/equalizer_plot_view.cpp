@@ -134,9 +134,11 @@ void EqualizerPlotView::paint(Graphics& g)
         }
 
         // Label
-        const int size {30};
-        const int offset {-20};
-        g.drawFittedText(String(i), x + offset, y + offset, size, size, Justification::left, 1);
+        const int size{30};
+        const int offset{-20};
+        const int label_x{static_cast<int>(x + offset)};
+        const int label_y{static_cast<int>(y + offset)};
+        g.drawFittedText(String(i), label_x, label_y, size, size, Justification::left, 1);
 
         // Handle
         g.drawEllipse(x, y, 8, 8, 5);
