@@ -44,22 +44,38 @@ public:
     void mouseDown(const MouseEvent& e) override;
     void mouseMove(const MouseEvent& e) override;
     void mouseDrag(const MouseEvent& e) override;
+
+    /**
+     * @brief Deactivates the selected band.
+     */
     void mouseDoubleClick(const MouseEvent& e) override;
+
+    /**
+     * @brief Changes the Q width of the selected band.
+     */
     void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
 
 private:
     //==============================================================================
-    tobanteAudio::EqualizerProcessor& processor;
-    OwnedArray<tobanteAudio::BandController>& bandControllers;
-
-    //==============================================================================
     void updateFrequencyResponses();
 
     //==============================================================================
-    static float getPositionForFrequency(float freq);
-    static float getFrequencyForPosition(float pos);
-    static float getPositionForGain(float gain, float top, float bottom);
-    static float getGainForPosition(float pos, float top, float bottom);
+    static float get_position_for_frequency(float freq);
+    static float get_frequency_for_position(float pos);
+    static float get_position_for_gain(float gain, float top, float bottom);
+    static float get_gain_for_position(float pos, float top, float bottom);
+
+    /**
+     * @brief Checks if two positions are in a given radius.
+     */
+    static bool overlap_with_radius(float obj_pos, float mouse_pos, int radius)
+    {
+        return std::abs(obj_pos - mouse_pos) < radius;
+    }
+
+    //==============================================================================
+    tobanteAudio::EqualizerProcessor& processor;
+    OwnedArray<tobanteAudio::BandController>& bandControllers;
 
     //==============================================================================
     Rectangle<int> plotFrame;
