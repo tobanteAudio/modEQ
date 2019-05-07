@@ -19,26 +19,65 @@
 
 namespace tobanteAudio
 {
-ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
+ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
+                                                       ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
-    : index(i), mainProcessor(mp), processor(p), view(v)
+    : index(i), mainProcessor(mp), processor(p), view(v), _connectViewActive(false)
 {
     // Link GUI components to ValueTree
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = mainProcessor.getPluginState();
 
-    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
-    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
+    attachments.add(
+        new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
+    attachments.add(
+        new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
+
+    // Button Connect
+    view.toggleConnectView.addListener(this);
+    // Slider connect
+    view.frequency.addListener(this);
+    view.gain.addListener(this);
 
     // Start Timer
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
-void ModulationSourceController::changeListenerCallback(ChangeBroadcaster* sender) {}
+void ModulationSourceController::buttonClicked(Button* b)
+{
+    if (b == &view.toggleConnectView)
+    {
+        _connectViewActive = !_connectViewActive;
+        view.modConnect1.setVisible(_connectViewActive);
+        view.modConnect2.setVisible(_connectViewActive);
+    }
+}
 
+void ModulationSourceController::sliderValueChanged(Slider* slider)
+{
+    auto& frequency = view.frequency;
+    auto& gain      = view.gain;
+    auto& gainLabel = view.gainLabel;
+    auto& freqLabel = view.freqLabel;
+
+    if (slider == &frequency)
+    {
+        freqLabel.setText(frequency.getTextFromValue(frequency.getValue()),
+                          NotificationType::dontSendNotification);
+    }
+
+    if (slider == &gain)
+    {
+        gainLabel.setText(gain.getTextFromValue(gain.getValue()),
+                          NotificationType::dontSendNotification);
+    }
+}
 void ModulationSourceController::timerCallback()
 {
-    if (processor.checkForNewAnalyserData()) processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
+    if (processor.checkForNewAnalyserData())
+    {
+        processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
+    }
     view.repaint(view.plotFrame);
 }
 

@@ -32,6 +32,10 @@
               file="Source/controller/gain_controller.cpp"/>
         <FILE id="cTa1h8" name="gain_controller.h" compile="0" resource="0"
               file="Source/controller/gain_controller.h"/>
+        <FILE id="BAoehi" name="modulation_connect_item_controller.cpp" compile="1"
+              resource="0" file="Source/controller/modulation_connect_item_controller.cpp"/>
+        <FILE id="iLT7gr" name="modulation_connect_item_controller.h" compile="0"
+              resource="0" file="Source/controller/modulation_connect_item_controller.h"/>
         <FILE id="Hte4ox" name="modulation_source_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_source_controller.cpp"/>
         <FILE id="g0jlaN" name="modulation_source_controller.h" compile="0"
@@ -73,6 +77,10 @@
               file="Source/view/equalizer_plot_view.h"/>
         <FILE id="JYNG5D" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
         <FILE id="LZxGYt" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
+        <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1"
+              resource="0" file="Source/view/modulation_connect_item_view.cpp"/>
+        <FILE id="GhYL0T" name="modulation_connect_item_view.h" compile="0"
+              resource="0" file="Source/view/modulation_connect_item_view.h"/>
         <FILE id="Sndw7F" name="modulation_source_view.cpp" compile="1" resource="0"
               file="Source/view/modulation_source_view.cpp"/>
         <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0"
@@ -181,7 +189,7 @@
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <LIVE_SETTINGS>
-    <WINDOWS windowsTargetPlatformVersion="10.0.17763.0" buildEnabled="1"
+    <WINDOWS windowsTargetPlatformVersion="10.0.17763.0" buildEnabled="0"
              defines="TOBANTEAUDIO_LIVE_MOCK=1"/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>

@@ -19,54 +19,15 @@
 namespace tobanteAudio
 {
 //==============================================================================
-ModulationConnectView::ModulationConnectView(int i) : index(i), amount(Slider::LinearHorizontal, Slider::NoTextBox)
-{
-    // Slider
-    amount.setRange(-1.0,1.0,0.0);
-    amount.addListener(this);
-    addAndMakeVisible(amount);
-
-    // Label
-    target.setJustificationType(Justification::centred);
-    target.setText("Target: " + String(index), NotificationType::dontSendNotification);
-
-    addAndMakeVisible(target);
-}
-
-ModulationConnectView::~ModulationConnectView() {}
-
-void ModulationConnectView::paint(Graphics& g) {}
-
-void ModulationConnectView::resized()
-{
-    auto area             = getLocalBounds();
-    const auto sliderArea = area.removeFromRight(area.getWidth() / 2);
-
-    // Labels
-    target.setBounds(area);
-
-    // Sliders
-    amount.setBounds(sliderArea);
-}
-
-void ModulationConnectView::sliderValueChanged(Slider* slider)
-{
-    if (slider == &amount)
-    {
-    }
-}
-
-//==============================================================================
 ModulationSourceView::ModulationSourceView(int i)
     : index(i)
     , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
     , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
     , toggleConnectView(translate("Connect"))
-    , modConnect(i)
+    , modConnect1(i)
+    , modConnect2(i+1)
 {
     // Slider
-    frequency.addListener(this);
-    gain.addListener(this);
     addAndMakeVisible(frequency);
     addAndMakeVisible(gain);
 
@@ -75,16 +36,17 @@ ModulationSourceView::ModulationSourceView(int i)
     gainLabel.setJustificationType(Justification::centred);
     freqLabel.setText("10 Hz", NotificationType::dontSendNotification);
     gainLabel.setText("10 Hz", NotificationType::dontSendNotification);
-
     addAndMakeVisible(freqLabel);
     addAndMakeVisible(gainLabel);
 
     // Button
-    toggleConnectView.addListener(this);
     addAndMakeVisible(toggleConnectView);
 
     // Connect View
-    addAndMakeVisible(modConnect);
+    addAndMakeVisible(modConnect1);
+    addAndMakeVisible(modConnect2);
+    modConnect1.setVisible(false);
+    modConnect2.setVisible(false);
 }
 
 ModulationSourceView::~ModulationSourceView() {}
@@ -151,29 +113,12 @@ void ModulationSourceView::resized()
     plotFrame = area.reduced(3, 3);
 
     // Connect
-    modConnect.setBounds(area);
+    modConnect1.setBounds(area.removeFromTop(area.getHeight()/2));
+    modConnect2.setBounds(area);
 }
 
-void ModulationSourceView::sliderValueChanged(Slider* slider)
-{
-    if (slider == &frequency)
-    {
-        freqLabel.setText(frequency.getTextFromValue(frequency.getValue()), NotificationType::dontSendNotification);
-    }
 
-    if (slider == &gain)
-    {
-        gainLabel.setText(gain.getTextFromValue(gain.getValue()), NotificationType::dontSendNotification);
-    }
-}
 
-void ModulationSourceView::buttonClicked(Button* b)
-{
-    if (b == &toggleConnectView)
-    {
-        _connectViewActive = !_connectViewActive;
-        modConnect.setVisible(_connectViewActive);
-    }
-};
+
 
 }  // namespace tobanteAudio

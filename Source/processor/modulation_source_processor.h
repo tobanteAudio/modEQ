@@ -23,7 +23,8 @@
 namespace tobanteAudio
 {
 //==============================================================================
-class ModulationSourceProcessor : public BaseProcessor, AudioProcessorValueTreeState::Listener
+class ModulationSourceProcessor : public BaseProcessor,
+                                  public AudioProcessorValueTreeState::Listener
 
 {
 public:

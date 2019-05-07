@@ -19,42 +19,12 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "../analyser/modulation_source_analyser.h"
 #include "../processor/modulation_source_processor.h"
+#include "modulation_connect_item_view.h"
 
 namespace tobanteAudio
 {
 //==============================================================================
-class ModulationConnectView : public Component, public Slider::Listener
-{
-public:
-    //==============================================================================
-    ModulationConnectView(int);
-    ~ModulationConnectView() override;
-
-    //==============================================================================
-    void paint(Graphics&) override;
-    void resized() override;
-
-    //==============================================================================
-    void sliderValueChanged(Slider* slider) override;
-
-    //==============================================================================
-    Slider amount;
-    Label target;
-
-private:
-    int index;
-    //==============================================================================
-
-#if TOBANTEAUDIO_LIVE_MOCK
-public:
-    ModulationConnectView() : ModulationConnectView(1) { setSize(100, 100); }
-#endif  // TOBANTEAUDIO_LIVE_MOCK
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationConnectView)
-};
-
-
-//==============================================================================
-class ModulationSourceView : public Component, public Slider::Listener, public Button::Listener
+class ModulationSourceView : public Component
 {
 public:
     //==============================================================================
@@ -66,27 +36,30 @@ public:
     void resized() override;
 
     //==============================================================================
-    void sliderValueChanged(Slider* slider) override;
-    void buttonClicked(Button* b) override;
-
-    //==============================================================================
+    // Controls
     Slider frequency;
     Slider gain;
-    TextButton toggleConnectView;  // activates the mapping view.
+    Label freqLabel, gainLabel;
+
+    // Plot
     Rectangle<int> plotFrame;
     Path modulationPath;
-    Label freqLabel, gainLabel;
-    ModulationConnectView modConnect;
+
+    // Connect
+    TextButton toggleConnectView;  // activates the mapping view.
+    tobanteAudio::ModulationConnectItemView modConnect1, modConnect2;
 
 private:
-    int index;
-    bool _connectViewActive{false};
     //==============================================================================
+    int index;
 
+    //==============================================================================
 #if TOBANTEAUDIO_LIVE_MOCK
 public:
     ModulationSourceView() : ModulationSourceView(1) { setSize(100, 100); }
 #endif  // TOBANTEAUDIO_LIVE_MOCK
+
+    //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 

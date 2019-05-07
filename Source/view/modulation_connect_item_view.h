@@ -17,43 +17,36 @@
 #pragma once
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "../modEQ_processor.h"
-#include "../processor/modulation_source_processor.h"
-#include "../view/modulation_source_view.h"
 
 //==============================================================================
 namespace tobanteAudio
 {
-class ModulationSourceController : public Button::Listener,
-                                   public Slider::Listener,
-                                   public Timer,
-                                   public ChangeListener
+class ModulationConnectItemView : public Component
 {
 public:
     //==============================================================================
-    ModulationSourceController(int, ModEQProcessor&,
-                               tobanteAudio::ModulationSourceProcessor&,
-                               tobanteAudio::ModulationSourceView&);
+    ModulationConnectItemView(int i);
+    ~ModulationConnectItemView();
 
     //==============================================================================
-    void buttonClicked(Button* b) override;
-    void sliderValueChanged(Slider* slider) override;
-    void timerCallback() override;
-    void changeListenerCallback(ChangeBroadcaster* sender) override{};
+    void resized() override;
+
+    //==============================================================================
+    Slider amount;
+    Label target;
 
 private:
     //==============================================================================
     int index;
-    bool _connectViewActive;
-    ModEQProcessor& mainProcessor;
-    tobanteAudio::ModulationSourceProcessor& processor;
-    tobanteAudio::ModulationSourceView& view;
 
     //==============================================================================
-    OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
+#if TOBANTEAUDIO_LIVE_MOCK
+public:
+    ModulationConnectItemView() : ModulationConnectItemView(1) { setSize(100, 100); }
+#endif  // TOBANTEAUDIO_LIVE_MOCK
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceController)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationConnectItemView)
 };
 
 }  // namespace tobanteAudio
