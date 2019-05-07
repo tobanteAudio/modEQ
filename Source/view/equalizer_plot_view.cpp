@@ -108,6 +108,39 @@ void EqualizerPlotView::paint(Graphics& g)
     //
     g.setColour(Colour(0xff00ff08));
     g.strokePath(frequencyResponse, PathStrokeType(3.0));
+
+    // Handles for each band
+    for (int i = 0; i < bandControllers.size(); ++i)
+    {
+        const auto* band = processor.getBand(i);
+        if (band == nullptr) return;
+
+        // X
+        const auto plotFrameX     = static_cast<float>(plotFrame.getX());
+        const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
+        const auto bandPosition   = get_position_for_frequency(float(band->frequency));
+        const auto x              = plotFrameX + bandPosition * plotFrameWidth;
+
+        // Y
+        const auto frameY      = static_cast<float>(plotFrame.getY());
+        const auto frameBottom = static_cast<float>(plotFrame.getBottom());
+        const auto gain        = static_cast<float>(band->gain);
+        const auto y           = get_position_for_gain(gain, frameY, frameBottom);
+
+        // Color (active || bypass)
+        if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
+        {
+            param->getValue() < 0.5f ? g.setColour(Colours::grey) : g.setColour(Colours::red);
+        }
+
+        // Label
+        const int size{30};
+        const int offset{-20};
+        g.drawFittedText(String(i), x + offset, y + offset, size, size, Justification::left, 1);
+
+        // Handle
+        g.drawEllipse(x, y, 8, 8, 5);
+    }
 }
 
 void EqualizerPlotView::resized()

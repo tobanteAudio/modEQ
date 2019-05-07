@@ -45,7 +45,7 @@ cp build/modEQ.so ~/.vst
 ## ToDo
 
 - EQ
-  - Markers for band selection in analyser
+  - Seperate colors for bands
 - Modulation
   - Fix drawing of LFO
   - Add waveforms
