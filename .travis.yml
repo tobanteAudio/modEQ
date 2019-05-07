@@ -8,6 +8,7 @@ before_install:
   # Install dependencies
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
   - eval "${MATRIX_EVAL}"
+  
 script-anchors:
   - &script-linux
     # Fake display
