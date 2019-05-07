@@ -134,8 +134,8 @@ void EqualizerPlotView::paint(Graphics& g)
         }
 
         // Label
-        const int size{30};
-        const int offset{-20};
+        const int size {30};
+        const int offset {-20};
         g.drawFittedText(String(i), x + offset, y + offset, size, size, Justification::left, 1);
 
         // Handle

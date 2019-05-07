@@ -85,7 +85,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
                 for (int i = 0; i < tobanteAudio::EqualizerProcessor::LastFilterID; ++i)
                     if (text
                         == tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                               static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
+                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
                         return static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i);
                 return tobanteAudio::EqualizerProcessor::NoFilter;
             },

@@ -25,45 +25,56 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     , plotView(processor.getEQ(), bandControllers)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
-    tooltipWindow->setMillisecondsBeforeTipAppears(1000);
-
+    // Social buttons
     addAndMakeVisible(socialButtons);
 
+    // Plot
+    addAndMakeVisible(plotView);
+
+    // Modulation
     for (int i = 1; i < 2; ++i)
     {
-        auto* modView = modViews.add(new tobanteAudio::ModulationSourceView(i));
-        modController.add(new tobanteAudio::ModulationSourceController(
-            i, processor, processor.modSource, *modView));
+        using MSC = tobanteAudio::ModulationSourceController;
+        using MSV = tobanteAudio::ModulationSourceView;
+
+        auto* const modView = modViews.add(new MSV(i));
+        modController.add(new MSC(i, processor, processor.modSource, *modView));
 
         // modView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(modView);
     }
 
+    // EQ bands
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
-        auto color     = processor.getEQ().getBand(i)->colour;
-        auto* bandView = bandViews.add(new tobanteAudio::BandView(i, color));
-        bandControllers.add(
-            new tobanteAudio::BandController(i, processor, processor.getEQ(), *bandView));
+        using BC = tobanteAudio::BandController;
+        using BV = tobanteAudio::BandView;
+
+        const auto color     = processor.getEQ().getBand(i)->colour;
+        auto* const bandView = bandViews.add(new BV(i, color));
+        bandControllers.add(new BC(i, processor, processor.getEQ(), *bandView));
 
         // bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
 
-    addAndMakeVisible(plotView);
-
-    frame.setText(translate("Output"));
+    //  Master Section
+    frame.setText(translate("Master - Out"));
     frame.setTextLabelPosition(Justification::centred);
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
-    attachments.add(new AudioProcessorValueTreeState::SliderAttachment(
-        processor.getPluginState(), tobanteAudio::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
     output.setColour(Slider::thumbColourId, Colours::red);
+
+    using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
+    auto& state            = processor.getPluginState();
+
+    attachments.add(new SliderAttachment(state, tobanteAudio::Parameters::Output, output));
 
     setResizable(true, true);
     setResizeLimits(800, 450, 2990, 1800);
     setSize(1000, 750);
+    tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 
 #ifdef JUCE_OPENGL
     openGLContext.attachTo(*getTopLevelComponent());
