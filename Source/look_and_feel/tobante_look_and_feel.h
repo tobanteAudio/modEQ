@@ -16,6 +16,7 @@
 
 #pragma once
 
+// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 namespace tobanteAudio
@@ -65,7 +66,7 @@ public:
         g.setColour(Colours::darkblue);
         g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
-        Rectangle<int> textArea{50, 50};
+        Rectangle<int> textArea {50, 50};
         textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
 
         g.setFont(18.f);

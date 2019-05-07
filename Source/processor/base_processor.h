@@ -62,7 +62,7 @@ public:
     //==============================================================================
     AudioProcessorValueTreeState& state;
 
-    double sampleRate{0};
+    double sampleRate {0};
 
 protected:
 private:

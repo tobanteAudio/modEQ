@@ -16,6 +16,9 @@
 
 #pragma once
 
+// JUCE
+#include "../../JuceLibraryCode/JuceHeader.h"
+
 namespace tobanteAudio
 {
 }

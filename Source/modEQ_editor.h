@@ -52,14 +52,13 @@ private:
     OwnedArray<tobanteAudio::BandController> bandControllers;
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-    // tobanteAudio::ModulationSourceView modView;
     tobanteAudio::EqualizerPlotView plotView;
 
     //==============================================================================
     Rectangle<int> plotArea;
 
     //==============================================================================
-    SocialButtons socialButtons;
+    tobanteAudio::SocialButtons socialButtons;
     Slider output;
     GroupComponent frame;  // for output slider
 

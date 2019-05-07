@@ -14,6 +14,7 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
+// tobanteAudio
 #include "modulation_source_controller.h"
 #include "../utils/constants.h"
 
@@ -22,7 +23,7 @@ namespace tobanteAudio
 ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
                                                        ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
-    : index(i), mainProcessor(mp), processor(p), view(v), _connectViewActive(false)
+    : index(i), connectViewActive(false), mainProcessor(mp), processor(p), view(v)
 {
     // Link GUI components to ValueTree
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
@@ -35,6 +36,8 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
 
     // Button Connect
     view.toggleConnectView.addListener(this);
+    view.modConnect1.setVisible(connectViewActive);
+    view.modConnect2.setVisible(connectViewActive);
     // Slider connect
     view.frequency.addListener(this);
     view.gain.addListener(this);
@@ -47,9 +50,9 @@ void ModulationSourceController::buttonClicked(Button* b)
 {
     if (b == &view.toggleConnectView)
     {
-        _connectViewActive = !_connectViewActive;
-        view.modConnect1.setVisible(_connectViewActive);
-        view.modConnect2.setVisible(_connectViewActive);
+        connectViewActive = !connectViewActive;
+        view.modConnect1.setVisible(connectViewActive);
+        view.modConnect2.setVisible(connectViewActive);
     }
 }
 

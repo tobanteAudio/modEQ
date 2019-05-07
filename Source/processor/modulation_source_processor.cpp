@@ -35,7 +35,7 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 {
     sampleRate = newSampleRate;
 
-    dsp::ProcessSpec spec{sampleRate, static_cast<uint32>(samplesPerBlock)};
+    dsp::ProcessSpec spec {sampleRate, static_cast<uint32>(samplesPerBlock)};
     oscillator.prepare(spec);
     gain.prepare(spec);
 

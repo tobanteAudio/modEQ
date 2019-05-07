@@ -16,7 +16,10 @@
 
 #pragma once
 
+// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
+
+// tobanteAudio
 #include "../modEQ_processor.h"
 #include "../processor/modulation_source_processor.h"
 #include "../view/modulation_source_view.h"
@@ -26,12 +29,11 @@ namespace tobanteAudio
 {
 class ModulationSourceController : public Button::Listener,
                                    public Slider::Listener,
-                                   public Timer,
-                                   public ChangeListener
+                                   public Timer
 {
 public:
     //==============================================================================
-    ModulationSourceController(int, ModEQProcessor&,
+    ModulationSourceController(const int, ModEQProcessor&,
                                tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
@@ -39,12 +41,13 @@ public:
     void buttonClicked(Button* b) override;
     void sliderValueChanged(Slider* slider) override;
     void timerCallback() override;
-    void changeListenerCallback(ChangeBroadcaster* sender) override{};
 
 private:
     //==============================================================================
     int index;
-    bool _connectViewActive;
+    bool connectViewActive;
+
+    //==============================================================================
     ModEQProcessor& mainProcessor;
     tobanteAudio::ModulationSourceProcessor& processor;
     tobanteAudio::ModulationSourceView& view;

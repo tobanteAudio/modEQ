@@ -16,6 +16,8 @@
 
 #include "social_buttons.h"
 
+namespace tobanteAudio
+{
 SocialButtons::SocialButtons()
 {
     setOpaque(false);
@@ -59,3 +61,5 @@ void SocialButtons::buttonClicked(Button* b)
         url.launchInDefaultBrowser();
     }
 }
+
+}  // namespace tobanteAudio

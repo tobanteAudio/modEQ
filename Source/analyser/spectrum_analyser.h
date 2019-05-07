@@ -16,6 +16,7 @@
 
 #pragma once
 
+// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -145,7 +146,7 @@ private:
                     bounds.getBottom(), bounds.getY());
     }
 
-    Type sampleRate{};
+    Type sampleRate {};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

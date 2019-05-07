@@ -16,7 +16,10 @@
 
 #pragma once
 
+// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
+
+// tobanteAudio
 #include "../analyser/modulation_source_analyser.h"
 #include "../processor/modulation_source_processor.h"
 #include "modulation_connect_item_view.h"

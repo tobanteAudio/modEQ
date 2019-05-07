@@ -15,7 +15,10 @@
  */
 
 #pragma once
+// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
+
+// tobanteAudio
 #include "../modEQ_processor.h"
 #include "../view/band_view.h"
 

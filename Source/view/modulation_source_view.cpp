@@ -34,8 +34,6 @@ ModulationSourceView::ModulationSourceView(int i)
     // Label
     freqLabel.setJustificationType(Justification::centred);
     gainLabel.setJustificationType(Justification::centred);
-    freqLabel.setText("10 Hz", NotificationType::dontSendNotification);
-    gainLabel.setText("10 Hz", NotificationType::dontSendNotification);
     addAndMakeVisible(freqLabel);
     addAndMakeVisible(gainLabel);
 
@@ -45,8 +43,6 @@ ModulationSourceView::ModulationSourceView(int i)
     // Connect View
     addAndMakeVisible(modConnect1);
     addAndMakeVisible(modConnect2);
-    modConnect1.setVisible(false);
-    modConnect2.setVisible(false);
 }
 
 ModulationSourceView::~ModulationSourceView() {}

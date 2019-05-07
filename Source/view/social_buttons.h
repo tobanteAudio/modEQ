@@ -18,6 +18,8 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
+namespace tobanteAudio
+{
 //==============================================================================
 class SocialButtons : public Component, public Button::Listener
 {
@@ -35,3 +37,5 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SocialButtons)
 };
+
+}  // namespace tobanteAudio
