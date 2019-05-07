@@ -4,10 +4,7 @@ branches:
 
 language: cpp
 
-before_install:
-  # Install dependencies
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
-  - eval "${MATRIX_EVAL}"
+
   
 script-anchors:
   - &script-linux
@@ -92,16 +89,9 @@ matrix:
         - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       script: *script-linux
 
-    - os: linux
-      dist: trusty
-      sudo: required
-      addons:
-        apt:
-          sources:
-            - llvm-toolchain-trusty-5.0
-          packages:
-            - clang-5.0
-      env:
-        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
-      script: *script-linux
 
+
+before_install:
+  # Install dependencies
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
+  - eval "${MATRIX_EVAL}"
