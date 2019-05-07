@@ -15,3 +15,8 @@
  */
 
 #include "equalizer_plot_controller.h"
+
+namespace tobanteAudio
+{
+EqualizerPlotController::EqualizerPlotController() {}
+}  // namespace tobanteAudio

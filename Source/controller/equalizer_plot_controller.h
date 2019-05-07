@@ -19,7 +19,10 @@
 // JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 namespace tobanteAudio
 {
+class EqualizerPlotController
+{
+    EqualizerPlotController();
+};
 }  // namespace tobanteAudio

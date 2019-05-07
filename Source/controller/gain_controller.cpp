@@ -18,4 +18,5 @@
 
 namespace tobanteAudio
 {
-}
+GainController::GainController() {}
+}  // namespace tobanteAudio

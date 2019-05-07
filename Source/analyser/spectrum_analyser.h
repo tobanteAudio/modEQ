@@ -114,7 +114,7 @@ public:
         p.startNewSubPath(bounds.getX() + factor * indexToX(0, minFreq), binToY(fftData[0], bounds));
         for (int i = 0; i < averager.getNumSamples(); ++i)
         {
-            const auto x = bounds.getX() + factor * static_cast<float>(indexToX(i, minFreq));
+            const auto x = bounds.getX() + factor * indexToX(static_cast<float>(i), minFreq);
             const auto y = binToY(fftData[i], bounds);
 
             p.lineTo(static_cast<float>(x), static_cast<float>(y));

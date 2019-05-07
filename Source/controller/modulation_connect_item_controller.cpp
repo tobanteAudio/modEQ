@@ -15,3 +15,8 @@
  */
 
 #include "modulation_connect_item_controller.h"
+
+namespace tobanteAudio
+{
+ModulationConnectItemController::ModulationConnectItemController() {}
+}  // namespace tobanteAudio

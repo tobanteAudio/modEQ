@@ -21,4 +21,8 @@
 
 namespace tobanteAudio
 {
-}
+class GainController
+{
+    GainController();
+};
+}  // namespace tobanteAudio

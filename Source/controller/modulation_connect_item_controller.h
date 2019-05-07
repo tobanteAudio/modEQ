@@ -21,4 +21,8 @@
 
 namespace tobanteAudio
 {
-}
+class ModulationConnectItemController
+{
+    ModulationConnectItemController();
+};
+}  // namespace tobanteAudio
