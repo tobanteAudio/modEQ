@@ -45,7 +45,7 @@ ModEQProcessor::ModEQProcessor()
 
     state.createAndAddParameter(std::make_unique<Parameter>(
         tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange,
-        1.0, gainTextConverter, gainTextConverter, false, true, false));
+        1.0f, gainTextConverter, gainTextConverter, false, true, false));
 
     state.createAndAddParameter(std::make_unique<Parameter>(
         "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,

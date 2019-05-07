@@ -66,8 +66,6 @@ BandView::BandView(int const i)
     activate.setTooltip(translate("Activate or deactivate this filter"));
 }
 
-BandView::~BandView() {}
-
 void BandView::resized()
 {
     auto bounds = getLocalBounds();

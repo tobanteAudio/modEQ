@@ -45,8 +45,6 @@ ModulationSourceView::ModulationSourceView(int i)
     addAndMakeVisible(modConnect2);
 }
 
-ModulationSourceView::~ModulationSourceView() {}
-
 void ModulationSourceView::paint(Graphics& g)
 {
     // Save graphics state

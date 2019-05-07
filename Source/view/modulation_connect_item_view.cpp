@@ -39,8 +39,6 @@ ModulationConnectItemView::ModulationConnectItemView(int i)
     addAndMakeVisible(target);
 }
 
-ModulationConnectItemView::~ModulationConnectItemView() {}
-
 void ModulationConnectItemView::resized()
 {
     auto area             = getLocalBounds();

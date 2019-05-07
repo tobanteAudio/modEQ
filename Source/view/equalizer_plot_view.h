@@ -22,25 +22,20 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
 /*
  */
 class EqualizerPlotView : public Component, public ChangeListener, public Timer
 {
 public:
-    //==============================================================================
     EqualizerPlotView(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&);
-    ~EqualizerPlotView();
+    ~EqualizerPlotView() = default;
 
-    //==============================================================================
     void paint(Graphics&) override;
     void resized() override;
 
-    //==============================================================================
     void changeListenerCallback(ChangeBroadcaster* sender) override;
     void timerCallback() override;
 
-    //==============================================================================
     void mouseDown(const MouseEvent& e) override;
     void mouseMove(const MouseEvent& e) override;
     void mouseDrag(const MouseEvent& e) override;
@@ -56,10 +51,8 @@ public:
     void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
 
 private:
-    //==============================================================================
     void updateFrequencyResponses();
 
-    //==============================================================================
     static float get_position_for_frequency(float freq);
     static float get_frequency_for_position(float pos);
     static float get_position_for_gain(float gain, float top, float bottom);
@@ -73,16 +66,13 @@ private:
         return std::abs(obj_pos - mouse_pos) < radius;
     }
 
-    //==============================================================================
     tobanteAudio::EqualizerProcessor& processor;
     OwnedArray<tobanteAudio::BandController>& bandControllers;
 
-    //==============================================================================
     Rectangle<int> plotFrame;
     Path frequencyResponse;
     PopupMenu contextMenu;
 
-    //==============================================================================
     int draggingBand  = -1;
     bool draggingGain = false;
 

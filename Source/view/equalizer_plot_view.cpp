@@ -31,8 +31,6 @@ EqualizerPlotView::EqualizerPlotView(tobanteAudio::EqualizerProcessor& p,
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
-EqualizerPlotView::~EqualizerPlotView() { processor.removeChangeListener(this); }
-
 void EqualizerPlotView::paint(Graphics& g)
 {
     // Save graphics state

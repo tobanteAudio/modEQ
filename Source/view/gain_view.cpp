@@ -27,8 +27,6 @@ GainView::GainView(const int i)
     addAndMakeVisible(gain);
 }
 
-GainView::~GainView() {}
-
 void GainView::paint(Graphics& /*g*/) {}
 
 void GainView::resized()

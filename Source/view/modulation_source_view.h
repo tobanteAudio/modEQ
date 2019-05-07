@@ -26,19 +26,15 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
 class ModulationSourceView : public Component
 {
 public:
-    //==============================================================================
     ModulationSourceView(int);
-    ~ModulationSourceView() override;
+    ~ModulationSourceView() = default;
 
-    //==============================================================================
     void paint(Graphics&) override;
     void resized() override;
 
-    //==============================================================================
     // Controls
     Slider frequency;
     Slider gain;
@@ -53,10 +49,8 @@ public:
     tobanteAudio::ModulationConnectItemView modConnect1, modConnect2;
 
 private:
-    //==============================================================================
     int index;
 
-    //==============================================================================
 #if TOBANTEAUDIO_LIVE_MOCK
 public:
     ModulationSourceView() : ModulationSourceView(1) { setSize(100, 100); }

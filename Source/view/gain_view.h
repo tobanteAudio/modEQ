@@ -18,7 +18,6 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
 namespace tobanteAudio
 {
 class GainView : public Component
@@ -27,18 +26,14 @@ private:
     int index;
 
 public:
-    //==============================================================================
     GainView(int i);
-    ~GainView();
+    ~GainView() = default;
 
-    //==============================================================================
     void paint(Graphics&) override;
     void resized() override;
 
-    //==============================================================================
     Slider gain;
 
-    //==============================================================================
 #if TOBANTEAUDIO_LIVE_MOCK
 public:
     GainView() : GainView(1) { setSize(100, 100); }

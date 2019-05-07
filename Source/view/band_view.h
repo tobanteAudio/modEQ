@@ -15,24 +15,19 @@
  */
 
 #pragma once
+
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
-/*
- */
 namespace tobanteAudio
 {
 class BandView : public Component
 {
 public:
-    //==============================================================================
     BandView(int);
-    ~BandView() override;
+    ~BandView() = default;
 
-    //==============================================================================
     void resized() override;
 
-    //==============================================================================
     GroupComponent frame;
     ComboBox type;
     Slider frequency;
@@ -42,7 +37,6 @@ public:
     TextButton activate;
 
 private:
-    //==============================================================================
     int index;
 
 #if TOBANTEAUDIO_LIVE_MOCK

@@ -20,7 +20,6 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
 class SocialButtons : public Component, public Button::Listener
 {
 public:
