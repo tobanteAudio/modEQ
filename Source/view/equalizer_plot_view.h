@@ -46,6 +46,7 @@ public:
     void mouseMove(const MouseEvent& e) override;
     void mouseDrag(const MouseEvent& e) override;
     void mouseDoubleClick(const MouseEvent& e) override;
+    void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
 
 private:
     //==============================================================================

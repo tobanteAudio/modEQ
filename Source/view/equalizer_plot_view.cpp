@@ -138,7 +138,9 @@ void EqualizerPlotView::timerCallback()
 void EqualizerPlotView::mouseDown(const MouseEvent& e)
 {
     if (e.mods.isPopupMenu() && plotFrame.contains(e.x, e.y))
+    {
         for (int i = 0; i < bandControllers.size(); ++i)
+        {
             if (auto* band = processor.getBand(i))
             {
                 if (std::abs(static_cast<float>(plotFrame.getX())
@@ -167,6 +169,8 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
                         });
                 }
             }
+        }
+    }
 }
 
 void EqualizerPlotView::mouseMove(const MouseEvent& e)
@@ -177,9 +181,11 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
         {
             if (auto* band = processor.getBand(i))
             {
-                auto const pos = plotFrame.getX()
-                                 + getPositionForFrequency(float(band->frequency))
-                                       * plotFrame.getWidth();
+                const auto plotFrameX     = plotFrame.getX();
+                const auto plotFrameWidth = plotFrame.getWidth();
+                const auto bandPosition = getPositionForFrequency(float(band->frequency));
+                const auto pos          = plotFrameX + bandPosition * plotFrameWidth;
+
                 if (std::abs(pos - e.position.getX()) < clickRadius)
                 {
                     if (std::abs(getPositionForGain(float(band->gain), plotFrame.getY(),
@@ -247,6 +253,48 @@ void EqualizerPlotView::mouseDoubleClick(const MouseEvent& e)
             }
         }
     }
+}
+
+void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
+                                       const MouseWheelDetails& wheel)
+{
+    const auto overlap_with_radius = [](auto obj, auto mouse, int radius) -> bool {
+        return std::abs(obj - mouse) < radius;
+    };
+
+    if (plotFrame.contains(e.x, e.y))
+    {
+        for (int i = 0; i < bandControllers.size(); ++i)  //
+        {
+            if (auto* band = processor.getBand(i))
+            {
+                const auto plotFrameX     = plotFrame.getX();
+                const auto plotFrameWidth = plotFrame.getWidth();
+                const auto bandPosition = getPositionForFrequency(float(band->frequency));
+                const auto pos          = plotFrameX + bandPosition * plotFrameWidth;
+
+                if (overlap_with_radius(pos, e.position.getX(), clickRadius))
+                {
+                    const auto plotFrameY      = plotFrame.getY();
+                    const auto plotFrameBottom = plotFrame.getBottom();
+                    const auto bandGain        = static_cast<float>(band->gain);
+                    const auto gainPosition
+                        = getPositionForGain(bandGain, plotFrameY, plotFrameBottom);
+
+                    if (overlap_with_radius(gainPosition, e.position.getY(), clickRadius))
+                    {
+                        const auto paramID = processor.getQualityParamID(i);
+                        if (auto* param = processor.state.getParameter(paramID))
+                        {
+                            const auto wheelMovement = wheel.deltaY * 0.05;
+                            const auto newValue      = param->getValue() + wheelMovement;
+                            param->setValueNotifyingHost(newValue);
+                        }
+                    }  // If mouse & band match on y-axis
+                }      // If mouse & band match on x-axis
+            }          // Single band
+        }              // For all bands
+    }                  // If mouse is in plotview
 }
 
 void EqualizerPlotView::updateFrequencyResponses()
