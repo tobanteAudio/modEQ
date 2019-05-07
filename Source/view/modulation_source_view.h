@@ -23,7 +23,38 @@
 namespace TA
 {
 //==============================================================================
-class ModulationSourceView : public Component, public Slider::Listener
+class ModulationConnectView : public Component, public Slider::Listener
+{
+public:
+    //==============================================================================
+    ModulationConnectView(int);
+    ~ModulationConnectView() override;
+
+    //==============================================================================
+    void paint(Graphics&) override;
+    void resized() override;
+
+    //==============================================================================
+    void sliderValueChanged(Slider* slider) override;
+
+    //==============================================================================
+    Slider amount;
+    Label target;
+
+private:
+    int index;
+    //==============================================================================
+
+#if TOBANTEAUDIO_LIVE_MOCK
+public:
+    ModulationConnectView() : ModulationConnectView(1) { setSize(100, 100); }
+#endif  // TOBANTEAUDIO_LIVE_MOCK
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationConnectView)
+};
+
+
+//==============================================================================
+class ModulationSourceView : public Component, public Slider::Listener, public Button::Listener
 {
 public:
     //==============================================================================
@@ -35,18 +66,27 @@ public:
     void resized() override;
 
     //==============================================================================
-    void sliderValueChanged (Slider *slider) override;
+    void sliderValueChanged(Slider* slider) override;
+    void buttonClicked(Button* b) override;
 
     //==============================================================================
     Slider frequency;
     Slider gain;
+    TextButton toggleConnectView;  // activates the mapping view.
     Rectangle<int> plotFrame;
     Path modulationPath;
     Label freqLabel, gainLabel;
+    ModulationConnectView modConnect;
 
 private:
     int index;
+    bool _connectViewActive{false};
     //==============================================================================
+
+#if TOBANTEAUDIO_LIVE_MOCK
+public:
+    ModulationSourceView() : ModulationSourceView(1) { setSize(100, 100); }
+#endif  // TOBANTEAUDIO_LIVE_MOCK
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 

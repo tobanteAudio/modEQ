@@ -19,16 +19,58 @@
 namespace TA
 {
 //==============================================================================
+ModulationConnectView::ModulationConnectView(int i) : index(i), amount(Slider::LinearHorizontal, Slider::NoTextBox)
+{
+    // Slider
+    amount.setRange(-1.0,1.0,0.0);
+    amount.addListener(this);
+    addAndMakeVisible(amount);
+
+    // Label
+    target.setJustificationType(Justification::centred);
+    target.setText("Target: " + String(index), NotificationType::dontSendNotification);
+
+    addAndMakeVisible(target);
+}
+
+ModulationConnectView::~ModulationConnectView() {}
+
+void ModulationConnectView::paint(Graphics& g) {}
+
+void ModulationConnectView::resized()
+{
+    auto area             = getLocalBounds();
+    const auto sliderArea = area.removeFromRight(area.getWidth() / 2);
+
+    // Labels
+    target.setBounds(area);
+
+    // Sliders
+    amount.setBounds(sliderArea);
+}
+
+void ModulationConnectView::sliderValueChanged(Slider* slider)
+{
+    if (slider == &amount)
+    {
+    }
+}
+
+//==============================================================================
 ModulationSourceView::ModulationSourceView(int i)
     : index(i)
     , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
     , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
+    , toggleConnectView(translate("Connect"))
+    , modConnect(i)
 {
+    // Slider
     frequency.addListener(this);
     gain.addListener(this);
     addAndMakeVisible(frequency);
     addAndMakeVisible(gain);
 
+    // Label
     freqLabel.setJustificationType(Justification::centred);
     gainLabel.setJustificationType(Justification::centred);
     freqLabel.setText("10 Hz", NotificationType::dontSendNotification);
@@ -37,6 +79,12 @@ ModulationSourceView::ModulationSourceView(int i)
     addAndMakeVisible(freqLabel);
     addAndMakeVisible(gainLabel);
 
+    // Button
+    toggleConnectView.addListener(this);
+    addAndMakeVisible(toggleConnectView);
+
+    // Connect View
+    addAndMakeVisible(modConnect);
 }
 
 ModulationSourceView::~ModulationSourceView() {}
@@ -58,15 +106,17 @@ void ModulationSourceView::paint(Graphics& g)
     {
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
-        if (i > 0) g.drawVerticalLine(roundToInt(x), static_cast<float>(plotFrame.getY()), static_cast<float>(plotFrame.getBottom()));
+        if (i > 0)
+            g.drawVerticalLine(roundToInt(x), static_cast<float>(plotFrame.getY()),
+                               static_cast<float>(plotFrame.getBottom()));
     }
 
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
-    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()), static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
-    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()), static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
 
     g.reduceClipRegion(plotFrame);
 
@@ -84,7 +134,7 @@ void ModulationSourceView::resized()
     auto area       = getLocalBounds();
     auto sliderArea = area.removeFromRight(area.getWidth() / 4);
 
-    int const labelHeight = sliderArea.getHeight()/ 2 / 5;
+    int const labelHeight = sliderArea.getHeight() / 2 / 5;
 
     // Labels
     freqLabel.setBounds(sliderArea.removeFromTop(labelHeight));
@@ -94,20 +144,36 @@ void ModulationSourceView::resized()
     frequency.setBounds(sliderArea.removeFromTop(sliderArea.getHeight() / 2));
     gain.setBounds(sliderArea);
 
+    // Button
+    toggleConnectView.setBounds(area.removeFromBottom(area.getHeight() / 6));
+
     // LFO plot
     plotFrame = area.reduced(3, 3);
+
+    // Connect
+    modConnect.setBounds(area);
 }
 
-void ModulationSourceView::sliderValueChanged (Slider *slider)
+void ModulationSourceView::sliderValueChanged(Slider* slider)
 {
-  if (slider == &frequency)
-  {
-    freqLabel.setText(frequency.getTextFromValue(frequency.getValue()), NotificationType::dontSendNotification );
-  }
+    if (slider == &frequency)
+    {
+        freqLabel.setText(frequency.getTextFromValue(frequency.getValue()), NotificationType::dontSendNotification);
+    }
 
-if (slider == &gain)
-  {
-    gainLabel.setText(gain.getTextFromValue(gain.getValue()), NotificationType::dontSendNotification );
-  }
+    if (slider == &gain)
+    {
+        gainLabel.setText(gain.getTextFromValue(gain.getValue()), NotificationType::dontSendNotification);
+    }
 }
+
+void ModulationSourceView::buttonClicked(Button* b)
+{
+    if (b == &toggleConnectView)
+    {
+        _connectViewActive = !_connectViewActive;
+        modConnect.setVisible(_connectViewActive);
+    }
+};
+
 }  // namespace TA
