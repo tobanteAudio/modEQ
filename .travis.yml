@@ -4,7 +4,9 @@ branches:
 
 language: cpp
 
-
+before_install:
+  # Install dependencies
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
   
 script-anchors:
   - &script-linux
@@ -85,13 +87,6 @@ matrix:
           packages:
             - gcc-6
             - g++-6
-      env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
       script: *script-linux
 
 
-
-before_install:
-  # Install dependencies
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
-  - eval "${MATRIX_EVAL}"
