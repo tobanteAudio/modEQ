@@ -20,7 +20,7 @@
 //==============================================================================
 /*
  */
-namespace TA
+namespace tobanteAudio
 {
 class BandView : public Component
 {
@@ -54,4 +54,4 @@ public:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandView)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

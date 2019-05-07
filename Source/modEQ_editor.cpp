@@ -31,8 +31,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     for (int i = 1; i < 2; ++i)
     {
-        auto* modView = modViews.add(new TA::ModulationSourceView(i));
-        modController.add(new TA::ModulationSourceController(i, processor, processor.modSource, *modView));
+        auto* modView = modViews.add(new tobanteAudio::ModulationSourceView(i));
+        modController.add(new tobanteAudio::ModulationSourceController(i, processor, processor.modSource, *modView));
 
         //modView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(modView);
@@ -40,8 +40,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
-        auto* bandView = bandViews.add(new TA::BandView(i));
-        bandControllers.add(new TA::BandController(i, processor, processor.getEQ(), *bandView));
+        auto* bandView = bandViews.add(new tobanteAudio::BandView(i));
+        bandControllers.add(new tobanteAudio::BandController(i, processor, processor.getEQ(), *bandView));
 
         //bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
@@ -54,7 +54,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
     attachments.add(
-        new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(), TA::Parameters::Output, output));
+        new AudioProcessorValueTreeState::SliderAttachment(processor.getPluginState(), tobanteAudio::Parameters::Output, output));
     output.setTooltip(translate("Overall Gain"));
     output.setColour(Slider::thumbColourId, Colours::red);
 

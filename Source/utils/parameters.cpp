@@ -16,7 +16,7 @@
 
 #include "parameters.h"
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 String Parameters::Output("output");
@@ -26,4 +26,4 @@ String Parameters::Quality("quality");
 String Parameters::Gain("gain");
 String Parameters::Active("active");
 String Parameters::Phase("phase");
-}  // namespace TA
+}  // namespace tobanteAudio

@@ -17,13 +17,13 @@
 #include "equalizer_plot_view.h"
 #include "../utils/constants.h"
 
-namespace TA
+namespace tobanteAudio
 {
 static int clickRadius = 10;
 static float maxDB     = 24.0f;
 
 //==============================================================================
-EqualizerPlotView::EqualizerPlotView(TA::EqualizerProcessor& p, OwnedArray<TA::BandController>& bands)
+EqualizerPlotView::EqualizerPlotView(tobanteAudio::EqualizerProcessor& p, OwnedArray<tobanteAudio::BandController>& bands)
     : processor(p), bandControllers(bands)
 {
     processor.addChangeListener(this);
@@ -136,10 +136,10 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
                     < clickRadius)
                 {
                     contextMenu.clear();
-                    for (int t = 0; t < TA::EqualizerProcessor::LastFilterID; ++t)
+                    for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID; ++t)
                         contextMenu.addItem(t + 1,
-                                            TA::EqualizerProcessor::getFilterTypeName(
-                                                static_cast<TA::EqualizerProcessor::FilterType>(t)),
+                                            tobanteAudio::EqualizerProcessor::getFilterTypeName(
+                                                static_cast<tobanteAudio::EqualizerProcessor::FilterType>(t)),
                                             true, band->type == t);
 
                     contextMenu.showMenuAsync(PopupMenu::Options().withTargetComponent(this).withTargetScreenArea(
@@ -261,4 +261,4 @@ float EqualizerPlotView::getGainForPosition(float const pos, float const top, fl
     return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
 }
 
-}  // namespace TA
+}  // namespace tobanteAudio

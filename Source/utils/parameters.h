@@ -17,7 +17,7 @@
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-namespace TA
+namespace tobanteAudio
 {
 struct Parameters
 {
@@ -30,4 +30,4 @@ struct Parameters
     static String Active;
     static String Phase;
 };
-}  // namespace TA
+}  // namespace tobanteAudio

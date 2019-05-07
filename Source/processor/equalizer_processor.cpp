@@ -18,7 +18,7 @@
 #include "../utils/parameters.h"
 
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : BaseProcessor(vts)
@@ -38,7 +38,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     setDefaults();
 
     // Create Ranges for parameters
-    NormalisableRange<float> filterTypeRange(0, TA::EqualizerProcessor::LastFilterID, 1);
+    NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID, 1);
     NormalisableRange<float> frequencyRange(20.0, 20000.0, 1.0);
     NormalisableRange<float> qualityRange(0.1f, 10.0f, 0.1f);
     NormalisableRange<float> gainRange(1.0f / maxGain, maxGain, 0.001f);
@@ -66,16 +66,16 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
         state.createAndAddParameter(getTypeParamID(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
                                     (float)band.type,
                                     [](float value) {
-                                        return TA::EqualizerProcessor::getFilterTypeName(
-                                            static_cast<TA::EqualizerProcessor::FilterType>(static_cast<int>(value)));
+                                        return tobanteAudio::EqualizerProcessor::getFilterTypeName(
+                                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(static_cast<int>(value)));
                                     },
                                     [](String text) {
-                                        for (int i = 0; i < TA::EqualizerProcessor::LastFilterID; ++i)
+                                        for (int i = 0; i < tobanteAudio::EqualizerProcessor::LastFilterID; ++i)
                                             if (text
-                                                == TA::EqualizerProcessor::getFilterTypeName(
-                                                       static_cast<TA::EqualizerProcessor::FilterType>(i)))
-                                                return static_cast<TA::EqualizerProcessor::FilterType>(i);
-                                        return TA::EqualizerProcessor::NoFilter;
+                                                == tobanteAudio::EqualizerProcessor::getFilterTypeName(
+                                                       static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
+                                                return static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i);
+                                        return tobanteAudio::EqualizerProcessor::NoFilter;
                                     },
                                     false, true, true);
 
@@ -135,23 +135,23 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
     {
         if (parameter.startsWith(getBandName(int(i)) + "-"))
         {
-            if (parameter.endsWith(TA::Parameters::Type))
+            if (parameter.endsWith(tobanteAudio::Parameters::Type))
             {
                 bands[i].type = static_cast<FilterType>(static_cast<int>(newValue));
             }
-            else if (parameter.endsWith(TA::Parameters::Frequency))
+            else if (parameter.endsWith(tobanteAudio::Parameters::Frequency))
             {
                 bands[i].frequency = newValue;
             }
-            else if (parameter.endsWith(TA::Parameters::Quality))
+            else if (parameter.endsWith(tobanteAudio::Parameters::Quality))
             {
                 bands[i].quality = newValue;
             }
-            else if (parameter.endsWith(TA::Parameters::Gain))
+            else if (parameter.endsWith(tobanteAudio::Parameters::Gain))
             {
                 bands[i].gain = newValue;
             }
-            else if (parameter.endsWith(TA::Parameters::Active))
+            else if (parameter.endsWith(tobanteAudio::Parameters::Active))
             {
                 bands[i].active = newValue >= 0.5f;
             }
@@ -163,7 +163,7 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
 }
 
 //==============================================================================
-String EqualizerProcessor::getFilterTypeName(const TA::EqualizerProcessor::FilterType type)
+String EqualizerProcessor::getFilterTypeName(const tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
     {
@@ -272,35 +272,35 @@ void EqualizerProcessor::setDefaults()
         band.colour    = Colours::blue;
         band.frequency = 20.0f;
         band.quality   = 0.707f;
-        band.type      = TA::EqualizerProcessor::HighPass;
+        band.type      = tobanteAudio::EqualizerProcessor::HighPass;
     }
     {
         auto& band     = bands[1];
         band.name      = "Low";
         band.colour    = Colours::brown;
         band.frequency = 250.0f;
-        band.type      = TA::EqualizerProcessor::LowShelf;
+        band.type      = tobanteAudio::EqualizerProcessor::LowShelf;
     }
     {
         auto& band     = bands[2];
         band.name      = "Low Mids";
         band.colour    = Colours::green;
         band.frequency = 500.0f;
-        band.type      = TA::EqualizerProcessor::Peak;
+        band.type      = tobanteAudio::EqualizerProcessor::Peak;
     }
     {
         auto& band     = bands[3];
         band.name      = "High Mids";
         band.colour    = Colours::coral;
         band.frequency = 1000.0f;
-        band.type      = TA::EqualizerProcessor::Peak;
+        band.type      = tobanteAudio::EqualizerProcessor::Peak;
     }
     {
         auto& band     = bands[4];
         band.name      = "High";
         band.colour    = Colours::orange;
         band.frequency = 5000.0f;
-        band.type      = TA::EqualizerProcessor::HighShelf;
+        band.type      = tobanteAudio::EqualizerProcessor::HighShelf;
     }
     {
         auto& band     = bands[5];
@@ -308,7 +308,7 @@ void EqualizerProcessor::setDefaults()
         band.colour    = Colours::red;
         band.frequency = 12000.0f;
         band.quality   = 0.707f;
-        band.type      = TA::EqualizerProcessor::LowPass;
+        band.type      = tobanteAudio::EqualizerProcessor::LowPass;
     }
 }
 
@@ -325,47 +325,47 @@ void EqualizerProcessor::updateBand(const size_t index)
         dsp::IIR::Coefficients<float>::Ptr newCoefficients;
         switch (bands[index].type)
         {
-        case TA::EqualizerProcessor::NoFilter:
+        case tobanteAudio::EqualizerProcessor::NoFilter:
             newCoefficients = new dsp::IIR::Coefficients<float>(1, 0, 1, 0);
             break;
-        case TA::EqualizerProcessor::LowPass:
+        case tobanteAudio::EqualizerProcessor::LowPass:
             newCoefficients
                 = dsp::IIR::Coefficients<float>::makeLowPass(sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case TA::EqualizerProcessor::LowPass1st:
+        case tobanteAudio::EqualizerProcessor::LowPass1st:
             newCoefficients = dsp::IIR::Coefficients<float>::makeFirstOrderLowPass(sampleRate, bands[index].frequency);
             break;
-        case TA::EqualizerProcessor::LowShelf:
+        case tobanteAudio::EqualizerProcessor::LowShelf:
             newCoefficients = dsp::IIR::Coefficients<float>::makeLowShelf(sampleRate, bands[index].frequency,
                                                                           bands[index].quality, bands[index].gain);
             break;
-        case TA::EqualizerProcessor::BandPass:
+        case tobanteAudio::EqualizerProcessor::BandPass:
             newCoefficients
                 = dsp::IIR::Coefficients<float>::makeBandPass(sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case TA::EqualizerProcessor::AllPass:
+        case tobanteAudio::EqualizerProcessor::AllPass:
             newCoefficients
                 = dsp::IIR::Coefficients<float>::makeAllPass(sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case TA::EqualizerProcessor::AllPass1st:
+        case tobanteAudio::EqualizerProcessor::AllPass1st:
             newCoefficients = dsp::IIR::Coefficients<float>::makeFirstOrderAllPass(sampleRate, bands[index].frequency);
             break;
-        case TA::EqualizerProcessor::Notch:
+        case tobanteAudio::EqualizerProcessor::Notch:
             newCoefficients
                 = dsp::IIR::Coefficients<float>::makeNotch(sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case TA::EqualizerProcessor::Peak:
+        case tobanteAudio::EqualizerProcessor::Peak:
             newCoefficients = dsp::IIR::Coefficients<float>::makePeakFilter(sampleRate, bands[index].frequency,
                                                                             bands[index].quality, bands[index].gain);
             break;
-        case TA::EqualizerProcessor::HighShelf:
+        case tobanteAudio::EqualizerProcessor::HighShelf:
             newCoefficients = dsp::IIR::Coefficients<float>::makeHighShelf(sampleRate, bands[index].frequency,
                                                                            bands[index].quality, bands[index].gain);
             break;
-        case TA::EqualizerProcessor::HighPass1st:
+        case tobanteAudio::EqualizerProcessor::HighPass1st:
             newCoefficients = dsp::IIR::Coefficients<float>::makeFirstOrderHighPass(sampleRate, bands[index].frequency);
             break;
-        case TA::EqualizerProcessor::HighPass:
+        case tobanteAudio::EqualizerProcessor::HighPass:
             newCoefficients
                 = dsp::IIR::Coefficients<float>::makeHighPass(sampleRate, bands[index].frequency, bands[index].quality);
             break;
@@ -402,27 +402,27 @@ void EqualizerProcessor::updateBand(const size_t index)
 
 String EqualizerProcessor::getTypeParamID(const int index) const
 {
-    return getBandName(index) + "-" + TA::Parameters::Type;
+    return getBandName(index) + "-" + tobanteAudio::Parameters::Type;
 }
 
 String EqualizerProcessor::getFrequencyParamID(const int index) const
 {
-    return getBandName(index) + "-" + TA::Parameters::Frequency;
+    return getBandName(index) + "-" + tobanteAudio::Parameters::Frequency;
 }
 
 String EqualizerProcessor::getQualityParamID(const int index) const
 {
-    return getBandName(index) + "-" + TA::Parameters::Quality;
+    return getBandName(index) + "-" + tobanteAudio::Parameters::Quality;
 }
 
 String EqualizerProcessor::getGainParamID(const int index) const
 {
-    return getBandName(index) + "-" + TA::Parameters::Gain;
+    return getBandName(index) + "-" + tobanteAudio::Parameters::Gain;
 }
 
 String EqualizerProcessor::getActiveParamID(const int index) const
 {
-    return getBandName(index) + "-" + TA::Parameters::Active;
+    return getBandName(index) + "-" + tobanteAudio::Parameters::Active;
 }
 
 const std::vector<double>& EqualizerProcessor::getMagnitudes() { return magnitudes; }
@@ -453,4 +453,4 @@ bool EqualizerProcessor::checkForNewAnalyserData()
 {
     return inputAnalyser.checkForNewData() || outputAnalyser.checkForNewData();
 }
-}  // namespace TA
+}  // namespace tobanteAudio

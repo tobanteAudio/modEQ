@@ -22,13 +22,13 @@
 #include "../view/modulation_source_view.h"
 
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 class ModulationSourceController : public ChangeListener, public Timer
 {
 public:
     //==============================================================================
-    ModulationSourceController(int, ModEQProcessor&, TA::ModulationSourceProcessor&, TA::ModulationSourceView&);
+    ModulationSourceController(int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&, tobanteAudio::ModulationSourceView&);
 
     //==============================================================================
     void changeListenerCallback(ChangeBroadcaster* sender) override;
@@ -38,8 +38,8 @@ private:
     //==============================================================================
     int index;
     ModEQProcessor& mainProcessor;
-    TA::ModulationSourceProcessor& processor;
-    TA::ModulationSourceView& view;
+    tobanteAudio::ModulationSourceProcessor& processor;
+    tobanteAudio::ModulationSourceView& view;
 
     //==============================================================================
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
@@ -48,4 +48,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceController)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

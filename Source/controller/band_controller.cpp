@@ -16,9 +16,9 @@
 
 #include "band_controller.h"
 
-namespace TA
+namespace tobanteAudio
 {
-BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProcessor& sub, TA::BandView& v)
+BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::EqualizerProcessor& sub, tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
     // Link GUI components to ValueTree
@@ -39,61 +39,61 @@ BandController::BandController(const int i, ModEQProcessor& p, TA::EqualizerProc
     view.solo.addListener(this);
 }
 
-void BandController::updateControls(TA::EqualizerProcessor::FilterType type)
+void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
     {
-    case TA::EqualizerProcessor::LowPass:
+    case tobanteAudio::EqualizerProcessor::LowPass:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::LowPass1st:
+    case tobanteAudio::EqualizerProcessor::LowPass1st:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::LowShelf:
+    case tobanteAudio::EqualizerProcessor::LowShelf:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(true);
         break;
-    case TA::EqualizerProcessor::BandPass:
+    case tobanteAudio::EqualizerProcessor::BandPass:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::AllPass:
+    case tobanteAudio::EqualizerProcessor::AllPass:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::AllPass1st:
+    case tobanteAudio::EqualizerProcessor::AllPass1st:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::Notch:
+    case tobanteAudio::EqualizerProcessor::Notch:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::Peak:
+    case tobanteAudio::EqualizerProcessor::Peak:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(true);
         break;
-    case TA::EqualizerProcessor::HighShelf:
+    case tobanteAudio::EqualizerProcessor::HighShelf:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(true);
         break;
-    case TA::EqualizerProcessor::HighPass1st:
+    case tobanteAudio::EqualizerProcessor::HighPass1st:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(false);
         break;
-    case TA::EqualizerProcessor::HighPass:
+    case tobanteAudio::EqualizerProcessor::HighPass:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(false);
@@ -122,4 +122,4 @@ void BandController::buttonClicked(Button* b)
     }
 }
 
-}  // namespace TA
+}  // namespace tobanteAudio

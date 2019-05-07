@@ -20,19 +20,19 @@
 #include "../view/band_view.h"
 
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 class BandController : public Button::Listener
 {
 public:
     //==============================================================================
-    BandController(int /*i*/, ModEQProcessor& /*p*/, TA::EqualizerProcessor& /*sub*/, TA::BandView& /*v*/);
+    BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/, tobanteAudio::BandView& /*v*/);
 
     //==============================================================================
     void buttonClicked(Button* b) override;
 
     //==============================================================================
-    void updateControls(TA::EqualizerProcessor::FilterType type);
+    void updateControls(tobanteAudio::EqualizerProcessor::FilterType type);
     void updateSoloState(bool isSolo);
 
     //==============================================================================
@@ -46,9 +46,9 @@ public:
 private:
     //==============================================================================
     int index;
-    TA::BandView& view;
+    tobanteAudio::BandView& view;
     ModEQProcessor& mainProcessor;
-    TA::EqualizerProcessor& processor;
+    tobanteAudio::EqualizerProcessor& processor;
 
     //==============================================================================
     OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
@@ -59,4 +59,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

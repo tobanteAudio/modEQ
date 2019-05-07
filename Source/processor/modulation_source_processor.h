@@ -20,7 +20,7 @@
 #include "../utils/text_value_converter.h"
 #include "base_processor.h"
 
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 class ModulationSourceProcessor : public BaseProcessor, AudioProcessorValueTreeState::Listener
@@ -51,11 +51,11 @@ private:
     String paramIDGain, paramIDFrequency;
     dsp::Oscillator<float> oscillator;
     dsp::Gain<float> gain;
-    TA::ModulationSourceAnalyser<float> analyser;
+    tobanteAudio::ModulationSourceAnalyser<float> analyser;
     FrequencyTextConverter frequencyTextConverter;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceProcessor)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

@@ -17,7 +17,7 @@
 #include "modulation_source_controller.h"
 #include "../utils/constants.h"
 
-namespace TA
+namespace tobanteAudio
 {
 ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
@@ -42,4 +42,4 @@ void ModulationSourceController::timerCallback()
     view.repaint(view.plotFrame);
 }
 
-}  // namespace TA
+}  // namespace tobanteAudio

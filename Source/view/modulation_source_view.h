@@ -20,7 +20,7 @@
 #include "../analyser/modulation_source_analyser.h"
 #include "../processor/modulation_source_processor.h"
 
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 class ModulationConnectView : public Component, public Slider::Listener
@@ -90,4 +90,4 @@ public:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModulationSourceView)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

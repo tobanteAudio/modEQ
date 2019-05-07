@@ -16,7 +16,7 @@
 
 #include "modulation_source_view.h"
 
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 ModulationConnectView::ModulationConnectView(int i) : index(i), amount(Slider::LinearHorizontal, Slider::NoTextBox)
@@ -176,4 +176,4 @@ void ModulationSourceView::buttonClicked(Button* b)
     }
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

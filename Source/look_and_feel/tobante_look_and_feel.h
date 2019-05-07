@@ -18,7 +18,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-namespace TA
+namespace tobanteAudio
 {
 class TobanteLookAndFeel : public LookAndFeel_V4
 {
@@ -97,4 +97,4 @@ public:
     }
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

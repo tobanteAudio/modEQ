@@ -47,13 +47,13 @@ private:
     ModEQProcessor& processor;
 
     //==============================================================================
-    TA::TobanteLookAndFeel tobanteLookAndFeel;
-    OwnedArray<TA::BandView> bandViews;
-    OwnedArray<TA::BandController> bandControllers;
-    OwnedArray<TA::ModulationSourceView> modViews;
-    OwnedArray<TA::ModulationSourceController> modController;
-    // TA::ModulationSourceView modView;
-    TA::EqualizerPlotView plotView;
+    tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
+    OwnedArray<tobanteAudio::BandView> bandViews;
+    OwnedArray<tobanteAudio::BandController> bandControllers;
+    OwnedArray<tobanteAudio::ModulationSourceView> modViews;
+    OwnedArray<tobanteAudio::ModulationSourceController> modController;
+    // tobanteAudio::ModulationSourceView modView;
+    tobanteAudio::EqualizerPlotView plotView;
 
     //==============================================================================
     Rectangle<int> plotArea;

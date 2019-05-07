@@ -16,6 +16,6 @@
 
 #pragma once
 
-namespace TA
+namespace tobanteAudio
 {
 }

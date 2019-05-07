@@ -19,7 +19,7 @@
 
 //==============================================================================
 
-namespace TA
+namespace tobanteAudio
 {
 BandView::BandView(int const i)
     : index(i)
@@ -37,8 +37,8 @@ BandView::BandView(int const i)
     addAndMakeVisible(frame);
 
     // Add all filter options to combo box
-    for (int j = 0; j < TA::EqualizerProcessor::LastFilterID; ++j)
-        type.addItem(TA::EqualizerProcessor::getFilterTypeName(static_cast<TA::EqualizerProcessor::FilterType>(j)),
+    for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
+        type.addItem(tobanteAudio::EqualizerProcessor::getFilterTypeName(static_cast<tobanteAudio::EqualizerProcessor::FilterType>(j)),
                      j + 1);
 
     // Make controls visible
@@ -86,4 +86,4 @@ void BandView::resized()
     quality.setBounds(bounds.removeFromLeft(bounds.getWidth() / 2));
     gain.setBounds(bounds);
 }
-}  // namespace TA
+}  // namespace tobanteAudio

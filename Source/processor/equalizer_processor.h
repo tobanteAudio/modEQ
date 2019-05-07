@@ -18,7 +18,7 @@
 #include "../analyser/spectrum_analyser.h"
 #include "../utils/text_value_converter.h"
 #include "base_processor.h"
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 class EqualizerProcessor : public BaseProcessor, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
@@ -73,7 +73,7 @@ public:
     void parameterChanged(const String& parameter, float newValue) override;
 
     //==============================================================================
-    static String getFilterTypeName(TA::EqualizerProcessor::FilterType);
+    static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
     const String getName() const override { return "Equalizer"; }
     Band* getBand(int);
 
@@ -116,8 +116,8 @@ private:
     std::vector<double> frequencies;
     std::vector<double> magnitudes;
 
-    TA::SpectrumAnalyser<float> inputAnalyser;
-    TA::SpectrumAnalyser<float> outputAnalyser;
+    tobanteAudio::SpectrumAnalyser<float> inputAnalyser;
+    tobanteAudio::SpectrumAnalyser<float> outputAnalyser;
 
     GainTextConverter gainTextConverter;
     ActiveTextConverter activeTextConverter;
@@ -129,4 +129,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerProcessor)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

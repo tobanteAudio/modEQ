@@ -19,7 +19,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 struct GainView : public Component
 {
@@ -39,4 +39,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(GainView)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

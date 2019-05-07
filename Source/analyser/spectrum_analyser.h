@@ -19,7 +19,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 template <typename Type> class SpectrumAnalyser : public Thread
@@ -146,4 +146,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SpectrumAnalyser)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

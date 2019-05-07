@@ -16,6 +16,6 @@
 
 #include "gain_controller.h"
 
-namespace TA
+namespace tobanteAudio
 {
 }

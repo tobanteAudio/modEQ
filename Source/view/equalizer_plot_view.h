@@ -20,7 +20,7 @@
 #include "../controller/band_controller.h"
 #include "../processor/equalizer_processor.h"
 
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 /*
@@ -29,7 +29,7 @@ class EqualizerPlotView : public Component, public ChangeListener, public Timer
 {
 public:
     //==============================================================================
-    EqualizerPlotView(TA::EqualizerProcessor&, OwnedArray<TA::BandController>&);
+    EqualizerPlotView(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&);
     ~EqualizerPlotView();
 
     //==============================================================================
@@ -48,8 +48,8 @@ public:
 
 private:
     //==============================================================================
-    TA::EqualizerProcessor& processor;
-    OwnedArray<TA::BandController>& bandControllers;
+    tobanteAudio::EqualizerProcessor& processor;
+    OwnedArray<tobanteAudio::BandController>& bandControllers;
 
     //==============================================================================
     void updateFrequencyResponses();
@@ -73,4 +73,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EqualizerPlotView)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

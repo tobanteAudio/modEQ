@@ -41,7 +41,7 @@ ModEQProcessor::ModEQProcessor()
 
     lfoFreqRange.setSkewForCentre(1.0f);
 
-    state.createAndAddParameter(TA::Parameters::Output, translate("Output"), translate("Output level"), gainRange, 1.0,
+    state.createAndAddParameter(tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange, 1.0,
                                 gainTextConverter, gainTextConverter, false, true, false);
 
     state.createAndAddParameter("lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
@@ -50,7 +50,7 @@ ModEQProcessor::ModEQProcessor()
     state.createAndAddParameter("lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, 1.0f,
                                 gainTextConverter, gainTextConverter, false, true, false);
 
-    state.addParameterListener(TA::Parameters::Output, this);
+    state.addParameterListener(tobanteAudio::Parameters::Output, this);
 
     state.state = ValueTree(JucePlugin_Name);
 }
@@ -103,7 +103,7 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
     equalizerProcessor.prepare(spec);
     outputGain.prepare(spec);
 
-    outputGain.setGainLinear(*state.getRawParameterValue(TA::Parameters::Output));
+    outputGain.setGainLinear(*state.getRawParameterValue(tobanteAudio::Parameters::Output));
 }
 
 void ModEQProcessor::releaseResources() {}
@@ -135,7 +135,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     auto modRange  = .8f;
     auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
-    auto gainValue = *state.getRawParameterValue(TA::Parameters::Output);
+    auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
     auto gainMod   = gainValue + (modRange * modValue);
 
     if (gainMod < -0.0f) gainMod = 0.0;
@@ -153,7 +153,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
 void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
 {
-    if (parameter == TA::Parameters::Output)
+    if (parameter == tobanteAudio::Parameters::Output)
     {
         outputGain.setGainLinear(newValue);
         return;

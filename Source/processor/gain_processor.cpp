@@ -16,6 +16,6 @@
 
 #include "gain_processor.h"
 
-namespace TA
+namespace tobanteAudio
 {
 }

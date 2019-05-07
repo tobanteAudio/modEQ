@@ -16,7 +16,7 @@
 
 #include "modulation_source_processor.h"
 
-namespace TA
+namespace tobanteAudio
 {
 ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
     : index(i)
@@ -69,4 +69,4 @@ void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& boun
 
 bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
 
-}  // namespace TA
+}  // namespace tobanteAudio

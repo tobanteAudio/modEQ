@@ -17,7 +17,7 @@
 #include "gain_view.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 GainView::GainView() : gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
@@ -35,4 +35,4 @@ void GainView::resized()
     auto const area = getLocalBounds();
     gain.setBounds(area);
 }
-}  // namespace TA
+}  // namespace tobanteAudio

@@ -17,7 +17,7 @@
 #pragma once
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-namespace TA
+namespace tobanteAudio
 {
 //==============================================================================
 class BaseProcessor : public AudioProcessor
@@ -66,4 +66,4 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BaseProcessor)
 };
 
-}  // namespace TA
+}  // namespace tobanteAudio

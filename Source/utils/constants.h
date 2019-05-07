@@ -16,7 +16,7 @@
 
 #pragma once
 
-namespace TA
+namespace tobanteAudio
 {
 const int GLOBAL_REFRESH_RATE_HZ = 60;
-}  // namespace TA
+}  // namespace tobanteAudio
