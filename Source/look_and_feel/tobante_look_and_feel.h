@@ -1,4 +1,4 @@
-/* Copyright 2018 Tobias Hienzsch
+/* Copyright 2018-2019 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -7,11 +7,11 @@
  *
  * modEQ is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with modEQ.  If not, see <http://www.gnu.org/licenses/>.
+ * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #pragma once
@@ -65,7 +65,7 @@ public:
         g.setColour(Colours::darkblue);
         g.drawEllipse(rx, ry, rw, rw, 2.0f);
 
-        Rectangle<int> textArea {50, 50};
+        Rectangle<int> textArea{50, 50};
         textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
 
         g.setFont(18.f);
