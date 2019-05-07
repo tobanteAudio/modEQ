@@ -130,7 +130,7 @@ void EqualizerPlotView::paint(Graphics& g)
         // Color (active || bypass)
         if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
         {
-            param->getValue() < 0.5f ? g.setColour(Colours::grey) : g.setColour(Colours::red);
+            param->getValue() < 0.5f ? g.setColour(Colours::grey) : g.setColour(band->colour);
         }
 
         // Label

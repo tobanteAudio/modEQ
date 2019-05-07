@@ -54,6 +54,10 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     {
         auto& band = bands[size_t(i)];
 
+        auto& random = Random::getSystemRandom();
+        Colour colour(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        band.colour = colour;
+
         band.magnitudes.resize(frequencies.size(), 1.0);
 
         state.createAndAddParameter(std::make_unique<Parameter>(
@@ -81,7 +85,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
                 for (int i = 0; i < tobanteAudio::EqualizerProcessor::LastFilterID; ++i)
                     if (text
                         == tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
+                               static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
                         return static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i);
                 return tobanteAudio::EqualizerProcessor::NoFilter;
             },
