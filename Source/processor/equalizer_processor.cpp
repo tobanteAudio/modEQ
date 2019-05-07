@@ -48,14 +48,14 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     qualityRange.setSkewForCentre(1.0f);
     gainRange.setSkewForCentre(1.0f);
 
-    using Parameter = AudioProcessorValueTreeState::Parameter;
-
-    for (int i = 0; i < int(bands.size()); ++i)
+    for (int i = 0; i < static_cast<int>(bands.size()); ++i)
     {
+        using Parameter = AudioProcessorValueTreeState::Parameter;
+
         auto& band = bands[size_t(i)];
 
         auto& random = Random::getSystemRandom();
-        Colour colour(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        Colour colour(random.nextInt(255), random.nextInt(255), random.nextInt(255));
         band.colour = colour;
 
         band.magnitudes.resize(frequencies.size(), 1.0);
@@ -85,7 +85,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
                 for (int i = 0; i < tobanteAudio::EqualizerProcessor::LastFilterID; ++i)
                     if (text
                         == tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
+                               static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i)))
                         return static_cast<tobanteAudio::EqualizerProcessor::FilterType>(i);
                 return tobanteAudio::EqualizerProcessor::NoFilter;
             },

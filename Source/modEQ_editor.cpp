@@ -90,21 +90,22 @@ ModEQEditor::~ModEQEditor()
 #endif
 }
 
-//==============================================================================
 void ModEQEditor::paint(Graphics& g)
 {
-    const Colour inputColour  = Colours::greenyellow;
-    const Colour outputColour = Colours::red;
+    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
 
-    g.fillAll(getLookAndFeel().findColour(ResizableWindow::backgroundColourId));
+    // Background
+    g.fillAll(backgroundColour);
 
-    auto area        = getLocalBounds();
-    auto versionArea = area.removeFromBottom(static_cast<int>(area.getHeight() / 15 * 1));
-
-    String const version = JucePlugin_VersionString;
+    // Version footer
+    const String version   = JucePlugin_VersionString;
+    const auto versionArea = [&]() -> juce::Rectangle<int> {
+        auto area = getLocalBounds();
+        return area.removeFromBottom(static_cast<int>(area.getHeight() / 20));
+    }();
     g.setColour(Colours::white);
-    g.setFont(18.f);
-    g.drawText("modEQ v" + version, versionArea.reduced(10), Justification::centredTop);
+    g.setFont(16.f);
+    g.drawText("modEQ v" + version, versionArea.reduced(5), Justification::centredTop);
 }
 
 void ModEQEditor::resized()
@@ -112,7 +113,7 @@ void ModEQEditor::resized()
     auto area = getLocalBounds();
 
     // Facebook & Gitub
-    socialButtons.setBounds(area.removeFromBottom(35));
+    socialButtons.setBounds(area.removeFromBottom(static_cast<int>(area.getHeight() / 20)));
 
     // Modulators
     auto modArea              = area.removeFromBottom(getHeight() / 5);
