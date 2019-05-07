@@ -29,10 +29,8 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = mainProcessor.getPluginState();
 
-    attachments.add(
-        new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
-    attachments.add(
-        new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Button Connect
     view.toggleConnectView.addListener(this);

@@ -49,15 +49,13 @@ void EqualizerPlotView::paint(Graphics& g)
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
         if (i > 0)
-            g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(),
-                               (float)plotFrame.getBottom());
+            g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(), (float)plotFrame.getBottom());
 
         g.setColour(Colour(0xffb9f6ca));
         auto freq = getFrequencyForPosition(i * 0.1f);
-        g.drawFittedText((freq < 1000) ? String(freq) + " Hz"
-                                       : String(freq / 1000, 1) + " kHz",
-                         roundToInt(x + 3), plotFrame.getBottom() - 18, 50, 15,
-                         Justification::left, 1);
+        g.drawFittedText((freq < 1000) ? String(freq) + " Hz" : String(freq / 1000, 1) + " kHz",
+                         roundToInt(x + 3), plotFrame.getBottom() - 18, 50, 15, Justification::left,
+                         1);
     }
 
     // Horizontal lines
@@ -71,17 +69,17 @@ void EqualizerPlotView::paint(Graphics& g)
 
     // dB labels
     g.setColour(Colours::silver);
-    g.drawFittedText(String(maxDB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2,
-                     50, 14, Justification::left, 1);
+    g.drawFittedText(String(maxDB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
+                     Justification::left, 1);
     g.drawFittedText(String(maxDB / 2) + " dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50,
-                     14, Justification::left, 1);
+                     roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50, 14,
+                     Justification::left, 1);
     g.drawFittedText(" 0 dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50,
-                     14, Justification::left, 1);
+                     roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50, 14,
+                     Justification::left, 1);
     g.drawFittedText(String(-maxDB / 2) + " dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50,
-                     14, Justification::left, 1);
+                     roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50, 14,
+                     Justification::left, 1);
 
     g.reduceClipRegion(plotFrame);
 
@@ -148,22 +146,18 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
                     < clickRadius)
                 {
                     contextMenu.clear();
-                    for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID;
-                         ++t)
+                    for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID; ++t)
                         contextMenu.addItem(
                             t + 1,
                             tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                                static_cast<tobanteAudio::EqualizerProcessor::FilterType>(
-                                    t)),
+                                static_cast<tobanteAudio::EqualizerProcessor::FilterType>(t)),
                             true, band->type == t);
 
                     contextMenu.showMenuAsync(
-                        PopupMenu::Options()
-                            .withTargetComponent(this)
-                            .withTargetScreenArea({e.getScreenX(), e.getScreenY(), 1, 1}),
+                        PopupMenu::Options().withTargetComponent(this).withTargetScreenArea(
+                            {e.getScreenX(), e.getScreenY(), 1, 1}),
                         [this, i](int const selected) {
-                            if (selected > 0)
-                                bandControllers.getUnchecked(i)->setType(selected - 1);
+                            if (selected > 0) bandControllers.getUnchecked(i)->setType(selected - 1);
                         });
                 }
             }
@@ -181,8 +175,8 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
             {
                 const auto plotFrameX     = static_cast<float>(plotFrame.getX());
                 const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
-                const auto bandPosition = getPositionForFrequency(float(band->frequency));
-                const auto pos          = plotFrameX + bandPosition * plotFrameWidth;
+                const auto bandPosition   = getPositionForFrequency(float(band->frequency));
+                const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
                 if (std::abs(pos - e.position.getX()) < clickRadius)
                 {
@@ -191,10 +185,8 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
                                  - e.position.getY())
                         < clickRadius)
                     {
-                        draggingGain
-                            = processor.state.getParameter(processor.getGainParamID(i));
-                        setMouseCursor(
-                            MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
+                        draggingGain = processor.state.getParameter(processor.getGainParamID(i));
+                        setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
                     }
                     else
                     {
@@ -223,9 +215,9 @@ void EqualizerPlotView::mouseDrag(const MouseEvent& e)
         auto const pos = (e.position.getX() - plotFrame.getX()) / plotFrame.getWidth();
         bandControllers[draggingBand]->setFrequency(getFrequencyForPosition(pos));
         if (draggingGain)
-            bandControllers[draggingBand]->setGain(getGainForPosition(
-                e.position.getY(), static_cast<float>(plotFrame.getY()),
-                static_cast<float>(plotFrame.getBottom())));
+            bandControllers[draggingBand]->setGain(
+                getGainForPosition(e.position.getY(), static_cast<float>(plotFrame.getY()),
+                                   static_cast<float>(plotFrame.getBottom())));
     }
 }
 
@@ -238,27 +230,22 @@ void EqualizerPlotView::mouseDoubleClick(const MouseEvent& e)
             if (auto* band = processor.getBand(i))
             {
                 if (std::abs(plotFrame.getX()
-                             + getPositionForFrequency(float(band->frequency))
-                                   * plotFrame.getWidth()
+                             + getPositionForFrequency(float(band->frequency)) * plotFrame.getWidth()
                              - e.position.getX())
                     < clickRadius)
                 {
-                    if (auto* param
-                        = processor.state.getParameter(processor.getActiveParamID(i)))
-                        param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f
-                                                                              : 0.0f);
+                    if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
+                        param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f : 0.0f);
                 }
             }
         }
     }
 }
 
-void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
-                                       const MouseWheelDetails& wheel)
+void EqualizerPlotView::mouseWheelMove(const MouseEvent& e, const MouseWheelDetails& wheel)
 {
-    const auto overlap_with_radius = [](auto obj, auto mouse, int radius) -> bool {
-        return std::abs(obj - mouse) < radius;
-    };
+    const auto overlap_with_radius
+        = [](auto obj, auto mouse, int radius) -> bool { return std::abs(obj - mouse) < radius; };
 
     if (plotFrame.contains(e.x, e.y))
     {
@@ -268,15 +255,15 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
             {
                 const auto plotFrameX     = plotFrame.getX();
                 const auto plotFrameWidth = plotFrame.getWidth();
-                const auto bandPosition = getPositionForFrequency(float(band->frequency));
-                const auto pos          = plotFrameX + bandPosition * plotFrameWidth;
+                const auto bandPosition   = getPositionForFrequency(float(band->frequency));
+                const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
                 if (overlap_with_radius(pos, e.position.getX(), clickRadius))
                 {
                     const auto frameY      = static_cast<float>(plotFrame.getY());
                     const auto frameBottom = static_cast<float>(plotFrame.getBottom());
                     const auto gain        = static_cast<float>(band->gain);
-                    const auto gainPos = getPositionForGain(gain, frameY, frameBottom);
+                    const auto gainPos     = getPositionForGain(gain, frameY, frameBottom);
 
                     if (overlap_with_radius(gainPos, e.position.getY(), clickRadius))
                     {
@@ -296,8 +283,7 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
 
 void EqualizerPlotView::updateFrequencyResponses()
 {
-    auto const pixelsPerDouble
-        = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(maxDB);
+    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(maxDB);
 
     for (int i = 0; i < bandControllers.size(); ++i)
     {
@@ -307,9 +293,8 @@ void EqualizerPlotView::updateFrequencyResponses()
         {
             bandController->updateControls(band->type);
             bandController->frequencyResponse.clear();
-            processor.createFrequencyPlot(
-                bandController->frequencyResponse, band->magnitudes,
-                plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
+            processor.createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
+                                          plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
         }
         bandController->updateSoloState(processor.getBandSolo(i));
     }
@@ -328,14 +313,12 @@ float EqualizerPlotView::getFrequencyForPosition(float const pos)
     return 20.0f * std::pow(2.0f, pos * 10.0f);
 }
 
-float EqualizerPlotView::getPositionForGain(float const gain, float const top,
-                                            float const bottom)
+float EqualizerPlotView::getPositionForGain(float const gain, float const top, float const bottom)
 {
     return jmap(Decibels::gainToDecibels(gain, -maxDB), -maxDB, maxDB, bottom, top);
 }
 
-float EqualizerPlotView::getGainForPosition(float const pos, float const top,
-                                            float const bottom)
+float EqualizerPlotView::getGainForPosition(float const pos, float const top, float const bottom)
 {
     return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
 }

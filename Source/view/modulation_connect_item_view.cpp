@@ -24,9 +24,7 @@ namespace tobanteAudio
 {
 //==============================================================================
 ModulationConnectItemView::ModulationConnectItemView(int i)
-    : index(i)
-    , active(translate("A"))
-    , amount(Slider::LinearHorizontal, Slider::NoTextBox)
+    : index(i), active(translate("A")), amount(Slider::LinearHorizontal, Slider::NoTextBox)
 {
     // Toogle Button
     addAndMakeVisible(active);

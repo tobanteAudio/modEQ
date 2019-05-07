@@ -27,14 +27,11 @@
 //==============================================================================
 namespace tobanteAudio
 {
-class ModulationSourceController : public Button::Listener,
-                                   public Slider::Listener,
-                                   public Timer
+class ModulationSourceController : public Button::Listener, public Slider::Listener, public Timer
 {
 public:
     //==============================================================================
-    ModulationSourceController(const int, ModEQProcessor&,
-                               tobanteAudio::ModulationSourceProcessor&,
+    ModulationSourceController(const int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
     //==============================================================================

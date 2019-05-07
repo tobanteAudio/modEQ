@@ -18,8 +18,7 @@
 
 namespace tobanteAudio
 {
-BandController::BandController(const int i, ModEQProcessor& p,
-                               tobanteAudio::EqualizerProcessor& sub,
+BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::EqualizerProcessor& sub,
                                tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
@@ -30,17 +29,14 @@ BandController::BandController(const int i, ModEQProcessor& p,
 
     auto& state = mainProcessor.getPluginState();
 
-    boxAttachments.add(
-        new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
+    boxAttachments.add(new ComboBoxAttachment(state, processor.getTypeParamID(index), view.type));
     buttonAttachments.add(
         new ButtonAttachment(state, processor.getActiveParamID(index), view.activate));
 
-    attachments.add(new SliderAttachment(state, processor.getFrequencyParamID(index),
-                                         view.frequency));
     attachments.add(
-        new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
-    attachments.add(
-        new SliderAttachment(state, processor.getGainParamID(index), view.gain));
+        new SliderAttachment(state, processor.getFrequencyParamID(index), view.frequency));
+    attachments.add(new SliderAttachment(state, processor.getQualityParamID(index), view.quality));
+    attachments.add(new SliderAttachment(state, processor.getGainParamID(index), view.gain));
 
     // Add listner
     view.solo.addListener(this);
@@ -123,15 +119,9 @@ void BandController::setFrequency(float newFreq)
     view.frequency.setValue(newFreq, sendNotification);
 }
 
-void BandController::setGain(float newGain)
-{
-    view.gain.setValue(newGain, sendNotification);
-}
+void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
-void BandController::setType(int newType)
-{
-    view.type.setSelectedId(newType + 1, sendNotification);
-}
+void BandController::setType(int newType) { view.type.setSelectedId(newType + 1, sendNotification); }
 
 void BandController::buttonClicked(Button* b)
 {

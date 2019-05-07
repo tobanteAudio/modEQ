@@ -44,8 +44,8 @@ ModEQProcessor::ModEQProcessor()
     using Parameter = AudioProcessorValueTreeState::Parameter;
 
     state.createAndAddParameter(std::make_unique<Parameter>(
-        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"),
-        gainRange, 1.0, gainTextConverter, gainTextConverter, false, true, false));
+        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange,
+        1.0, gainTextConverter, gainTextConverter, false, true, false));
 
     state.createAndAddParameter(std::make_unique<Parameter>(
         "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
@@ -108,8 +108,7 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
     equalizerProcessor.prepare(spec);
     outputGain.prepare(spec);
 
-    outputGain.setGainLinear(
-        *state.getRawParameterValue(tobanteAudio::Parameters::Output));
+    outputGain.setGainLinear(*state.getRawParameterValue(tobanteAudio::Parameters::Output));
 }
 
 void ModEQProcessor::releaseResources() {}
@@ -118,8 +117,7 @@ void ModEQProcessor::releaseResources() {}
 bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
     // This checks if the input layout matches the output layout
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-        return false;
+    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet()) return false;
 
     return true;
 }
@@ -141,9 +139,8 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
     modBuffer.clear();
     modSource.processBlock(modBuffer, midiMessages);
 
-    auto modRange = .8f;
-    auto modValue
-        = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
+    auto modRange  = .8f;
+    auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
     auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
     auto gainMod   = gainValue + (modRange * modValue);
 

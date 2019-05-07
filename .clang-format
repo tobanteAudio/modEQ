@@ -7,7 +7,7 @@ AlignTrailingComments: 'true'
 AllowShortIfStatementsOnASingleLine: 'true'
 AllowShortLoopsOnASingleLine: 'true'
 BreakBeforeBraces: Allman
-ColumnLimit: '90'
+ColumnLimit: '102'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 Cpp11BracedListStyle: 'true'
 FixNamespaceComments: 'true'

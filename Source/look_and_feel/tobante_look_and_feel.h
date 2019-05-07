@@ -44,9 +44,9 @@ public:
         setColour(PopupMenu::highlightedTextColourId, Colours::blue);
     }
 
-    void drawRotarySlider(Graphics& g, int x, int y, int width, int height,
-                          float sliderPos, const float rotaryStartAngle,
-                          const float rotaryEndAngle, Slider& slider) override
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+                          const float rotaryStartAngle, const float rotaryEndAngle,
+                          Slider& slider) override
     {
         ignoreUnused(slider);
 
@@ -75,8 +75,7 @@ public:
         Path p;
         auto pointerLength    = radius * 0.33f;
         auto pointerThickness = 8.0f;
-        p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness,
-                       pointerLength);
+        p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
         p.applyTransform(AffineTransform::rotation(angle).translated(centreX, centreY));
 
         // pointer
@@ -93,9 +92,8 @@ public:
         // area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1)); //
         // empty space on bottom
 
-        layout.textBoxBounds
-            = area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1));
-        layout.sliderBounds = area;
+        layout.textBoxBounds = area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1));
+        layout.sliderBounds  = area;
 
         return layout;
     }
