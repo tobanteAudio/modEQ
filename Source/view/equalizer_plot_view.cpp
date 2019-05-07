@@ -179,8 +179,8 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
         {
             if (auto* band = processor.getBand(i))
             {
-                const auto plotFrameX     = plotFrame.getX();
-                const auto plotFrameWidth = plotFrame.getWidth();
+                const auto plotFrameX     = static_cast<float>(plotFrame.getX());
+                const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
                 const auto bandPosition = getPositionForFrequency(float(band->frequency));
                 const auto pos          = plotFrameX + bandPosition * plotFrameWidth;
 
@@ -273,13 +273,12 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e,
 
                 if (overlap_with_radius(pos, e.position.getX(), clickRadius))
                 {
-                    const auto plotFrameY      = plotFrame.getY();
-                    const auto plotFrameBottom = plotFrame.getBottom();
-                    const auto bandGain        = static_cast<float>(band->gain);
-                    const auto gainPosition
-                        = getPositionForGain(bandGain, plotFrameY, plotFrameBottom);
+                    const auto frameY      = static_cast<float>(plotFrame.getY());
+                    const auto frameBottom = static_cast<float>(plotFrame.getBottom());
+                    const auto gain        = static_cast<float>(band->gain);
+                    const auto gainPos = getPositionForGain(gain, frameY, frameBottom);
 
-                    if (overlap_with_radius(gainPosition, e.position.getY(), clickRadius))
+                    if (overlap_with_radius(gainPos, e.position.getY(), clickRadius))
                     {
                         const auto paramID = processor.getQualityParamID(i);
                         if (auto* param = processor.state.getParameter(paramID))
