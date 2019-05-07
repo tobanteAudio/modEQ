@@ -28,6 +28,10 @@
               file="Source/controller/band_controller.cpp"/>
         <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
+        <FILE id="EpvsF7" name="equalizer_plot_controller.cpp" compile="1"
+              resource="0" file="Source/controller/equalizer_plot_controller.cpp"/>
+        <FILE id="MVGmbD" name="equalizer_plot_controller.h" compile="0" resource="0"
+              file="Source/controller/equalizer_plot_controller.h"/>
         <FILE id="jrTSqM" name="gain_controller.cpp" compile="1" resource="0"
               file="Source/controller/gain_controller.cpp"/>
         <FILE id="cTa1h8" name="gain_controller.h" compile="0" resource="0"
@@ -85,6 +89,8 @@
               file="Source/view/modulation_source_view.cpp"/>
         <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0"
               file="Source/view/modulation_source_view.h"/>
+        <FILE id="nCOPM9" name="social_buttons.cpp" compile="1" resource="0"
+              file="Source/view/social_buttons.cpp"/>
         <FILE id="SFKS9r" name="social_buttons.h" compile="0" resource="0"
               file="Source/view/social_buttons.h"/>
       </GROUP>

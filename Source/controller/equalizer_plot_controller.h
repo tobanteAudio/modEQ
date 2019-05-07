@@ -15,3 +15,12 @@
  */
 
 #pragma once
+
+#include "../../JuceLibraryCode/JuceHeader.h"
+
+
+//==============================================================================
+namespace tobanteAudio
+{
+
+}  // namespace tobanteAudio

@@ -14,4 +14,4 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#include "equalizer_plot_controller.h"
