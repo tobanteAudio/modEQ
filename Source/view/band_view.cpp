@@ -21,8 +21,9 @@
 
 namespace tobanteAudio
 {
-BandView::BandView(int const i)
+BandView::BandView(int const i, const Colour c)
     : index(i)
+    , colour(c)
     , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
@@ -33,7 +34,7 @@ BandView::BandView(int const i)
     frame.setText(String(index));
     frame.setTextLabelPosition(Justification::centred);
     frame.setColour(GroupComponent::textColourId, Colours::silver);
-    frame.setColour(GroupComponent::outlineColourId, Colours::white);
+    frame.setColour(GroupComponent::outlineColourId, colour);
     addAndMakeVisible(frame);
 
     // Add all filter options to combo box

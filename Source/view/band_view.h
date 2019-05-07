@@ -23,7 +23,7 @@ namespace tobanteAudio
 class BandView : public Component
 {
 public:
-    BandView(int);
+    BandView(int, Colour = Colours::white);
     ~BandView() = default;
 
     void resized() override;
@@ -38,6 +38,7 @@ public:
 
 private:
     int index;
+    Colour colour;
 
 #if TOBANTEAUDIO_LIVE_MOCK
 public:

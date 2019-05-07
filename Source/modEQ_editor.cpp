@@ -41,7 +41,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
     {
-        auto* bandView = bandViews.add(new tobanteAudio::BandView(i));
+        auto color     = processor.getEQ().getBand(i)->colour;
+        auto* bandView = bandViews.add(new tobanteAudio::BandView(i, color));
         bandControllers.add(
             new tobanteAudio::BandController(i, processor, processor.getEQ(), *bandView));
 
