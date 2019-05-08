@@ -23,6 +23,7 @@
 #include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "modEQ_processor.h"
+#include "view/analyser_view.h"
 #include "view/band_view.h"
 #include "view/equalizer_plot_view.h"
 #include "view/modulation_source_view.h"
@@ -53,6 +54,7 @@ private:
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
     tobanteAudio::EqualizerPlotView plotView;
+    tobanteAudio::AnalyserView analyserView;
 
     //==============================================================================
     Rectangle<int> plotArea;

@@ -19,8 +19,7 @@
 
 namespace tobanteAudio
 {
-static int clickRadius = 10;
-static float maxDB     = 24.0f;
+
 
 //==============================================================================
 EqualizerPlotView::EqualizerPlotView(tobanteAudio::EqualizerProcessor& p,

@@ -30,6 +30,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     // Plot
     addAndMakeVisible(plotView);
+    addAndMakeVisible(analyserView);
 
     // Modulation
     for (int i = 1; i < 2; ++i)
@@ -131,4 +132,5 @@ void ModEQEditor::resized()
 
     // FFT
     plotView.setBounds(area);
+    //analyserView.setBounds(area);
 }

@@ -14,9 +14,20 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "equalizer_plot_controller.h"
+#include "analyser_controller.h"
 
 namespace tobanteAudio
 {
-EqualizerPlotController::EqualizerPlotController() {}
+AnalyserController::AnalyserController(ModEQProcessor& p, tobanteAudio::AnalyserView& v)
+    : mainProcessor(p), view(v)
+{
+}
+
+void AnalyserController::changeListenerCallback(ChangeBroadcaster* sender) {}
+void AnalyserController::timerCallback() {}
+void AnalyserController::mouseDown(const MouseEvent& e) {}
+void AnalyserController::mouseMove(const MouseEvent& e) {}
+void AnalyserController::mouseDrag(const MouseEvent& e) {}
+void AnalyserController::mouseDoubleClick(const MouseEvent& e) {}
+void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) {}
 }  // namespace tobanteAudio

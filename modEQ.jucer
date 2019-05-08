@@ -24,14 +24,14 @@
               file="Source/analyser/spectrum_analyser.h"/>
       </GROUP>
       <GROUP id="{D1D70FC5-BC47-31EF-50DF-052ED29AE9A1}" name="controller">
+        <FILE id="pal29X" name="analyser_controller.cpp" compile="1" resource="0"
+              file="Source/controller/analyser_controller.cpp"/>
+        <FILE id="QwTZt6" name="analyser_controller.h" compile="0" resource="0"
+              file="Source/controller/analyser_controller.h"/>
         <FILE id="PK42nw" name="band_controller.cpp" compile="1" resource="0"
               file="Source/controller/band_controller.cpp"/>
         <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
-        <FILE id="EpvsF7" name="equalizer_plot_controller.cpp" compile="1"
-              resource="0" file="Source/controller/equalizer_plot_controller.cpp"/>
-        <FILE id="MVGmbD" name="equalizer_plot_controller.h" compile="0" resource="0"
-              file="Source/controller/equalizer_plot_controller.h"/>
         <FILE id="jrTSqM" name="gain_controller.cpp" compile="1" resource="0"
               file="Source/controller/gain_controller.cpp"/>
         <FILE id="cTa1h8" name="gain_controller.h" compile="0" resource="0"
@@ -73,6 +73,9 @@
               file="Source/utils/text_value_converter.h"/>
       </GROUP>
       <GROUP id="{FD3FFB1B-0DCE-BD90-F50C-6E1B4F5A5C15}" name="view">
+        <FILE id="MhQUCF" name="analyser_view.cpp" compile="1" resource="0"
+              file="Source/view/analyser_view.cpp"/>
+        <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
         <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
         <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
         <FILE id="CPb2Oz" name="equalizer_plot_view.cpp" compile="1" resource="0"

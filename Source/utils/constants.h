@@ -18,5 +18,7 @@
 
 namespace tobanteAudio
 {
-const int GLOBAL_REFRESH_RATE_HZ = 60;
+constexpr int GLOBAL_REFRESH_RATE_HZ = 60;
+constexpr int clickRadius            = 10;
+constexpr float maxDB                = 24.0f;
 }  // namespace tobanteAudio
