@@ -16,25 +16,23 @@
 
 #pragma once
 
+// JUCE
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
+// tobanteAudio
 #include "analyser/spectrum_analyser.h"
 #include "processor/equalizer_processor.h"
 #include "processor/modulation_source_processor.h"
 #include "utils/text_value_converter.h"
 
-//==============================================================================
 class ModEQProcessor : public AudioProcessor,
                        public AudioProcessorValueTreeState::Listener,
                        public ChangeBroadcaster
 {
 public:
-    //==============================================================================
     ModEQProcessor();
     ~ModEQProcessor() override;
 
-    //==============================================================================
     void prepareToPlay(double newSampleRate, int newSamplesPerBlock) override;
     void releaseResources() override;
 
@@ -45,11 +43,9 @@ public:
     void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override;
     void parameterChanged(const String& parameter, float newValue) override;
 
-    //==============================================================================
     AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
-    //==============================================================================
     const String getName() const override;
 
     bool acceptsMidi() const override;
@@ -57,24 +53,20 @@ public:
     bool isMidiEffect() const override;
     double getTailLengthSeconds() const override;
 
-    //==============================================================================
     int getNumPrograms() override;
     int getCurrentProgram() override;
     void setCurrentProgram(int index) override;
     const String getProgramName(int index) override;
     void changeProgramName(int index, const String& newName) override;
 
-    //==============================================================================
     void getStateInformation(MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
-    //==============================================================================
     tobanteAudio::EqualizerProcessor& getEQ() { return equalizerProcessor; }
     AudioProcessorValueTreeState& getPluginState() { return state; }
     tobanteAudio::ModulationSourceProcessor modSource;
 
 private:
-    //==============================================================================
     UndoManager undo;
     AudioProcessorValueTreeState state;
 

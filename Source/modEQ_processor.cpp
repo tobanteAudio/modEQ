@@ -16,10 +16,10 @@
 
 #include "modEQ_processor.h"
 #include "modEQ_editor.h"
+#include "utils/constants.h"
 #include "utils/parameters.h"
 #include "view/social_buttons.h"
 
-//==============================================================================
 ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
     : AudioProcessor(BusesProperties()
@@ -34,7 +34,7 @@ ModEQProcessor::ModEQProcessor()
     , equalizerProcessor(state)
 
 {
-    const float maxGain     = Decibels::decibelsToGain(24.0f);
+    const float maxGain     = Decibels::decibelsToGain(tobanteAudio::maxDB);
     auto const gainRange    = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
     auto const lfoGainRange = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
     auto lfoFreqRange       = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
@@ -62,7 +62,6 @@ ModEQProcessor::ModEQProcessor()
 
 ModEQProcessor::~ModEQProcessor() {}
 
-//==============================================================================
 const String ModEQProcessor::getName() const { return JucePlugin_Name; }
 
 bool ModEQProcessor::acceptsMidi() const
@@ -83,7 +82,6 @@ bool ModEQProcessor::producesMidi() const
 #endif
 }
 
-//==============================================================================
 bool ModEQProcessor::isMidiEffect() const { return false; }
 double ModEQProcessor::getTailLengthSeconds() const { return 0.0; }
 int ModEQProcessor::getNumPrograms() { return 1; }
@@ -92,7 +90,6 @@ void ModEQProcessor::setCurrentProgram(int) {}
 const String ModEQProcessor::getProgramName(int) { return {}; }
 void ModEQProcessor::changeProgramName(int, const String&) {}
 
-//==============================================================================
 void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 {
     sampleRate = newSampleRate;
@@ -166,12 +163,10 @@ void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
     }
 }
 
-//==============================================================================
 bool ModEQProcessor::hasEditor() const { return true; }
 
 AudioProcessorEditor* ModEQProcessor::createEditor() { return new ModEQEditor(*this); }
 
-//==============================================================================
 void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 {
     MemoryOutputStream stream(destData, false);
@@ -187,6 +182,5 @@ void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
     }
 }
 
-//==============================================================================
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter() { return new ModEQProcessor(); }

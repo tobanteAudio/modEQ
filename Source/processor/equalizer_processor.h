@@ -20,14 +20,12 @@
 #include "base_processor.h"
 namespace tobanteAudio
 {
-//==============================================================================
 class EqualizerProcessor : public BaseProcessor,
                            public ChangeBroadcaster,
                            AudioProcessorValueTreeState::Listener
 
 {
 public:
-    //==============================================================================
     enum FilterType
     {
         NoFilter = 0,
@@ -45,7 +43,6 @@ public:
         LastFilterID
     };
 
-    //==============================================================================
     struct Band
     {
         String name;
@@ -58,46 +55,37 @@ public:
         std::vector<double> magnitudes;
     };
 
-    //==============================================================================
     EqualizerProcessor(AudioProcessorValueTreeState&);
     ~EqualizerProcessor() override;
 
-    //==============================================================================
     void prepareToPlay(double /*unused*/, int /*unused*/) override;
     void prepare(const dsp::ProcessSpec&);
 
-    //==============================================================================
     void process(const dsp::ProcessContextReplacing<float>&);
     void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
-    //==============================================================================
     void reset() override;
     void parameterChanged(const String& parameter, float newValue) override;
 
-    //==============================================================================
     static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
     const String getName() const override { return "Equalizer"; }
     Band* getBand(int);
 
-    //==============================================================================
     void updateBand(size_t);
     void updateBypassedStates();
     void updatePlots();
 
-    //==============================================================================
     const std::vector<double>& getMagnitudes();
     void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
     void createAnalyserPlot(Path&, Rectangle<int>, float, bool);
     bool checkForNewAnalyserData();
 
-    //==============================================================================
     String getTypeParamID(int index) const;
     String getFrequencyParamID(int index) const;
     String getQualityParamID(int index) const;
     String getGainParamID(int index) const;
     String getActiveParamID(int index) const;
 
-    //==============================================================================
     int getNumBands() const;
     String getBandName(int index) const;
     Colour getBandColour(int index) const;
@@ -105,11 +93,9 @@ public:
     bool getBandSolo(int index) const;
 
 private:
-    //==============================================================================
     int soloed       = -1;
     bool wasBypassed = true;
 
-    //==============================================================================
     using FilterBand
         = dsp::ProcessorDuplicator<dsp::IIR::Filter<float>, dsp::IIR::Coefficients<float>>;
 

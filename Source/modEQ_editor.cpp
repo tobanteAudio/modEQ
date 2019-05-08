@@ -18,11 +18,12 @@
 #include "modEQ_processor.h"
 #include "utils/parameters.h"
 
-//==============================================================================
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
     , plotView(processor.getEQ(), bandControllers)
+    , analyserController(processor, analyserView)
+
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     // Social buttons
@@ -132,5 +133,5 @@ void ModEQEditor::resized()
 
     // FFT
     plotView.setBounds(area);
-    //analyserView.setBounds(area);
+    analyserView.setBounds(area);
 }

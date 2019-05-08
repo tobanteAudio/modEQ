@@ -22,39 +22,31 @@
 #include "../modEQ_processor.h"
 #include "../view/band_view.h"
 
-//==============================================================================
 namespace tobanteAudio
 {
 class BandController : public Button::Listener
 {
 public:
-    //==============================================================================
     BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/,
                    tobanteAudio::BandView& /*v*/);
 
-    //==============================================================================
     void buttonClicked(Button* b) override;
 
-    //==============================================================================
     void updateControls(tobanteAudio::EqualizerProcessor::FilterType type);
     void updateSoloState(bool isSolo);
 
-    //==============================================================================
     void setFrequency(float newFreq);
     void setGain(float newGain);
     void setType(int newType);
 
-    //==============================================================================
     Path frequencyResponse;
 
 private:
-    //==============================================================================
     int index;
     tobanteAudio::BandView& view;
     ModEQProcessor& mainProcessor;
     tobanteAudio::EqualizerProcessor& processor;
 
-    //==============================================================================
     OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
     OwnedArray<AudioProcessorValueTreeState::ButtonAttachment> buttonAttachments;

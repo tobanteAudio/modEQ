@@ -18,7 +18,7 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
+
 ModulationSourceView::ModulationSourceView(int i)
     : index(i)
     , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)

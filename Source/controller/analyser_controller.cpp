@@ -21,13 +21,18 @@ namespace tobanteAudio
 AnalyserController::AnalyserController(ModEQProcessor& p, tobanteAudio::AnalyserView& v)
     : mainProcessor(p), view(v)
 {
+    view.addMouseListener(this, false);
 }
 
-void AnalyserController::changeListenerCallback(ChangeBroadcaster* sender) {}
+void AnalyserController::changeListenerCallback(ChangeBroadcaster* sender) { ignoreUnused(sender); }
 void AnalyserController::timerCallback() {}
-void AnalyserController::mouseDown(const MouseEvent& e) {}
-void AnalyserController::mouseMove(const MouseEvent& e) {}
-void AnalyserController::mouseDrag(const MouseEvent& e) {}
-void AnalyserController::mouseDoubleClick(const MouseEvent& e) {}
-void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) {}
+void AnalyserController::mouseDown(const MouseEvent& e) { ignoreUnused(e); }
+void AnalyserController::mouseMove(const MouseEvent& e) { ignoreUnused(e); }
+void AnalyserController::mouseDrag(const MouseEvent& e) { ignoreUnused(e); }
+void AnalyserController::mouseDoubleClick(const MouseEvent& e) { ignoreUnused(e); }
+void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
+{
+    ignoreUnused(event);
+    ignoreUnused(wheel);
+}
 }  // namespace tobanteAudio

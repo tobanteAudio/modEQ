@@ -17,10 +17,8 @@
 #include "equalizer_processor.h"
 #include "../utils/parameters.h"
 
-//==============================================================================
 namespace tobanteAudio
 {
-//==============================================================================
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : BaseProcessor(vts)
 {
     const float maxGain = Decibels::decibelsToGain(24.0f);
@@ -110,7 +108,7 @@ EqualizerProcessor::~EqualizerProcessor()
     inputAnalyser.stopThread(1000);
     outputAnalyser.stopThread(1000);
 }
-//==============================================================================
+
 void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlock*/)
 {
     sampleRate = newSampleRate;
@@ -183,7 +181,6 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
     }
 }
 
-//==============================================================================
 String EqualizerProcessor::getFilterTypeName(const tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
@@ -236,7 +233,6 @@ void EqualizerProcessor::setBandSolo(const int index)
     updateBypassedStates();
 }
 
-//==============================================================================
 void EqualizerProcessor::updateBypassedStates()
 {
     if (isPositiveAndBelow(soloed, bands.size()))
@@ -281,7 +277,6 @@ void EqualizerProcessor::updatePlots()
     sendChangeMessage();
 }
 
-//==============================================================================
 bool EqualizerProcessor::getBandSolo(const int index) const { return index == soloed; }
 
 void EqualizerProcessor::setDefaults()

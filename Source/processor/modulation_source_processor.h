@@ -22,31 +22,24 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
 class ModulationSourceProcessor : public BaseProcessor, public AudioProcessorValueTreeState::Listener
 
 {
 public:
-    //==============================================================================
     ModulationSourceProcessor(int, AudioProcessorValueTreeState&);
     ~ModulationSourceProcessor() override;
 
-    //==============================================================================
     void prepareToPlay(double /*unused*/, int /*unused*/) override;
     void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
-    //==============================================================================
     void parameterChanged(const String& parameter, float newValue) override;
 
-    //==============================================================================
     void createAnalyserPlot(Path&, Rectangle<int>&, float);
     bool checkForNewAnalyserData();
 
-    //==============================================================================
     void reset() override { oscillator.reset(); }
 
 private:
-    //==============================================================================
     int index;
     String paramIDGain, paramIDFrequency;
     dsp::Oscillator<float> oscillator;

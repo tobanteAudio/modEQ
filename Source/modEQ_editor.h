@@ -16,9 +16,11 @@
 
 #pragma once
 
+// JUCE
 #include "../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
+// tobanteAudio
+#include "controller/analyser_controller.h"
 #include "controller/band_controller.h"
 #include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
@@ -29,25 +31,18 @@
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
 
-//==============================================================================
-/**
- */
 class ModEQEditor : public AudioProcessorEditor
 {
 public:
-    //==============================================================================
     ModEQEditor(ModEQProcessor&);
     ~ModEQEditor();
 
-    //==============================================================================
     void paint(Graphics&) override;
     void resized() override;
 
 private:
-    //==============================================================================
     ModEQProcessor& processor;
 
-    //==============================================================================
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     OwnedArray<tobanteAudio::BandView> bandViews;
     OwnedArray<tobanteAudio::BandController> bandControllers;
@@ -55,20 +50,17 @@ private:
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
     tobanteAudio::EqualizerPlotView plotView;
     tobanteAudio::AnalyserView analyserView;
+    tobanteAudio::AnalyserController analyserController;
 
-    //==============================================================================
     Rectangle<int> plotArea;
 
-    //==============================================================================
     tobanteAudio::SocialButtons socialButtons;
     Slider output;
     GroupComponent frame;  // for output slider
 
-    //==============================================================================
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
     SharedResourcePointer<TooltipWindow> tooltipWindow;
 
-    //==============================================================================
 #ifdef JUCE_OPENGL
     OpenGLContext openGLContext;
 #endif

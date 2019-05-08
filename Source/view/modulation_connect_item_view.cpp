@@ -22,7 +22,7 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
+
 ModulationConnectItemView::ModulationConnectItemView(int i)
     : index(i), active(translate("A")), amount(Slider::LinearHorizontal, Slider::NoTextBox)
 {

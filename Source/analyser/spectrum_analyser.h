@@ -19,10 +19,10 @@
 // JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-//==============================================================================
+
 namespace tobanteAudio
 {
-//==============================================================================
+
 template <typename Type> class SpectrumAnalyser : public Thread
 {
 public:

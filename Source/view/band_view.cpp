@@ -17,7 +17,7 @@
 #include "band_view.h"
 #include "../modEQ_processor.h"
 
-//==============================================================================
+
 
 namespace tobanteAudio
 {

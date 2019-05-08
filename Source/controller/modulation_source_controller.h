@@ -24,32 +24,26 @@
 #include "../processor/modulation_source_processor.h"
 #include "../view/modulation_source_view.h"
 
-//==============================================================================
 namespace tobanteAudio
 {
 class ModulationSourceController : public Button::Listener, public Slider::Listener, public Timer
 {
 public:
-    //==============================================================================
     ModulationSourceController(const int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
-    //==============================================================================
     void buttonClicked(Button* b) override;
     void sliderValueChanged(Slider* slider) override;
     void timerCallback() override;
 
 private:
-    //==============================================================================
     int index;
     bool connectViewActive;
 
-    //==============================================================================
     ModEQProcessor& mainProcessor;
     tobanteAudio::ModulationSourceProcessor& processor;
     tobanteAudio::ModulationSourceView& view;
 
-    //==============================================================================
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
 
     //==============================================================================

@@ -19,7 +19,7 @@
 
 namespace tobanteAudio
 {
-//==============================================================================
+
 GainView::GainView(const int i)
     : index(i), gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
