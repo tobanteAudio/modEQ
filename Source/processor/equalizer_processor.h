@@ -34,7 +34,6 @@ public:
         LowShelf,
         BandPass,
         AllPass,
-        AllPass1st,
         Notch,
         Peak,
         HighShelf,

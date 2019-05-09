@@ -20,14 +20,14 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 // tobanteAudio
+#include "modEQ_processor.h"
+
 #include "controller/analyser_controller.h"
 #include "controller/band_controller.h"
 #include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
-#include "modEQ_processor.h"
 #include "view/analyser_view.h"
 #include "view/band_view.h"
-#include "view/equalizer_plot_view.h"
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
 
@@ -43,18 +43,19 @@ public:
 private:
     ModEQProcessor& processor;
 
+	// Components
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
+    tobanteAudio::SocialButtons socialButtons;
+	// Bands
     OwnedArray<tobanteAudio::BandView> bandViews;
     OwnedArray<tobanteAudio::BandController> bandControllers;
+	// Modulation
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-    // tobanteAudio::EqualizerPlotView plotView;
+	// Analyser Plot
     std::unique_ptr<tobanteAudio::AnalyserView> analyserView;
     std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 
-    Rectangle<int> plotArea;
-
-    tobanteAudio::SocialButtons socialButtons;
     Slider output;
     GroupComponent frame;  // for output slider
 

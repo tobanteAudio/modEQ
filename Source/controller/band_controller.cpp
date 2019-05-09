@@ -52,6 +52,7 @@ void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType
     switch (type)
     {
     case tobanteAudio::EqualizerProcessor::LowPass:
+        DBG("CONTROLLER: LOW PASS");
         view.frequency.setEnabled(true);
         view.quality.setEnabled(true);
         view.gain.setEnabled(false);
@@ -72,11 +73,6 @@ void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType
         view.gain.setEnabled(false);
         break;
     case tobanteAudio::EqualizerProcessor::AllPass:
-        view.frequency.setEnabled(true);
-        view.quality.setEnabled(false);
-        view.gain.setEnabled(false);
-        break;
-    case tobanteAudio::EqualizerProcessor::AllPass1st:
         view.frequency.setEnabled(true);
         view.quality.setEnabled(false);
         view.gain.setEnabled(false);
