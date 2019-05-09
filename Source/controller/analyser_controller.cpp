@@ -260,8 +260,8 @@ void AnalyserController::updateFrequencyResponses()
 
             // Label
             const int offset {-20};
-            handle.label_x = static_cast<int>(handle.x + offset);
-            handle.label_y = static_cast<int>(handle.y + offset);
+            handle.label_x = static_cast<float>(handle.x + offset);
+            handle.label_y = static_cast<float>(handle.y + offset);
         }
         bandController->updateSoloState(processor.getBandSolo(i));
     }

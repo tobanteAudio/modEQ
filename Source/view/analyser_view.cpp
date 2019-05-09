@@ -106,14 +106,14 @@ void AnalyserView::paint(Graphics& g)
 
     for (const auto& handle : handles)
     {
-        const int size {30};
+        const int size{30};
         g.setColour(handle.color);
         // Label
-        g.drawFittedText(String(handle.id), handle.label_x, handle.label_y, size, size,
-                         Justification::left, 1);
+        g.drawFittedText(String(handle.id), static_cast<int>(handle.label_x),
+                         static_cast<int>(handle.label_y), size, size, Justification::left, 1);
 
         // Handle
-        g.drawEllipse(handle.x, handle.y, 8, 8, 5);
+        g.drawEllipse(static_cast<float>(handle.x), static_cast<float>(handle.y), 8.0f, 8.0f, 5.0f);
     }
 }
 

@@ -43,7 +43,6 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     using tobanteAudio::FILTER_Q_MIN;
     using tobanteAudio::FILTER_Q_STEP_SIZE;
 
-    
     NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID - 1,
                                              1);
     NormalisableRange<float> frequencyRange(FILTER_FREQ_MIN, FILTER_FREQ_MAX, FILTER_FREQ_STEP_SIZE);
@@ -65,7 +64,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
             const auto r = static_cast<uint8>(random.nextInt(256));
             const auto g = static_cast<uint8>(random.nextInt(256));
             const auto b = static_cast<uint8>(random.nextInt(256));
-            return Colour(r, g, b).brighter(0.3);
+            return Colour(r, g, b).brighter(0.3f);
         }();
         band.colour = colour;
 
@@ -90,21 +89,21 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
         state.createAndAddParameter(std::make_unique<Parameter>(
             getTypeParamID(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
             static_cast<float>(band.type),
-            [](float value) {
+            [](float value) -> String {
                 using EP = tobanteAudio::EqualizerProcessor;
                 return EP::getFilterTypeName(static_cast<EP::FilterType>(static_cast<int>(value)));
             },
-            [](String text) {
+            [](String text) -> float {
                 using EP = tobanteAudio::EqualizerProcessor;
 
                 for (int i = 0; i < EP::LastFilterID; ++i)
                 {
                     if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
                     {
-                        return static_cast<EP::FilterType>(i);
+                        return static_cast<float>(i);
                     }
                 }
-                return EP::NoFilter;
+                return static_cast<float>(EP::NoFilter);
             },
             false, true, true));
 

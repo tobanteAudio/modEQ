@@ -30,10 +30,10 @@ public:
     struct BandHandle
     {
         int id {};
-        int x {};
-        int y {};
-        int label_x {};
-        int label_y {};
+        float x {};
+        float y {};
+        float label_x {};
+        float label_y {};
         Colour color {Colours::white};
     };
 
