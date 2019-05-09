@@ -18,16 +18,21 @@
 
 namespace tobanteAudio
 {
-// UI
-constexpr int GLOBAL_REFRESH_RATE_HZ = 60;
-constexpr int HANDLE_CLICK_RADIUS    = 10;
-
 // Audio
 constexpr float MAX_DB         = 24.0f;
 constexpr float GAIN_MIN       = 0.0f;
 constexpr float GAIN_MAX       = 2.0f;
 constexpr float GAIN_STEP_SIZE = 0.01f;
 constexpr float GAIN_DEFAULT   = 1.0f;
+
+// Filter
+constexpr float FILTER_GAIN_STEP_SIZE       = 0.001f;
+constexpr float FILTER_FREQ_MIN       = 20.0f;
+constexpr float FILTER_FREQ_MAX       = 20'000.0f;
+constexpr float FILTER_FREQ_STEP_SIZE = 0.1f;
+constexpr float FILTER_Q_MIN          = 0.1f;
+constexpr float FILTER_Q_MAX          = 10.0f;
+constexpr float FILTER_Q_STEP_SIZE    = 0.1f;
 
 // LFO
 constexpr float LFO_GAIN_MAX       = 1.0f;
@@ -36,5 +41,9 @@ constexpr float LFO_FREQ_MAX       = 10.0f;
 constexpr float LFO_FREQ_STEP_SIZE = 0.01f;
 constexpr float LFO_FREQ_SKEW      = 1.0f;
 constexpr float LFO_FREQ_DEFAULT   = 0.3f;
+
+// UI
+constexpr int GLOBAL_REFRESH_RATE_HZ = 60;
+constexpr int HANDLE_CLICK_RADIUS    = 10;
 
 }  // namespace tobanteAudio
