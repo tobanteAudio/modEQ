@@ -48,7 +48,7 @@ ModEQProcessor::ModEQProcessor()
 
     using Parameter = AudioProcessorValueTreeState::Parameter;
 
-    float const maxGain     = Decibels::decibelsToGain(tobanteAudio::maxDB);
+    float const maxGain     = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
     auto const gainRange    = NormalisableRange<float>(GAIN_MIN, GAIN_MAX, GAIN_STEP_SIZE);
     auto const lfoGainRange = NormalisableRange<float>(GAIN_MIN, LFO_GAIN_MAX, GAIN_STEP_SIZE);
     auto const lfoFreqRange = []() -> NormalisableRange<float> {

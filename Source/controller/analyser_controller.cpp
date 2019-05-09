@@ -23,9 +23,16 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
                                        tobanteAudio::AnalyserView& v)
     : processor(p), bandControllers(bc), view(v)
 {
+    for (const auto& band : bandControllers)
+    {
+        ignoreUnused(band);
+        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {1, 0, 0, 0, 0});
+    }
     view.addMouseListener(this, false);
     processor.addChangeListener(this);
 
+    updateFrequencyResponses();
+    view.repaint(view.plotFrame);
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
@@ -216,7 +223,7 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWhee
 void AnalyserController::updateFrequencyResponses()
 {
     auto& plotFrame            = view.plotFrame;
-    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(maxDB);
+    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(MAX_DB);
 
     for (int i = 0; i < bandControllers.size(); ++i)
     {
@@ -228,6 +235,31 @@ void AnalyserController::updateFrequencyResponses()
             bandController->frequencyResponse.clear();
             processor.createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
                                           plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
+
+            // HANDLE
+            auto& handle = view.handles[i];
+            // X
+            const auto plotFrameX     = static_cast<float>(plotFrame.getX());
+            const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            handle.x                  = plotFrameX + bandPosition * plotFrameWidth;
+
+            // Y
+            const auto frameY      = static_cast<float>(plotFrame.getY());
+            const auto frameBottom = static_cast<float>(plotFrame.getBottom());
+            const auto gain        = static_cast<float>(band->gain);
+            handle.y               = view.get_position_for_gain(gain, frameY, frameBottom);
+
+            // Color (active || bypass)
+            if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
+            {
+                param->getValue() < 0.5f ? handle.active = false : handle.active = true;
+            }
+
+            // Label
+            const int offset {-20};
+            handle.label_x = static_cast<int>(handle.x + offset);
+            handle.label_y = static_cast<int>(handle.y + offset);
         }
         bandController->updateSoloState(processor.getBandSolo(i));
     }

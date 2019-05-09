@@ -15,13 +15,14 @@
  */
 
 #include "equalizer_processor.h"
+#include "../utils/constants.h"
 #include "../utils/parameters.h"
 
 namespace tobanteAudio
 {
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : BaseProcessor(vts)
 {
-    const float maxGain = Decibels::decibelsToGain(24.0f);
+    const float maxGain = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
     frequencies.resize(300);
     for (size_t i = 0; i < frequencies.size(); ++i)

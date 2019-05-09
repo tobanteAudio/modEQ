@@ -23,7 +23,7 @@ constexpr int GLOBAL_REFRESH_RATE_HZ = 60;
 constexpr int clickRadius            = 10;
 
 // Audio
-constexpr float maxDB          = 24.0f;
+constexpr float MAX_DB         = 24.0f;
 constexpr float GAIN_MIN       = 0.0f;
 constexpr float GAIN_MAX       = 2.0f;
 constexpr float GAIN_STEP_SIZE = 0.01f;

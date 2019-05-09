@@ -21,17 +21,12 @@
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
-    , plotView(processor.getEQ(), bandControllers)
-    , analyserController(processor.getEQ(), bandControllers, analyserView)
+    //, plotView(processor.getEQ(), bandControllers)
 
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     // Social buttons
     addAndMakeVisible(socialButtons);
-
-    // Plot
-    // addAndMakeVisible(plotView);
-    addAndMakeVisible(analyserView);
 
     // Modulation
     for (int i = 1; i < 2; ++i)
@@ -59,6 +54,17 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         // bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
+
+    // Plot
+    // addAndMakeVisible(plotView);
+    using tobanteAudio::AnalyserController;
+    using tobanteAudio::AnalyserView;
+
+    auto& eq     = processor.getEQ();
+    analyserView = std::make_unique<AnalyserView>();
+    analyserController
+        = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
+    addAndMakeVisible(analyserView.get());
 
     //  Master Section
     frame.setText(translate("Master - Out"));
@@ -133,5 +139,5 @@ void ModEQEditor::resized()
 
     // FFT
     // plotView.setBounds(area);
-    analyserView.setBounds(area);
+    analyserView->setBounds(area);
 }

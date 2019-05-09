@@ -27,6 +27,16 @@ namespace tobanteAudio
 class AnalyserView : public Component
 {
 public:
+    struct BandHandle
+    {
+        int id {};
+        int x {};
+        int y {};
+        int label_x {};
+        int label_y {};
+        bool active {};
+    };
+
     AnalyserView();
     ~AnalyserView() override = default;
 
@@ -40,6 +50,8 @@ public:
 
     PopupMenu contextMenu;
 
+    std::vector<BandHandle> handles;
+
     inline static float get_position_for_frequency(float freq) noexcept
     {
         return (std::log(freq / 20.0f) / std::log(2.0f)) / 10.0f;
@@ -50,11 +62,11 @@ public:
     }
     inline static float get_position_for_gain(float gain, float top, float bottom) noexcept
     {
-        return jmap(Decibels::gainToDecibels(gain, -maxDB), -maxDB, maxDB, bottom, top);
+        return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB, bottom, top);
     }
     inline static float get_gain_for_position(float pos, float top, float bottom) noexcept
     {
-        return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
+        return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB), -MAX_DB);
     }
 
     /**

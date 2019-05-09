@@ -64,15 +64,15 @@ void AnalyserView::paint(Graphics& g)
 
     // dB labels
     g.setColour(Colours::silver);
-    g.drawFittedText(String(maxDB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
+    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
                      Justification::left, 1);
-    g.drawFittedText(String(maxDB / 2) + " dB", plotFrame.getX() + 3,
+    g.drawFittedText(String(MAX_DB / 2) + " dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
     g.drawFittedText(" 0 dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
-    g.drawFittedText(String(-maxDB / 2) + " dB", plotFrame.getX() + 3,
+    g.drawFittedText(String(-MAX_DB / 2) + " dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
 
@@ -103,6 +103,18 @@ void AnalyserView::paint(Graphics& g)
     //
     g.setColour(Colour(0xff00ff08));
     g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(3.0));
+
+    for (const auto& handle : handles)
+    {
+        const int size {30};
+        handle.active ? g.setColour(Colours::blue) : g.setColour(Colours::grey);
+        // Label
+        g.drawFittedText(String(handle.id), handle.label_x, handle.label_y, size, size,
+                         Justification::left, 1);
+
+        // Handle
+        g.drawEllipse(handle.x, handle.y, 8, 8, 5);
+    }
 }
 
 void AnalyserView::resized()

@@ -64,15 +64,15 @@ void EqualizerPlotView::paint(Graphics& g)
 
     // dB labels
     g.setColour(Colours::silver);
-    g.drawFittedText(String(maxDB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
+    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14,
                      Justification::left, 1);
-    g.drawFittedText(String(maxDB / 2) + " dB", plotFrame.getX() + 3,
+    g.drawFittedText(String(MAX_DB / 2) + " dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
     g.drawFittedText(" 0 dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
-    g.drawFittedText(String(-maxDB / 2) + " dB", plotFrame.getX() + 3,
+    g.drawFittedText(String(-MAX_DB / 2) + " dB", plotFrame.getX() + 3,
                      roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50, 14,
                      Justification::left, 1);
 
@@ -325,7 +325,7 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e, const MouseWheelDeta
 
 void EqualizerPlotView::updateFrequencyResponses()
 {
-    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(maxDB);
+    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(MAX_DB);
 
     for (int i = 0; i < bandControllers.size(); ++i)
     {
@@ -357,12 +357,12 @@ float EqualizerPlotView::get_frequency_for_position(float const pos)
 
 float EqualizerPlotView::get_position_for_gain(float const gain, float const top, float const bottom)
 {
-    return jmap(Decibels::gainToDecibels(gain, -maxDB), -maxDB, maxDB, bottom, top);
+    return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB, bottom, top);
 }
 
 float EqualizerPlotView::get_gain_for_position(float const pos, float const top, float const bottom)
 {
-    return Decibels::decibelsToGain(jmap(pos, bottom, top, -maxDB, maxDB), -maxDB);
+    return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB), -MAX_DB);
 }
 
 }  // namespace tobanteAudio

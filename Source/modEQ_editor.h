@@ -48,9 +48,9 @@ private:
     OwnedArray<tobanteAudio::BandController> bandControllers;
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-    tobanteAudio::EqualizerPlotView plotView;
-    tobanteAudio::AnalyserView analyserView;
-    tobanteAudio::AnalyserController analyserController;
+    // tobanteAudio::EqualizerPlotView plotView;
+    std::unique_ptr<tobanteAudio::AnalyserView> analyserView;
+    std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 
     Rectangle<int> plotArea;
 
