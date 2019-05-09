@@ -43,13 +43,12 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     using tobanteAudio::FILTER_Q_MIN;
     using tobanteAudio::FILTER_Q_STEP_SIZE;
 
-    const float maxGain = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
-
+    
     NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID - 1,
                                              1);
     NormalisableRange<float> frequencyRange(FILTER_FREQ_MIN, FILTER_FREQ_MAX, FILTER_FREQ_STEP_SIZE);
     NormalisableRange<float> qualityRange(FILTER_Q_MIN, FILTER_Q_MAX, FILTER_Q_STEP_SIZE);
-    NormalisableRange<float> gainRange(1.0f / maxGain, maxGain, FILTER_GAIN_STEP_SIZE);
+    NormalisableRange<float> gainRange(1.0f / MAX_GAIN, MAX_GAIN, FILTER_GAIN_STEP_SIZE);
     NormalisableRange<float> activeRange(0, 1, 1);
 
     frequencyRange.setSkewForCentre(2000.0f);
