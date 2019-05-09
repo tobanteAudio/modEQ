@@ -78,10 +78,6 @@
         <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
         <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
         <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
-        <FILE id="CPb2Oz" name="equalizer_plot_view.cpp" compile="1" resource="0"
-              file="Source/view/equalizer_plot_view.cpp"/>
-        <FILE id="Hl15v0" name="equalizer_plot_view.h" compile="0" resource="0"
-              file="Source/view/equalizer_plot_view.h"/>
         <FILE id="JYNG5D" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
         <FILE id="LZxGYt" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
         <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1"
