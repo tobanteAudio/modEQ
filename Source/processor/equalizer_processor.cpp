@@ -45,7 +45,8 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
 
     const float maxGain = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
-    NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID-1, 1);
+    NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID - 1,
+                                             1);
     NormalisableRange<float> frequencyRange(FILTER_FREQ_MIN, FILTER_FREQ_MAX, FILTER_FREQ_STEP_SIZE);
     NormalisableRange<float> qualityRange(FILTER_Q_MIN, FILTER_Q_MAX, FILTER_Q_STEP_SIZE);
     NormalisableRange<float> gainRange(1.0f / maxGain, maxGain, FILTER_GAIN_STEP_SIZE);
@@ -203,22 +204,14 @@ String EqualizerProcessor::getFilterTypeName(const tobanteAudio::EqualizerProces
         return translate("No Filter");
     case HighPass:
         return translate("High Pass");
-    case HighPass1st:
-        return translate("1st High Pass");
     case LowShelf:
         return translate("Low Shelf");
     case BandPass:
         return translate("Band Pass");
-    case AllPass:
-        return translate("All Pass");
-    case Notch:
-        return translate("Notch");
     case Peak:
         return translate("Peak");
     case HighShelf:
         return translate("High Shelf");
-    case LowPass1st:
-        return translate("1st Low Pass");
     case LowPass:
         return translate("Low Pass");
     default:
@@ -368,56 +361,29 @@ void EqualizerProcessor::updateBand(const size_t index)
         switch (bands[index].type)
         {
         case tobanteAudio::EqualizerProcessor::NoFilter:
-            DBG("PROCESSOR: NO FILTER");
             newCoefficients = new dsp::IIR::Coefficients<float>(1, 0, 1, 0);
             break;
         case tobanteAudio::EqualizerProcessor::LowPass:
-            DBG("PROCESSOR: LOW PASS");
             newCoefficients = dsp::IIR::Coefficients<float>::makeLowPass(
                 sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case tobanteAudio::EqualizerProcessor::LowPass1st:
-            DBG("PROCESSOR: LOW PASS 1ST");
-            newCoefficients = dsp::IIR::Coefficients<float>::makeFirstOrderLowPass(
-                sampleRate, bands[index].frequency);
-            break;
         case tobanteAudio::EqualizerProcessor::LowShelf:
-            DBG("PROCESSOR: LOW SHELF");
             newCoefficients = dsp::IIR::Coefficients<float>::makeLowShelf(
                 sampleRate, bands[index].frequency, bands[index].quality, bands[index].gain);
             break;
         case tobanteAudio::EqualizerProcessor::BandPass:
-            DBG("PROCESSOR: BAND PASS");
             newCoefficients = dsp::IIR::Coefficients<float>::makeBandPass(
                 sampleRate, bands[index].frequency, bands[index].quality);
             break;
-        case tobanteAudio::EqualizerProcessor::AllPass:
-            DBG("PROCESSOR: ALL PASS");
-            newCoefficients = dsp::IIR::Coefficients<float>::makeAllPass(
-                sampleRate, bands[index].frequency, bands[index].quality);
-            break;
-        case tobanteAudio::EqualizerProcessor::Notch:
-            DBG("PROCESSOR: NOTCH");
-            newCoefficients = dsp::IIR::Coefficients<float>::makeNotch(
-                sampleRate, bands[index].frequency, bands[index].quality);
-            break;
         case tobanteAudio::EqualizerProcessor::Peak:
-            DBG("PROCESSOR: PEAK");
             newCoefficients = dsp::IIR::Coefficients<float>::makePeakFilter(
                 sampleRate, bands[index].frequency, bands[index].quality, bands[index].gain);
             break;
         case tobanteAudio::EqualizerProcessor::HighShelf:
-            DBG("PROCESSOR: HIGH SHELF");
             newCoefficients = dsp::IIR::Coefficients<float>::makeHighShelf(
                 sampleRate, bands[index].frequency, bands[index].quality, bands[index].gain);
             break;
-        case tobanteAudio::EqualizerProcessor::HighPass1st:
-            DBG("PROCESSOR: HIGH PASS 1ST");
-            newCoefficients = dsp::IIR::Coefficients<float>::makeFirstOrderHighPass(
-                sampleRate, bands[index].frequency);
-            break;
         case tobanteAudio::EqualizerProcessor::HighPass:
-            DBG("PROCESSOR: HIGH PASS");
             newCoefficients = dsp::IIR::Coefficients<float>::makeHighPass(
                 sampleRate, bands[index].frequency, bands[index].quality);
             break;

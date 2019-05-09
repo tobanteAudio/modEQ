@@ -30,14 +30,10 @@ public:
     {
         NoFilter = 0,
         HighPass,
-        HighPass1st,
         LowShelf,
         BandPass,
-        AllPass,
-        Notch,
         Peak,
         HighShelf,
-        LowPass1st,
         LowPass,
         LastFilterID
     };
