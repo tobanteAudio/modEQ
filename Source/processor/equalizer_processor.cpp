@@ -268,21 +268,22 @@ void EqualizerProcessor::updateBypassedStates()
 
 void EqualizerProcessor::updatePlots()
 {
-    auto gain = 1.0f;
+    const auto gain = 1.0f;
     std::fill(magnitudes.begin(), magnitudes.end(), gain);
 
     if (isPositiveAndBelow(soloed, bands.size()))
     {
-        FloatVectorOperations::multiply(magnitudes.data(), bands[size_t(soloed)].magnitudes.data(),
+        FloatVectorOperations::multiply(magnitudes.data(),
+                                        bands[static_cast<size_t>(soloed)].magnitudes.data(),
                                         static_cast<int>(magnitudes.size()));
     }
     else
     {
-        for (size_t i = 0; i < bands.size(); ++i)
+        for (const auto& band : bands)
         {
-            if (bands[i].active)
+            if (band.active)
             {
-                FloatVectorOperations::multiply(magnitudes.data(), bands[i].magnitudes.data(),
+                FloatVectorOperations::multiply(magnitudes.data(), band.magnitudes.data(),
                                                 static_cast<int>(magnitudes.size()));
             }
         }

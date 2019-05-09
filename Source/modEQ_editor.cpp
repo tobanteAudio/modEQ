@@ -133,5 +133,5 @@ void ModEQEditor::resized()
 
     // FFT
     plotView.setBounds(area);
-    analyserView.setBounds(area);
+    //analyserView.setBounds(area);
 }
