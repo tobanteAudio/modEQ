@@ -19,10 +19,8 @@
 // JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-
 namespace tobanteAudio
 {
-
 template <typename Type> class SpectrumAnalyser : public Thread
 {
 public:
@@ -38,7 +36,10 @@ public:
 
     void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
     {
-        if (abstractFifo.getFreeSpace() < buffer.getNumSamples()) return;
+        if (abstractFifo.getFreeSpace() < buffer.getNumSamples())
+        {
+            return;
+        }
 
         int start1, block1, start2, block2;
         abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1, start2, block2);
@@ -77,9 +78,14 @@ public:
 
                 int start1, block1, start2, block2;
                 abstractFifo.prepareToRead(fft.getSize(), start1, block1, start2, block2);
-                if (block1 > 0) fftBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
+                if (block1 > 0)
+                {
+                    fftBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
+                }
                 if (block2 > 0)
+                {
                     fftBuffer.copyFrom(0, block1, audioFifo.getReadPointer(0, start2), block2);
+                }
                 abstractFifo.finishedRead(block1 + block2);
 
                 windowing.multiplyWithWindowingTable(fftBuffer.getWritePointer(0),
@@ -94,12 +100,18 @@ public:
                     1.0f / (averager.getNumSamples() * (averager.getNumChannels() - 1)));
                 averager.addFrom(0, 0, averager.getReadPointer(averagerPtr),
                                  averager.getNumSamples());
-                if (++averagerPtr == averager.getNumChannels()) averagerPtr = 1;
+                if (++averagerPtr == averager.getNumChannels())
+                {
+                    averagerPtr = 1;
+                }
 
                 newDataAvailable = true;
             }
 
-            if (abstractFifo.getNumReady() < fft.getSize()) waitForData.wait(100);
+            if (abstractFifo.getNumReady() < fft.getSize())
+            {
+                waitForData.wait(100);
+            }
         }
     }
 
@@ -142,7 +154,7 @@ private:
                     bounds.getY());
     }
 
-    Type sampleRate {};
+    Type sampleRate{};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

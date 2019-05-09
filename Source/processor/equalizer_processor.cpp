@@ -80,7 +80,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
 
         state.createAndAddParameter(std::make_unique<Parameter>(
             getTypeParamID(i), band.name + " Type", translate("Filter Type"), filterTypeRange,
-            (float)band.type,
+            static_cast<float>(band.type),
             [](float value) {
                 using EP = tobanteAudio::EqualizerProcessor;
                 return EP::getFilterTypeName(static_cast<EP::FilterType>(static_cast<int>(value)));
@@ -89,8 +89,12 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
                 using EP = tobanteAudio::EqualizerProcessor;
 
                 for (int i = 0; i < EP::LastFilterID; ++i)
+                {
                     if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
+                    {
                         return static_cast<EP::FilterType>(i);
+                    }
+                }
                 return EP::NoFilter;
             },
             false, true, true));
@@ -218,12 +222,18 @@ int EqualizerProcessor::getNumBands() const { return static_cast<int>(bands.size
 
 String EqualizerProcessor::getBandName(const int index) const
 {
-    if (isPositiveAndBelow(index, bands.size())) return bands[size_t(index)].name;
+    if (isPositiveAndBelow(index, bands.size()))
+    {
+        return bands[size_t(index)].name;
+    }
     return translate("unknown");
 }
 Colour EqualizerProcessor::getBandColour(const int index) const
 {
-    if (isPositiveAndBelow(index, bands.size())) return bands[size_t(index)].colour;
+    if (isPositiveAndBelow(index, bands.size()))
+    {
+        return bands[size_t(index)].colour;
+    }
     return Colours::silver;
 }
 
@@ -269,9 +279,13 @@ void EqualizerProcessor::updatePlots()
     else
     {
         for (size_t i = 0; i < bands.size(); ++i)
+        {
             if (bands[i].active)
+            {
                 FloatVectorOperations::multiply(magnitudes.data(), bands[i].magnitudes.data(),
                                                 static_cast<int>(magnitudes.size()));
+            }
+        }
     }
 
     sendChangeMessage();
@@ -330,7 +344,10 @@ void EqualizerProcessor::setDefaults()
 
 EqualizerProcessor::Band* EqualizerProcessor::getBand(const int index)
 {
-    if (isPositiveAndBelow(index, bands.size())) return &bands[size_t(index)];
+    if (isPositiveAndBelow(index, bands.size()))
+    {
+        return &bands[size_t(index)];
+    }
     return nullptr;
 }
 
@@ -399,17 +416,29 @@ void EqualizerProcessor::updateBand(const size_t index)
                 // constant
                 ScopedLock processLock(getCallbackLock());
                 if (index == 0)
+                {
                     *filter.get<0>().state = *newCoefficients;
+                }
                 else if (index == 1)
+                {
                     *filter.get<1>().state = *newCoefficients;
+                }
                 else if (index == 2)
+                {
                     *filter.get<2>().state = *newCoefficients;
+                }
                 else if (index == 3)
+                {
                     *filter.get<3>().state = *newCoefficients;
+                }
                 else if (index == 4)
+                {
                     *filter.get<4>().state = *newCoefficients;
+                }
                 else if (index == 5)
+                {
                     *filter.get<5>().state = *newCoefficients;
+                }
             }
             newCoefficients->getMagnitudeForFrequencyArray(
                 frequencies.data(), bands[index].magnitudes.data(), frequencies.size(), sampleRate);
@@ -467,9 +496,13 @@ void EqualizerProcessor::createAnalyserPlot(Path& p, const Rectangle<int> bounds
                                             bool input)
 {
     if (input)
+    {
         inputAnalyser.createPath(p, bounds.toFloat(), minFreq);
+    }
     else
+    {
         outputAnalyser.createPath(p, bounds.toFloat(), minFreq);
+    }
 }
 
 bool EqualizerProcessor::checkForNewAnalyserData()
