@@ -101,8 +101,8 @@ void AnalyserView::paint(Graphics& g)
     //
     // Frequency Response
     //
-    g.setColour(Colour(0xff00ff08));
-    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(3.0));
+    g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.5f).brighter());
+    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(4.0));
 
     for (const auto& handle : handles)
     {
