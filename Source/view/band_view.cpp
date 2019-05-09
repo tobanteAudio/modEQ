@@ -17,8 +17,6 @@
 #include "band_view.h"
 #include "../modEQ_processor.h"
 
-
-
 namespace tobanteAudio
 {
 BandView::BandView(int const i, const Colour c)

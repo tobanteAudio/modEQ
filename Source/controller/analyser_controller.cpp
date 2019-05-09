@@ -33,7 +33,6 @@ void AnalyserController::changeListenerCallback(ChangeBroadcaster* sender)
 {
     ignoreUnused(sender);
     updateFrequencyResponses();
-
     view.repaint();
 }
 void AnalyserController::timerCallback()

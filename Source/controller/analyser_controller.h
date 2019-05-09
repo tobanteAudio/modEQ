@@ -21,8 +21,8 @@
 
 // tobanteAudio
 #include "../modEQ_processor.h"
-#include "band_controller.h"
 #include "../view/analyser_view.h"
+#include "band_controller.h"
 
 namespace tobanteAudio
 {

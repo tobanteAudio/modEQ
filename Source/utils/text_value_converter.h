@@ -25,7 +25,10 @@ public:
         return value > 0.5f ? translate("active") : translate("bypassed");
     }
 
-    float operator()(const String& text) const { return static_cast<float>(text == translate("active")); }
+    float operator()(const String& text) const
+    {
+        return static_cast<float>(text == translate("active"));
+    }
 };
 
 class FrequencyTextConverter

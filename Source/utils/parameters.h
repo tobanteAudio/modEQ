@@ -21,7 +21,6 @@ namespace tobanteAudio
 {
 struct Parameters
 {
-    
     static String Output;
     static String Type;
     static String Frequency;

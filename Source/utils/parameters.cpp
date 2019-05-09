@@ -18,7 +18,6 @@
 
 namespace tobanteAudio
 {
-
 String Parameters::Output("output");
 String Parameters::Type("type");
 String Parameters::Frequency("frequency");

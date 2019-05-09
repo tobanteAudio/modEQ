@@ -30,7 +30,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(socialButtons);
 
     // Plot
-    //addAndMakeVisible(plotView);
+    // addAndMakeVisible(plotView);
     addAndMakeVisible(analyserView);
 
     // Modulation
@@ -132,6 +132,6 @@ void ModEQEditor::resized()
     output.setBounds(frame.getBounds().reduced(8));
 
     // FFT
-    //plotView.setBounds(area);
+    // plotView.setBounds(area);
     analyserView.setBounds(area);
 }
