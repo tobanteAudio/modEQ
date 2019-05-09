@@ -68,7 +68,7 @@ void AnalyserController::mouseDown(const MouseEvent& e)
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (view.overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 auto& contextMenu = view.contextMenu;
                 contextMenu.clear();
@@ -107,7 +107,7 @@ void AnalyserController::mouseMove(const MouseEvent& e)
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (view.overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
@@ -115,7 +115,7 @@ void AnalyserController::mouseMove(const MouseEvent& e)
                 const auto gainPos     = view.get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (view.overlap_with_radius(gainPos, e.position.getY(), clickRadius))
+                if (view.overlap_with_radius(gainPos, e.position.getY(), HANDLE_CLICK_RADIUS))
                 {
                     draggingGain = processor.state.getParameter(processor.getGainParamID(i));
                     view.setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
@@ -169,7 +169,7 @@ void AnalyserController::mouseDoubleClick(const MouseEvent& e)
             const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
-            if (view.overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
                 {
@@ -198,7 +198,7 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWhee
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (view.overlap_with_radius(pos, event.position.getX(), clickRadius))
+            if (view.overlap_with_radius(pos, event.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
@@ -206,7 +206,7 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWhee
                 const auto gainPos     = view.get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (view.overlap_with_radius(gainPos, event.position.getY(), clickRadius))
+                if (view.overlap_with_radius(gainPos, event.position.getY(), HANDLE_CLICK_RADIUS))
                 {
                     const auto paramID = processor.getQualityParamID(i);
                     if (auto* param = processor.state.getParameter(paramID))

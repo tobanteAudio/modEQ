@@ -20,7 +20,7 @@ namespace tobanteAudio
 {
 // UI
 constexpr int GLOBAL_REFRESH_RATE_HZ = 60;
-constexpr int clickRadius            = 10;
+constexpr int HANDLE_CLICK_RADIUS    = 10;
 
 // Audio
 constexpr float MAX_DB         = 24.0f;

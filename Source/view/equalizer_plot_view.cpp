@@ -176,7 +176,7 @@ void EqualizerPlotView::mouseDown(const MouseEvent& e)
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 contextMenu.clear();
                 for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID; ++t)
@@ -212,7 +212,7 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
@@ -220,7 +220,7 @@ void EqualizerPlotView::mouseMove(const MouseEvent& e)
                 const auto gainPos     = get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (overlap_with_radius(gainPos, e.position.getY(), clickRadius))
+                if (overlap_with_radius(gainPos, e.position.getY(), HANDLE_CLICK_RADIUS))
                 {
                     draggingGain = processor.state.getParameter(processor.getGainParamID(i));
                     setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
@@ -272,7 +272,7 @@ void EqualizerPlotView::mouseDoubleClick(const MouseEvent& e)
             const auto bandPosition   = get_position_for_frequency(float(band->frequency));
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
-            if (overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
                 {
@@ -300,7 +300,7 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e, const MouseWheelDeta
             const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
-            if (overlap_with_radius(pos, e.position.getX(), clickRadius))
+            if (overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
@@ -308,7 +308,7 @@ void EqualizerPlotView::mouseWheelMove(const MouseEvent& e, const MouseWheelDeta
                 const auto gainPos     = get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (overlap_with_radius(gainPos, e.position.getY(), clickRadius))
+                if (overlap_with_radius(gainPos, e.position.getY(), HANDLE_CLICK_RADIUS))
                 {
                     const auto paramID = processor.getQualityParamID(i);
                     if (auto* param = processor.state.getParameter(paramID))
