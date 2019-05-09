@@ -34,7 +34,7 @@ public:
         int y {};
         int label_x {};
         int label_y {};
-        bool active {};
+        Colour color{Colours::white};
     };
 
     AnalyserView();

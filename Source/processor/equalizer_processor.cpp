@@ -22,7 +22,6 @@ namespace tobanteAudio
 {
 EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : BaseProcessor(vts)
 {
-    const float maxGain = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
     frequencies.resize(300);
     for (size_t i = 0; i < frequencies.size(); ++i)
@@ -37,6 +36,8 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
     setDefaults();
 
     // Create Ranges for parameters
+    const float maxGain = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
+
     NormalisableRange<float> filterTypeRange(0, tobanteAudio::EqualizerProcessor::LastFilterID, 1);
     NormalisableRange<float> frequencyRange(20.0, 20000.0, 1.0);
     NormalisableRange<float> qualityRange(0.1f, 10.0f, 0.1f);
@@ -57,7 +58,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts) : Base
             const auto r = static_cast<uint8>(random.nextInt(256));
             const auto g = static_cast<uint8>(random.nextInt(256));
             const auto b = static_cast<uint8>(random.nextInt(256));
-            return Colour(r, g, b);
+            return Colour(r, g, b).brighter(0.3);
         }();
         band.colour = colour;
 

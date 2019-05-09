@@ -107,7 +107,7 @@ void AnalyserView::paint(Graphics& g)
     for (const auto& handle : handles)
     {
         const int size {30};
-        handle.active ? g.setColour(Colours::blue) : g.setColour(Colours::grey);
+        g.setColour(handle.color);
         // Label
         g.drawFittedText(String(handle.id), handle.label_x, handle.label_y, size, size,
                          Justification::left, 1);

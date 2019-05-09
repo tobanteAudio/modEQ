@@ -23,11 +23,14 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
                                        tobanteAudio::AnalyserView& v)
     : processor(p), bandControllers(bc), view(v)
 {
+    int i = 0;
     for (const auto& band : bandControllers)
     {
         ignoreUnused(band);
-        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {1, 0, 0, 0, 0});
-    }
+        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {i, 0, 0, 0, 0});
+        ++i;
+
+	}
     view.addMouseListener(this, false);
     processor.addChangeListener(this);
 
@@ -253,7 +256,7 @@ void AnalyserController::updateFrequencyResponses()
             // Color (active || bypass)
             if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
             {
-                param->getValue() < 0.5f ? handle.active = false : handle.active = true;
+                param->getValue() < 0.5f ? handle.color = Colours::grey : handle.color = band->colour;
             }
 
             // Label
