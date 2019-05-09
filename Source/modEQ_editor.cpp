@@ -22,7 +22,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
     , plotView(processor.getEQ(), bandControllers)
-    , analyserController(processor, analyserView)
+    , analyserController(processor.getEQ(), bandControllers, analyserView)
 
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
@@ -30,7 +30,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(socialButtons);
 
     // Plot
-    addAndMakeVisible(plotView);
+    //addAndMakeVisible(plotView);
     addAndMakeVisible(analyserView);
 
     // Modulation
@@ -132,6 +132,6 @@ void ModEQEditor::resized()
     output.setBounds(frame.getBounds().reduced(8));
 
     // FFT
-    plotView.setBounds(area);
-    //analyserView.setBounds(area);
+    //plotView.setBounds(area);
+    analyserView.setBounds(area);
 }

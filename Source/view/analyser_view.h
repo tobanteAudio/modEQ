@@ -35,9 +35,11 @@ public:
 
     Rectangle<int> plotFrame;
     Path frequencyResponse;
+    Path in_analyser;
+    Path out_analyser;
+
     PopupMenu contextMenu;
 
-private:
     inline static float get_position_for_frequency(float freq) noexcept
     {
         return (std::log(freq / 20.0f) / std::log(2.0f)) / 10.0f;
@@ -62,6 +64,8 @@ private:
     {
         return std::abs(obj_pos - mouse_pos) < radius;
     }
+
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AnalyserView)
 };
 

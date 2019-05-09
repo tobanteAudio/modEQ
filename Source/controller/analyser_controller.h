@@ -21,6 +21,7 @@
 
 // tobanteAudio
 #include "../modEQ_processor.h"
+#include "band_controller.h"
 #include "../view/analyser_view.h"
 
 namespace tobanteAudio
@@ -28,7 +29,8 @@ namespace tobanteAudio
 class AnalyserController : public ChangeListener, public Timer, public MouseListener
 {
 public:
-    AnalyserController(ModEQProcessor& /*p*/, tobanteAudio::AnalyserView& /*v*/);
+    AnalyserController(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&,
+                       tobanteAudio::AnalyserView&);
 
     void changeListenerCallback(ChangeBroadcaster* sender) override;
     void timerCallback() override;
@@ -51,9 +53,13 @@ public:
     void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
 
 private:
+    void updateFrequencyResponses();
+    tobanteAudio::EqualizerProcessor& processor;
+    OwnedArray<tobanteAudio::BandController>& bandControllers;
     tobanteAudio::AnalyserView& view;
-    ModEQProcessor& mainProcessor;
 
+    int draggingBand  = -1;
+    bool draggingGain = false;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AnalyserController)
 };

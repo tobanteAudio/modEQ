@@ -77,6 +77,31 @@ void AnalyserView::paint(Graphics& g)
                      Justification::left, 1);
 
     g.reduceClipRegion(plotFrame);
+
+    // Analysers
+    const Colour inputColour  = Colours::greenyellow;
+    const Colour outputColour = Colours::red;
+    g.setFont(16.0f);
+
+    //
+    // Input Analyser
+    //
+    g.setColour(inputColour);
+    g.drawFittedText("Input", plotFrame.reduced(8), Justification::topRight, 1);
+    g.strokePath(in_analyser, PathStrokeType(1.0));
+
+    //
+    // Output Analyser
+    //
+    g.setColour(outputColour);
+    g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
+    g.strokePath(out_analyser, PathStrokeType(2.0));
+
+    //
+    // Frequency Response
+    //
+    g.setColour(Colour(0xff00ff08));
+    g.strokePath(frequencyResponse, PathStrokeType(3.0));
 }
 
 void AnalyserView::resized()
