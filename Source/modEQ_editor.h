@@ -43,16 +43,16 @@ public:
 private:
     ModEQProcessor& processor;
 
-	// Components
+    // Components
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     tobanteAudio::SocialButtons socialButtons;
-	// Bands
+    // Bands
     OwnedArray<tobanteAudio::BandView> bandViews;
     OwnedArray<tobanteAudio::BandController> bandControllers;
-	// Modulation
+    // Modulation
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-	// Analyser Plot
+    // Analyser Plot
     std::unique_ptr<tobanteAudio::AnalyserView> analyserView;
     std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 

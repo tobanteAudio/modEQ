@@ -26,7 +26,7 @@ constexpr float GAIN_STEP_SIZE = 0.01f;
 constexpr float GAIN_DEFAULT   = 1.0f;
 
 // Filter
-constexpr float FILTER_GAIN_STEP_SIZE       = 0.001f;
+constexpr float FILTER_GAIN_STEP_SIZE = 0.001f;
 constexpr float FILTER_FREQ_MIN       = 20.0f;
 constexpr float FILTER_FREQ_MAX       = 20'000.0f;
 constexpr float FILTER_FREQ_STEP_SIZE = 0.1f;

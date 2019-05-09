@@ -29,8 +29,7 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
         ignoreUnused(band);
         view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {i, 0, 0, 0, 0});
         ++i;
-
-	}
+    }
     view.addMouseListener(this, false);
     processor.addChangeListener(this);
 

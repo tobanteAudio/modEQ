@@ -170,7 +170,6 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
         {
             if (parameter.endsWith(tobanteAudio::Parameters::Type))
             {
-                DBG("CASTING " + String(newValue));
                 bands[i].type = static_cast<FilterType>(static_cast<int>(newValue));
             }
             else if (parameter.endsWith(tobanteAudio::Parameters::Frequency))

@@ -37,12 +37,11 @@ BandView::BandView(int const i, const Colour c)
 
     // Add all filter options to combo box
     type.clear();
-	for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
+    for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
     {
-        using EQ         = tobanteAudio::EqualizerProcessor;
-        auto type_string = EQ::getFilterTypeName(static_cast<EQ::FilterType>(j));
-        DBG(type_string + ": " + String(j));
-        type.addItem(type_string, j+1);
+        using EQ               = tobanteAudio::EqualizerProcessor;
+        auto const type_string = EQ::getFilterTypeName(static_cast<EQ::FilterType>(j));
+        type.addItem(type_string, j + 1);
     }
 
     // Make controls visible
