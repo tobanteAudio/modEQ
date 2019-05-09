@@ -28,9 +28,9 @@ class AnalyserView : public Component
 {
 public:
     AnalyserView();
-    ~AnalyserView() = default;
+    ~AnalyserView() override = default;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& /*g*/) override;
     void resized() override;
 
     Rectangle<int> plotFrame;

@@ -24,7 +24,7 @@ class ModulationConnectItemView : public Component
 {
 public:
     ModulationConnectItemView(int i);
-    ~ModulationConnectItemView() = default;
+    ~ModulationConnectItemView() override = default;
 
     void resized() override;
 

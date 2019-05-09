@@ -29,7 +29,7 @@ namespace tobanteAudio
 class ModulationSourceController : public Button::Listener, public Slider::Listener, public Timer
 {
 public:
-    ModulationSourceController(const int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
+    ModulationSourceController(int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
     void buttonClicked(Button* b) override;

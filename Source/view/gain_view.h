@@ -27,7 +27,7 @@ private:
 
 public:
     GainView(int i);
-    ~GainView() = default;
+    ~GainView() override = default;
 
     void paint(Graphics&) override;
     void resized() override;

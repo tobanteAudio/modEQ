@@ -21,6 +21,12 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Look and feel (theme) for all widgets.
+ *
+ * Every JUCE widget has a method which can be overwritten to
+ * change it's apperance.
+ */
 class TobanteLookAndFeel : public LookAndFeel_V4
 {
 public:

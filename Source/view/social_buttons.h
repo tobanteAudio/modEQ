@@ -24,7 +24,7 @@ class SocialButtons : public Component, public Button::Listener
 {
 public:
     SocialButtons();
-    ~SocialButtons() = default;
+    ~SocialButtons() override = default;
 
     void paint(Graphics& g) override;
     void resized() override;

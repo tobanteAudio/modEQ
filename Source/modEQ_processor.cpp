@@ -34,33 +34,45 @@ ModEQProcessor::ModEQProcessor()
     , equalizerProcessor(state)
 
 {
-    const float maxGain     = Decibels::decibelsToGain(tobanteAudio::maxDB);
-    auto const gainRange    = NormalisableRange<float>(0.0f, 2.0f, 0.01f);
-    auto const lfoGainRange = NormalisableRange<float>(0.0f, 1.0f, 0.01f);
-    auto lfoFreqRange       = NormalisableRange<float>(0.01f, 10.0f, 0.01f);
+    using tobanteAudio::GAIN_DEFAULT;
+    using tobanteAudio::GAIN_MAX;
+    using tobanteAudio::GAIN_MIN;
+    using tobanteAudio::GAIN_STEP_SIZE;
 
-    lfoFreqRange.setSkewForCentre(1.0f);
+    using tobanteAudio::LFO_FREQ_DEFAULT;
+    using tobanteAudio::LFO_FREQ_MAX;
+    using tobanteAudio::LFO_FREQ_MIN;
+    using tobanteAudio::LFO_FREQ_SKEW;
+    using tobanteAudio::LFO_FREQ_STEP_SIZE;
+    using tobanteAudio::LFO_GAIN_MAX;
 
     using Parameter = AudioProcessorValueTreeState::Parameter;
 
-    state.createAndAddParameter(std::make_unique<Parameter>(
-        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange,
-        1.0f, gainTextConverter, gainTextConverter, false, true, false));
+    float const maxGain     = Decibels::decibelsToGain(tobanteAudio::maxDB);
+    auto const gainRange    = NormalisableRange<float>(GAIN_MIN, GAIN_MAX, GAIN_STEP_SIZE);
+    auto const lfoGainRange = NormalisableRange<float>(GAIN_MIN, LFO_GAIN_MAX, GAIN_STEP_SIZE);
+    auto const lfoFreqRange = []() -> NormalisableRange<float> {
+        auto range = NormalisableRange<float>(LFO_FREQ_MIN, LFO_FREQ_MAX, LFO_FREQ_STEP_SIZE);
+        range.setSkewForCentre(LFO_FREQ_SKEW);
+        return range;
+    }();
 
     state.createAndAddParameter(std::make_unique<Parameter>(
-        "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, 0.3f,
+        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"), gainRange,
+        GAIN_DEFAULT, gainTextConverter, gainTextConverter, false, true, false));
+
+    state.createAndAddParameter(std::make_unique<Parameter>(
+        "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange, LFO_FREQ_DEFAULT,
         freqTextConverter, freqTextConverter, false, true, false));
 
     state.createAndAddParameter(std::make_unique<Parameter>(
-        "lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, 1.0f,
+        "lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange, GAIN_DEFAULT,
         gainTextConverter, gainTextConverter, false, true, false));
 
     state.addParameterListener(tobanteAudio::Parameters::Output, this);
 
     state.state = ValueTree(JucePlugin_Name);
 }
-
-ModEQProcessor::~ModEQProcessor() {}
 
 const String ModEQProcessor::getName() const { return JucePlugin_Name; }
 
@@ -114,9 +126,7 @@ void ModEQProcessor::releaseResources() {}
 bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
     // This checks if the input layout matches the output layout
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet()) return false;
-
-    return true;
+    return layouts.getMainOutputChannelSet() == layouts.getMainInputChannelSet();
 }
 #endif
 
@@ -128,10 +138,10 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    // if (getActiveEditor() != nullptr) {}
-
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+    {
         buffer.clear(i, 0, buffer.getNumSamples());
+    }
 
     modBuffer.clear();
     modSource.processBlock(modBuffer, midiMessages);
@@ -141,8 +151,14 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
     auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
     auto gainMod   = gainValue + (modRange * modValue);
 
-    if (gainMod < -0.0f) gainMod = 0.0;
-    if (gainMod > 2.0f) gainMod = 2.0;
+    if (gainMod < -0.0f)
+    {
+        gainMod = 0.0;
+    }
+    if (gainMod > 2.0f)
+    {
+        gainMod = 2.0;
+    }
 
     outputGain.setGainLinear(gainMod);
 
@@ -175,7 +191,7 @@ void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 
 void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
-    ValueTree tree = ValueTree::readFromData(data, size_t(sizeInBytes));
+    ValueTree tree = ValueTree::readFromData(data, static_cast<size_t>(sizeInBytes));
     if (tree.isValid())
     {
         state.state = tree;

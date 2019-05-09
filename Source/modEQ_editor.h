@@ -35,9 +35,9 @@ class ModEQEditor : public AudioProcessorEditor
 {
 public:
     ModEQEditor(ModEQProcessor&);
-    ~ModEQEditor();
+    ~ModEQEditor() override;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& /*g*/) override;
     void resized() override;
 
 private:

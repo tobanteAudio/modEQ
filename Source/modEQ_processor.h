@@ -31,7 +31,7 @@ class ModEQProcessor : public AudioProcessor,
 {
 public:
     ModEQProcessor();
-    ~ModEQProcessor() override;
+    ~ModEQProcessor() override = default;
 
     void prepareToPlay(double newSampleRate, int newSamplesPerBlock) override;
     void releaseResources() override;

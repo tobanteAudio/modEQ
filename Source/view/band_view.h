@@ -24,7 +24,7 @@ class BandView : public Component
 {
 public:
     BandView(int, Colour = Colours::white);
-    ~BandView() = default;
+    ~BandView() override = default;
 
     void resized() override;
 

@@ -28,9 +28,9 @@ class EqualizerPlotView : public Component, public ChangeListener, public Timer
 {
 public:
     EqualizerPlotView(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&);
-    ~EqualizerPlotView() = default;
+    ~EqualizerPlotView() override = default;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& /*g*/) override;
     void resized() override;
 
     void changeListenerCallback(ChangeBroadcaster* sender) override;

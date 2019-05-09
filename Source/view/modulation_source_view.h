@@ -30,9 +30,9 @@ class ModulationSourceView : public Component
 {
 public:
     ModulationSourceView(int);
-    ~ModulationSourceView() = default;
+    ~ModulationSourceView() override = default;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& /*g*/) override;
     void resized() override;
 
     // Controls
