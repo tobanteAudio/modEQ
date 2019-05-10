@@ -22,6 +22,9 @@ namespace tobanteAudio
 {
 class ModulationConnectItemView : public Component
 {
+private:
+    int index;
+
 public:
     ModulationConnectItemView(int i);
     ~ModulationConnectItemView() override = default;
@@ -31,9 +34,6 @@ public:
     TextButton active;
     Slider amount;
     Label target;
-
-private:
-    int index;
 
 #if TOBANTEAUDIO_LIVE_MOCK
 public:

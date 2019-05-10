@@ -22,6 +22,10 @@ namespace tobanteAudio
 {
 class BandView : public Component
 {
+private:
+    int index;
+    Colour colour;
+
 public:
     BandView(int, Colour = Colours::white);
     ~BandView() override = default;
@@ -35,10 +39,6 @@ public:
     Slider gain;
     TextButton solo;
     TextButton activate;
-
-private:
-    int index;
-    Colour colour;
 
 #if TOBANTEAUDIO_LIVE_MOCK
 public:

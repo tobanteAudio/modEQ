@@ -19,8 +19,8 @@
 namespace tobanteAudio
 {
 ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
-    : index(i)
-    , BaseProcessor(vts)
+    : BaseProcessor(vts)
+    , index(i)
     , paramIDGain("lfo_" + String(index) + "_gain")
     , paramIDFrequency("lfo_" + String(index) + "_freq")
 {

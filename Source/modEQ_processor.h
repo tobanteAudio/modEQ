@@ -29,6 +29,11 @@ class ModEQProcessor : public AudioProcessor,
                        public AudioProcessorValueTreeState::Listener,
                        public ChangeBroadcaster
 {
+private:
+    UndoManager undo;
+    AudioProcessorValueTreeState state;
+
+
 public:
     ModEQProcessor();
     ~ModEQProcessor() override = default;
@@ -67,11 +72,7 @@ public:
     tobanteAudio::ModulationSourceProcessor modSource;
 
 private:
-    UndoManager undo;
-    AudioProcessorValueTreeState state;
-
     tobanteAudio::EqualizerProcessor equalizerProcessor;
-
     AudioBuffer<float> modBuffer;
 
     dsp::Gain<float> outputGain;

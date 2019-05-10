@@ -28,6 +28,9 @@ namespace tobanteAudio
 {
 class ModulationSourceView : public Component
 {
+private:
+    int index;
+
 public:
     ModulationSourceView(int);
     ~ModulationSourceView() override = default;
@@ -47,9 +50,6 @@ public:
     // Connect
     TextButton toggleConnectView;  // activates the mapping view.
     tobanteAudio::ModulationConnectItemView modConnect1, modConnect2;
-
-private:
-    int index;
 
 #if TOBANTEAUDIO_LIVE_MOCK
 public:

@@ -19,8 +19,8 @@
 namespace tobanteAudio
 {
 // Audio
-const float MAX_DB         = 24.0f;
-const float MAX_GAIN       = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
+const float MAX_DB   = 24.0f;
+const float MAX_GAIN = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
 // Gain
 const float GAIN_MIN       = 0.0f;
