@@ -8,8 +8,14 @@
               aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx"
               binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17"
               pluginFormats="buildAU,buildStandalone,buildVST3" companyCopyright="GNU GENERAL PUBLIC LICENSE Version 3"
-              displaySplashScreen="0" reportAppUsage="0">
+              displaySplashScreen="0" reportAppUsage="0" compilerFlagSchemes="NewScheme">
   <MAINGROUP id="EssRVE" name="modEQ">
+    <GROUP id="{0C3DA829-D5EA-35DC-FD4E-83860C411AA3}" name="Tests">
+      <FILE id="zbZH1v" name="test_main.cpp" compile="1" resource="0" file="Tests/test_main.cpp"/>
+      <FILE id="BH4NHN" name="test_main.h" compile="0" resource="0" file="Tests/test_main.h"/>
+      <FILE id="mV36ev" name="test_text_converters.h" compile="0" resource="0"
+            file="Tests/test_text_converters.h"/>
+    </GROUP>
     <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
       <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
       <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>

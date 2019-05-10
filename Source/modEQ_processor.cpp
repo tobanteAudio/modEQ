@@ -20,6 +20,8 @@
 #include "utils/parameters.h"
 #include "view/social_buttons.h"
 
+#include "../Tests/test_main.h"
+
 ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
     : AudioProcessor(BusesProperties()
@@ -71,6 +73,13 @@ ModEQProcessor::ModEQProcessor()
     state.addParameterListener(tobanteAudio::Parameters::Output, this);
 
     state.state = ValueTree(JucePlugin_Name);
+
+#ifdef JUCE_DEBUG
+    tobanteAudio::tests::run();
+#else
+    // in release mode, default to not running tests.
+
+#endif
 }
 
 const String ModEQProcessor::getName() const { return JucePlugin_Name; }
