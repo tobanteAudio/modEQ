@@ -38,10 +38,6 @@
               file="Source/controller/band_controller.cpp"/>
         <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
-        <FILE id="jrTSqM" name="gain_controller.cpp" compile="1" resource="0"
-              file="Source/controller/gain_controller.cpp"/>
-        <FILE id="cTa1h8" name="gain_controller.h" compile="0" resource="0"
-              file="Source/controller/gain_controller.h"/>
         <FILE id="BAoehi" name="modulation_connect_item_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_connect_item_controller.cpp"/>
         <FILE id="iLT7gr" name="modulation_connect_item_controller.h" compile="0"
@@ -62,10 +58,6 @@
               file="Source/processor/equalizer_processor.cpp"/>
         <FILE id="F9i1iV" name="equalizer_processor.h" compile="0" resource="0"
               file="Source/processor/equalizer_processor.h"/>
-        <FILE id="ra3ZEj" name="gain_processor.cpp" compile="1" resource="0"
-              file="Source/processor/gain_processor.cpp"/>
-        <FILE id="k2RGD9" name="gain_processor.h" compile="0" resource="0"
-              file="Source/processor/gain_processor.h"/>
         <FILE id="pIZQs2" name="modulation_source_processor.cpp" compile="1"
               resource="0" file="Source/processor/modulation_source_processor.cpp"/>
         <FILE id="moOkIU" name="modulation_source_processor.h" compile="0"
@@ -84,8 +76,6 @@
         <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
         <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
         <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
-        <FILE id="JYNG5D" name="gain_view.cpp" compile="1" resource="0" file="Source/view/gain_view.cpp"/>
-        <FILE id="LZxGYt" name="gain_view.h" compile="0" resource="0" file="Source/view/gain_view.h"/>
         <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1"
               resource="0" file="Source/view/modulation_connect_item_view.cpp"/>
         <FILE id="GhYL0T" name="modulation_connect_item_view.h" compile="0"
