@@ -42,7 +42,7 @@ void AnalyserView::paint(Graphics& g)
     g.drawRoundedRectangle(plotFrame.toFloat(), 5, 4);
 
     // Vertical lines & frequency labels
-    g.setFont(12.0f);
+    g.setFont(15.0f);
     for (int i = 0; i < 10; ++i)
     {
         g.setColour(Colours::silver.withAlpha(0.4f));
@@ -105,8 +105,8 @@ void AnalyserView::paint(Graphics& g)
     //
     // Frequency Response
     //
-    g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.5f).brighter());
-    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(4.0));
+    g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
+    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(3.5f));
 
     for (const auto& handle : handles)
     {

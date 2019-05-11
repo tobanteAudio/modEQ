@@ -27,6 +27,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 {
     // Social buttons
     addAndMakeVisible(socialButtons);
+    setLookAndFeel(&tobanteLookAndFeel);
 
     // Modulation
     for (int i = 1; i < 2; ++i)
@@ -37,7 +38,6 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         auto* const modView = modViews.add(new MSV(i));
         modController.add(new MSC(i, processor, processor.modSource, *modView));
 
-        // modView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(modView);
     }
 
@@ -51,12 +51,10 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         auto* const bandView = bandViews.add(new BV(i, color));
         bandControllers.add(new BC(i, processor, processor.getEQ(), *bandView));
 
-        // bandView->setLookAndFeel(&tobanteLookAndFeel);
         addAndMakeVisible(bandView);
     }
 
     // Plot
-    // addAndMakeVisible(plotView);
     using tobanteAudio::AnalyserController;
     using tobanteAudio::AnalyserView;
 
@@ -72,7 +70,6 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(frame);
     addAndMakeVisible(output);
     output.setTooltip(translate("Overall Gain"));
-    output.setColour(Slider::thumbColourId, Colours::red);
 
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = processor.getPluginState();
@@ -91,6 +88,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
 ModEQEditor::~ModEQEditor()
 {
+    setLookAndFeel(nullptr);
     PopupMenu::dismissAllActiveMenus();
 
 #ifdef JUCE_OPENGL
