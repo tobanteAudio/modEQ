@@ -49,11 +49,14 @@ void ModulationSourceView::paint(Graphics& g)
     // Save graphics state
     Graphics::ScopedSaveState state(g);
 
-    // Setup
-    g.setFont(12.0f);
-    g.setColour(Colours::silver);
+    // Background
+    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.setColour(backgroundColour.darker());
+    g.fillRect(plotFrame.toFloat());
 
     // Frame
+    g.setFont(12.0f);
+    g.setColour(Colours::silver);
     g.drawRoundedRectangle(plotFrame.toFloat(), 6, 5);
 
     // Vertical lines
@@ -83,6 +86,7 @@ void ModulationSourceView::paint(Graphics& g)
     g.drawFittedText("LFO", plotFrame.reduced(12), Justification::topRight, 1);
 
     // LFO path
+    g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
     g.strokePath(modulationPath, PathStrokeType(3.0));
 }
 

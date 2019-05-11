@@ -33,7 +33,8 @@ public:
     TobanteLookAndFeel()
     {
         // Slider 
-        setColour(Slider::thumbColourId, Colours::red);
+        //setColour(Slider::thumbColourId, Colours::red);
+        setColour(Slider::thumbColourId, Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
         //setColour(Slider::backgroundColourId, Colours::aliceblue);
         //setColour(Slider::trackColourId, Colours::grey);
 
