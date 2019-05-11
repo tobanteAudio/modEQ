@@ -30,6 +30,7 @@ public:
     BandView(int, Colour = Colours::white);
     ~BandView() override = default;
 
+	void paint(Graphics& /*g*/) override;
     void resized() override;
 
     GroupComponent frame;
