@@ -21,20 +21,18 @@ namespace tobanteAudio
 AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
                                        OwnedArray<tobanteAudio::BandController>& bc,
                                        tobanteAudio::AnalyserView& v)
-    : processor(p), bandControllers(bc), view(v)
+    : processor(p), bandControllers(bc), view(v), init(true)
 {
     int i = 0;
     for (const auto& band : bandControllers)
     {
         ignoreUnused(band);
-        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {i, 0, 0, 0, 0});
+        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle{i, 0, 0, 0, 0});
         ++i;
     }
     view.addMouseListener(this, false);
     processor.addChangeListener(this);
 
-    updateFrequencyResponses();
-    view.repaint(view.plotFrame);
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
@@ -50,6 +48,15 @@ void AnalyserController::timerCallback()
     {
         processor.createAnalyserPlot(view.in_analyser, view.plotFrame, 20.0f, true);
         processor.createAnalyserPlot(view.out_analyser, view.plotFrame, 20.0f, false);
+        view.repaint(view.plotFrame);
+    }
+
+    // TODO: init bool is hacky work around to display the frequency response on startup, since the
+    // changeListenerCallback function is not called until a UI element is touched.
+    if (init)
+    {
+        init = false;
+        updateFrequencyResponses();
         view.repaint(view.plotFrame);
     }
 }
@@ -259,7 +266,7 @@ void AnalyserController::updateFrequencyResponses()
             }
 
             // Label
-            const int offset {-20};
+            const int offset{-20};
             handle.label_x = static_cast<float>(handle.x + offset);
             handle.label_y = static_cast<float>(handle.y + offset);
         }

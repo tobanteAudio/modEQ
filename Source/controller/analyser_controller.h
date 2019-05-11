@@ -58,6 +58,7 @@ private:
     OwnedArray<tobanteAudio::BandController>& bandControllers;
     tobanteAudio::AnalyserView& view;
 
+	bool init;
     int draggingBand  = -1;
     bool draggingGain = false;
     //==============================================================================
