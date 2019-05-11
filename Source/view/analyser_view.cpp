@@ -39,7 +39,7 @@ void AnalyserView::paint(Graphics& g)
 
     // Frame
     g.setColour(Colours::silver);
-    g.drawRoundedRectangle(plotFrame.toFloat(), 5, 4);
+    g.drawRoundedRectangle(plotFrame.toFloat(), 5, 5);
 
     // Vertical lines & frequency labels
     g.setFont(15.0f);

@@ -106,7 +106,8 @@ void ModulationSourceView::resized()
     gain.setBounds(sliderArea);
 
     // Button
-    toggleConnectView.setBounds(area.removeFromBottom(area.getHeight() / 6));
+    auto button_area = area.removeFromBottom(area.getHeight() / 6).reduced(1);
+    toggleConnectView.setBounds(button_area.removeFromLeft(button_area.getWidth() / 2));
 
     // LFO plot
     auto reduced_area = area.reduced(3, 3);
