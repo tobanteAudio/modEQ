@@ -21,6 +21,10 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Recieves data from the processor thread, calculates the FFT which is read by the GUI thread
+ * to plot a spectrum.
+ */
 template <typename Type> class SpectrumAnalyser : public Thread
 {
 public:
@@ -154,7 +158,7 @@ private:
                     bounds.getY());
     }
 
-    Type sampleRate {};
+    Type sampleRate{};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

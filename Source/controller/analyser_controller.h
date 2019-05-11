@@ -26,6 +26,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Controller for the analyser view component.
+ */
 class AnalyserController : public ChangeListener, public Timer, public MouseListener
 {
 public:

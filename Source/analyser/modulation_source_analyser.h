@@ -21,6 +21,10 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Recieves data from the modulation processor thread, calculates a path which is read by the
+ * GUI thread to plot a the waveform.
+ */
 template <typename Type> class ModulationSourceAnalyser : public Thread
 {
 public:
@@ -127,7 +131,7 @@ private:
         return jmap(bin, -1.f, 1.0f, bounds.getBottom(), bounds.getY());
     }
 
-    Type sampleRate {};
+    Type sampleRate{};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

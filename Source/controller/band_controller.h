@@ -24,6 +24,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Controller for the band view component.
+ */
 class BandController : public Button::Listener
 {
 public:

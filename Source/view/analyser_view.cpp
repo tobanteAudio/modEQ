@@ -88,23 +88,18 @@ void AnalyserView::paint(Graphics& g)
     g.setFont(16.0f);
 
     const float corner_radius = 10.0f;
-    //
+
     // Input Analyser
-    //
     g.setColour(inputColour);
     g.drawFittedText("Input", plotFrame.reduced(8), Justification::topRight, 1);
     g.strokePath(in_analyser.createPathWithRoundedCorners(corner_radius), PathStrokeType(1.0));
 
-    //
     // Output Analyser
-    //
     g.setColour(outputColour);
     g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
     g.strokePath(out_analyser.createPathWithRoundedCorners(corner_radius), PathStrokeType(2.0));
 
-    //
     // Frequency Response
-    //
     g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
     g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(3.5f));
 
