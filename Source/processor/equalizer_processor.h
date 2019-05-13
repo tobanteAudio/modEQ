@@ -44,7 +44,7 @@ public:
         LastFilterID
     };
 
-	/**
+    /**
      * @brief Model of a filter band.
      */
     struct Band
@@ -96,8 +96,8 @@ public:
     Colour getBandColour(int index) const;
     void setBandSolo(int index);
     bool getBandSolo(int index) const;
-    
-	/**
+
+    /**
      * @brief Set the selected band. (clicked or dragged)
      */
     void setSelectedBand(int);

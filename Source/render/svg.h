@@ -22,4 +22,4 @@ namespace tobanteAudio
 void SvgchangeColor(XmlElement* xml, String color_hex);
 void drawFromSVG(Graphics& g, const char* svgbinary, String col_hex, int x, int y, int newWidth,
                  int newHeight);
-}
+}  // namespace tobanteAudio

@@ -131,7 +131,7 @@ private:
         return jmap(bin, -1.f, 1.0f, bounds.getBottom(), bounds.getY());
     }
 
-    Type sampleRate{};
+    Type sampleRate {};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

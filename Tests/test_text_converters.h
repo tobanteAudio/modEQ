@@ -31,7 +31,7 @@ public:
     void runTest() override
     {
         {
-            ActiveTextConverter a_converter{};
+            ActiveTextConverter a_converter {};
 
             beginTest("ActiveTextConverter -> String to float");
             const float f_active   = a_converter("active");
@@ -47,7 +47,7 @@ public:
         }
 
         {
-            InvertPhaseTextConverter invert_converter{};
+            InvertPhaseTextConverter invert_converter {};
 
             beginTest("InvertPhaseTextConverter -> String to float");
             const float f_normal   = invert_converter("Normal");

@@ -33,7 +33,6 @@ private:
     UndoManager undo;
     AudioProcessorValueTreeState state;
 
-
 public:
     ModEQProcessor();
     ~ModEQProcessor() override = default;

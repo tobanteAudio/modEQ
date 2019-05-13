@@ -158,7 +158,7 @@ private:
                     bounds.getY());
     }
 
-    Type sampleRate{};
+    Type sampleRate {};
 
     AbstractFifo abstractFifo;
     AudioBuffer<Type> audioFifo;

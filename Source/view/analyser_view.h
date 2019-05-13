@@ -24,7 +24,7 @@
 
 namespace tobanteAudio
 {
-class AnalyserView : public Component,public ChangeBroadcaster
+class AnalyserView : public Component, public ChangeBroadcaster
 {
 public:
     struct BandHandle

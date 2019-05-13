@@ -56,17 +56,17 @@ private:
     // Modulation
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-    
-	// Analyser Plot
+
+    // Analyser Plot
     std::unique_ptr<tobanteAudio::AnalyserView> analyserView;
     std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 
-	// Master - Out
+    // Master - Out
     Slider output;
     GroupComponent frame;  // for output slider
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-    
-	SharedResourcePointer<TooltipWindow> tooltipWindow;
+
+    SharedResourcePointer<TooltipWindow> tooltipWindow;
 
 #ifdef JUCE_OPENGL
     OpenGLContext openGLContext;

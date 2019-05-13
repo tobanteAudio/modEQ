@@ -17,8 +17,6 @@
 #include "test_main.h"
 #include "test_text_converters.h"
 
-
-
 namespace tobanteAudio::tests
 {
 // Creating a static instance will automatically add the instance to the array

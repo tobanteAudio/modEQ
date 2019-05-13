@@ -23,14 +23,14 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     , processor(p)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
-	// Global look & feel
+    // Global look & feel
     setLookAndFeel(&tobanteLookAndFeel);
 
     // Social buttons
     addAndMakeVisible(socialButtons);
-	// Menu
-	addAndMakeVisible(menuButtons);
-    
+    // Menu
+    addAndMakeVisible(menuButtons);
+
     // Modulation
     for (int i = 1; i < 2; ++i)
     {
@@ -131,7 +131,7 @@ void ModEQEditor::resized()
     // for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace   = area.removeFromBottom((getHeight() / 10)*4);
+    auto bandSpace   = area.removeFromBottom((getHeight() / 10) * 4);
     auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 

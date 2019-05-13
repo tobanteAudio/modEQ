@@ -27,7 +27,7 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
     for (const auto& band : bandControllers)
     {
         ignoreUnused(band);
-        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle{i, 0, 0, 0, 0});
+        view.handles.emplace_back(tobanteAudio::AnalyserView::BandHandle {i, 0, 0, 0, 0});
         ++i;
     }
     view.addMouseListener(this, false);
@@ -51,7 +51,6 @@ void AnalyserController::timerCallback()
         processor.createAnalyserPlot(view.out_analyser, view.plotFrame, 20.0f, false);
         view.repaint(view.plotFrame);
     }
-
 }
 
 void AnalyserController::mouseDown(const MouseEvent& e)
@@ -259,7 +258,7 @@ void AnalyserController::updateFrequencyResponses()
             }
 
             // Label
-            const int offset{-20};
+            const int offset {-20};
             handle.label_x = static_cast<float>(handle.x + offset);
             handle.label_y = static_cast<float>(handle.y + offset);
         }
