@@ -131,7 +131,7 @@ void ModEQEditor::resized()
     // for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace   = area.removeFromBottom(getHeight() / 2);
+    auto bandSpace   = area.removeFromBottom((getHeight() / 10)*4);
     auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
