@@ -17,6 +17,10 @@
             file="Tests/test_text_converters.h"/>
     </GROUP>
     <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
+      <GROUP id="{ECB25120-D1BE-0A8C-D0EB-308823B55B20}" name="material-icons">
+        <FILE id="FckFap" name="sharp-check_box-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-check_box-24px.svg"/>
+      </GROUP>
       <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
       <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
     </GROUP>
@@ -61,6 +65,10 @@
         <FILE id="moOkIU" name="modulation_source_processor.h" compile="0"
               resource="0" file="Source/processor/modulation_source_processor.h"/>
       </GROUP>
+      <GROUP id="{9D77E879-A047-C5BD-EFA2-A41EF6C65944}" name="render">
+        <FILE id="MMHouP" name="svg.cpp" compile="1" resource="0" file="Source/render/svg.cpp"/>
+        <FILE id="djfw2S" name="svg.h" compile="0" resource="0" file="Source/render/svg.h"/>
+      </GROUP>
       <GROUP id="{E4A99C46-1C12-C178-361D-EF4AD1B9F3BD}" name="utils">
         <FILE id="oIuClN" name="constants.h" compile="0" resource="0" file="Source/utils/constants.h"/>
         <FILE id="xvy5Me" name="parameters.cpp" compile="1" resource="0" file="Source/utils/parameters.cpp"/>
@@ -74,6 +82,9 @@
         <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
         <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
         <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
+        <FILE id="UdUeB0" name="menu_bar_view.cpp" compile="1" resource="0"
+              file="Source/view/menu_bar_view.cpp"/>
+        <FILE id="GrxriU" name="menu_bar_view.h" compile="0" resource="0" file="Source/view/menu_bar_view.h"/>
         <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1"
               resource="0" file="Source/view/modulation_connect_item_view.cpp"/>
         <FILE id="GhYL0T" name="modulation_connect_item_view.h" compile="0"

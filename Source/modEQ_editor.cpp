@@ -21,14 +21,16 @@
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
-    //, plotView(processor.getEQ(), bandControllers)
-
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
-    // Social buttons
-    addAndMakeVisible(socialButtons);
+	// Global look & feel
     setLookAndFeel(&tobanteLookAndFeel);
 
+    // Social buttons
+    addAndMakeVisible(socialButtons);
+	// Menu
+	addAndMakeVisible(menuButtons);
+    
     // Modulation
     for (int i = 1; i < 2; ++i)
     {
@@ -119,7 +121,9 @@ void ModEQEditor::resized()
     auto area = getLocalBounds();
 
     // Facebook & Gitub
-    socialButtons.setBounds(area.removeFromBottom(static_cast<int>(area.getHeight() / 20)));
+    const auto button_height = static_cast<int>(area.getHeight() / 20);
+    socialButtons.setBounds(area.removeFromBottom(button_height));
+    menuButtons.setBounds(area.removeFromTop(button_height));
 
     // Modulators
     // auto modArea              = area.removeFromBottom(getHeight() / 5);

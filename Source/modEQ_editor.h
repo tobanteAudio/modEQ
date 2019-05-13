@@ -30,6 +30,7 @@
 #include "view/band_view.h"
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
+#include "view/menu_bar_view.h"
 
 class ModEQEditor : public AudioProcessorEditor
 {
@@ -46,6 +47,8 @@ private:
     // Components
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     tobanteAudio::SocialButtons socialButtons;
+    tobanteAudio::MenuBarView menuButtons;
+
     // Bands
     OwnedArray<tobanteAudio::BandView> bandViews;
     OwnedArray<tobanteAudio::BandController> bandControllers;
