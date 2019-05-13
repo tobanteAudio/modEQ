@@ -12,7 +12,7 @@ EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE
 
 ## Screenshot
 
-![](docs/modEQ_screenshot.png)
+![tobanteAudio modEQ](docs/modEQ_screenshot_plugin.png)
 
 ## Features
 
