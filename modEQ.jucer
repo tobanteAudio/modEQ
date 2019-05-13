@@ -18,6 +18,20 @@
     </GROUP>
     <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
       <GROUP id="{ECB25120-D1BE-0A8C-D0EB-308823B55B20}" name="material-icons">
+        <FILE id="uTsSNg" name="outline-high_quality-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/outline-high_quality-24px.svg"/>
+        <FILE id="DSgX7y" name="outline-info-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/outline-info-24px.svg"/>
+        <FILE id="uKe7fq" name="outline-power_settings_new-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/outline-power_settings_new-24px.svg"/>
+        <FILE id="DsnV3F" name="outline-redo-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/outline-redo-24px.svg"/>
+        <FILE id="aMh7LI" name="outline-settings-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/outline-settings-24px.svg"/>
+        <FILE id="Dbvi41" name="outline-settings_input_svideo-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/outline-settings_input_svideo-24px.svg"/>
+        <FILE id="XZ4nHt" name="outline-undo-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/outline-undo-24px.svg"/>
         <FILE id="FckFap" name="sharp-check_box-24px.svg" compile="0" resource="1"
               file="Resources/material-icons/sharp-check_box-24px.svg"/>
         <FILE id="FUiSLV" name="sharp-done-24px.svg" compile="0" resource="1"

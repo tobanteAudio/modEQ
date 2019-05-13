@@ -26,12 +26,11 @@ MenuBarView::MenuBarView() {}
 void MenuBarView::paint(Graphics& g)
 {
     // Binary data pointers
-    const auto* undo_svg    = TobanteAudioData::sharpundo24px_svg;
-    const auto* redo_svg    = TobanteAudioData::sharpredo24px_svg;
-    const auto* power_svg   = TobanteAudioData::sharppower_settings_new24px_svg;
-    const auto* hq_svg      = TobanteAudioData::sharphigh_quality24px_svg;
-    const auto* setting_svg = TobanteAudioData::sharpsettings24px_svg;
-    const auto* info_svg    = TobanteAudioData::sharpinfo24px_svg;
+    const auto* undo_svg    = TobanteAudioData::outlineundo24px_svg;
+    const auto* redo_svg    = TobanteAudioData::outlineredo24px_svg;
+    const auto* power_svg   = TobanteAudioData::outlinepower_settings_new24px_svg;
+    const auto* setting_svg = TobanteAudioData::outlinesettings24px_svg;
+    const auto* info_svg    = TobanteAudioData::outlineinfo24px_svg;
 
     const auto height  = getHeight();
     const auto width   = getWidth();
@@ -48,8 +47,6 @@ void MenuBarView::paint(Graphics& g)
     // Settings (right)
     const auto settings_x = width - height - spacing;
     const auto info_x     = width - height * 2 - spacing;
-    const auto hq_x       = width - height * 3 - spacing;
-    tobanteAudio::drawFromSVG(g, hq_svg, "#61f0c4", hq_x, 0, height, height);
     tobanteAudio::drawFromSVG(g, info_svg, "#61f0c4", info_x, 0, height, height);
     tobanteAudio::drawFromSVG(g, setting_svg, "#61f0c4", settings_x, 0, height, height);
 }
