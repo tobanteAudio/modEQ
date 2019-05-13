@@ -122,12 +122,12 @@ void ModEQEditor::resized()
     socialButtons.setBounds(area.removeFromBottom(static_cast<int>(area.getHeight() / 20)));
 
     // Modulators
-    auto modArea              = area.removeFromBottom(getHeight() / 5);
-    auto const modSourceWidth = modArea.getWidth() / 3;
-    for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
+    // auto modArea              = area.removeFromBottom(getHeight() / 5);
+    // auto const modSourceWidth = modArea.getWidth() / 3;
+    // for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace   = area.removeFromBottom(getHeight() / 3);
+    auto bandSpace   = area.removeFromBottom(getHeight() / 2);
     auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
@@ -136,6 +136,5 @@ void ModEQEditor::resized()
     output.setBounds(frame.getBounds().reduced(8));
 
     // FFT
-    // plotView.setBounds(area);
     analyserView->setBounds(area);
 }

@@ -31,6 +31,7 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
         ++i;
     }
     view.addMouseListener(this, false);
+    view.addChangeListener(this);
     processor.addChangeListener(this);
 
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);

@@ -151,24 +151,24 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
         buffer.clear(i, 0, buffer.getNumSamples());
     }
 
-    modBuffer.clear();
-    modSource.processBlock(modBuffer, midiMessages);
+    //modBuffer.clear();
+    //modSource.processBlock(modBuffer, midiMessages);
 
-    auto modRange  = .8f;
-    auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
-    auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
-    auto gainMod   = gainValue + (modRange * modValue);
+    //auto modRange  = .8f;
+    //auto modValue  = modBuffer.getSample(0, static_cast<int>(modBuffer.getNumSamples() / 2));
+    //auto gainValue = *state.getRawParameterValue(tobanteAudio::Parameters::Output);
+    //auto gainMod   = gainValue + (modRange * modValue);
 
-    if (gainMod < -0.0f)
-    {
-        gainMod = 0.0;
-    }
-    if (gainMod > 2.0f)
-    {
-        gainMod = 2.0;
-    }
+    //if (gainMod < -0.0f)
+    //{
+    //    gainMod = 0.0;
+    //}
+    //if (gainMod > 2.0f)
+    //{
+    //    gainMod = 2.0;
+    //}
 
-    outputGain.setGainLinear(gainMod);
+    //outputGain.setGainLinear(gainMod);
 
     equalizerProcessor.processBlock(buffer, midiMessages);
 

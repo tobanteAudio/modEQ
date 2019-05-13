@@ -116,5 +116,6 @@ void AnalyserView::resized()
 {
     auto area = getLocalBounds();
     plotFrame = area.reduced(3, 3);
+    sendChangeMessage();
 }
 }  // namespace tobanteAudio
