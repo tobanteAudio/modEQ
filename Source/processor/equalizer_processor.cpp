@@ -290,6 +290,35 @@ void EqualizerProcessor::updatePlots()
     sendChangeMessage();
 }
 
+void EqualizerProcessor::setSelectedBand(int index)
+{
+    // Set all bands to not selected
+    std::for_each(bands.begin(), bands.end(), [](auto& item) { item.selected = false; });
+
+    // Return if no band (-1) was selected
+    if (index == -1)
+    {
+        return;
+    }
+
+    // Select new band
+    bands.at(index).selected = true;
+    DBG("Selected: " + String(index));
+}
+
+int EqualizerProcessor::getSelectedBand()
+{
+    for (size_t i = 0; i < bands.size(); ++i)
+    {
+        if (bands[i].selected)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 bool EqualizerProcessor::getBandSolo(const int index) const { return index == soloed; }
 
 void EqualizerProcessor::setDefaults()

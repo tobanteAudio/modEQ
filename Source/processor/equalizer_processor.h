@@ -20,12 +20,18 @@
 #include "base_processor.h"
 namespace tobanteAudio
 {
+/**
+ * @brief Main processor class for modEQ. Holds 5 juce dsp filters in a ProcessorChain.
+ */
 class EqualizerProcessor : public BaseProcessor,
                            public ChangeBroadcaster,
                            AudioProcessorValueTreeState::Listener
 
 {
 public:
+    /**
+     * @brief Filter types for an individual band.
+     */
     enum FilterType
     {
         NoFilter = 0,
@@ -38,6 +44,9 @@ public:
         LastFilterID
     };
 
+	/**
+     * @brief Model of a filter band.
+     */
     struct Band
     {
         String name;
@@ -47,6 +56,7 @@ public:
         float quality   = 1.0f;
         float gain      = 1.0f;
         bool active     = true;
+        bool selected   = false;
         std::vector<double> magnitudes;
     };
 
@@ -86,6 +96,16 @@ public:
     Colour getBandColour(int index) const;
     void setBandSolo(int index);
     bool getBandSolo(int index) const;
+    
+	/**
+     * @brief Set the selected band. (clicked or dragged)
+     */
+    void setSelectedBand(int);
+
+    /**
+     * @brief Returns the current selected band.
+     */
+    int getSelectedBand();
 
 private:
     int soloed       = -1;
