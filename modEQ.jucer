@@ -19,8 +19,6 @@
     <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
       <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
       <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>
-      <FILE id="WXATF6" name="tobanteAudio-text.png" compile="0" resource="1"
-            file="Resources/tobanteAudio-text.png"/>
     </GROUP>
     <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
       <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
