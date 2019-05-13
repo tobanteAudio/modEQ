@@ -21,7 +21,7 @@ namespace tobanteAudio
 AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
                                        OwnedArray<tobanteAudio::BandController>& bc,
                                        tobanteAudio::AnalyserView& v)
-    : processor(p), bandControllers(bc), view(v), init(true)
+    : processor(p), bandControllers(bc), view(v)
 {
     int i = 0;
     for (const auto& band : bandControllers)
@@ -52,14 +52,6 @@ void AnalyserController::timerCallback()
         view.repaint(view.plotFrame);
     }
 
-    // TODO: init bool is hacky work around to display the frequency response on startup, since the
-    // changeListenerCallback function is not called until a UI element is touched.
-    if (init)
-    {
-        init = false;
-        updateFrequencyResponses();
-        view.repaint(view.plotFrame);
-    }
 }
 
 void AnalyserController::mouseDown(const MouseEvent& e)
