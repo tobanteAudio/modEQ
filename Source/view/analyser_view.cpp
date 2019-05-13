@@ -35,11 +35,7 @@ void AnalyserView::paint(Graphics& g)
 
     // Background
     const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(backgroundColour.darker());
-
-    // Frame
-    g.setColour(Colours::silver);
-    g.drawRoundedRectangle(plotFrame.toFloat(), 5, 5);
+    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
 
     // Vertical lines & frequency labels
     g.setFont(15.0f);

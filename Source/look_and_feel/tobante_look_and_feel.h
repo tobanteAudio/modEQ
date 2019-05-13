@@ -32,23 +32,28 @@ class TobanteLookAndFeel : public LookAndFeel_V4
 public:
     TobanteLookAndFeel()
     {
-        // Slider 
-        //setColour(Slider::thumbColourId, Colours::red);
-        setColour(Slider::thumbColourId, Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
-        //setColour(Slider::backgroundColourId, Colours::aliceblue);
-        //setColour(Slider::trackColourId, Colours::grey);
+        // General
+        setColour(ResizableWindow::backgroundColourId, Colour(55, 71, 79));
+        // setColour(ResizableWindow::backgroundColourId, Colour(0, 105, 92).darker());
+
+        // Slider
+        // setColour(Slider::thumbColourId, Colours::red);
+        // setColour(Slider::thumbColourId, Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
+        setColour(Slider::thumbColourId, Colour(255, 87, 34));
+        // setColour(Slider::backgroundColourId, Colours::aliceblue);
+        // setColour(Slider::trackColourId, Colours::grey);
 
         //// ComboBox
-        //setColour(ComboBox::backgroundColourId, Colours::aliceblue);
-        //setColour(ComboBox::textColourId, Colours::black);
-        //setColour(ComboBox::arrowColourId, Colours::black);
-        //setColour(ComboBox::buttonColourId, Colours::blue);
+        // setColour(ComboBox::backgroundColourId, Colours::aliceblue);
+        // setColour(ComboBox::textColourId, Colours::black);
+        // setColour(ComboBox::arrowColourId, Colours::black);
+        // setColour(ComboBox::buttonColourId, Colours::blue);
 
         //// PopupMenu (in ComboxBox)
-        //setColour(PopupMenu::backgroundColourId, Colours::aliceblue);
-        //setColour(PopupMenu::highlightedBackgroundColourId, Colours::whitesmoke);
-        //setColour(PopupMenu::textColourId, Colours::black);
-        //setColour(PopupMenu::highlightedTextColourId, Colours::blue);
+        // setColour(PopupMenu::backgroundColourId, Colours::aliceblue);
+        // setColour(PopupMenu::highlightedBackgroundColourId, Colours::whitesmoke);
+        // setColour(PopupMenu::textColourId, Colours::black);
+        // setColour(PopupMenu::highlightedTextColourId, Colours::blue);
     }
 
     // void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
