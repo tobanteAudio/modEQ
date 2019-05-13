@@ -20,6 +20,38 @@
       <GROUP id="{ECB25120-D1BE-0A8C-D0EB-308823B55B20}" name="material-icons">
         <FILE id="FckFap" name="sharp-check_box-24px.svg" compile="0" resource="1"
               file="Resources/material-icons/sharp-check_box-24px.svg"/>
+        <FILE id="FUiSLV" name="sharp-done-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-done-24px.svg"/>
+        <FILE id="VLY5QF" name="sharp-edit-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-edit-24px.svg"/>
+        <FILE id="Mbf0Ve" name="sharp-folder-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-folder-24px.svg"/>
+        <FILE id="QPAl8S" name="sharp-high_quality-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-high_quality-24px.svg"/>
+        <FILE id="ouTveS" name="sharp-info-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-info-24px.svg"/>
+        <FILE id="AvqlNF" name="sharp-memory-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-memory-24px.svg"/>
+        <FILE id="fp8MrL" name="sharp-menu-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-menu-24px.svg"/>
+        <FILE id="sgkkii" name="sharp-navigate_before-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/sharp-navigate_before-24px.svg"/>
+        <FILE id="XYFZkg" name="sharp-navigate_next-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-navigate_next-24px.svg"/>
+        <FILE id="gUJ9Kg" name="sharp-palette-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-palette-24px.svg"/>
+        <FILE id="ZsFuDd" name="sharp-power_settings_new-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/sharp-power_settings_new-24px.svg"/>
+        <FILE id="Zzdrgj" name="sharp-redo-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-redo-24px.svg"/>
+        <FILE id="whJjX5" name="sharp-save-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-save-24px.svg"/>
+        <FILE id="memNSU" name="sharp-settings-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-settings-24px.svg"/>
+        <FILE id="erGICw" name="sharp-settings_input_svideo-24px.svg" compile="0"
+              resource="1" file="Resources/material-icons/sharp-settings_input_svideo-24px.svg"/>
+        <FILE id="ejYwVy" name="sharp-undo-24px.svg" compile="0" resource="1"
+              file="Resources/material-icons/sharp-undo-24px.svg"/>
       </GROUP>
       <FILE id="T42P9q" name="FB-logo.png" compile="0" resource="1" file="Resources/FB-logo.png"/>
       <FILE id="y3ctsz" name="GitHub-logo.png" compile="0" resource="1" file="Resources/GitHub-logo.png"/>

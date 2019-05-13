@@ -21,21 +21,34 @@
 
 namespace tobanteAudio
 {
-MenuBarView::MenuBarView()
-{
-    // buttons.add(XmlDocument::parse(TobanteAudioData::sharpcheck_box24px_svg));
-    // tobanteAudio::SvgchangeColor(buttons[0], "#61f0c4");  // RECOLOUR}
-}
+MenuBarView::MenuBarView() {}
 
 void MenuBarView::paint(Graphics& g)
 {
-    const auto height = getHeight();
-    // const auto area   = Rectangle<float>(0, 0, height, height);
-    // drawable->setTransformToFit(area, RectanglePlacement::stretchToFit);
-    // drawable->draw(g, 1.0f);
+    // Binary data pointers
+    const auto* undo_svg    = TobanteAudioData::sharpundo24px_svg;
+    const auto* redo_svg    = TobanteAudioData::sharpredo24px_svg;
+    const auto* power_svg   = TobanteAudioData::sharppower_settings_new24px_svg;
+    const auto* hq_svg      = TobanteAudioData::sharphigh_quality24px_svg;
+    const auto* setting_svg = TobanteAudioData::sharpsettings24px_svg;
 
-    tobanteAudio::drawFromSVG(g, TobanteAudioData::sharpcheck_box24px_svg, "#61f0c4", 0, 0, height,
-                              height);
+    const auto height  = getHeight();
+    const auto width   = getWidth();
+    const auto spacing = 10;
+
+    // Undo & Redo (left)
+    tobanteAudio::drawFromSVG(g, undo_svg, "#61f0c4", spacing, 0, height, height);
+    tobanteAudio::drawFromSVG(g, redo_svg, "#61f0c4", (1 * height) + spacing, 0, height, height);
+
+    // Power (middle)
+    const auto power_x = static_cast<int>(width / 2 - height / 2);
+    tobanteAudio::drawFromSVG(g, power_svg, "#61f0c4", power_x, 0, height, height);
+
+    // Settings (right)
+    const auto settings_x = width - height - spacing;
+    const auto hq_x = width - height*2 - spacing;
+    tobanteAudio::drawFromSVG(g, setting_svg, "#61f0c4", settings_x, 0, height, height);
+    tobanteAudio::drawFromSVG(g, hq_svg, "#61f0c4", hq_x, 0, height, height);
 }
 
 void MenuBarView::resized() {}

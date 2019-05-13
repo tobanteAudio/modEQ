@@ -28,9 +28,9 @@
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "view/analyser_view.h"
 #include "view/band_view.h"
+#include "view/menu_bar_view.h"
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
-#include "view/menu_bar_view.h"
 
 class ModEQEditor : public AudioProcessorEditor
 {
@@ -52,18 +52,21 @@ private:
     // Bands
     OwnedArray<tobanteAudio::BandView> bandViews;
     OwnedArray<tobanteAudio::BandController> bandControllers;
+
     // Modulation
     OwnedArray<tobanteAudio::ModulationSourceView> modViews;
     OwnedArray<tobanteAudio::ModulationSourceController> modController;
-    // Analyser Plot
+    
+	// Analyser Plot
     std::unique_ptr<tobanteAudio::AnalyserView> analyserView;
     std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 
+	// Master - Out
     Slider output;
     GroupComponent frame;  // for output slider
-
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-    SharedResourcePointer<TooltipWindow> tooltipWindow;
+    
+	SharedResourcePointer<TooltipWindow> tooltipWindow;
 
 #ifdef JUCE_OPENGL
     OpenGLContext openGLContext;
