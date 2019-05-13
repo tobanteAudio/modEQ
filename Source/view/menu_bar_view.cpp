@@ -34,11 +34,11 @@ void MenuBarView::paint(Graphics& g)
 
     const auto height  = getHeight();
     const auto width   = getWidth();
-    const auto spacing = 10;
+    const auto spacing = 8;
 
     // Undo & Redo (left)
     tobanteAudio::drawFromSVG(g, undo_svg, "#61f0c4", spacing, 0, height, height);
-    tobanteAudio::drawFromSVG(g, redo_svg, "#61f0c4", (1 * height) + spacing, 0, height, height);
+    tobanteAudio::drawFromSVG(g, redo_svg, "#61f0c4", (1 * height + 2*spacing), 0, height, height);
 
     // Power (middle)
     const auto power_x = static_cast<int>(width / 2 - height / 2);
@@ -46,7 +46,7 @@ void MenuBarView::paint(Graphics& g)
 
     // Settings (right)
     const auto settings_x = width - height - spacing;
-    const auto info_x     = width - height * 2 - spacing;
+    const auto info_x     = width - height * 2 - 2*spacing;
     tobanteAudio::drawFromSVG(g, info_svg, "#61f0c4", info_x, 0, height, height);
     tobanteAudio::drawFromSVG(g, setting_svg, "#61f0c4", settings_x, 0, height, height);
 }

@@ -58,7 +58,8 @@ void drawFromSVG(Graphics& g, const char* svgbinary, String col_hex, int x, int 
         drawable = Drawable::createFromSVG(*svg);
         drawable->setTransformToFit(Rectangle<float>(x, y, newWidth, newHeight),
                                     RectanglePlacement::stretchToFit);
-        drawable->draw(g, 1.0f);
+        drawable->replaceColour(Colours::black, Colour(255, 87, 34));
+        drawable->draw(g, 0.8f);
     }
 }
 }  // namespace tobanteAudio
