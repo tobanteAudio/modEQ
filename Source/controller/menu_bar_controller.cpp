@@ -41,17 +41,17 @@ void MenuBarController::buttonClicked(Button* b)
 
     if (b == &view.powerButton)
     {
-        DBG("power");
+        toggleBypass();
     }
 
     if (b == &view.settingButton)
     {
-        DBG("setting");
+        toggleSettings();
     }
 
     if (b == &view.infoButton)
     {
-        DBG("info");
+        toggleInfo();
     }
 }
 }  // namespace tobanteAudio

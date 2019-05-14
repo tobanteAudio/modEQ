@@ -34,6 +34,10 @@ public:
     MenuBarController(ModEQProcessor&, tobanteAudio::MenuBarView& /*v*/);
     void buttonClicked(Button* b) override;
 
+    std::function<void()> toggleBypass;
+    std::function<void()> toggleSettings;
+    std::function<void()> toggleInfo;
+
 private:
     ModEQProcessor& processor;
 

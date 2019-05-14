@@ -21,16 +21,28 @@
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
-    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
     , menuController(processor, menuButtons)
+    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
 {
     // Global look & feel
     setLookAndFeel(&tobanteLookAndFeel);
 
     // Social buttons
     addAndMakeVisible(socialButtons);
+
     // Menu
     addAndMakeVisible(menuButtons);
+    menuController.toggleBypass   = [this]() { DBG("BYPASS"); };
+    menuController.toggleSettings = [this]() {
+        infoView.setVisible(false);
+        settingsView.setVisible(!settingsView.isVisible());
+    };
+    menuController.toggleInfo     = [this]() {
+        settingsView.setVisible(false);
+        infoView.setVisible(!infoView.isVisible());
+    };
+
+    // Settings & Info
     addAndMakeVisible(infoView);
     addAndMakeVisible(settingsView);
     infoView.setVisible(false);
