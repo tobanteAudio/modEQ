@@ -32,7 +32,9 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     // Menu
     addAndMakeVisible(menuButtons);
     addAndMakeVisible(infoView);
+    addAndMakeVisible(settingsView);
     infoView.setVisible(false);
+    settingsView.setVisible(false);
 
     // Modulation
     for (int i = 1; i < 2; ++i)
@@ -145,4 +147,5 @@ void ModEQEditor::resized()
     // FFT
     analyserView->setBounds(area);
     infoView.setBounds(area);
+    settingsView.setBounds(area);
 }

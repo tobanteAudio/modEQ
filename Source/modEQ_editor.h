@@ -30,6 +30,7 @@
 #include "view/analyser_view.h"
 #include "view/band_view.h"
 #include "view/info_view.h"
+#include "view/settings_view.h"
 #include "view/menu_bar_view.h"
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
@@ -50,7 +51,8 @@ private:
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     tobanteAudio::SocialButtons socialButtons;
     tobanteAudio::InfoView infoView;
-    tobanteAudio::MenuBarView menuButtons;
+    tobanteAudio::SettingsView settingsView;
+	tobanteAudio::MenuBarView menuButtons;
     tobanteAudio::MenuBarController menuController;
 
     // Bands

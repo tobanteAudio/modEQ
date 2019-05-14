@@ -145,6 +145,9 @@
               file="Source/view/modulation_source_view.cpp"/>
         <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0"
               file="Source/view/modulation_source_view.h"/>
+        <FILE id="qg5LZt" name="settings_view.cpp" compile="1" resource="0"
+              file="Source/view/settings_view.cpp"/>
+        <FILE id="mRCfaH" name="settings_view.h" compile="0" resource="0" file="Source/view/settings_view.h"/>
         <FILE id="nCOPM9" name="social_buttons.cpp" compile="1" resource="0"
               file="Source/view/social_buttons.cpp"/>
         <FILE id="SFKS9r" name="social_buttons.h" compile="0" resource="0"
