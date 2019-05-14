@@ -37,7 +37,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         infoView.setVisible(false);
         settingsView.setVisible(!settingsView.isVisible());
     };
-    menuController.toggleInfo     = [this]() {
+    menuController.toggleInfo = [this]() {
         settingsView.setVisible(false);
         infoView.setVisible(!infoView.isVisible());
     };
