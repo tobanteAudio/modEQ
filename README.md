@@ -34,7 +34,7 @@ EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE
 ### What doesn't work (yet)
 
 - Modulation (I know it's in the name...)
-- Menu buttons (undo, redo, bypass & settings)
+- Bypass button
 
 ## Build
 

@@ -23,7 +23,7 @@ MenuBarController::MenuBarController(ModEQProcessor& p, tobanteAudio::MenuBarVie
 {
     view.undoButton.addListener(this);
     view.redoButton.addListener(this);
-    view.powerButton.addListener(this);
+    view.bypassButton.addListener(this);
     view.settingButton.addListener(this);
     view.infoButton.addListener(this);
 }
@@ -39,7 +39,7 @@ void MenuBarController::buttonClicked(Button* b)
         processor.getUndoManager().redo();
     }
 
-    if (b == &view.powerButton)
+    if (b == &view.bypassButton)
     {
         toggleBypass();
     }

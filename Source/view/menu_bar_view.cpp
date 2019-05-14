@@ -23,11 +23,11 @@ namespace tobanteAudio
 MenuBarView::MenuBarView()
     : undoButton("undo", DrawableButton::ImageStretched)
     , redoButton("redo", DrawableButton::ImageStretched)
-    , powerButton("power", DrawableButton::ImageStretched)
+    , bypassButton("power", DrawableButton::ImageStretched)
     , settingButton("setting", DrawableButton::ImageStretched)
     , infoButton("info", DrawableButton::ImageStretched)
 {
-    const auto color = Colour(255, 87, 34).withAlpha(0.8f);
+    const auto color = Colour(255, 87, 34).withAlpha(0.9f);
     ScopedPointer<XmlElement> svg;
     ScopedPointer<Drawable> drawable;
 
@@ -54,9 +54,9 @@ MenuBarView::MenuBarView()
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    powerButton.setImages(drawable);
-    powerButton.setTooltip("Toggle Bypass");
-    addAndMakeVisible(powerButton);
+    bypassButton.setImages(drawable);
+    bypassButton.setTooltip("Toggle Bypass");
+    addAndMakeVisible(bypassButton);
 
     // SETTING
     svg = XmlDocument::parse(TobanteAudioData::outlinesettings24px_svg);
@@ -81,8 +81,9 @@ void MenuBarView::paint(Graphics& g) { ignoreUnused(g); }
 
 void MenuBarView::resized()
 {
-    const auto height  = getHeight();
-    const auto width   = getWidth();
+    const auto area    = getLocalBounds();
+    const auto height  = area.getHeight();
+    const auto width   = area.getWidth();
     const auto spacing = 8;
 
     // Undo & Redo (left)
@@ -91,7 +92,7 @@ void MenuBarView::resized()
 
     // Power (middle)
     const auto power_x = static_cast<int>(width / 2 - height / 2);
-    powerButton.setBounds(Rectangle<int>(power_x, 0, height, height));
+    bypassButton.setBounds(Rectangle<int>(power_x, 0, height, height));
 
     // Settings (right)
     const auto settings_x = width - height - spacing;

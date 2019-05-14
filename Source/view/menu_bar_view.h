@@ -36,7 +36,7 @@ public:
 
     DrawableButton undoButton;
     DrawableButton redoButton;
-    DrawableButton powerButton;
+    DrawableButton bypassButton;
     DrawableButton settingButton;
     DrawableButton infoButton;
 

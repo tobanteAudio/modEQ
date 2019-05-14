@@ -79,9 +79,9 @@ void AnalyserView::paint(Graphics& g)
     g.reduceClipRegion(plotFrame);
 
     // Analysers
-    const Colour inputColour  = Colours::greenyellow;
+    const Colour inputColour  = Colours::yellow;
     const Colour outputColour = Colours::red;
-    g.setFont(16.0f);
+    g.setFont(18.0f);
 
     const float corner_radius = 10.0f;
 
