@@ -19,7 +19,8 @@
 
 namespace tobanteAudio
 {
-void SvgchangeColor(XmlElement* xml, String color_hex);
-void drawFromSVG(Graphics& g, const char* svgbinary, String col_hex, int x, int y, int newWidth,
-                 int newHeight);
+/**
+ * @brief Draws SVG binary data to a graphics context.
+ */
+void drawFromSVG(Graphics& g, const char* svgbinary, Colour, Rectangle<float>);
 }  // namespace tobanteAudio

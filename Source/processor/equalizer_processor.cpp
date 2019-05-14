@@ -312,7 +312,7 @@ int EqualizerProcessor::getSelectedBand()
     {
         if (bands[i].selected)
         {
-            return i;
+            return static_cast<int>(i);
         }
     }
 

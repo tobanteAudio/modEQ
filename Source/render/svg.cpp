@@ -18,47 +18,17 @@
 
 namespace tobanteAudio
 {
-void SvgchangeColor(XmlElement* xml, String color_hex)
-{
-    forEachXmlChildElement(*xml, xmlnode)
-    {
-        forEachXmlChildElement(*xmlnode, xmlouterdefs)
-        {
-            String style = xmlouterdefs->getStringAttribute("style");
-            if (style.isNotEmpty())
-            {
-                style = style.replace("#030104", color_hex, true);
-                xmlouterdefs->setAttribute("style", style);
-            }
-
-            forEachXmlChildElement(*xmlouterdefs, xmldefs)
-            {
-                String style = xmldefs->getStringAttribute("style");
-                if (style.isNotEmpty())
-                {
-                    style = style.replace("#030104", color_hex, true);
-                    xmldefs->setAttribute("style", style);
-                }
-            }
-        }
-    }
-}
-
-void drawFromSVG(Graphics& g, const char* svgbinary, String col_hex, int x, int y, int newWidth,
-                 int newHeight)
+void drawFromSVG(Graphics& g, const char* svgbinary, Colour color, Rectangle<float> pos)
 {
     ScopedPointer<XmlElement> svg(XmlDocument::parse(svgbinary));
     jassert(svg != nullptr);
-    SvgchangeColor(svg, col_hex);
 
     ScopedPointer<Drawable> drawable;
-
     if (svg != nullptr)
     {
         drawable = Drawable::createFromSVG(*svg);
-        drawable->setTransformToFit(Rectangle<float>(x, y, newWidth, newHeight),
-                                    RectanglePlacement::stretchToFit);
-        drawable->replaceColour(Colours::black, Colour(255, 87, 34));
+        drawable->setTransformToFit(pos, RectanglePlacement::stretchToFit);
+        drawable->replaceColour(Colours::black, color);
         drawable->draw(g, 0.8f);
     }
 }

@@ -35,20 +35,23 @@ void MenuBarView::paint(Graphics& g)
     const auto height  = getHeight();
     const auto width   = getWidth();
     const auto spacing = 8;
+    const auto color   = getLookAndFeel().findColour(Slider::thumbColourId);
 
     // Undo & Redo (left)
-    tobanteAudio::drawFromSVG(g, undo_svg, "#61f0c4", spacing, 0, height, height);
-    tobanteAudio::drawFromSVG(g, redo_svg, "#61f0c4", (1 * height + 2*spacing), 0, height, height);
+
+    tobanteAudio::drawFromSVG(g, undo_svg, color, Rectangle<float>(spacing, 0, height, height));
+    tobanteAudio::drawFromSVG(g, redo_svg, color, Rectangle<float>(1 * height + 2 * spacing, 0,
+                              height, height));
 
     // Power (middle)
     const auto power_x = static_cast<int>(width / 2 - height / 2);
-    tobanteAudio::drawFromSVG(g, power_svg, "#61f0c4", power_x, 0, height, height);
+    tobanteAudio::drawFromSVG(g, power_svg, color, Rectangle<float>(power_x, 0, height, height));
 
     // Settings (right)
     const auto settings_x = width - height - spacing;
-    const auto info_x     = width - height * 2 - 2*spacing;
-    tobanteAudio::drawFromSVG(g, info_svg, "#61f0c4", info_x, 0, height, height);
-    tobanteAudio::drawFromSVG(g, setting_svg, "#61f0c4", settings_x, 0, height, height);
+    const auto info_x     = width - height * 2 - 2 * spacing;
+    tobanteAudio::drawFromSVG(g, info_svg, color, Rectangle<float>(info_x, 0, height, height));
+    tobanteAudio::drawFromSVG(g, setting_svg, color, Rectangle<float>(settings_x, 0, height, height));
 }
 
 void MenuBarView::resized() {}
