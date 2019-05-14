@@ -132,6 +132,8 @@
         <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
         <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
         <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
+        <FILE id="Sn9EU7" name="info_view.cpp" compile="1" resource="0" file="Source/view/info_view.cpp"/>
+        <FILE id="pkFWee" name="info_view.h" compile="0" resource="0" file="Source/view/info_view.h"/>
         <FILE id="UdUeB0" name="menu_bar_view.cpp" compile="1" resource="0"
               file="Source/view/menu_bar_view.cpp"/>
         <FILE id="GrxriU" name="menu_bar_view.h" compile="0" resource="0" file="Source/view/menu_bar_view.h"/>

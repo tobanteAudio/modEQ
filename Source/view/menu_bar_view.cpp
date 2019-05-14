@@ -70,7 +70,6 @@ MenuBarView::MenuBarView()
     drawable->replaceColour(Colours::black, color);
     infoButton.setImages(drawable);
     addAndMakeVisible(infoButton);
-
 }
 
 void MenuBarView::paint(Graphics& g) { ignoreUnused(g); }

@@ -29,6 +29,7 @@
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "view/analyser_view.h"
 #include "view/band_view.h"
+#include "view/info_view.h"
 #include "view/menu_bar_view.h"
 #include "view/modulation_source_view.h"
 #include "view/social_buttons.h"
@@ -48,6 +49,7 @@ private:
     // Components
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     tobanteAudio::SocialButtons socialButtons;
+    tobanteAudio::InfoView infoView;
     tobanteAudio::MenuBarView menuButtons;
     tobanteAudio::MenuBarController menuController;
 

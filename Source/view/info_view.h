@@ -16,30 +16,21 @@
 
 #pragma once
 
-// JUCE
 #include "../../JuceLibraryCode/JuceHeader.h"
-
-// tobanteAudio
-#include "../modEQ_processor.h"
-#include "../view/menu_bar_view.h"
 
 namespace tobanteAudio
 {
-/**
- * @brief Controller for the band view component.
- */
-class MenuBarController : public Button::Listener
+class InfoView : public Component
 {
 public:
-    MenuBarController(ModEQProcessor&, tobanteAudio::MenuBarView& /*v*/);
-    void buttonClicked(Button* b) override;
+    InfoView();
+    ~InfoView() override = default;
+
+    void paint(Graphics&) override;
+    void resized() override;
 
 private:
-    ModEQProcessor& processor;
-
-    tobanteAudio::MenuBarView& view;
-
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MenuBarController)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(InfoView)
 };
+
 }  // namespace tobanteAudio

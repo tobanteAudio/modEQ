@@ -14,32 +14,27 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
-
-// JUCE
-#include "../../JuceLibraryCode/JuceHeader.h"
-
-// tobanteAudio
-#include "../modEQ_processor.h"
-#include "../view/menu_bar_view.h"
+#include "info_view.h"
 
 namespace tobanteAudio
 {
-/**
- * @brief Controller for the band view component.
- */
-class MenuBarController : public Button::Listener
+InfoView::InfoView() {}
+
+void InfoView::paint(Graphics& g)
 {
-public:
-    MenuBarController(ModEQProcessor&, tobanteAudio::MenuBarView& /*v*/);
-    void buttonClicked(Button* b) override;
+    // Background
+    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
 
-private:
-    ModEQProcessor& processor;
+    g.setColour(Colours::grey);
+    g.drawRect(getLocalBounds(), 1);  // draw an outline around the component
 
-    tobanteAudio::MenuBarView& view;
+    g.setColour(Colours::white);
+    g.setFont(14.0f);
+    g.drawText("InfoView", getLocalBounds(), Justification::centred,
+               true);  // draw some placeholder text
+}
 
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MenuBarController)
-};
+void InfoView::resized() {}
+
 }  // namespace tobanteAudio

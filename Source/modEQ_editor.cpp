@@ -22,7 +22,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-    , menuController(processor,menuButtons)
+    , menuController(processor, menuButtons)
 {
     // Global look & feel
     setLookAndFeel(&tobanteLookAndFeel);
@@ -31,6 +31,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(socialButtons);
     // Menu
     addAndMakeVisible(menuButtons);
+    addAndMakeVisible(infoView);
+    infoView.setVisible(false);
 
     // Modulation
     for (int i = 1; i < 2; ++i)
@@ -142,4 +144,5 @@ void ModEQEditor::resized()
 
     // FFT
     analyserView->setBounds(area);
+    infoView.setBounds(area);
 }
