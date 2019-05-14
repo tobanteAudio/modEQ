@@ -5,6 +5,7 @@ build
 Builds
 LEFTOFF
 playground
+test.txt
 
 ####################
 # JUCE
