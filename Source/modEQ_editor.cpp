@@ -36,10 +36,13 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     menuController.toggleSettings = [this]() {
         infoView.setVisible(false);
         settingsView.setVisible(!settingsView.isVisible());
+        analyserView->setVisible(!settingsView.isVisible());
     };
     menuController.toggleInfo = [this]() {
         settingsView.setVisible(false);
         infoView.setVisible(!infoView.isVisible());
+        analyserView->setVisible(!infoView.isVisible());
+
     };
 
     // Settings & Info
@@ -119,7 +122,6 @@ void ModEQEditor::paint(Graphics& g)
 {
     const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.fillAll(backgroundColour);
-
 }
 
 void ModEQEditor::resized()
