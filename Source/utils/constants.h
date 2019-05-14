@@ -46,7 +46,13 @@ const float LFO_FREQ_SKEW      = 1.0f;
 const float LFO_FREQ_DEFAULT   = 0.3f;
 
 // UI
+/**
+ * @brief Global frames per second.
+ */
 const int GLOBAL_REFRESH_RATE_HZ = 60;
-const int HANDLE_CLICK_RADIUS    = 10;
+/**
+ * @brief Click radius for band handles in analyser plot.
+ */
+const int HANDLE_CLICK_RADIUS = 10;
 
 }  // namespace tobanteAudio

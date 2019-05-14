@@ -19,14 +19,14 @@
 
 namespace tobanteAudio
 {
-struct Parameters
+namespace Parameters
 {
-    static String Output;
-    static String Type;
-    static String Frequency;
-    static String Quality;
-    static String Gain;
-    static String Active;
-    static String Phase;
-};
+const String Output    = "output";
+const String Type      = "type";
+const String Frequency = "frequency";
+const String Quality   = "quality";
+const String Gain      = "gain";
+const String Active    = "active";
+const String Phase     = "phase";
+};  // namespace Parameters
 }  // namespace tobanteAudio

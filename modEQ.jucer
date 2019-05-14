@@ -121,7 +121,6 @@
       </GROUP>
       <GROUP id="{E4A99C46-1C12-C178-361D-EF4AD1B9F3BD}" name="utils">
         <FILE id="oIuClN" name="constants.h" compile="0" resource="0" file="Source/utils/constants.h"/>
-        <FILE id="xvy5Me" name="parameters.cpp" compile="1" resource="0" file="Source/utils/parameters.cpp"/>
         <FILE id="pEjPUY" name="parameters.h" compile="0" resource="0" file="Source/utils/parameters.h"/>
         <FILE id="W4ENUw" name="text_value_converter.h" compile="0" resource="0"
               file="Source/utils/text_value_converter.h"/>

@@ -30,6 +30,9 @@ namespace tobanteAudio
 class TobanteLookAndFeel : public LookAndFeel_V4
 {
 public:
+    /**
+     * @brief Constructor.
+     */
     TobanteLookAndFeel()
     {
         // General

@@ -26,21 +26,38 @@
 namespace tobanteAudio
 {
 /**
- * @brief Controller for the band view component.
+ * @brief Controller for the MenuBarView component.
  */
 class MenuBarController : public Button::Listener
 {
 public:
+    /**
+     * @brief Constructor.
+     */
     MenuBarController(ModEQProcessor&, tobanteAudio::MenuBarView& /*v*/);
+
+    /**
+     * @brief Listens for button clicks from view. Dispatches function pointers.
+     */
     void buttonClicked(Button* b) override;
 
+    /**
+     * @brief Called when the bypass button was pressed.
+     */
     std::function<void()> toggleBypass;
+
+    /**
+     * @brief Called when the settings button was pressed.
+     */
     std::function<void()> toggleSettings;
+
+    /**
+     * @brief Called when the info button was pressed.
+     */
     std::function<void()> toggleInfo;
 
 private:
     ModEQProcessor& processor;
-
     tobanteAudio::MenuBarView& view;
 
     //==============================================================================

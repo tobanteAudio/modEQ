@@ -27,22 +27,41 @@
 namespace tobanteAudio
 {
 /**
- * @brief Controller for the analyser view component.
+ * @brief Controller for the AnalyserView component.
  */
 class AnalyserController : public ChangeListener, public Timer, public MouseListener
 {
 public:
+    /**
+     * @brief Creates an AnalyserController connected to the EQ processor the band controllers & the
+     * anaylser plot view.
+     */
     AnalyserController(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&,
                        tobanteAudio::AnalyserView&);
 
+    /**
+     * @brief Listen to changes from the processor.
+     */
     void changeListenerCallback(ChangeBroadcaster* sender) override;
+
+    /**
+     * @brief Refreshes the analyser plots.
+     */
     void timerCallback() override;
 
     /**
-     * @brief Selects a band.
+     * @brief Selects a band type with right click.
      */
     void mouseDown(const MouseEvent& e) override;
+
+    /**
+     * @brief Select the current dragging band.
+     */
     void mouseMove(const MouseEvent& e) override;
+
+    /**
+     * @brief Drags a band.
+     */
     void mouseDrag(const MouseEvent& e) override;
 
     /**

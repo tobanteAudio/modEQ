@@ -47,7 +47,7 @@ BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::Equ
     view.solo.addListener(this);
 }
 
-void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType type)
+void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
     {
@@ -90,10 +90,7 @@ void BandController::updateControls(tobanteAudio::EqualizerProcessor::FilterType
     }
 }
 
-void BandController::updateSoloState(bool isSolo)
-{
-    view.solo.setToggleState(isSolo, dontSendNotification);
-}
+void BandController::setSolo(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
 
 void BandController::setFrequency(float newFreq)
 {

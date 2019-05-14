@@ -229,10 +229,10 @@ void AnalyserController::updateFrequencyResponses()
     for (int i = 0; i < bandControllers.size(); ++i)
     {
         auto* bandController = bandControllers.getUnchecked(i);
-        bandController->updateSoloState(i);
+        bandController->setSolo(i);
         if (auto* band = processor.getBand(i))
         {
-            bandController->updateControls(band->type);
+            bandController->setUIControls(band->type);
             bandController->frequencyResponse.clear();
             processor.createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
                                           plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
@@ -262,7 +262,7 @@ void AnalyserController::updateFrequencyResponses()
             handle.label_x = static_cast<float>(handle.x + offset);
             handle.label_y = static_cast<float>(handle.y + offset);
         }
-        bandController->updateSoloState(processor.getBandSolo(i));
+        bandController->setSolo(processor.getBandSolo(i));
     }
     view.frequencyResponse.clear();
     processor.createFrequencyPlot(view.frequencyResponse, processor.getMagnitudes(), plotFrame,

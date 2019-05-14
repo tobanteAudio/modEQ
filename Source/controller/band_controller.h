@@ -25,23 +25,50 @@
 namespace tobanteAudio
 {
 /**
- * @brief Controller for the band view component.
+ * @brief Controller for the BandView component.
  */
 class BandController : public Button::Listener
 {
 public:
+    /**
+     * @brief Constructor.
+     */
     BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/,
                    tobanteAudio::BandView& /*v*/);
 
+    /**
+     * @brief Listens to button clicks from view.
+     */
     void buttonClicked(Button* b) override;
 
-    void updateControls(tobanteAudio::EqualizerProcessor::FilterType type);
-    void updateSoloState(bool isSolo);
+    /**
+     * @brief Activates or deactivates UI controls depending on the selected filter type.
+     */
+    void setUIControls(tobanteAudio::EqualizerProcessor::FilterType type);
 
+    /**
+     * @brief Set solo in view.
+     */
+    void setSolo(bool isSolo);
+
+    /**
+     * @brief Set frequency in view.
+     */
     void setFrequency(float newFreq);
+
+    /**
+     * @brief Set gain in view.
+     */
     void setGain(float newGain);
+
+    /**
+     * @brief Set filter type in view.
+     */
     void setType(int newType);
 
+    /**
+     * @brief Filter frequency response.
+     */
     Path frequencyResponse;
 
 private:
@@ -50,6 +77,7 @@ private:
     ModEQProcessor& mainProcessor;
     tobanteAudio::EqualizerProcessor& processor;
 
+    // ATTACHMENTS
     OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
     OwnedArray<AudioProcessorValueTreeState::ButtonAttachment> buttonAttachments;

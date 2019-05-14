@@ -42,7 +42,6 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         settingsView.setVisible(false);
         infoView.setVisible(!infoView.isVisible());
         analyserView->setVisible(!infoView.isVisible());
-
     };
 
     // Settings & Info
