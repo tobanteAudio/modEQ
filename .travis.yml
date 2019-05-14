@@ -106,5 +106,5 @@ matrix:
         file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git tag --points-at HEAD)-linux.zip
         skip_cleanup: true
         on:
-          all_branches: true
+          tags: true
 

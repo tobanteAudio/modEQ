@@ -1,5 +1,5 @@
 # GENERAL
-version: 0.2.9.{build}
+version: 0.2.10.{build}
 branches:
   only:
     - master
@@ -32,6 +32,6 @@ deploy:
   artifact: c:\modEQ\modEQ-win.zip
   draft: false
   prerelease: false
+  tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
-    branch: master                 # release from master branch only
-    APPVEYOR_REPO_TAG: true        # deploy on tag push only
+    appveyor_repo_tag: true        # deploy on tag push only
