@@ -1,6 +1,10 @@
 SOURCE_DIR = Source
 TEST_DIR = Tests
 
+# DOCS
+documentation:
+	doxygen Doxyfile.in
+	
 # MISC
 stats:
 	cloc $(SOURCE_DIR) $(TEST_DIR)

@@ -1,0 +1,21 @@
+# Project setup
+PROJECT_NAME           = modEQ
+PROJECT_NUMBER         = 0.2.11
+
+# Main page and input dirs
+USE_MDFILE_AS_MAINPAGE = README.md
+INPUT                  = README.md \
+                        Source
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.hpp *.h *.md
+RECURSIVE              = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO # document private members & functions
+EXTRACT_STATIC         = YES # document static members & functions
+
+# Generate html output
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+
+# Set output directory
+OUTPUT_DIRECTORY = ./Builds/Documentation
