@@ -22,17 +22,9 @@ SettingsView::SettingsView() {}
 
 void SettingsView::paint(Graphics& g)
 {
-    // Background
-    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
-
-    g.setColour(Colours::grey);
-    g.drawRect(getLocalBounds(), 1);  // draw an outline around the component
-
-    g.setColour(Colours::white);
-    g.setFont(14.0f);
-    g.drawText("SettingsView", getLocalBounds(), Justification::centred,
-               true);  // draw some placeholder text
+    g.setColour(Colours::black);
+    g.setFont(32.0f);
+    g.drawText("Settings", getLocalBounds(), Justification::centred, true);
 }
 
 void SettingsView::resized() {}

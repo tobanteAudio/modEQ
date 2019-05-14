@@ -22,17 +22,11 @@ InfoView::InfoView() {}
 
 void InfoView::paint(Graphics& g)
 {
-    // Background
-    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
-
-    g.setColour(Colours::grey);
-    g.drawRect(getLocalBounds(), 1);  // draw an outline around the component
-
-    g.setColour(Colours::white);
-    g.setFont(14.0f);
-    g.drawText("InfoView", getLocalBounds(), Justification::centred,
-               true);  // draw some placeholder text
+    // Version footer
+    const String version = JucePlugin_VersionString;
+    g.setColour(Colours::black);
+    g.setFont(32.0f);
+    g.drawText("Version: " + version, getLocalBounds(), Justification::centred, true);
 }
 
 void InfoView::resized() {}

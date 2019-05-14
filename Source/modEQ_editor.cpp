@@ -118,19 +118,8 @@ ModEQEditor::~ModEQEditor()
 void ModEQEditor::paint(Graphics& g)
 {
     const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-
-    // Background
     g.fillAll(backgroundColour);
 
-    // Version footer
-    const String version   = JucePlugin_VersionString;
-    const auto versionArea = [&]() -> juce::Rectangle<int> {
-        auto area = getLocalBounds();
-        return area.removeFromBottom(static_cast<int>(area.getHeight() / 20));
-    }();
-    g.setColour(Colours::white);
-    g.setFont(16.f);
-    g.drawText("modEQ v" + version, versionArea.reduced(5), Justification::centred);
 }
 
 void ModEQEditor::resized()
