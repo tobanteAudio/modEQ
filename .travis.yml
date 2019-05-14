@@ -43,6 +43,8 @@ script-anchors:
     # Build
     - cd Builds/LinuxMakefile
     - make -j4 CONFIG=Release
+    - ls -la
+    - tree
 
   - &script-macOS
     - gem install xcpretty
@@ -69,6 +71,8 @@ script-anchors:
     - ls
     - xcodebuild -project modEQ.xcodeproj/ clean
     - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
+    - ls -la
+    - tree
 
 
 matrix:
