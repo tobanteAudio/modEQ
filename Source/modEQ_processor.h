@@ -68,6 +68,7 @@ public:
 
     tobanteAudio::EqualizerProcessor& getEQ() { return equalizerProcessor; }
     AudioProcessorValueTreeState& getPluginState() { return state; }
+    UndoManager& getUndoManager() { return undo; }
     tobanteAudio::ModulationSourceProcessor modSource;
 
 private:

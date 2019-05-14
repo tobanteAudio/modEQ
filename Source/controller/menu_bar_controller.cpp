@@ -18,7 +18,8 @@
 
 namespace tobanteAudio
 {
-MenuBarController::MenuBarController(tobanteAudio::MenuBarView& v) : view(v)
+MenuBarController::MenuBarController(ModEQProcessor& p, tobanteAudio::MenuBarView& v)
+    : processor(p), view(v)
 {
     view.undoButton.addListener(this);
     view.redoButton.addListener(this);
@@ -30,12 +31,12 @@ void MenuBarController::buttonClicked(Button* b)
 {
     if (b == &view.undoButton)
     {
-        DBG("undo");
+        processor.getUndoManager().undo();
     }
 
     if (b == &view.redoButton)
     {
-        DBG("redo");
+        processor.getUndoManager().redo();
     }
 
     if (b == &view.powerButton)

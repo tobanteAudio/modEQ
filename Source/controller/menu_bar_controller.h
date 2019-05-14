@@ -30,10 +30,12 @@ namespace tobanteAudio
 class MenuBarController : public Button::Listener
 {
 public:
-    MenuBarController(tobanteAudio::MenuBarView& /*v*/);
+    MenuBarController(ModEQProcessor& ,tobanteAudio::MenuBarView& /*v*/);
     void buttonClicked(Button* b) override;
 
 private:
+    ModEQProcessor& processor;
+
     tobanteAudio::MenuBarView& view;
 
     //==============================================================================
