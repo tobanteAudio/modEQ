@@ -37,6 +37,7 @@ MenuBarView::MenuBarView()
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
     undoButton.setImages(drawable);
+    undoButton.setTooltip("Undo");
     addAndMakeVisible(undoButton);
 
     // REDO
@@ -45,6 +46,7 @@ MenuBarView::MenuBarView()
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
     redoButton.setImages(drawable);
+    redoButton.setTooltip("Redo");
     addAndMakeVisible(redoButton);
 
     // POWER
@@ -53,6 +55,7 @@ MenuBarView::MenuBarView()
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
     powerButton.setImages(drawable);
+    powerButton.setTooltip("Toggle Bypass");
     addAndMakeVisible(powerButton);
 
     // SETTING
@@ -61,6 +64,7 @@ MenuBarView::MenuBarView()
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
     settingButton.setImages(drawable);
+    settingButton.setTooltip("Open Settings");
     addAndMakeVisible(settingButton);
 
     // INFO
@@ -69,6 +73,7 @@ MenuBarView::MenuBarView()
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
     infoButton.setImages(drawable);
+    infoButton.setTooltip("Open Info");
     addAndMakeVisible(infoButton);
 }
 
