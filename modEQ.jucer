@@ -86,6 +86,10 @@
               file="Source/controller/band_controller.cpp"/>
         <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
               file="Source/controller/band_controller.h"/>
+        <FILE id="YQH2fK" name="menu_bar_controller.cpp" compile="1" resource="0"
+              file="Source/controller/menu_bar_controller.cpp"/>
+        <FILE id="EtINWV" name="menu_bar_controller.h" compile="0" resource="0"
+              file="Source/controller/menu_bar_controller.h"/>
         <FILE id="BAoehi" name="modulation_connect_item_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_connect_item_controller.cpp"/>
         <FILE id="iLT7gr" name="modulation_connect_item_controller.h" compile="0"

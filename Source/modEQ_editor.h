@@ -24,6 +24,7 @@
 
 #include "controller/analyser_controller.h"
 #include "controller/band_controller.h"
+#include "controller/menu_bar_controller.h"
 #include "controller/modulation_source_controller.h"
 #include "look_and_feel/tobante_look_and_feel.h"
 #include "view/analyser_view.h"
@@ -48,6 +49,7 @@ private:
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;
     tobanteAudio::SocialButtons socialButtons;
     tobanteAudio::MenuBarView menuButtons;
+    tobanteAudio::MenuBarController menuController;
 
     // Bands
     OwnedArray<tobanteAudio::BandView> bandViews;
