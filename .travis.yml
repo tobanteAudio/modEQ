@@ -103,7 +103,7 @@ matrix:
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
-        file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git tag --points-at HEAD)-linux.zip
+        file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git tag --points-at HEAD)-linux.zip
         skip_cleanup: true
         on:
           all_branches: true

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="5.4.3"
-              version="0.2.7" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio"
+              version="0.2.8" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio"
               companyEmail="tobanteAudio@gmail.com" bundleIdentifier="com.tobanteAudio.modEQ"
               pluginName="modEQ" pluginDesc="EQ with modulation" pluginManufacturer="tobanteAudio"
               pluginManufacturerCode="toAu" pluginCode="tamq" pluginAUExportPrefix="modEQAU"
