@@ -44,7 +44,7 @@ script-anchors:
     - cd Builds/LinuxMakefile
     - make -j4 CONFIG=Release
     - ls -la
-    - tree
+    - ls -la build
 
   - &script-macOS
     - gem install xcpretty
@@ -72,7 +72,8 @@ script-anchors:
     - xcodebuild -project modEQ.xcodeproj/ clean
     - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
     - ls -la
-    - tree
+    - ls -la build
+    - zip -r modEQ-mac.zip build
 
 
 matrix:
@@ -80,7 +81,14 @@ matrix:
     - os: osx
       osx_image: xcode9.4
       script: *script-macOS
-      
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-mac.zip
+        skip_cleanup: true
+        on:
+          tags: true
+
     - os: linux
       dist: trusty
       sudo: required
