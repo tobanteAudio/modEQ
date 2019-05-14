@@ -34,9 +34,13 @@ public:
     void paint(Graphics&) override;
     void resized() override;
 
-private:
-    OwnedArray<XmlElement> buttons;
+    DrawableButton undoButton;
+    DrawableButton redoButton;
+    DrawableButton powerButton;
+    DrawableButton settingButton;
+    DrawableButton infoButton;
 
+private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MenuBarView)
 };
 

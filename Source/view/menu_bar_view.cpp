@@ -16,44 +16,84 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-#include "../render/svg.h"
 #include "menu_bar_view.h"
 
 namespace tobanteAudio
 {
-MenuBarView::MenuBarView() {}
-
-void MenuBarView::paint(Graphics& g)
+MenuBarView::MenuBarView()
+    : undoButton("undo", DrawableButton::ImageStretched)
+    , redoButton("redo", DrawableButton::ImageStretched)
+    , powerButton("power", DrawableButton::ImageStretched)
+    , settingButton("setting", DrawableButton::ImageStretched)
+    , infoButton("info", DrawableButton::ImageStretched)
 {
-    // Binary data pointers
-    const auto* undo_svg    = TobanteAudioData::outlineundo24px_svg;
-    const auto* redo_svg    = TobanteAudioData::outlineredo24px_svg;
-    const auto* power_svg   = TobanteAudioData::outlinepower_settings_new24px_svg;
-    const auto* setting_svg = TobanteAudioData::outlinesettings24px_svg;
-    const auto* info_svg    = TobanteAudioData::outlineinfo24px_svg;
+    const auto color = Colour(255, 87, 34).withAlpha(0.8f);
+    ScopedPointer<XmlElement> svg;
+    ScopedPointer<Drawable> drawable;
 
+    // UNDO
+    svg = XmlDocument::parse(TobanteAudioData::outlineundo24px_svg);
+    jassert(svg != nullptr);
+    drawable = Drawable::createFromSVG(*svg);
+    drawable->replaceColour(Colours::black, color);
+    undoButton.setImages(drawable);
+    addAndMakeVisible(undoButton);
+
+    // REDO
+    svg = XmlDocument::parse(TobanteAudioData::outlineredo24px_svg);
+    jassert(svg != nullptr);
+    drawable = Drawable::createFromSVG(*svg);
+    drawable->replaceColour(Colours::black, color);
+    redoButton.setImages(drawable);
+    addAndMakeVisible(redoButton);
+
+    // POWER
+    svg = XmlDocument::parse(TobanteAudioData::outlinepower_settings_new24px_svg);
+    jassert(svg != nullptr);
+    drawable = Drawable::createFromSVG(*svg);
+    drawable->replaceColour(Colours::black, color);
+    powerButton.setImages(drawable);
+    addAndMakeVisible(powerButton);
+
+    // SETTING
+    svg = XmlDocument::parse(TobanteAudioData::outlinesettings24px_svg);
+    jassert(svg != nullptr);
+    drawable = Drawable::createFromSVG(*svg);
+    drawable->replaceColour(Colours::black, color);
+    settingButton.setImages(drawable);
+    addAndMakeVisible(settingButton);
+
+    // INFO
+    svg = XmlDocument::parse(TobanteAudioData::outlineinfo24px_svg);
+    jassert(svg != nullptr);
+    drawable = Drawable::createFromSVG(*svg);
+    drawable->replaceColour(Colours::black, color);
+    infoButton.setImages(drawable);
+    addAndMakeVisible(infoButton);
+
+}
+
+void MenuBarView::paint(Graphics& g) { ignoreUnused(g); }
+
+void MenuBarView::resized()
+{
     const auto height  = getHeight();
     const auto width   = getWidth();
     const auto spacing = 8;
-    const auto color   = getLookAndFeel().findColour(Slider::thumbColourId);
 
     // Undo & Redo (left)
-
-    tobanteAudio::drawFromSVG(g, undo_svg, color, Rectangle<float>(spacing, 0, height, height));
-    tobanteAudio::drawFromSVG(g, redo_svg, color, Rectangle<float>(1 * height + 2 * spacing, 0,
-                              height, height));
+    undoButton.setBounds(Rectangle<int>(spacing, 0, height, height));
+    redoButton.setBounds(Rectangle<int>(1 * height + 2 * spacing, 0, height, height));
 
     // Power (middle)
     const auto power_x = static_cast<int>(width / 2 - height / 2);
-    tobanteAudio::drawFromSVG(g, power_svg, color, Rectangle<float>(power_x, 0, height, height));
+    powerButton.setBounds(Rectangle<int>(power_x, 0, height, height));
 
     // Settings (right)
     const auto settings_x = width - height - spacing;
     const auto info_x     = width - height * 2 - 2 * spacing;
-    tobanteAudio::drawFromSVG(g, info_svg, color, Rectangle<float>(info_x, 0, height, height));
-    tobanteAudio::drawFromSVG(g, setting_svg, color, Rectangle<float>(settings_x, 0, height, height));
+    settingButton.setBounds(Rectangle<int>(info_x, 0, height, height));
+    infoButton.setBounds(Rectangle<int>(settings_x, 0, height, height));
 }
-
-void MenuBarView::resized() {}
 
 }  // namespace tobanteAudio
