@@ -19,6 +19,9 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 namespace tobanteAudio
 {
+/**
+ * @brief Base class for all processors.
+ */
 class BaseProcessor : public AudioProcessor
 {
 public:

@@ -20,6 +20,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief The settings page view component.
+ */
 class SettingsView : public Component
 {
 public:

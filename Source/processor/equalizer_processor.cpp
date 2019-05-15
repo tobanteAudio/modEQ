@@ -158,8 +158,6 @@ void EqualizerProcessor::process(const dsp::ProcessContextReplacing<float>& cont
     filter.process(context);
 }
 
-void EqualizerProcessor::reset() {}
-
 void EqualizerProcessor::parameterChanged(const String& parameter, float newValue)
 {
     for (size_t i = 0; i < bands.size(); ++i)

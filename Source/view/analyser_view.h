@@ -24,9 +24,15 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Component for the spectrum analyser.
+ */
 class AnalyserView : public Component, public ChangeBroadcaster
 {
 public:
+    /**
+     * @brief Model for a band handle (graber, click point).
+     */
     struct BandHandle
     {
         int id {};
@@ -37,10 +43,24 @@ public:
         Colour color {Colours::white};
     };
 
+    /**
+     * @brief Constructor.
+     */
     AnalyserView();
+
+    /**
+     * @brief Default destructor.
+     */
     ~AnalyserView() override = default;
 
+    /**
+     * @brief Paint in the component. Called by JUCE.
+     */
     void paint(Graphics& /*g*/) override;
+
+    /**
+     * @brief Resize & position child components. Called by JUCE.
+     */
     void resized() override;
 
     Rectangle<int> plotFrame;

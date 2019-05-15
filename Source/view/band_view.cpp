@@ -32,7 +32,7 @@ BandView::BandView(int const i, const Colour c)
     frame.setText(String(index));
     frame.setTextLabelPosition(Justification::centred);
     frame.setColour(GroupComponent::textColourId, Colours::silver);
-    frame.setColour(GroupComponent::outlineColourId, colour);
+    frame.setColour(GroupComponent::outlineColourId, colour.withAlpha(0.8f));
     addAndMakeVisible(frame);
 
     // Add all filter options to combo box

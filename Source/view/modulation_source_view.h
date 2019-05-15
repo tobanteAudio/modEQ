@@ -26,6 +26,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief View for a ModulationSourceProcessor & ModulationSourceController.
+ */
 class ModulationSourceView : public Component
 {
 private:

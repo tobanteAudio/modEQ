@@ -31,7 +31,7 @@ class TobanteLookAndFeel : public LookAndFeel_V4
 {
 public:
     /**
-     * @brief Constructor.
+     * @brief Constructor. Sets up the color scheme.
      */
     TobanteLookAndFeel()
     {

@@ -20,6 +20,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief The info page view component.
+ */
 class InfoView : public Component
 {
 public:

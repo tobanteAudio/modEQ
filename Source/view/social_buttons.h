@@ -20,6 +20,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Group of image buttons with links to tobanteAudio social media pages.
+ */
 class SocialButtons : public Component, public Button::Listener
 {
 public:

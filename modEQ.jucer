@@ -90,10 +90,6 @@
               file="Source/controller/menu_bar_controller.cpp"/>
         <FILE id="EtINWV" name="menu_bar_controller.h" compile="0" resource="0"
               file="Source/controller/menu_bar_controller.h"/>
-        <FILE id="BAoehi" name="modulation_connect_item_controller.cpp" compile="1"
-              resource="0" file="Source/controller/modulation_connect_item_controller.cpp"/>
-        <FILE id="iLT7gr" name="modulation_connect_item_controller.h" compile="0"
-              resource="0" file="Source/controller/modulation_connect_item_controller.h"/>
         <FILE id="Hte4ox" name="modulation_source_controller.cpp" compile="1"
               resource="0" file="Source/controller/modulation_source_controller.cpp"/>
         <FILE id="g0jlaN" name="modulation_source_controller.h" compile="0"

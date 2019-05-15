@@ -26,24 +26,43 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Controller for the ModulationSourceView component.
+ */
 class ModulationSourceController : public Button::Listener, public Slider::Listener, public Timer
 {
 public:
+    /**
+     * @brief Constructor.
+     */
     ModulationSourceController(int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
+    /**
+     * @brief Listens to button clicks from view.
+     */
     void buttonClicked(Button* b) override;
+
+    /**
+     * @brief Listens to slider changes from view.
+     */
     void sliderValueChanged(Slider* slider) override;
+
+    /**
+     * @brief Refreshes the modulation source plot.
+     */
     void timerCallback() override;
 
 private:
     int index;
     bool connectViewActive;
 
+    // Processor & View connections
     ModEQProcessor& mainProcessor;
     tobanteAudio::ModulationSourceProcessor& processor;
     tobanteAudio::ModulationSourceView& view;
 
+    // Attachments to ValueTree
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
 
     //==============================================================================

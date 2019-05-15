@@ -20,6 +20,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief View of a single filter band.
+ */
 class BandView : public Component
 {
 private:
