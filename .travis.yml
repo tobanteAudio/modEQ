@@ -9,6 +9,9 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
   
 script-anchors:
+  - &script-documentation
+    - make documentation
+
   - &script-linux
     # Fake display
     - "export DISPLAY=:99.0"
@@ -84,7 +87,7 @@ matrix:
       # deploy:
       #   provider: releases
       #   api_key: $GITHUB_TOKEN
-      #   file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git describe --abbrev=0)-macOS.zip
+      #   file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git describe --tags --abbrev=0)-macOS.zip
       #   skip_cleanup: true
       #   on:
       #     all_branches: true
@@ -103,8 +106,24 @@ matrix:
       # deploy:
       #   provider: releases
       #   api_key: $GITHUB_TOKEN
-      #   file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git describe --abbrev=0)-linux.zip
+      #   file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git describe --tags --abbrev=0)-linux.zip
       #   skip_cleanup: true
       #   on:
       #     all_branches: true
 
+    - os: linux
+      dist: trusty
+      sudo: required
+      addons:
+        apt:
+          packages:
+            - doxygen
+      script: *script-documentation
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: Builds/Documentation/html
+        github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+        keep_history: true
+        on:
+          branch: master
