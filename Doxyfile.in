@@ -1,6 +1,6 @@
 # Project setup
 PROJECT_NAME           = modEQ
-PROJECT_NUMBER         = 0.3.0
+PROJECT_NUMBER         = 0.3.1
 
 # Main page and input dirs
 USE_MDFILE_AS_MAINPAGE = README.md

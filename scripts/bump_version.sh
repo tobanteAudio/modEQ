@@ -19,7 +19,7 @@ fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 ROOT_DIR="$SCRIPT_DIR/.."
-CURRENT_VERSION=$(git describe --abbrev=0 | sed 's/v//g')
+CURRENT_VERSION=$(git describe --tags --abbrev=0 | sed 's/v//g')
 NEW_VERSION="$1"
 
 
