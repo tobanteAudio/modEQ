@@ -87,7 +87,7 @@ matrix:
         file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git describe --abbrev=0)-macOS.zip
         skip_cleanup: true
         on:
-          tags: true
+          all_branches: true
 
     - os: linux
       dist: trusty
@@ -106,5 +106,5 @@ matrix:
         file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git describe --abbrev=0)-linux.zip
         skip_cleanup: true
         on:
-          tags: true
+          all_branches: true
 
