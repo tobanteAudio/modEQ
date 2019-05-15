@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['frequencytextconverter',['FrequencyTextConverter',['../classFrequencyTextConverter.html',1,'']]]
+  ['frequencytextconverter',['FrequencyTextConverter',['../class_frequency_text_converter.html',1,'']]]
 ];

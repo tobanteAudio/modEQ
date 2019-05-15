@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['parameters',['Parameters',['../namespacetobanteAudio_1_1Parameters.html',1,'tobanteAudio']]],
-  ['tobanteaudio',['tobanteAudio',['../namespacetobanteAudio.html',1,'']]]
+  ['parameters',['Parameters',['../namespacetobante_audio_1_1_parameters.html',1,'tobanteAudio']]],
+  ['tobanteaudio',['tobanteAudio',['../namespacetobante_audio.html',1,'']]]
 ];

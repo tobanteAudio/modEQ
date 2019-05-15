@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tobantelookandfeel',['TobanteLookAndFeel',['../classtobanteAudio_1_1TobanteLookAndFeel.html',1,'tobanteAudio']]]
+  ['tobantelookandfeel',['TobanteLookAndFeel',['../classtobante_audio_1_1_tobante_look_and_feel.html',1,'tobanteAudio']]]
 ];
