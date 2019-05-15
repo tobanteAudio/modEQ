@@ -112,18 +112,16 @@ matrix:
       #   on:
       #     all_branches: true
 
-    - os: linux
-      dist: trusty
-      sudo: required
+    - os: osx
       addons:
-        apt:
+        homebrew:
           packages:
             - doxygen
       script: *script-documentation
       deploy:
         provider: pages
         skip_cleanup: true
-        local_dir: Builds/Documentation/html
+        local_dir: $TRAVIS_BUILD_DIR/Builds/Documentation/html
         github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
         keep_history: true
         on:
