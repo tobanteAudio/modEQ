@@ -23,14 +23,14 @@ build_script:
   - cmd: cd c:\modEQ
   - cmd: 7z a modEQ-win.zip c:/modEQ/Builds/VisualStudio2017/x64/Release/VST3/modEQ.vst3
 
-# deploy:
-#   release: modEQ-v$(appveyor_build_version)-win64
-#   description: 'tobanteAudio modEQ'
-#   provider: GitHub
-#   auth_token:
-#     secure: C291gStpG222iqDbixH3ddeM+BE9CMp+leZsI177GsB9oIWhJcyZEn+qChtc7p8T
-#   artifact: c:\modEQ\modEQ-win.zip
-#   draft: false
-#   prerelease: false
-#   on:
-#     branch: master # only this will work
+deploy:
+  release: modEQ-v$(appveyor_build_version)-win64
+  description: 'tobanteAudio modEQ'
+  provider: GitHub
+  auth_token:
+    secure: C291gStpG222iqDbixH3ddeM+BE9CMp+leZsI177GsB9oIWhJcyZEn+qChtc7p8T
+  artifact: c:\modEQ\modEQ-win.zip
+  draft: false
+  prerelease: false
+  on:
+    APPVEYOR_REPO_TAG: true

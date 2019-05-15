@@ -81,13 +81,13 @@ matrix:
     - os: osx
       osx_image: xcode9.4
       script: *script-macOS
-      # deploy:
-      #   provider: releases
-      #   api_key: $GITHUB_TOKEN
-      #   file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git describe --abbrev=0)-macOS.zip
-      #   skip_cleanup: true
-      #   on:
-      #     all_branches: true
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: $TRAVIS_BUILD_DIR/Builds/MacOSX/modEQ-$(git describe --abbrev=0)-macOS.zip
+        skip_cleanup: true
+        on:
+          tags: true
 
     - os: linux
       dist: trusty
@@ -100,11 +100,11 @@ matrix:
             - gcc-6
             - g++-6
       script: *script-linux
-      # deploy:
-      #   provider: releases
-      #   api_key: $GITHUB_TOKEN
-      #   file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git describe --abbrev=0)-linux.zip
-      #   skip_cleanup: true
-      #   on:
-      #     all_branches: true
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        file: $TRAVIS_BUILD_DIR/Builds/LinuxMakefile/modEQ-$(git describe --abbrev=0)-linux.zip
+        skip_cleanup: true
+        on:
+          tags: true
 
