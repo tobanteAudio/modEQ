@@ -8,8 +8,8 @@ var searchData=
   ['colour',['colour',['../structtobante_audio_1_1_equalizer_processor_1_1_band.html#a008f12aa7be18ec9475d4f236171c5e2',1,'tobanteAudio::EqualizerProcessor::Band']]],
   ['constants_2eh',['constants.h',['../constants_8h.html',1,'']]],
   ['contextmenu',['contextMenu',['../classtobante_audio_1_1_analyser_view.html#aa7025f7ecda45afd042b255f01e07e86',1,'tobanteAudio::AnalyserView']]],
-  ['createanalyserplot',['createAnalyserPlot',['../classtobante_audio_1_1_equalizer_processor.html#abae75528f8a67d4746d3a4a4c06d6ae0',1,'tobanteAudio::EqualizerProcessor::createAnalyserPlot()'],['../classtobante_audio_1_1_modulation_source_processor.html#a0b83292d03d16517527dbebeb9021c64',1,'tobanteAudio::ModulationSourceProcessor::createAnalyserPlot()']]],
+  ['createanalyserplot',['createAnalyserPlot',['../classtobante_audio_1_1_equalizer_processor.html#a15c2f41bf75e82554dbd2286e8266295',1,'tobanteAudio::EqualizerProcessor::createAnalyserPlot()'],['../classtobante_audio_1_1_modulation_source_processor.html#a0b83292d03d16517527dbebeb9021c64',1,'tobanteAudio::ModulationSourceProcessor::createAnalyserPlot()']]],
   ['createeditor',['createEditor',['../class_mod_e_q_processor.html#afdb8391e7c0a9da4264a4d2bf48ec3f3',1,'ModEQProcessor::createEditor()'],['../classtobante_audio_1_1_base_processor.html#a9bd113dffc0bd89a8db8fc9423e4bff0',1,'tobanteAudio::BaseProcessor::createEditor()']]],
-  ['createfrequencyplot',['createFrequencyPlot',['../classtobante_audio_1_1_equalizer_processor.html#af779325e90330932cc0328418c093e61',1,'tobanteAudio::EqualizerProcessor']]],
+  ['createfrequencyplot',['createFrequencyPlot',['../classtobante_audio_1_1_equalizer_processor.html#a016516f94b5693e3d12af10973eb8046',1,'tobanteAudio::EqualizerProcessor']]],
   ['createpath',['createPath',['../classtobante_audio_1_1_modulation_source_analyser.html#abe229512ac4c0d589199c810355961d3',1,'tobanteAudio::ModulationSourceAnalyser::createPath()'],['../classtobante_audio_1_1_spectrum_analyser.html#ab414ff0da58473c9d69ac79e9a155662',1,'tobanteAudio::SpectrumAnalyser::createPath()']]]
 ];

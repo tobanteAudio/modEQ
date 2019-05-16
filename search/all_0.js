@@ -9,5 +9,5 @@ var searchData=
   ['analyser_5fcontroller_2eh',['analyser_controller.h',['../analyser__controller_8h.html',1,'']]],
   ['analyser_5fview_2eh',['analyser_view.h',['../analyser__view_8h.html',1,'']]],
   ['analysercontroller',['AnalyserController',['../classtobante_audio_1_1_analyser_controller.html',1,'tobanteAudio::AnalyserController'],['../classtobante_audio_1_1_analyser_controller.html#ab8c1afb7d791abfac4334fce5bea31e8',1,'tobanteAudio::AnalyserController::AnalyserController()']]],
-  ['analyserview',['AnalyserView',['../classtobante_audio_1_1_analyser_view.html',1,'tobanteAudio::AnalyserView'],['../classtobante_audio_1_1_analyser_view.html#aa56dd8bce29978d201a8a816a131b8d9',1,'tobanteAudio::AnalyserView::AnalyserView()']]]
+  ['analyserview',['AnalyserView',['../classtobante_audio_1_1_analyser_view.html',1,'tobanteAudio::AnalyserView'],['../classtobante_audio_1_1_analyser_view.html#aa0fcd941e5ffdc3980df09ccca18c4db',1,'tobanteAudio::AnalyserView::AnalyserView()']]]
 ];

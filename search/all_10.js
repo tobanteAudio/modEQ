@@ -6,7 +6,7 @@ var searchData=
   ['setcurrentprogram',['setCurrentProgram',['../class_mod_e_q_processor.html#ae94520fa62cdfd6f332bc7de45483618',1,'ModEQProcessor::setCurrentProgram()'],['../classtobante_audio_1_1_base_processor.html#ac76e76ff68ec09f54868225c8fc143d1',1,'tobanteAudio::BaseProcessor::setCurrentProgram()']]],
   ['setfrequency',['setFrequency',['../classtobante_audio_1_1_band_controller.html#ac23ede28327b79b5805175f9efc647cb',1,'tobanteAudio::BandController']]],
   ['setgain',['setGain',['../classtobante_audio_1_1_band_controller.html#ac9b1b5ea0179a6df180ffa006667a43e',1,'tobanteAudio::BandController']]],
-  ['setselectedband',['setSelectedBand',['../classtobante_audio_1_1_equalizer_processor.html#af25ce597f874d56291a4f48fb73a4520',1,'tobanteAudio::EqualizerProcessor']]],
+  ['setselectedband',['setSelectedBand',['../classtobante_audio_1_1_equalizer_processor.html#a746c35850a79a89caeb5f70bebba1cd6',1,'tobanteAudio::EqualizerProcessor']]],
   ['setsolo',['setSolo',['../classtobante_audio_1_1_band_controller.html#a4c36d154691bc5d57296e71469f9baf5',1,'tobanteAudio::BandController']]],
   ['setstateinformation',['setStateInformation',['../class_mod_e_q_processor.html#a3861dc13759cf0cc532deae583df4cb9',1,'ModEQProcessor::setStateInformation()'],['../classtobante_audio_1_1_base_processor.html#ad78d6dd50f523cb0b83009e74b50c75d',1,'tobanteAudio::BaseProcessor::setStateInformation()']]],
   ['settingbutton',['settingButton',['../classtobante_audio_1_1_menu_bar_view.html#a3b766310bf75f4731aa64b13cd38b4d6',1,'tobanteAudio::MenuBarView']]],
