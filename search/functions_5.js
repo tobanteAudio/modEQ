@@ -14,6 +14,7 @@ var searchData=
   ['getfiltertypename',['getFilterTypeName',['../classtobante_audio_1_1_equalizer_processor.html#a063d5905523db7ee783b2804a112ea3f',1,'tobanteAudio::EqualizerProcessor']]],
   ['getfrequencyparamid',['getFrequencyParamID',['../classtobante_audio_1_1_equalizer_processor.html#aad3c58553bb387e6ca0fb9741187c398',1,'tobanteAudio::EqualizerProcessor']]],
   ['getgainparamid',['getGainParamID',['../classtobante_audio_1_1_equalizer_processor.html#abc069feca9f9058ea7ed815e460a02ce',1,'tobanteAudio::EqualizerProcessor']]],
+  ['getidealpopupmenuitemsize',['getIdealPopupMenuItemSize',['../classtobante_audio_1_1_tobante_look_and_feel.html#afb1b60a6cbb20c235d5c89b49ad2a543',1,'tobanteAudio::TobanteLookAndFeel']]],
   ['getmagnitudes',['getMagnitudes',['../classtobante_audio_1_1_equalizer_processor.html#aa6b4b03992e555827c2cbeb2345cad7d',1,'tobanteAudio::EqualizerProcessor']]],
   ['getname',['getName',['../class_mod_e_q_processor.html#a885b8cfbdf4cd3ce73c0084c0f1aea59',1,'ModEQProcessor::getName()'],['../classtobante_audio_1_1_base_processor.html#ac5f36f60b89f1e87ac924aa1b77912b4',1,'tobanteAudio::BaseProcessor::getName()'],['../classtobante_audio_1_1_equalizer_processor.html#a71775dce2b3ef5c8493f6e7ba4b160fe',1,'tobanteAudio::EqualizerProcessor::getName()']]],
   ['getnumbands',['getNumBands',['../classtobante_audio_1_1_equalizer_processor.html#ab3aeefebf0c23013ec6055c135ed11e1',1,'tobanteAudio::EqualizerProcessor']]],
