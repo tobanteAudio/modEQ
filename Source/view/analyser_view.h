@@ -80,19 +80,24 @@ public:
     {
         return 20.0f * std::pow(2.0f, pos * 10.0f);
     }
-    inline static float get_position_for_gain(float gain, float top, float bottom) noexcept
+    inline static float get_position_for_gain(float gain, float top,
+                                              float bottom) noexcept
     {
-        return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB, bottom, top);
+        return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB,
+                    bottom, top);
     }
-    inline static float get_gain_for_position(float pos, float top, float bottom) noexcept
+    inline static float get_gain_for_position(float pos, float top,
+                                              float bottom) noexcept
     {
-        return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB), -MAX_DB);
+        return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB),
+                                        -MAX_DB);
     }
 
     /**
      * @brief Checks if two positions are in a given radius.
      */
-    inline static bool overlap_with_radius(float obj_pos, float mouse_pos, int radius) noexcept
+    inline static bool overlap_with_radius(float obj_pos, float mouse_pos,
+                                           int radius) noexcept
     {
         return std::abs(obj_pos - mouse_pos) < radius;
     }

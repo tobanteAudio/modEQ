@@ -21,7 +21,8 @@
 namespace tobanteAudio
 {
 /**
- * @brief Main processor class for modEQ. Holds 6 JUCE dsp filters in a ProcessorChain.
+ * @brief Main processor class for modEQ. Holds 6 JUCE dsp filters in a
+ * ProcessorChain.
  */
 class EqualizerProcessor : public BaseProcessor,
                            public ChangeBroadcaster,
@@ -88,7 +89,8 @@ public:
     /**
      * @brief Process audio & midi buffers.
      */
-    void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
+    void processBlock(AudioBuffer<float>& /*unused*/,
+                      MidiBuffer& /*unused*/) override;
 
     /**
      * @brief Updates the dsp model if a parameter was changed.
@@ -98,7 +100,8 @@ public:
     /**
      * @brief Converts filter type enum class to string value.
      */
-    static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
+    static String
+        getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
 
     /**
      * @brief Returns the processor name.
@@ -133,7 +136,8 @@ public:
     /**
      * @brief Daws the frequency response plot to a given path & area.
      */
-    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
+    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>,
+                             float);
 
     /**
      * @brief Draws the analyser plot to a given path & area.
@@ -146,17 +150,20 @@ public:
     bool checkForNewAnalyserData();
 
     /**
-     * @brief Returns the filter type ValueTree parameter string for a band by index.
+     * @brief Returns the filter type ValueTree parameter string for a band by
+     * index.
      */
     String getTypeParamID(int index) const;
 
     /**
-     * @brief Returns the frequency ValueTree parameter string for a band by index.
+     * @brief Returns the frequency ValueTree parameter string for a band by
+     * index.
      */
     String getFrequencyParamID(int index) const;
 
     /**
-     * @brief Returns the quality ValueTree parameter string for a band by index.
+     * @brief Returns the quality ValueTree parameter string for a band by
+     * index.
      */
     String getQualityParamID(int index) const;
 
@@ -166,7 +173,8 @@ public:
     String getGainParamID(int index) const;
 
     /**
-     * @brief Returns the active/bypass ValueTree parameter string for a band by index.
+     * @brief Returns the active/bypass ValueTree parameter string for a band by
+     * index.
      */
     String getActiveParamID(int index) const;
 
@@ -176,12 +184,14 @@ public:
     int getNumBands() const;
 
     /**
-     * @brief Returns the bands name by index. Returns "unknown" if out of bounds.
+     * @brief Returns the bands name by index. Returns "unknown" if out of
+     * bounds.
      */
     String getBandName(int index) const;
 
     /**
-     * @brief Returns the bands color by index. Returns Colours::silver if out of bounds.
+     * @brief Returns the bands color by index. Returns Colours::silver if out
+     * of bounds.
      */
     Colour getBandColour(int index) const;
 
@@ -191,7 +201,8 @@ public:
     void setBandSolo(int index);
 
     /**
-     * @brief Returns true if the passed in index is the current global solo selected.
+     * @brief Returns true if the passed in index is the current global solo
+     * selected.
      */
     bool getBandSolo(int index) const;
 
@@ -211,7 +222,7 @@ private:
 
     using FloatFilter       = dsp::IIR::Filter<float>;
     using FloatCoefficients = dsp::IIR::Coefficients<float>;
-    using FBand             = dsp::ProcessorDuplicator<FloatFilter, FloatCoefficients>;
+    using FBand = dsp::ProcessorDuplicator<FloatFilter, FloatCoefficients>;
 
     dsp::ProcessorChain<FBand, FBand, FBand, FBand, FBand, FBand> filter;
     std::vector<Band> bands;

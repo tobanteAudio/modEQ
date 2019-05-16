@@ -29,13 +29,16 @@ namespace tobanteAudio
 /**
  * @brief Controller for the ModulationSourceView component.
  */
-class ModulationSourceController : public Button::Listener, public Slider::Listener, public Timer
+class ModulationSourceController : public Button::Listener,
+                                   public Slider::Listener,
+                                   public Timer
 {
 public:
     /**
      * @brief Constructor.
      */
-    ModulationSourceController(int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
+    ModulationSourceController(int, ModEQProcessor&,
+                               tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
     /**

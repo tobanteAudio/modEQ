@@ -29,14 +29,17 @@ namespace tobanteAudio
 /**
  * @brief Controller for the AnalyserView component.
  */
-class AnalyserController : public ChangeListener, public Timer, public MouseListener
+class AnalyserController : public ChangeListener,
+                           public Timer,
+                           public MouseListener
 {
 public:
     /**
-     * @brief Creates an AnalyserController connected to the EQ processor the band controllers & the
-     * anaylser plot view.
+     * @brief Creates an AnalyserController connected to the EQ processor the
+     * band controllers & the anaylser plot view.
      */
-    AnalyserController(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&,
+    AnalyserController(tobanteAudio::EqualizerProcessor&,
+                       OwnedArray<tobanteAudio::BandController>&,
                        tobanteAudio::AnalyserView&);
 
     /**
@@ -72,7 +75,8 @@ public:
     /**
      * @brief Changes the Q width of the selected band.
      */
-    void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
+    void mouseWheelMove(const MouseEvent& event,
+                        const MouseWheelDetails& wheel) override;
 
 private:
     void updateFrequencyResponses();

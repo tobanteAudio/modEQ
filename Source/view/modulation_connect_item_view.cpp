@@ -23,7 +23,9 @@
 namespace tobanteAudio
 {
 ModulationConnectItemView::ModulationConnectItemView(int i)
-    : index(i), active(translate("A")), amount(Slider::LinearHorizontal, Slider::NoTextBox)
+    : index(i)
+    , active(translate("A"))
+    , amount(Slider::LinearHorizontal, Slider::NoTextBox)
 {
     // Toogle Button
     addAndMakeVisible(active);
@@ -34,7 +36,8 @@ ModulationConnectItemView::ModulationConnectItemView(int i)
 
     // Label
     target.setJustificationType(Justification::centred);
-    target.setText("Target: " + String(index), NotificationType::dontSendNotification);
+    target.setText("Target: " + String(index),
+                   NotificationType::dontSendNotification);
     addAndMakeVisible(target);
 }
 

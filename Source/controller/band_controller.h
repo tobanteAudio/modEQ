@@ -33,7 +33,8 @@ public:
     /**
      * @brief Constructor.
      */
-    BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/,
+    BandController(int /*i*/, ModEQProcessor& /*p*/,
+                   tobanteAudio::EqualizerProcessor& /*sub*/,
                    tobanteAudio::BandView& /*v*/);
 
     /**
@@ -42,7 +43,8 @@ public:
     void buttonClicked(Button* b) override;
 
     /**
-     * @brief Activates or deactivates UI controls depending on the selected filter type.
+     * @brief Activates or deactivates UI controls depending on the selected
+     * filter type.
      */
     void setUIControls(tobanteAudio::EqualizerProcessor::FilterType type);
 
@@ -80,7 +82,8 @@ private:
     // ATTACHMENTS
     OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-    OwnedArray<AudioProcessorValueTreeState::ButtonAttachment> buttonAttachments;
+    OwnedArray<AudioProcessorValueTreeState::ButtonAttachment>
+        buttonAttachments;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)

@@ -20,17 +20,23 @@
 
 namespace tobanteAudio
 {
-ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
-                                                       ModulationSourceProcessor& p,
-                                                       ModulationSourceView& v)
-    : index(i), connectViewActive(false), mainProcessor(mp), processor(p), view(v)
+ModulationSourceController::ModulationSourceController(
+    const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
+    ModulationSourceView& v)
+    : index(i)
+    , connectViewActive(false)
+    , mainProcessor(mp)
+    , processor(p)
+    , view(v)
 {
     // Link GUI components to ValueTree
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = mainProcessor.getPluginState();
 
-    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
-    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
+    attachments.add(new SliderAttachment(
+        state, "lfo_" + String(index) + "_freq", view.frequency));
+    attachments.add(new SliderAttachment(
+        state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Button Connect
     view.toggleConnectView.addListener(this);
@@ -77,7 +83,8 @@ void ModulationSourceController::timerCallback()
 {
     if (processor.checkForNewAnalyserData())
     {
-        processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
+        processor.createAnalyserPlot(view.modulationPath, view.plotFrame,
+                                     20.0f);
     }
     view.repaint(view.plotFrame);
 }

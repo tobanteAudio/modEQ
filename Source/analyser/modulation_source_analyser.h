@@ -22,31 +22,42 @@
 namespace tobanteAudio
 {
 /**
- * @brief Recieves data from the modulation processor thread, calculates a path which is read by the
- * GUI thread to plot a the waveform.
+ * @brief Recieves data from the modulation processor thread, calculates a path
+ * which is read by the GUI thread to plot a the waveform.
  */
 template <typename Type> class ModulationSourceAnalyser : public Thread
 {
 public:
-    ModulationSourceAnalyser() : Thread("ModulationSource-Analyser"), abstractFifo(48000) {}
+    ModulationSourceAnalyser()
+        : Thread("ModulationSource-Analyser"), abstractFifo(48000)
+    {
+    }
 
     ~ModulationSourceAnalyser() override = default;
 
-    void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
+    void addAudioData(const AudioBuffer<Type>& buffer, int startChannel,
+                      int numChannels)
     {
         if (abstractFifo.getFreeSpace() < buffer.getNumSamples()) return;
 
         int start1, block1, start2, block2;
-        abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1, start2, block2);
-        audioFifo.copyFrom(0, start1, buffer.getReadPointer(startChannel), block1);
+        abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1,
+                                    start2, block2);
+        audioFifo.copyFrom(0, start1, buffer.getReadPointer(startChannel),
+                           block1);
         if (block2 > 0)
-            audioFifo.copyFrom(0, start2, buffer.getReadPointer(startChannel, block1), block2);
+            audioFifo.copyFrom(
+                0, start2, buffer.getReadPointer(startChannel, block1), block2);
 
-        for (int channel = startChannel + 1; channel < startChannel + numChannels; ++channel)
+        for (int channel = startChannel + 1;
+             channel < startChannel + numChannels; ++channel)
         {
-            if (block1 > 0) audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
+            if (block1 > 0)
+                audioFifo.addFrom(0, start1, buffer.getReadPointer(channel),
+                                  block1);
             if (block2 > 0)
-                audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1), block2);
+                audioFifo.addFrom(
+                    0, start2, buffer.getReadPointer(channel, block1), block2);
         }
         abstractFifo.finishedWrite(block1 + block2);
         waitForData.signal();
@@ -74,12 +85,15 @@ public:
                 analyserBuffer.clear();
 
                 int start1, block1, start2, block2;
-                abstractFifo.prepareToRead(int(sampleRate / 30), start1, block1, start2, block2);
+                abstractFifo.prepareToRead(int(sampleRate / 30), start1, block1,
+                                           start2, block2);
 
                 if (block1 > 0)
-                    analyserBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
+                    analyserBuffer.copyFrom(
+                        0, 0, audioFifo.getReadPointer(0, start1), block1);
                 if (block2 > 0)
-                    analyserBuffer.copyFrom(0, block1, audioFifo.getReadPointer(0, start2), block2);
+                    analyserBuffer.copyFrom(
+                        0, block1, audioFifo.getReadPointer(0, start2), block2);
 
                 abstractFifo.finishedRead(block1 + block2);
 
@@ -88,7 +102,8 @@ public:
                 newDataAvailable = true;
             }
 
-            if (abstractFifo.getNumReady() < int(sampleRate / 30)) waitForData.wait(100);
+            if (abstractFifo.getNumReady() < int(sampleRate / 30))
+                waitForData.wait(100);
         }
     }
 
@@ -120,9 +135,11 @@ public:
     }
 
 private:
-    inline float indexToX(int index, int numSamples, const Rectangle<float> bounds) const
+    inline float indexToX(int index, int numSamples,
+                          const Rectangle<float> bounds) const
     {
-        return jmap(static_cast<float>(index), 0.0f, static_cast<float>(numSamples), bounds.getX(),
+        return jmap(static_cast<float>(index), 0.0f,
+                    static_cast<float>(numSamples), bounds.getX(),
                     bounds.getRight());
     }
 

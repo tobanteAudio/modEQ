@@ -18,7 +18,8 @@
 
 namespace tobanteAudio
 {
-ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueTreeState& vts)
+ModulationSourceProcessor::ModulationSourceProcessor(
+    int i, AudioProcessorValueTreeState& vts)
     : BaseProcessor(vts)
     , index(i)
     , paramIDGain("lfo_" + String(index) + "_gain")
@@ -28,9 +29,13 @@ ModulationSourceProcessor::ModulationSourceProcessor(int i, AudioProcessorValueT
     oscillator.initialise([](float x) { return std::sin(x); });
 }
 
-ModulationSourceProcessor::~ModulationSourceProcessor() { analyser.stopThread(1000); }
+ModulationSourceProcessor::~ModulationSourceProcessor()
+{
+    analyser.stopThread(1000);
+}
 
-void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesPerBlock)
+void ModulationSourceProcessor::prepareToPlay(double newSampleRate,
+                                              int samplesPerBlock)
 {
     sampleRate = newSampleRate;
 
@@ -44,7 +49,8 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
     analyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
 
-void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
+void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer,
+                                             MidiBuffer&)
 {
     float freqValue = *state.getRawParameterValue(paramIDFrequency);
     float gainValue = *state.getRawParameterValue(paramIDGain);
@@ -60,13 +66,21 @@ void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuf
     analyser.addAudioData(buffer, 0, 1);
 }
 
-void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/, float /*newValue*/) {}
+void ModulationSourceProcessor::parameterChanged(const String& /*parameter*/,
+                                                 float /*newValue*/)
+{
+}
 
-void ModulationSourceProcessor::createAnalyserPlot(Path& p, Rectangle<int>& bounds, float minFreq)
+void ModulationSourceProcessor::createAnalyserPlot(Path& p,
+                                                   Rectangle<int>& bounds,
+                                                   float minFreq)
 {
     analyser.createPath(p, bounds.toFloat(), minFreq);
 }
 
-bool ModulationSourceProcessor::checkForNewAnalyserData() { return analyser.checkForNewData(); }
+bool ModulationSourceProcessor::checkForNewAnalyserData()
+{
+    return analyser.checkForNewData();
+}
 
 }  // namespace tobanteAudio

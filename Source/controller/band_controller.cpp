@@ -18,7 +18,8 @@
 
 namespace tobanteAudio
 {
-BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::EqualizerProcessor& sub,
+BandController::BandController(const int i, ModEQProcessor& p,
+                               tobanteAudio::EqualizerProcessor& sub,
                                tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
@@ -36,7 +37,8 @@ BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::Equ
 
     // Type & Bypass
     boxAttachments.add(new ComboBoxAttachment(state, type_id, view.type));
-    buttonAttachments.add(new ButtonAttachment(state, active_id, view.activate));
+    buttonAttachments.add(
+        new ButtonAttachment(state, active_id, view.activate));
 
     // Slider
     attachments.add(new SliderAttachment(state, frequency_id, view.frequency));
@@ -47,7 +49,8 @@ BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::Equ
     view.solo.addListener(this);
 }
 
-void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType type)
+void BandController::setUIControls(
+    tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
     {
@@ -90,16 +93,25 @@ void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType 
     }
 }
 
-void BandController::setSolo(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
+void BandController::setSolo(bool isSolo)
+{
+    view.solo.setToggleState(isSolo, dontSendNotification);
+}
 
 void BandController::setFrequency(float newFreq)
 {
     view.frequency.setValue(newFreq, sendNotification);
 }
 
-void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
+void BandController::setGain(float newGain)
+{
+    view.gain.setValue(newGain, sendNotification);
+}
 
-void BandController::setType(int newType) { view.type.setSelectedId(newType + 1, sendNotification); }
+void BandController::setType(int newType)
+{
+    view.type.setSelectedId(newType + 1, sendNotification);
+}
 
 void BandController::buttonClicked(Button* b)
 {

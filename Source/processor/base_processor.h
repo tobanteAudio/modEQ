@@ -28,9 +28,15 @@ public:
     BaseProcessor(AudioProcessorValueTreeState& vts) : state(vts) {}
     ~BaseProcessor() override = default;
 
-    void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override {}
+    void prepareToPlay(double /*sampleRate*/,
+                       int /*maximumExpectedSamplesPerBlock*/) override
+    {
+    }
     void releaseResources() override {}
-    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override {}
+    void processBlock(AudioBuffer<float>& /*buffer*/,
+                      MidiBuffer& /*midiMessages*/) override
+    {
+    }
 
     AudioProcessorEditor* createEditor() override { return nullptr; }
     bool hasEditor() const override { return false; }
@@ -47,7 +53,9 @@ public:
     void changeProgramName(int /*index*/, const String& /*newName*/) override {}
 
     void getStateInformation(MemoryBlock& /*destData*/) override {}
-    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
+    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override
+    {
+    }
 
     AudioProcessorValueTreeState& state;
 

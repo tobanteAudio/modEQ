@@ -18,7 +18,8 @@
 
 namespace tobanteAudio
 {
-MenuBarController::MenuBarController(ModEQProcessor& p, tobanteAudio::MenuBarView& v)
+MenuBarController::MenuBarController(ModEQProcessor& p,
+                                     tobanteAudio::MenuBarView& v)
     : processor(p), view(v)
 {
     view.undoButton.addListener(this);

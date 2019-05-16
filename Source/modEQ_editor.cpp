@@ -79,10 +79,10 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     using tobanteAudio::AnalyserController;
     using tobanteAudio::AnalyserView;
 
-    auto& eq     = processor.getEQ();
-    analyserView = std::make_unique<AnalyserView>();
-    analyserController
-        = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
+    auto& eq           = processor.getEQ();
+    analyserView       = std::make_unique<AnalyserView>();
+    analyserController = std::make_unique<AnalyserController>(
+        eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
 
     //  Master Section
@@ -95,7 +95,8 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = processor.getPluginState();
 
-    attachments.add(new SliderAttachment(state, tobanteAudio::Parameters::Output, output));
+    attachments.add(
+        new SliderAttachment(state, tobanteAudio::Parameters::Output, output));
 
     setResizable(true, true);
     setResizeLimits(800, 450, 2990, 1800);
@@ -119,7 +120,8 @@ ModEQEditor::~ModEQEditor()
 
 void ModEQEditor::paint(Graphics& g)
 {
-    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    const auto backgroundColour
+        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.fillAll(backgroundColour);
 }
 
@@ -135,12 +137,15 @@ void ModEQEditor::resized()
     // Modulators
     // auto modArea              = area.removeFromBottom(getHeight() / 5);
     // auto const modSourceWidth = modArea.getWidth() / 3;
-    // for (auto* modView : modViews) modView->setBounds(modArea.removeFromLeft(modSourceWidth));
+    // for (auto* modView : modViews)
+    // modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace   = area.removeFromBottom((getHeight() / 10) * 4);
-    auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-    for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
+    auto bandSpace = area.removeFromBottom((getHeight() / 10) * 4);
+    auto const width
+        = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
+    for (auto* bandView : bandViews)
+        bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output
     frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));

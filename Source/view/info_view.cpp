@@ -26,7 +26,8 @@ void InfoView::paint(Graphics& g)
     const String version = JucePlugin_VersionString;
     g.setColour(Colours::black);
     g.setFont(32.0f);
-    g.drawText("Version: " + version, getLocalBounds(), Justification::centred, true);
+    g.drawText("Version: " + version, getLocalBounds(), Justification::centred,
+               true);
 }
 
 void InfoView::resized() {}

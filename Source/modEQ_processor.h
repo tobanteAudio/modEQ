@@ -44,7 +44,8 @@ public:
     bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
 #endif
 
-    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override;
+    void processBlock(AudioBuffer<float>& /*buffer*/,
+                      MidiBuffer& /*midiMessages*/) override;
     void parameterChanged(const String& parameter, float newValue) override;
 
     AudioProcessorEditor* createEditor() override;
