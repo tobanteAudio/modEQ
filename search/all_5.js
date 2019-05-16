@@ -12,5 +12,5 @@ var searchData=
   ['freqlabel',['freqLabel',['../classtobante_audio_1_1_modulation_source_view.html#a7df8bbf55ee2400673b1eb57d411a2d6',1,'tobanteAudio::ModulationSourceView']]],
   ['frequency',['frequency',['../structtobante_audio_1_1_equalizer_processor_1_1_band.html#ae21975de268b99364bfedb6f737236b0',1,'tobanteAudio::EqualizerProcessor::Band::frequency()'],['../classtobante_audio_1_1_band_view.html#aef18174b6c65df8227fe025bd7fb885e',1,'tobanteAudio::BandView::frequency()'],['../classtobante_audio_1_1_modulation_source_view.html#a19c0ca1746b057161d04d46c1025290e',1,'tobanteAudio::ModulationSourceView::frequency()'],['../namespacetobante_audio_1_1_parameters.html#af3b75ecd7825a6ef5a55cb8f6f5c61f0',1,'tobanteAudio::Parameters::Frequency()']]],
   ['frequencyresponse',['frequencyResponse',['../classtobante_audio_1_1_band_controller.html#a7788d354c337f3810f7a6d11f3bf3c89',1,'tobanteAudio::BandController::frequencyResponse()'],['../classtobante_audio_1_1_analyser_view.html#a3aa041e4f5f3a97d8e4b9bb31f1f4dd7',1,'tobanteAudio::AnalyserView::frequencyResponse()']]],
-  ['frequencytextconverter',['FrequencyTextConverter',['../class_frequency_text_converter.html',1,'']]]
+  ['frequencytextconverter',['FrequencyTextConverter',['../structtobante_audio_1_1_frequency_text_converter.html',1,'tobanteAudio']]]
 ];

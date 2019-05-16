@@ -6,7 +6,7 @@ var searchData=
   ['gain_5fmin',['GAIN_MIN',['../namespacetobante_audio.html#aa5bbe5b697a7534c05106b98f7e833ab',1,'tobanteAudio']]],
   ['gain_5fstep_5fsize',['GAIN_STEP_SIZE',['../namespacetobante_audio.html#aa60092d4867e9e4c087f43cf9b7f31b8',1,'tobanteAudio']]],
   ['gainlabel',['gainLabel',['../classtobante_audio_1_1_modulation_source_view.html#a02e2eacce715ae61515c65f8ae02feb2',1,'tobanteAudio::ModulationSourceView']]],
-  ['gaintextconverter',['GainTextConverter',['../class_gain_text_converter.html',1,'']]],
+  ['gaintextconverter',['GainTextConverter',['../structtobante_audio_1_1_gain_text_converter.html',1,'tobanteAudio']]],
   ['get_5ffrequency_5ffor_5fposition',['get_frequency_for_position',['../classtobante_audio_1_1_analyser_view.html#a87f43da856da7a0a154f494cba0a8de8',1,'tobanteAudio::AnalyserView']]],
   ['get_5fgain_5ffor_5fposition',['get_gain_for_position',['../classtobante_audio_1_1_analyser_view.html#a5190cdfd3e0d2734868eb9db4ee13b78',1,'tobanteAudio::AnalyserView']]],
   ['get_5fposition_5ffor_5ffrequency',['get_position_for_frequency',['../classtobante_audio_1_1_analyser_view.html#a3abe75119203d5a8bd3f8a93da842219',1,'tobanteAudio::AnalyserView']]],
