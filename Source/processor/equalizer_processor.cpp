@@ -142,7 +142,7 @@ void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlo
 }
 void EqualizerProcessor::prepare(const dsp::ProcessSpec& spec) { filter.prepare(spec); }
 
-void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
+void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& /*midi*/)
 {
     inputAnalyser.addAudioData(buffer, 0, getTotalNumInputChannels());
 

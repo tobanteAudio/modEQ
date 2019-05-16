@@ -46,7 +46,7 @@ public:
     /**
      * @brief Constructor.
      */
-    AnalyserView();
+    AnalyserView() = default;
 
     /**
      * @brief Default destructor.

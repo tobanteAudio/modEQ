@@ -40,27 +40,37 @@ public:
 
     void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
     {
+        // Return if not enough space is available
         if (abstractFifo.getFreeSpace() < buffer.getNumSamples())
         {
             return;
         }
 
-        int start1, block1, start2, block2;
+        int start1 {};
+        int block1 {};
+        int start2 {};
+        int block2 {};
         abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1, start2,
                                     block2);
         audioFifo.copyFrom(0, start1, buffer.getReadPointer(startChannel), block1);
         if (block2 > 0)
+        {
             audioFifo.copyFrom(0, start2, buffer.getReadPointer(startChannel, block1),
                                block2);
+        }
 
         for (int channel = startChannel + 1; channel < startChannel + numChannels;
              ++channel)
         {
             if (block1 > 0)
+            {
                 audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
+            }
             if (block2 > 0)
+            {
                 audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1),
                                   block2);
+            }
         }
         abstractFifo.finishedWrite(block1 + block2);
         waitForData.signal();
@@ -85,7 +95,11 @@ public:
             {
                 fftBuffer.clear();
 
-                int start1, block1, start2, block2;
+                int start1 {};
+                int block1 {};
+                int start2 {};
+                int block2 {};
+
                 abstractFifo.prepareToRead(fft.getSize(), start1, block1, start2, block2);
                 if (block1 > 0)
                 {

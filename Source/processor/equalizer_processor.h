@@ -64,7 +64,7 @@ public:
     /**
      * @brief Constructor.
      */
-    EqualizerProcessor(AudioProcessorValueTreeState&);
+    EqualizerProcessor(AudioProcessorValueTreeState& vts);
 
     /**
      * @brief Destructor. Stops the anaylser threads.
@@ -79,17 +79,17 @@ public:
     /**
      * @brief Prepare dsp with dsp::ProcessSpec from JUCE.
      */
-    void prepare(const dsp::ProcessSpec&);
+    void prepare(const dsp::ProcessSpec& spec);
 
     /**
      * @brief Process block with dsp::ProcessContextReplacing from JUCE.
      */
-    void process(const dsp::ProcessContextReplacing<float>&);
+    void process(const dsp::ProcessContextReplacing<float>& context);
 
     /**
      * @brief Process audio & midi buffers.
      */
-    void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
+    void processBlock(AudioBuffer<float>& buffer, MidiBuffer& midi) override;
 
     /**
      * @brief Updates the dsp model if a parameter was changed.
@@ -99,7 +99,7 @@ public:
     /**
      * @brief Converts filter type enum class to string value.
      */
-    static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
+    static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType type);
 
     /**
      * @brief Returns the processor name.
@@ -109,12 +109,12 @@ public:
     /**
      * @brief Returns a single band by index, with bounds checking.
      */
-    Band* getBand(int);
+    Band* getBand(int index);
 
     /**
      * @brief Updates the filter coefficients for a band by index.
      */
-    void updateBand(size_t);
+    void updateBand(size_t index);
 
     /**
      * @brief Updates the bands bypass state.
@@ -134,12 +134,13 @@ public:
     /**
      * @brief Daws the frequency response plot to a given path & area.
      */
-    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
+    void createFrequencyPlot(Path& p, const std::vector<double>& mags,
+                             Rectangle<int> bounds, float pixelsPerDouble);
 
     /**
      * @brief Draws the analyser plot to a given path & area.
      */
-    void createAnalyserPlot(Path&, Rectangle<int>, float, bool);
+    void createAnalyserPlot(Path& p, Rectangle<int> bounds, float minFreq, bool input);
 
     /**
      * @brief Returns true if either the input or output analyser have new data.
@@ -206,7 +207,7 @@ public:
     /**
      * @brief Set the selected band. (clicked or dragged)
      */
-    void setSelectedBand(int);
+    void setSelectedBand(int index);
 
     /**
      * @brief Returns the current selected band.

@@ -22,12 +22,6 @@
 
 namespace tobanteAudio
 {
-AnalyserView::AnalyserView()
-{
-    // In your constructor, you should add any child components, and
-    // initialise any special settings that your component needs.
-}
-
 void AnalyserView::paint(Graphics& g)
 {
     // Save graphics state
@@ -45,11 +39,14 @@ void AnalyserView::paint(Graphics& g)
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
         if (i > 0)
-            g.drawVerticalLine(roundToInt(x), (float)plotFrame.getY(),
-                               (float)plotFrame.getBottom());
+        {
+            const auto y      = static_cast<float>(plotFrame.getY());
+            const auto bottom = static_cast<float>(plotFrame.getBottom());
+            g.drawVerticalLine(roundToInt(x), y, bottom);
+        }
 
+        const auto freq = get_frequency_for_position(i * 0.1f);
         g.setColour(Colour(0xffb9f6ca));
-        auto freq = get_frequency_for_position(i * 0.1f);
         g.drawFittedText((freq < 1000) ? String(freq) + " Hz"
                                        : String(freq / 1000, 1) + " kHz",
                          roundToInt(x + 3), plotFrame.getBottom() - 18, 50, 15,

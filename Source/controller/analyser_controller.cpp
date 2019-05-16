@@ -61,7 +61,10 @@ void AnalyserController::mouseDown(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr) return;
+            if (band == nullptr)
+            {
+                return;
+            }
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
@@ -75,18 +78,22 @@ void AnalyserController::mouseDown(const MouseEvent& e)
                 auto& contextMenu = view.contextMenu;
                 contextMenu.clear();
                 for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID; ++t)
+                {
                     contextMenu.addItem(
                         t + 1,
                         tobanteAudio::EqualizerProcessor::getFilterTypeName(
                             static_cast<tobanteAudio::EqualizerProcessor::FilterType>(t)),
                         true, band->type == t);
+                }
 
                 contextMenu.showMenuAsync(
                     PopupMenu::Options().withTargetComponent(&view).withTargetScreenArea(
                         {e.getScreenX(), e.getScreenY(), 1, 1}),
                     [this, i](int const selected) {
                         if (selected > 0)
+                        {
                             bandControllers.getUnchecked(i)->setType(selected - 1);
+                        }
                     });
             }  // If mouse x overlaps
         }      // For all bands
@@ -102,7 +109,10 @@ void AnalyserController::mouseMove(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)  //
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr) return;
+            if (band == nullptr)
+            {
+                return;
+            }
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
@@ -156,9 +166,11 @@ void AnalyserController::mouseDrag(const MouseEvent& e)
         const auto pos = (e.position.getX() - plotFrame.getX()) / plotFrame.getWidth();
         bandControllers[draggingBand]->setFrequency(view.get_frequency_for_position(pos));
         if (draggingGain)
+        {
             bandControllers[draggingBand]->setGain(view.get_gain_for_position(
                 e.position.getY(), static_cast<float>(plotFrame.getY()),
                 static_cast<float>(plotFrame.getBottom())));
+        }
     }
 }
 void AnalyserController::mouseDoubleClick(const MouseEvent& e)
@@ -170,7 +182,10 @@ void AnalyserController::mouseDoubleClick(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr) return;
+            if (band == nullptr)
+            {
+                return;
+            }
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();
@@ -201,7 +216,10 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event,
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr) return;
+            if (band == nullptr)
+            {
+                return;
+            }
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();

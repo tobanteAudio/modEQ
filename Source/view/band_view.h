@@ -30,7 +30,7 @@ private:
     Colour colour;
 
 public:
-    BandView(int, Colour = Colours::white);
+    BandView(int i, Colour = Colours::white);
     ~BandView() override = default;
 
     void paint(Graphics& /*g*/) override;
