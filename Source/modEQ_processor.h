@@ -82,8 +82,8 @@ private:
     dsp::Gain<float> outputGain;
     double sampleRate = 0;
 
-    GainTextConverter gainTextConverter;
-    FrequencyTextConverter freqTextConverter;
+    tobanteAudio::GainTextConverter gainTextConverter;
+    tobanteAudio::FrequencyTextConverter freqTextConverter;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQProcessor)

@@ -17,9 +17,13 @@
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-class ActiveTextConverter
+namespace tobanteAudio
 {
-public:
+/**
+ * @brief Text & float converter for active/bypass.
+ */
+struct ActiveTextConverter
+{
     String operator()(float const value) const
     {
         return value > 0.5f ? translate("active") : translate("bypassed");
@@ -31,9 +35,11 @@ public:
     }
 };
 
-class FrequencyTextConverter
+/**
+ * @brief Text & float converter for frequency.
+ */
+struct FrequencyTextConverter
 {
-public:
     String operator()(float const value) const
     {
         return (value < 1000) ? String(value, 0) + " Hz"
@@ -49,17 +55,21 @@ public:
     }
 };
 
-class QualityTextConverter
+/**
+ * @brief Text & float converter for filter quality.
+ */
+struct QualityTextConverter
 {
-public:
     String operator()(float const value) const { return String(value, 1); }
 
     float operator()(const String& text) const { return text.getFloatValue(); }
 };
 
-class GainTextConverter
+/**
+ * @brief Text & float converter for gain.
+ */
+struct GainTextConverter
 {
-public:
     String operator()(float const value) const
     {
         return String(Decibels::gainToDecibels(value), 1) + " dB";
@@ -71,9 +81,11 @@ public:
     }
 };
 
-class InvertPhaseTextConverter
+/**
+ * @brief Text & float converter for phase invert.
+ */
+struct InvertPhaseTextConverter
 {
-public:
     String operator()(float const value) const
     {
         return value < 0.5 ? "Normal" : "Inverted";
@@ -92,3 +104,4 @@ public:
         return 0.0f;
     }
 };
+}  // namespace tobanteAudio

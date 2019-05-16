@@ -231,10 +231,10 @@ private:
     tobanteAudio::SpectrumAnalyser<float> inputAnalyser;
     tobanteAudio::SpectrumAnalyser<float> outputAnalyser;
 
-    GainTextConverter gainTextConverter;
-    ActiveTextConverter activeTextConverter;
-    QualityTextConverter qualityTextConverter;
-    FrequencyTextConverter frequencyTextConverter;
+    tobanteAudio::GainTextConverter gainTextConverter;
+    tobanteAudio::ActiveTextConverter activeTextConverter;
+    tobanteAudio::QualityTextConverter qualityTextConverter;
+    tobanteAudio::FrequencyTextConverter frequencyTextConverter;
 
     void setDefaults();
 
@@ -242,3 +242,4 @@ private:
 };
 
 }  // namespace tobanteAudio
+
