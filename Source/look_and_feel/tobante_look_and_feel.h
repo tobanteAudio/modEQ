@@ -53,15 +53,15 @@ public:
         ignoreUnused(buttonY);
         ignoreUnused(isButtonDown);
 
-        const auto* parent     = box.findParentComponentOfClass<ChoicePropertyComponent>();
+        const auto* parent    = box.findParentComponentOfClass<ChoicePropertyComponent>();
         const auto cornerSize = parent != nullptr ? 0.0f : 1.0f;
         const auto boxBounds  = Rectangle<int>(0, 0, width, height);
 
-		// Background
+        // Background
         g.setColour(box.findColour(ComboBox::backgroundColourId));
         g.fillRoundedRectangle(boxBounds.toFloat(), cornerSize);
 
-		// Arrow
+        // Arrow
         Path path;
         const auto arrow = Rectangle<int>(width - 30, 0, 20, height);
 
@@ -78,28 +78,26 @@ public:
      * @brief Sets the PopupMenuItem size.
      */
     void getIdealPopupMenuItemSize(const String& text, bool isSeparator,
-                                   int standardMenuItemHeight, int& idealWidth,
+                                   int standardItemHeight, int& idealWidth,
                                    int& idealHeight) override
     {
         // This was added compared to the JUCE impl. The rest is the same
-        standardMenuItemHeight = static_cast<int>(standardMenuItemHeight * 1.25);
+        standardItemHeight = static_cast<int>(standardItemHeight * 1.25);
 
         if (isSeparator)
         {
             idealWidth  = 50;
-            idealHeight = standardMenuItemHeight > 0 ? standardMenuItemHeight / 10 : 10;
+            idealHeight = standardItemHeight > 0 ? standardItemHeight / 10 : 10;
         }
         else
         {
             auto font = getPopupMenuFont();
 
-            if (standardMenuItemHeight > 0
-                && font.getHeight() > standardMenuItemHeight / 1.3f)
-                font.setHeight(standardMenuItemHeight / 1.3f);
+            if (standardItemHeight > 0 && font.getHeight() > standardItemHeight / 1.3f)
+                font.setHeight(standardItemHeight / 1.3f);
 
-            idealHeight = standardMenuItemHeight > 0
-                              ? standardMenuItemHeight
-                              : roundToInt(font.getHeight() * 1.3f);
+            idealHeight = standardItemHeight > 0 ? standardItemHeight
+                                                 : roundToInt(font.getHeight() * 1.3f);
             idealWidth = font.getStringWidth(text) + idealHeight * 2;
         }
     }
