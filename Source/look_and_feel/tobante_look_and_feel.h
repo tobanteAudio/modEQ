@@ -59,59 +59,68 @@ public:
         // setColour(PopupMenu::highlightedTextColourId, Colours::blue);
     }
 
-    // void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
-    //                      const float rotaryStartAngle, const float rotaryEndAngle,
-    //                      Slider& slider) override
-    //{
-    //    ignoreUnused(slider);
+    /**
+     * @brief Draws a ComboBox.
+     */
+    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX, int buttonY,
+                      int buttonW, int buttonH, ComboBox& box) override
+    {
+        auto cornerSize
+            = box.findParentComponentOfClass<ChoicePropertyComponent>() != nullptr ? 0.0f : 1.0f;
+        Rectangle<int> boxBounds(0, 0, width, height);
 
-    //    auto radius  = jmin(width / 2, height / 2) - 4.0f;
-    //    auto centreX = x + width * 0.5f;
-    //    auto centreY = y + height * 0.5f;
-    //    auto rx      = centreX - radius;
-    //    auto ry      = centreY - radius;
-    //    auto rw      = radius * 2.0f;
-    //    auto angle   = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+        g.setColour(box.findColour(ComboBox::backgroundColourId));
+        g.fillRoundedRectangle(boxBounds.toFloat(), cornerSize);
 
-    //    // fill
-    //    g.setColour(Colours::aliceblue);
-    //    g.fillEllipse(rx, ry, rw, rw);
+        g.setColour(box.findColour(ComboBox::outlineColourId));
+        g.drawRoundedRectangle(boxBounds.toFloat().reduced(0.5f, 0.5f), cornerSize, 0.0f);
 
-    //    // outline
-    //    g.setColour(Colours::darkblue);
-    //    g.drawEllipse(rx, ry, rw, rw, 2.0f);
+        Rectangle<int> arrowZone(width - 30, 0, 20, height);
+        Path path;
+        path.startNewSubPath(arrowZone.getX() + 3.0f, arrowZone.getCentreY() - 2.0f);
+        path.lineTo(static_cast<float>(arrowZone.getCentreX()), arrowZone.getCentreY() + 3.0f);
+        path.lineTo(arrowZone.getRight() - 3.0f, arrowZone.getCentreY() - 2.0f);
 
-    //    Rectangle<int> textArea {50, 50};
-    //    textArea.setCentre(static_cast<int>(centreX), static_cast<int>(centreY));
+        g.setColour(
+            box.findColour(ComboBox::arrowColourId).withAlpha((box.isEnabled() ? 0.9f : 0.2f)));
+        g.strokePath(path, PathStrokeType(2.0f));
+    }
 
-    //    g.setFont(18.f);
-    //    g.drawText(slider.getName(), textArea, Justification::centred);
+    /**
+     * @brief Sets the PopupMenuItem size.
+     */
+    void getIdealPopupMenuItemSize(const String& text, const bool isSeparator,
+                                   int standardMenuItemHeight, int& idealWidth, int& idealHeight)
+    {
+        // This was added compared to the JUCE impl. The rest is the same
+        standardMenuItemHeight = static_cast<int>(standardMenuItemHeight * 1.25);
 
-    //    Path p;
-    //    auto pointerLength    = radius * 0.33f;
-    //    auto pointerThickness = 8.0f;
-    //    p.addRectangle(-pointerThickness * 0.5f, -radius, pointerThickness, pointerLength);
-    //    p.applyTransform(AffineTransform::rotation(angle).translated(centreX, centreY));
+        if (isSeparator)
+        {
+            idealWidth  = 50;
+            idealHeight = standardMenuItemHeight > 0 ? standardMenuItemHeight / 10 : 10;
+        }
+        else
+        {
+            auto font = getPopupMenuFont();
 
-    //    // pointer
-    //    g.setColour(Colours::black);
-    //    g.fillPath(p);
-    //}
+            if (standardMenuItemHeight > 0 && font.getHeight() > standardMenuItemHeight / 1.3f)
+                font.setHeight(standardMenuItemHeight / 1.3f);
 
-    //// layout slider and value label
-    // Slider::SliderLayout getSliderLayout(Slider& slider) override
-    //{
-    //    Slider::SliderLayout layout;
+            idealHeight = standardMenuItemHeight > 0 ? standardMenuItemHeight
+                                                     : roundToInt(font.getHeight() * 1.3f);
+            idealWidth = font.getStringWidth(text) + idealHeight * 2;
+        }
+    }
 
-    //    Rectangle<int> area = slider.getLocalBounds();
-    //    // area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1)); //
-    //    // empty space on bottom
-
-    //    layout.textBoxBounds = area.removeFromBottom(static_cast<int>(area.getHeight() / 8 * 1));
-    //    layout.sliderBounds  = area;
-
-    //    return layout;
-    //}
+    /**
+     * @brief Draws a PopupMenu background.
+     */
+    void drawPopupMenuBackground(Graphics& g, int width, int height)
+    {
+        g.fillAll(findColour(PopupMenu::backgroundColourId));
+        ignoreUnused(width, height);
+    }
 };
 
 }  // namespace tobanteAudio
