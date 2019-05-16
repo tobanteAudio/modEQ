@@ -39,9 +39,8 @@ BandView::BandView(int const i, const Colour c)
     type.clear();
     for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
     {
-        using EQ = tobanteAudio::EqualizerProcessor;
-        auto const type_string
-            = EQ::getFilterTypeName(static_cast<EQ::FilterType>(j));
+        using EQ               = tobanteAudio::EqualizerProcessor;
+        auto const type_string = EQ::getFilterTypeName(static_cast<EQ::FilterType>(j));
         type.addItem(type_string, j + 1);
     }
 

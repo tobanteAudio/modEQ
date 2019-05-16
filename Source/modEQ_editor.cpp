@@ -79,10 +79,10 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     using tobanteAudio::AnalyserController;
     using tobanteAudio::AnalyserView;
 
-    auto& eq           = processor.getEQ();
-    analyserView       = std::make_unique<AnalyserView>();
-    analyserController = std::make_unique<AnalyserController>(
-        eq, bandControllers, *analyserView.get());
+    auto& eq     = processor.getEQ();
+    analyserView = std::make_unique<AnalyserView>();
+    analyserController
+        = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
 
     //  Master Section
@@ -141,11 +141,9 @@ void ModEQEditor::resized()
     // modView->setBounds(modArea.removeFromLeft(modSourceWidth));
 
     // EQ Bands
-    auto bandSpace = area.removeFromBottom((getHeight() / 10) * 4);
-    auto const width
-        = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-    for (auto* bandView : bandViews)
-        bandView->setBounds(bandSpace.removeFromLeft(width));
+    auto bandSpace   = area.removeFromBottom((getHeight() / 10) * 4);
+    auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
+    for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output
     frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));

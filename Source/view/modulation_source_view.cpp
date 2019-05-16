@@ -66,21 +66,18 @@ void ModulationSourceView::paint(Graphics& g)
         g.setColour(Colours::silver.withAlpha(0.4f));
         auto x = plotFrame.getX() + plotFrame.getWidth() * i * 0.1f;
         if (i > 0)
-            g.drawVerticalLine(roundToInt(x),
-                               static_cast<float>(plotFrame.getY()),
+            g.drawVerticalLine(roundToInt(x), static_cast<float>(plotFrame.getY()),
                                static_cast<float>(plotFrame.getBottom()));
     }
 
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-        static_cast<float>(plotFrame.getX()),
-        static_cast<float>(plotFrame.getRight()));
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-        static_cast<float>(plotFrame.getX()),
-        static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
 
     g.reduceClipRegion(plotFrame);
 
@@ -111,8 +108,7 @@ void ModulationSourceView::resized()
 
     // Button
     auto button_area = area.removeFromBottom(area.getHeight() / 6).reduced(1);
-    toggleConnectView.setBounds(
-        button_area.removeFromLeft(button_area.getWidth() / 2));
+    toggleConnectView.setBounds(button_area.removeFromLeft(button_area.getWidth() / 2));
 
     // LFO plot
     auto reduced_area = area.reduced(3, 3);

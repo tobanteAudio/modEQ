@@ -48,10 +48,8 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
         0, tobanteAudio::EqualizerProcessor::LastFilterID - 1, 1);
     NormalisableRange<float> frequencyRange(FILTER_FREQ_MIN, FILTER_FREQ_MAX,
                                             FILTER_FREQ_STEP_SIZE);
-    NormalisableRange<float> qualityRange(FILTER_Q_MIN, FILTER_Q_MAX,
-                                          FILTER_Q_STEP_SIZE);
-    NormalisableRange<float> gainRange(1.0f / MAX_GAIN, MAX_GAIN,
-                                       FILTER_GAIN_STEP_SIZE);
+    NormalisableRange<float> qualityRange(FILTER_Q_MIN, FILTER_Q_MAX, FILTER_Q_STEP_SIZE);
+    NormalisableRange<float> gainRange(1.0f / MAX_GAIN, MAX_GAIN, FILTER_GAIN_STEP_SIZE);
     NormalisableRange<float> activeRange(0, 1, 1);
 
     frequencyRange.setSkewForCentre(2000.0f);
@@ -78,21 +76,19 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
         using Parameter = AudioProcessorValueTreeState::Parameter;
 
         state.createAndAddParameter(std::make_unique<Parameter>(
-            getFrequencyParamID(i), band.name + " freq", "Frequency",
-            frequencyRange, band.frequency, frequencyTextConverter,
-            frequencyTextConverter, false, true, false));
+            getFrequencyParamID(i), band.name + " freq", "Frequency", frequencyRange,
+            band.frequency, frequencyTextConverter, frequencyTextConverter, false, true,
+            false));
         state.createAndAddParameter(std::make_unique<Parameter>(
-            getQualityParamID(i), band.name + " Q", translate("Quality"),
-            qualityRange, band.quality, qualityTextConverter,
-            qualityTextConverter, false, true, false));
+            getQualityParamID(i), band.name + " Q", translate("Quality"), qualityRange,
+            band.quality, qualityTextConverter, qualityTextConverter, false, true,
+            false));
         state.createAndAddParameter(std::make_unique<Parameter>(
-            getGainParamID(i), band.name + " gain", translate("Gain"),
-            gainRange, band.gain, gainTextConverter, gainTextConverter, false,
-            true, false));
+            getGainParamID(i), band.name + " gain", translate("Gain"), gainRange,
+            band.gain, gainTextConverter, gainTextConverter, false, true, false));
         state.createAndAddParameter(std::make_unique<Parameter>(
-            getActiveParamID(i), band.name + " active", translate("Active"),
-            activeRange, band.active, activeTextConverter, activeTextConverter,
-            false, true, true));
+            getActiveParamID(i), band.name + " active", translate("Active"), activeRange,
+            band.active, activeTextConverter, activeTextConverter, false, true, true));
 
         state.createAndAddParameter(std::make_unique<Parameter>(
             getTypeParamID(i), band.name + " Type", translate("Filter Type"),
@@ -107,9 +103,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
 
                 for (int i = 0; i < EP::LastFilterID; ++i)
                 {
-                    if (text
-                        == EP::getFilterTypeName(
-                            static_cast<EP::FilterType>(i)))
+                    if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
                     {
                         return static_cast<float>(i);
                     }
@@ -132,8 +126,7 @@ EqualizerProcessor::~EqualizerProcessor()
     outputAnalyser.stopThread(1000);
 }
 
-void EqualizerProcessor::prepareToPlay(double newSampleRate,
-                                       int /*samplesPerBlock*/)
+void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlock*/)
 {
     sampleRate = newSampleRate;
 
@@ -147,10 +140,7 @@ void EqualizerProcessor::prepareToPlay(double newSampleRate,
     inputAnalyser.setupAnalyser(int(sampleRate), float(sampleRate));
     outputAnalyser.setupAnalyser(int(sampleRate), float(sampleRate));
 }
-void EqualizerProcessor::prepare(const dsp::ProcessSpec& spec)
-{
-    filter.prepare(spec);
-}
+void EqualizerProcessor::prepare(const dsp::ProcessSpec& spec) { filter.prepare(spec); }
 
 void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
@@ -168,14 +158,12 @@ void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
     outputAnalyser.addAudioData(buffer, 0, getTotalNumOutputChannels());
 }
 
-void EqualizerProcessor::process(
-    const dsp::ProcessContextReplacing<float>& context)
+void EqualizerProcessor::process(const dsp::ProcessContextReplacing<float>& context)
 {
     filter.process(context);
 }
 
-void EqualizerProcessor::parameterChanged(const String& parameter,
-                                          float newValue)
+void EqualizerProcessor::parameterChanged(const String& parameter, float newValue)
 {
     for (size_t i = 0; i < bands.size(); ++i)
     {
@@ -183,8 +171,7 @@ void EqualizerProcessor::parameterChanged(const String& parameter,
         {
             if (parameter.endsWith(tobanteAudio::Parameters::Type))
             {
-                bands[i].type
-                    = static_cast<FilterType>(static_cast<int>(newValue));
+                bands[i].type = static_cast<FilterType>(static_cast<int>(newValue));
             }
             else if (parameter.endsWith(tobanteAudio::Parameters::Frequency))
             {
@@ -233,10 +220,7 @@ String EqualizerProcessor::getFilterTypeName(
     }
 }
 
-int EqualizerProcessor::getNumBands() const
-{
-    return static_cast<int>(bands.size());
-}
+int EqualizerProcessor::getNumBands() const { return static_cast<int>(bands.size()); }
 
 String EqualizerProcessor::getBandName(const int index) const
 {
@@ -292,8 +276,7 @@ void EqualizerProcessor::updatePlots()
     if (isPositiveAndBelow(soloed, bands.size()))
     {
         FloatVectorOperations::multiply(
-            magnitudes.data(),
-            bands[static_cast<size_t>(soloed)].magnitudes.data(),
+            magnitudes.data(), bands[static_cast<size_t>(soloed)].magnitudes.data(),
             static_cast<int>(magnitudes.size()));
     }
     else
@@ -302,9 +285,8 @@ void EqualizerProcessor::updatePlots()
         {
             if (band.active)
             {
-                FloatVectorOperations::multiply(
-                    magnitudes.data(), band.magnitudes.data(),
-                    static_cast<int>(magnitudes.size()));
+                FloatVectorOperations::multiply(magnitudes.data(), band.magnitudes.data(),
+                                                static_cast<int>(magnitudes.size()));
             }
         }
     }
@@ -315,8 +297,7 @@ void EqualizerProcessor::updatePlots()
 void EqualizerProcessor::setSelectedBand(int index)
 {
     // Set all bands to not selected
-    std::for_each(bands.begin(), bands.end(),
-                  [](auto& item) { item.selected = false; });
+    std::for_each(bands.begin(), bands.end(), [](auto& item) { item.selected = false; });
 
     // Return if no band (-1) was selected
     if (index == -1)
@@ -342,10 +323,7 @@ int EqualizerProcessor::getSelectedBand()
     return -1;
 }
 
-bool EqualizerProcessor::getBandSolo(const int index) const
-{
-    return index == soloed;
-}
+bool EqualizerProcessor::getBandSolo(const int index) const { return index == soloed; }
 
 void EqualizerProcessor::setDefaults()
 {
@@ -478,8 +456,8 @@ void EqualizerProcessor::updateBand(const size_t index)
                 }
             }
             newCoefficients->getMagnitudeForFrequencyArray(
-                frequencies.data(), bands[index].magnitudes.data(),
-                frequencies.size(), sampleRate);
+                frequencies.data(), bands[index].magnitudes.data(), frequencies.size(),
+                sampleRate);
         }
         updateBypassedStates();
         updatePlots();
@@ -511,36 +489,28 @@ String EqualizerProcessor::getActiveParamID(const int index) const
     return getBandName(index) + "-" + tobanteAudio::Parameters::Active;
 }
 
-const std::vector<double>& EqualizerProcessor::getMagnitudes()
-{
-    return magnitudes;
-}
+const std::vector<double>& EqualizerProcessor::getMagnitudes() { return magnitudes; }
 
-void EqualizerProcessor::createFrequencyPlot(Path& p,
-                                             const std::vector<double>& mags,
+void EqualizerProcessor::createFrequencyPlot(Path& p, const std::vector<double>& mags,
                                              const Rectangle<int> bounds,
                                              float pixelsPerDouble)
 {
     p.startNewSubPath(
         static_cast<float>(bounds.getX()),
-        static_cast<float>(
-            roundToInt(bounds.getCentreY()
-                       - pixelsPerDouble * std::log(mags[0]) / std::log(2))));
-    const double xFactor
-        = static_cast<double>(bounds.getWidth()) / frequencies.size();
+        static_cast<float>(roundToInt(
+            bounds.getCentreY() - pixelsPerDouble * std::log(mags[0]) / std::log(2))));
+    const double xFactor = static_cast<double>(bounds.getWidth()) / frequencies.size();
     for (size_t i = 1; i < frequencies.size(); ++i)
     {
         const auto x = roundToInt(bounds.getX() + i * xFactor);
-        const auto y
-            = roundToInt(bounds.getCentreY()
-                         - pixelsPerDouble * std::log(mags[i]) / std::log(2));
+        const auto y = roundToInt(bounds.getCentreY()
+                                  - pixelsPerDouble * std::log(mags[i]) / std::log(2));
 
         p.lineTo(static_cast<float>(x), static_cast<float>(y));
     }
 }
 
-void EqualizerProcessor::createAnalyserPlot(Path& p,
-                                            const Rectangle<int> bounds,
+void EqualizerProcessor::createAnalyserPlot(Path& p, const Rectangle<int> bounds,
                                             float minFreq, bool input)
 {
     if (input)

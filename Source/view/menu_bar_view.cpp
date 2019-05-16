@@ -50,8 +50,7 @@ MenuBarView::MenuBarView()
     addAndMakeVisible(redoButton);
 
     // POWER
-    svg = XmlDocument::parse(
-        TobanteAudioData::outlinepower_settings_new24px_svg);
+    svg = XmlDocument::parse(TobanteAudioData::outlinepower_settings_new24px_svg);
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
@@ -89,8 +88,7 @@ void MenuBarView::resized()
 
     // Undo & Redo (left)
     undoButton.setBounds(Rectangle<int>(spacing, 0, height, height));
-    redoButton.setBounds(
-        Rectangle<int>(1 * height + 2 * spacing, 0, height, height));
+    redoButton.setBounds(Rectangle<int>(1 * height + 2 * spacing, 0, height, height));
 
     // Power (middle)
     const auto power_x = static_cast<int>(width / 2 - height / 2);

@@ -83,14 +83,12 @@ public:
     inline static float get_position_for_gain(float gain, float top,
                                               float bottom) noexcept
     {
-        return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB,
-                    bottom, top);
+        return jmap(Decibels::gainToDecibels(gain, -MAX_DB), -MAX_DB, MAX_DB, bottom,
+                    top);
     }
-    inline static float get_gain_for_position(float pos, float top,
-                                              float bottom) noexcept
+    inline static float get_gain_for_position(float pos, float top, float bottom) noexcept
     {
-        return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB),
-                                        -MAX_DB);
+        return Decibels::decibelsToGain(jmap(pos, bottom, top, -MAX_DB, MAX_DB), -MAX_DB);
     }
 
     /**

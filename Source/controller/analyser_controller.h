@@ -29,9 +29,7 @@ namespace tobanteAudio
 /**
  * @brief Controller for the AnalyserView component.
  */
-class AnalyserController : public ChangeListener,
-                           public Timer,
-                           public MouseListener
+class AnalyserController : public ChangeListener, public Timer, public MouseListener
 {
 public:
     /**
@@ -75,8 +73,7 @@ public:
     /**
      * @brief Changes the Q width of the selected band.
      */
-    void mouseWheelMove(const MouseEvent& event,
-                        const MouseWheelDetails& wheel) override;
+    void mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel) override;
 
 private:
     void updateFrequencyResponses();

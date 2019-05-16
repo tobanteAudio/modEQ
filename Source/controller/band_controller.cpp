@@ -37,8 +37,7 @@ BandController::BandController(const int i, ModEQProcessor& p,
 
     // Type & Bypass
     boxAttachments.add(new ComboBoxAttachment(state, type_id, view.type));
-    buttonAttachments.add(
-        new ButtonAttachment(state, active_id, view.activate));
+    buttonAttachments.add(new ButtonAttachment(state, active_id, view.activate));
 
     // Slider
     attachments.add(new SliderAttachment(state, frequency_id, view.frequency));
@@ -49,8 +48,7 @@ BandController::BandController(const int i, ModEQProcessor& p,
     view.solo.addListener(this);
 }
 
-void BandController::setUIControls(
-    tobanteAudio::EqualizerProcessor::FilterType type)
+void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType type)
 {
     switch (type)
     {

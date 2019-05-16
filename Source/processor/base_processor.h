@@ -53,9 +53,7 @@ public:
     void changeProgramName(int /*index*/, const String& /*newName*/) override {}
 
     void getStateInformation(MemoryBlock& /*destData*/) override {}
-    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override
-    {
-    }
+    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
 
     AudioProcessorValueTreeState& state;
 

@@ -24,11 +24,10 @@ SocialButtons::SocialButtons()
 
     auto* b = buttons.add(new ImageButton());
     b->addListener(this);
-    auto const fbLogo = ImageCache::getFromMemory(
-        TobanteAudioData::FBlogo_png, TobanteAudioData::FBlogo_pngSize);
-    b->setImages(false, true, true, fbLogo, 1.0f, Colours::transparentWhite,
-                 fbLogo, 0.7f, Colours::transparentWhite, fbLogo, 0.7f,
-                 Colours::transparentWhite);
+    auto const fbLogo = ImageCache::getFromMemory(TobanteAudioData::FBlogo_png,
+                                                  TobanteAudioData::FBlogo_pngSize);
+    b->setImages(false, true, true, fbLogo, 1.0f, Colours::transparentWhite, fbLogo, 0.7f,
+                 Colours::transparentWhite, fbLogo, 0.7f, Colours::transparentWhite);
     b->setComponentID("https://www.fb.com/tobanteAudio/");
     b->setTooltip(TRANS("Find us on Facebook"));
     addAndMakeVisible(b);

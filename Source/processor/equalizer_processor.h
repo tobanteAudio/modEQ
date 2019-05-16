@@ -89,8 +89,7 @@ public:
     /**
      * @brief Process audio & midi buffers.
      */
-    void processBlock(AudioBuffer<float>& /*unused*/,
-                      MidiBuffer& /*unused*/) override;
+    void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
     /**
      * @brief Updates the dsp model if a parameter was changed.
@@ -100,8 +99,7 @@ public:
     /**
      * @brief Converts filter type enum class to string value.
      */
-    static String
-        getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
+    static String getFilterTypeName(tobanteAudio::EqualizerProcessor::FilterType);
 
     /**
      * @brief Returns the processor name.
@@ -136,8 +134,7 @@ public:
     /**
      * @brief Daws the frequency response plot to a given path & area.
      */
-    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>,
-                             float);
+    void createFrequencyPlot(Path&, const std::vector<double>&, Rectangle<int>, float);
 
     /**
      * @brief Draws the analyser plot to a given path & area.
@@ -222,7 +219,7 @@ private:
 
     using FloatFilter       = dsp::IIR::Filter<float>;
     using FloatCoefficients = dsp::IIR::Coefficients<float>;
-    using FBand = dsp::ProcessorDuplicator<FloatFilter, FloatCoefficients>;
+    using FBand             = dsp::ProcessorDuplicator<FloatFilter, FloatCoefficients>;
 
     dsp::ProcessorChain<FBand, FBand, FBand, FBand, FBand, FBand> filter;
     std::vector<Band> bands;

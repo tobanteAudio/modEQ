@@ -43,10 +43,9 @@ public:
     float operator()(const String& text) const
     {
         return text.endsWith(" kHz")
-                   ? static_cast<float>(
-                       text.dropLastCharacters(4).getFloatValue() * 1000.0)
-                   : static_cast<float>(
-                       text.dropLastCharacters(3).getFloatValue());
+                   ? static_cast<float>(text.dropLastCharacters(4).getFloatValue()
+                                        * 1000.0)
+                   : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
     }
 };
 
@@ -68,8 +67,7 @@ public:
 
     float operator()(const String& text) const
     {
-        return Decibels::decibelsToGain(
-            text.dropLastCharacters(3).getFloatValue());
+        return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue());
     }
 };
 

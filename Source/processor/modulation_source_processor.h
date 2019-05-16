@@ -31,8 +31,7 @@ public:
     ~ModulationSourceProcessor() override;
 
     void prepareToPlay(double /*unused*/, int /*unused*/) override;
-    void processBlock(AudioBuffer<float>& /*unused*/,
-                      MidiBuffer& /*unused*/) override;
+    void processBlock(AudioBuffer<float>& /*unused*/, MidiBuffer& /*unused*/) override;
 
     void parameterChanged(const String& parameter, float newValue) override;
 

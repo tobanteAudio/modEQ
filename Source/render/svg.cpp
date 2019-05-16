@@ -18,8 +18,7 @@
 
 namespace tobanteAudio
 {
-void drawFromSVG(Graphics& g, const char* svgbinary, Colour color,
-                 Rectangle<float> pos)
+void drawFromSVG(Graphics& g, const char* svgbinary, Colour color, Rectangle<float> pos)
 {
     ScopedPointer<XmlElement> svg(XmlDocument::parse(svgbinary));
     jassert(svg != nullptr);

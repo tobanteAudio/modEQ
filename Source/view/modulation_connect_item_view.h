@@ -37,10 +37,7 @@ public:
 
 #if TOBANTEAUDIO_LIVE_MOCK
 public:
-    ModulationConnectItemView() : ModulationConnectItemView(1)
-    {
-        setSize(100, 100);
-    }
+    ModulationConnectItemView() : ModulationConnectItemView(1) { setSize(100, 100); }
 #endif  // TOBANTEAUDIO_LIVE_MOCK
 
     //==============================================================================

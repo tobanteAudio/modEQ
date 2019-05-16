@@ -36,8 +36,7 @@ ModulationConnectItemView::ModulationConnectItemView(int i)
 
     // Label
     target.setJustificationType(Justification::centred);
-    target.setText("Target: " + String(index),
-                   NotificationType::dontSendNotification);
+    target.setText("Target: " + String(index), NotificationType::dontSendNotification);
     addAndMakeVisible(target);
 }
 

@@ -37,37 +37,15 @@ public:
     {
         // General
         setColour(ResizableWindow::backgroundColourId, Colour(55, 71, 79));
-        // setColour(ResizableWindow::backgroundColourId, Colour(0, 105,
-        // 92).darker());
-
         // Slider
-        // setColour(Slider::thumbColourId, Colours::red);
-        // setColour(Slider::thumbColourId,
-        // Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
         setColour(Slider::thumbColourId, Colour(255, 87, 34));
-        // setColour(Slider::backgroundColourId, Colours::aliceblue);
-        // setColour(Slider::trackColourId, Colours::grey);
-
-        //// ComboBox
-        // setColour(ComboBox::backgroundColourId, Colours::aliceblue);
-        // setColour(ComboBox::textColourId, Colours::black);
-        // setColour(ComboBox::arrowColourId, Colours::black);
-        // setColour(ComboBox::buttonColourId, Colours::blue);
-
-        //// PopupMenu (in ComboxBox)
-        // setColour(PopupMenu::backgroundColourId, Colours::aliceblue);
-        // setColour(PopupMenu::highlightedBackgroundColourId,
-        // Colours::whitesmoke); setColour(PopupMenu::textColourId,
-        // Colours::black); setColour(PopupMenu::highlightedTextColourId,
-        // Colours::blue);
     }
 
     /**
      * @brief Draws a ComboBox.
      */
-    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown,
-                      int buttonX, int buttonY, int buttonW, int buttonH,
-                      ComboBox& box) override
+    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX,
+                      int buttonY, int buttonW, int buttonH, ComboBox& box) override
     {
         ignoreUnused(buttonH);
         ignoreUnused(buttonW);
@@ -75,30 +53,24 @@ public:
         ignoreUnused(buttonY);
         ignoreUnused(isButtonDown);
 
-        auto cornerSize
-            = box.findParentComponentOfClass<ChoicePropertyComponent>()
-                      != nullptr
-                  ? 0.0f
-                  : 1.0f;
-        Rectangle<int> boxBounds(0, 0, width, height);
+        const auto* parent     = box.findParentComponentOfClass<ChoicePropertyComponent>();
+        const auto cornerSize = parent != nullptr ? 0.0f : 1.0f;
+        const auto boxBounds  = Rectangle<int>(0, 0, width, height);
 
+		// Background
         g.setColour(box.findColour(ComboBox::backgroundColourId));
         g.fillRoundedRectangle(boxBounds.toFloat(), cornerSize);
 
-        g.setColour(box.findColour(ComboBox::outlineColourId));
-        g.drawRoundedRectangle(boxBounds.toFloat().reduced(0.5f, 0.5f),
-                               cornerSize, 0.0f);
-
-        Rectangle<int> arrowZone(width - 30, 0, 20, height);
+		// Arrow
         Path path;
-        path.startNewSubPath(arrowZone.getX() + 3.0f,
-                             arrowZone.getCentreY() - 2.0f);
-        path.lineTo(static_cast<float>(arrowZone.getCentreX()),
-                    arrowZone.getCentreY() + 3.0f);
-        path.lineTo(arrowZone.getRight() - 3.0f, arrowZone.getCentreY() - 2.0f);
+        const auto arrow = Rectangle<int>(width - 30, 0, 20, height);
 
-        g.setColour(box.findColour(ComboBox::arrowColourId)
-                        .withAlpha((box.isEnabled() ? 0.9f : 0.2f)));
+        path.startNewSubPath(arrow.getX() + 3.0f, arrow.getCentreY() - 2.0f);
+        path.lineTo(static_cast<float>(arrow.getCentreX()), arrow.getCentreY() + 3.0f);
+        path.lineTo(arrow.getRight() - 3.0f, arrow.getCentreY() - 2.0f);
+
+        const auto alpha = box.isEnabled() ? 0.9f : 0.2f;
+        g.setColour(box.findColour(ComboBox::arrowColourId).withAlpha(alpha));
         g.strokePath(path, PathStrokeType(2.0f));
     }
 
@@ -110,14 +82,12 @@ public:
                                    int& idealHeight) override
     {
         // This was added compared to the JUCE impl. The rest is the same
-        standardMenuItemHeight
-            = static_cast<int>(standardMenuItemHeight * 1.25);
+        standardMenuItemHeight = static_cast<int>(standardMenuItemHeight * 1.25);
 
         if (isSeparator)
         {
-            idealWidth = 50;
-            idealHeight
-                = standardMenuItemHeight > 0 ? standardMenuItemHeight / 10 : 10;
+            idealWidth  = 50;
+            idealHeight = standardMenuItemHeight > 0 ? standardMenuItemHeight / 10 : 10;
         }
         else
         {
@@ -139,8 +109,8 @@ public:
      */
     void drawPopupMenuBackground(Graphics& g, int width, int height)
     {
-        g.fillAll(findColour(PopupMenu::backgroundColourId));
         ignoreUnused(width, height);
+        g.fillAll(findColour(PopupMenu::backgroundColourId));
     }
 };
 

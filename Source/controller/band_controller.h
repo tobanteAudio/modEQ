@@ -82,8 +82,7 @@ private:
     // ATTACHMENTS
     OwnedArray<AudioProcessorValueTreeState::ComboBoxAttachment> boxAttachments;
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
-    OwnedArray<AudioProcessorValueTreeState::ButtonAttachment>
-        buttonAttachments;
+    OwnedArray<AudioProcessorValueTreeState::ButtonAttachment> buttonAttachments;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(BandController)

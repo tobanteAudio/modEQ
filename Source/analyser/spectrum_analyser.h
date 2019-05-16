@@ -38,8 +38,7 @@ public:
 
     ~SpectrumAnalyser() override = default;
 
-    void addAudioData(const AudioBuffer<Type>& buffer, int startChannel,
-                      int numChannels)
+    void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
     {
         if (abstractFifo.getFreeSpace() < buffer.getNumSamples())
         {
@@ -47,23 +46,21 @@ public:
         }
 
         int start1, block1, start2, block2;
-        abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1,
-                                    start2, block2);
-        audioFifo.copyFrom(0, start1, buffer.getReadPointer(startChannel),
-                           block1);
+        abstractFifo.prepareToWrite(buffer.getNumSamples(), start1, block1, start2,
+                                    block2);
+        audioFifo.copyFrom(0, start1, buffer.getReadPointer(startChannel), block1);
         if (block2 > 0)
-            audioFifo.copyFrom(
-                0, start2, buffer.getReadPointer(startChannel, block1), block2);
+            audioFifo.copyFrom(0, start2, buffer.getReadPointer(startChannel, block1),
+                               block2);
 
-        for (int channel = startChannel + 1;
-             channel < startChannel + numChannels; ++channel)
+        for (int channel = startChannel + 1; channel < startChannel + numChannels;
+             ++channel)
         {
             if (block1 > 0)
-                audioFifo.addFrom(0, start1, buffer.getReadPointer(channel),
-                                  block1);
+                audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
             if (block2 > 0)
-                audioFifo.addFrom(
-                    0, start2, buffer.getReadPointer(channel, block1), block2);
+                audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1),
+                                  block2);
         }
         abstractFifo.finishedWrite(block1 + block2);
         waitForData.signal();
@@ -89,33 +86,28 @@ public:
                 fftBuffer.clear();
 
                 int start1, block1, start2, block2;
-                abstractFifo.prepareToRead(fft.getSize(), start1, block1,
-                                           start2, block2);
+                abstractFifo.prepareToRead(fft.getSize(), start1, block1, start2, block2);
                 if (block1 > 0)
                 {
-                    fftBuffer.copyFrom(
-                        0, 0, audioFifo.getReadPointer(0, start1), block1);
+                    fftBuffer.copyFrom(0, 0, audioFifo.getReadPointer(0, start1), block1);
                 }
                 if (block2 > 0)
                 {
-                    fftBuffer.copyFrom(
-                        0, block1, audioFifo.getReadPointer(0, start2), block2);
+                    fftBuffer.copyFrom(0, block1, audioFifo.getReadPointer(0, start2),
+                                       block2);
                 }
                 abstractFifo.finishedRead(block1 + block2);
 
-                windowing.multiplyWithWindowingTable(
-                    fftBuffer.getWritePointer(0), size_t(fft.getSize()));
-                fft.performFrequencyOnlyForwardTransform(
-                    fftBuffer.getWritePointer(0));
+                windowing.multiplyWithWindowingTable(fftBuffer.getWritePointer(0),
+                                                     size_t(fft.getSize()));
+                fft.performFrequencyOnlyForwardTransform(fftBuffer.getWritePointer(0));
 
                 ScopedLock lockedForWriting(pathCreationLock);
                 averager.addFrom(0, 0, averager.getReadPointer(averagerPtr),
                                  averager.getNumSamples(), -1.0f);
-                averager.copyFrom(averagerPtr, 0, fftBuffer.getReadPointer(0),
-                                  averager.getNumSamples(),
-                                  1.0f
-                                      / (averager.getNumSamples()
-                                         * (averager.getNumChannels() - 1)));
+                averager.copyFrom(
+                    averagerPtr, 0, fftBuffer.getReadPointer(0), averager.getNumSamples(),
+                    1.0f / (averager.getNumSamples() * (averager.getNumChannels() - 1)));
                 averager.addFrom(0, 0, averager.getReadPointer(averagerPtr),
                                  averager.getNumSamples());
                 if (++averagerPtr == averager.getNumChannels())
@@ -145,8 +137,8 @@ public:
                           binToY(fftData[0], bounds));
         for (int i = 0; i < averager.getNumSamples(); ++i)
         {
-            const auto x = bounds.getX()
-                           + factor * indexToX(static_cast<float>(i), minFreq);
+            const auto x
+                = bounds.getX() + factor * indexToX(static_cast<float>(i), minFreq);
             const auto y = binToY(fftData[i], bounds);
 
             p.lineTo(static_cast<float>(x), static_cast<float>(y));
@@ -164,8 +156,7 @@ private:
     inline float indexToX(float index, float minFreq) const
     {
         const auto freq = (sampleRate * index) / fft.getSize();
-        return (freq > 0.01f) ? std::log(freq / minFreq) / std::log(2.0f)
-                              : 0.0f;
+        return (freq > 0.01f) ? std::log(freq / minFreq) / std::log(2.0f) : 0.0f;
     }
 
     inline float binToY(float bin, const Rectangle<float> bounds) const

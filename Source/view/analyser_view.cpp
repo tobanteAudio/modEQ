@@ -58,31 +58,26 @@ void AnalyserView::paint(Graphics& g)
 
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-        static_cast<float>(plotFrame.getX()),
-        static_cast<float>(plotFrame.getRight()));
-    g.drawHorizontalLine(
-        roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-        static_cast<float>(plotFrame.getX()),
-        static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
+    g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
+                         static_cast<float>(plotFrame.getX()),
+                         static_cast<float>(plotFrame.getRight()));
 
     // dB labels
     g.setColour(Colours::silver);
-    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3,
-                     plotFrame.getY() + 2, 50, 14, Justification::left, 1);
-    g.drawFittedText(
-        String(MAX_DB / 2) + " dB", plotFrame.getX() + 3,
-        roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50, 14,
-        Justification::left, 1);
-    g.drawFittedText(
-        " 0 dB", plotFrame.getX() + 3,
-        roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50, 14,
-        Justification::left, 1);
-    g.drawFittedText(
-        String(-MAX_DB / 2) + " dB", plotFrame.getX() + 3,
-        roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50, 14,
-        Justification::left, 1);
+    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2,
+                     50, 14, Justification::left, 1);
+    g.drawFittedText(String(MAX_DB / 2) + " dB", plotFrame.getX() + 3,
+                     roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50,
+                     14, Justification::left, 1);
+    g.drawFittedText(" 0 dB", plotFrame.getX() + 3,
+                     roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50,
+                     14, Justification::left, 1);
+    g.drawFittedText(String(-MAX_DB / 2) + " dB", plotFrame.getX() + 3,
+                     roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50,
+                     14, Justification::left, 1);
 
     g.reduceClipRegion(plotFrame);
 
@@ -101,8 +96,7 @@ void AnalyserView::paint(Graphics& g)
 
     // Output Analyser
     g.setColour(outputColour);
-    g.drawFittedText("Output", plotFrame.reduced(8, 28),
-                     Justification::topRight, 1);
+    g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
     g.strokePath(out_analyser.createPathWithRoundedCorners(corner_radius),
                  PathStrokeType(2.0));
 
@@ -121,8 +115,8 @@ void AnalyserView::paint(Graphics& g)
                          Justification::left, 1);
 
         // Handle
-        g.drawEllipse(static_cast<float>(handle.x),
-                      static_cast<float>(handle.y), 8.0f, 8.0f, 5.0f);
+        g.drawEllipse(static_cast<float>(handle.x), static_cast<float>(handle.y), 8.0f,
+                      8.0f, 5.0f);
     }
 }
 
