@@ -47,7 +47,7 @@ public:
         }
 
         {
-            tobanteAudio::InvertPhaseTextConverter invert_converter{};
+            tobanteAudio::InvertPhaseTextConverter invert_converter {};
 
             beginTest("InvertPhaseTextConverter -> String to float");
             const float f_normal   = invert_converter("Normal");

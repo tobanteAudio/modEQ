@@ -36,7 +36,6 @@ public:
     void paint(Graphics& /*g*/) override;
     void resized() override;
 
-    GroupComponent frame;
     ComboBox type;
     Slider frequency;
     Slider quality;

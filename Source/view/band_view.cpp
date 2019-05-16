@@ -28,13 +28,6 @@ BandView::BandView(int const i, const Colour c)
     , solo(translate("S"))
     , activate(translate("A"))
 {
-    // Frame for individual band controls
-    frame.setText(String(index));
-    frame.setTextLabelPosition(Justification::centred);
-    frame.setColour(GroupComponent::textColourId, Colours::silver);
-    frame.setColour(GroupComponent::outlineColourId, colour.withAlpha(0.8f));
-    addAndMakeVisible(frame);
-
     // Add all filter options to combo box
     type.clear();
     for (int j = 0; j < tobanteAudio::EqualizerProcessor::LastFilterID; ++j)
@@ -68,13 +61,24 @@ BandView::BandView(int const i, const Colour c)
     activate.setTooltip(translate("Activate or deactivate this filter"));
 }
 
-void BandView::paint(Graphics& /*g*/) {}
+void BandView::paint(Graphics& g)
+{
+    // Background
+    const auto color = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    auto area        = getLocalBounds().reduced(5);
+    g.setColour(color.brighter().withAlpha(0.5f));
+    g.fillRect(area);
+
+    // Band index
+    const auto textArea = area.removeFromTop(area.getHeight() / 20);
+    g.setColour(Colours::black);
+    g.setFont(16.0f);
+    g.drawText(String(index), textArea, Justification::centred, true);
+}
 
 void BandView::resized()
 {
     auto bounds = getLocalBounds();
-    frame.setBounds(bounds);
-
     bounds.reduce(10, 20);
 
     type.setBounds(bounds.removeFromTop(20));
