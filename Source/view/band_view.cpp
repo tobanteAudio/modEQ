@@ -16,6 +16,7 @@
 
 #include "band_view.h"
 #include "../modEQ_processor.h"
+#include "../utils/constants.h"
 
 namespace tobanteAudio
 {
@@ -52,12 +53,11 @@ BandView::BandView(int const i, const Colour c)
 
     // Solo
     solo.setClickingTogglesState(true);
-    solo.setColour(TextButton::buttonOnColourId, Colours::yellow);
     solo.setTooltip(translate("Listen only through this filter (solo)"));
 
     // Activate / Bypass
     activate.setClickingTogglesState(true);
-    activate.setColour(TextButton::buttonOnColourId, Colours::green);
+    activate.setColour(TextButton::buttonOnColourId, tobanteAudio::ORANGE.darker());
     activate.setTooltip(translate("Activate or deactivate this filter"));
 }
 
@@ -68,12 +68,6 @@ void BandView::paint(Graphics& g)
     auto area        = getLocalBounds().reduced(5);
     g.setColour(color.brighter().withAlpha(0.5f));
     g.fillRect(area);
-
-    // Band index
-    const auto textArea = area.removeFromTop(area.getHeight() / 20);
-    g.setColour(Colours::black);
-    g.setFont(16.0f);
-    g.drawText(String(index), textArea, Justification::centred, true);
 }
 
 void BandView::resized()

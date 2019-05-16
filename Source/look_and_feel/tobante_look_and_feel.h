@@ -38,7 +38,7 @@ public:
         // General
         setColour(ResizableWindow::backgroundColourId, Colour(55, 71, 79));
         // Slider
-        setColour(Slider::thumbColourId, Colour(255, 87, 34));
+        setColour(Slider::thumbColourId, tobanteAudio::ORANGE);
     }
 
     /**

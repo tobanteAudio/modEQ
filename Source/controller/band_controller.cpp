@@ -44,7 +44,9 @@ BandController::BandController(const int i, ModEQProcessor& p,
     attachments.add(new SliderAttachment(state, quality_id, view.quality));
     attachments.add(new SliderAttachment(state, gain_id, view.gain));
 
-    // Add listner
+    // Solo button
+    const auto color = processor.getBandColour(index);
+    view.solo.setColour(TextButton::buttonOnColourId, color);
     view.solo.addListener(this);
 }
 
