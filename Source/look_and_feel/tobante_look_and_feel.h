@@ -69,6 +69,12 @@ public:
                       int buttonX, int buttonY, int buttonW, int buttonH,
                       ComboBox& box) override
     {
+        ignoreUnused(buttonH);
+        ignoreUnused(buttonW);
+        ignoreUnused(buttonX);
+        ignoreUnused(buttonY);
+        ignoreUnused(isButtonDown);
+
         auto cornerSize
             = box.findParentComponentOfClass<ChoicePropertyComponent>()
                       != nullptr
@@ -99,9 +105,9 @@ public:
     /**
      * @brief Sets the PopupMenuItem size.
      */
-    void getIdealPopupMenuItemSize(const String& text, const bool isSeparator,
+    void getIdealPopupMenuItemSize(const String& text, bool isSeparator,
                                    int standardMenuItemHeight, int& idealWidth,
-                                   int& idealHeight)
+                                   int& idealHeight) override
     {
         // This was added compared to the JUCE impl. The rest is the same
         standardMenuItemHeight
