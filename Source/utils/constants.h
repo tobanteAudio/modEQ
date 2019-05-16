@@ -16,6 +16,9 @@
 
 #pragma once
 
+/**
+ * @brief namespace for all tobanteAudio classes, functions & constants.
+ */
 namespace tobanteAudio
 {
 // Audio

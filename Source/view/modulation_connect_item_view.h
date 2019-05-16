@@ -20,6 +20,9 @@
 
 namespace tobanteAudio
 {
+/**
+ * @brief Component for connecting a modulation source to destination.
+ */
 class ModulationConnectItemView : public Component
 {
 private:

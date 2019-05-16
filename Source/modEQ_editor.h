@@ -35,6 +35,9 @@
 #include "view/settings_view.h"
 #include "view/social_buttons.h"
 
+/**
+ * @brief Entry point for GUI thread. Inherites from juce::AudioProcessorEditor
+ */
 class ModEQEditor : public AudioProcessorEditor
 {
 public:

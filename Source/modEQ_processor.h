@@ -25,6 +25,9 @@
 #include "processor/modulation_source_processor.h"
 #include "utils/text_value_converter.h"
 
+/**
+ * @brief Entry point for processor thread. Inherites from juce::AudioProcessor
+ */
 class ModEQProcessor : public AudioProcessor,
                        public AudioProcessorValueTreeState::Listener,
                        public ChangeBroadcaster
