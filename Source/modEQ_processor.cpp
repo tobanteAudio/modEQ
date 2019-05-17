@@ -109,9 +109,17 @@ bool ModEQProcessor::isMidiEffect() const { return false; }
 double ModEQProcessor::getTailLengthSeconds() const { return 0.0; }
 int ModEQProcessor::getNumPrograms() { return 1; }
 int ModEQProcessor::getCurrentProgram() { return 0; }
-void ModEQProcessor::setCurrentProgram(int) {}
-const String ModEQProcessor::getProgramName(int) { return {}; }
-void ModEQProcessor::changeProgramName(int, const String&) {}
+void ModEQProcessor::setCurrentProgram(int index) { ignoreUnused(index); }
+const String ModEQProcessor::getProgramName(int index)
+{
+    ignoreUnused(index);
+    return {};
+}
+void ModEQProcessor::changeProgramName(int index, const String& newName)
+{
+    ignoreUnused(index);
+    ignoreUnused(newName);
+}
 
 void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
 {

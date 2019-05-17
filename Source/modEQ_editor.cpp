@@ -22,7 +22,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
     , processor(p)
     , menuController(processor, menuButtons)
-    , output(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+    , output(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
 {
     // Global look & feel
     setLookAndFeel(&tobanteLookAndFeel);

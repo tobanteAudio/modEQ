@@ -15,6 +15,7 @@
  */
 
 #include "social_buttons.h"
+#include "../utils/constants.h"
 
 namespace tobanteAudio
 {
@@ -22,26 +23,41 @@ SocialButtons::SocialButtons()
 {
     setOpaque(false);
 
-    auto* b = buttons.add(new ImageButton());
-    b->addListener(this);
-    auto const fbLogo = ImageCache::getFromMemory(TobanteAudioData::FBlogo_png,
-                                                  TobanteAudioData::FBlogo_pngSize);
-    b->setImages(false, true, true, fbLogo, 1.0f, Colours::transparentWhite, fbLogo, 0.7f,
-                 Colours::transparentWhite, fbLogo, 0.7f, Colours::transparentWhite);
-    b->setComponentID("https://www.fb.com/tobanteAudio/");
-    b->setTooltip(TRANS("Find us on Facebook"));
-    addAndMakeVisible(b);
+    const auto button_type = DrawableButton::ImageFitted;
 
-    b = buttons.add(new ImageButton());
-    b->addListener(this);
-    auto const githubLogo = ImageCache::getFromMemory(
-        TobanteAudioData::GitHublogo_png, TobanteAudioData::GitHublogo_pngSize);
-    b->setImages(false, true, true, githubLogo, 1.0f, Colours::transparentWhite,
-                 githubLogo, 0.7f, Colours::transparentWhite, githubLogo, 0.7f,
-                 Colours::transparentWhite);
-    b->setComponentID("https://github.com/tobanteAudio");
-    b->setTooltip(TRANS("Find resources on Github"));
-    addAndMakeVisible(b);
+    // GITHUB PAGES
+    {
+        auto svg       = XmlDocument::parse(TobanteAudioData::outlinepublic24px_svg);
+        auto* drawable = Drawable::createFromSVG(*svg);
+
+        auto* b = buttons.add(new DrawableButton("Website", button_type));
+        b->addListener(this);
+        b->setComponentID("https://tobanteAudio.github.io");
+        b->setImages(drawable);
+        b->setTooltip(translate("Find us online"));
+
+        delete drawable;
+        delete svg;
+
+        addAndMakeVisible(b);
+    }
+
+    // GITHUB
+    {
+        auto* svg       = XmlDocument::parse(TobanteAudioData::github_svg);
+        auto* drawable = Drawable::createFromSVG(*svg);
+
+        auto* b = buttons.add(new DrawableButton("Github", button_type));
+        b->addListener(this);
+        b->setComponentID("https://github.com/tobanteAudio/modEQ");
+        b->setImages(drawable);
+        b->setTooltip(translate("Github repository"));
+
+        delete drawable;
+        delete svg;
+
+        addAndMakeVisible(b);
+    }
 }
 
 void SocialButtons::paint(Graphics& g) { ignoreUnused(g); }
@@ -50,7 +66,9 @@ void SocialButtons::resized()
 {
     auto bounds = getLocalBounds();
     for (auto* b : buttons)
+    {
         b->setBounds(bounds.removeFromLeft(bounds.getHeight()).reduced(3));
+    }
 }
 
 void SocialButtons::buttonClicked(Button* b)
