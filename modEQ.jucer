@@ -65,6 +65,8 @@
               resource="0" file="Source/controller/modulation_source_controller.h"/>
       </GROUP>
       <GROUP id="{12FBCE62-A8E3-78E5-B4D1-40F0EAF9EB75}" name="look_and_feel">
+        <FILE id="YPsf5c" name="tobante_look_and_feel.cpp" compile="1" resource="0"
+              file="Source/look_and_feel/tobante_look_and_feel.cpp"/>
         <FILE id="JFS7h9" name="tobante_look_and_feel.h" compile="0" resource="0"
               file="Source/look_and_feel/tobante_look_and_feel.h"/>
       </GROUP>
