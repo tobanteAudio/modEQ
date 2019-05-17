@@ -21,9 +21,9 @@
 
 // tobanteAudio
 #include "analyser/spectrum_analyser.h"
+#include "parameters/text_value_converter.h"
 #include "processor/equalizer_processor.h"
 #include "processor/modulation_source_processor.h"
-#include "utils/text_value_converter.h"
 
 /**
  * @brief Entry point for processor thread. Inherites from juce::AudioProcessor

@@ -16,7 +16,7 @@
 
 #include "band_view.h"
 #include "../modEQ_processor.h"
-#include "../utils/constants.h"
+#include "../settings/constants.h"
 
 namespace tobanteAudio
 {

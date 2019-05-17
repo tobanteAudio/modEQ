@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyr / constants.h19 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +15,8 @@
  */
 
 #include "equalizer_processor.h"
-#include "../utils/constants.h"
-#include "../utils/parameters.h"
+#include "../parameters/parameters.h"
+#include "../settings/constants.h"
 
 namespace tobanteAudio
 {

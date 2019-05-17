@@ -15,7 +15,7 @@
  */
 
 #include "social_buttons.h"
-#include "../utils/constants.h"
+#include "../settings/constants.h"
 
 namespace tobanteAudio
 {

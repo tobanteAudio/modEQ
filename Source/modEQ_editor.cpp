@@ -16,7 +16,7 @@
 
 #include "modEQ_editor.h"
 #include "modEQ_processor.h"
-#include "utils/parameters.h"
+#include "parameters/parameters.h"
 
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)

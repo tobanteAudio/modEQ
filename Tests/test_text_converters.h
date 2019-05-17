@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyrig / text_value_converter.hnzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 // tobanteAudio
-#include "../Source/utils/text_value_converter.h"
+#include "../Source/parameters/text_value_converter.h"
 
 namespace tobanteAudio::tests
 {

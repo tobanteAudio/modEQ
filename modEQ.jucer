@@ -40,6 +40,16 @@
       </GROUP>
     </GROUP>
     <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
+      <GROUP id="{B81443DB-0EAA-6143-049F-FE5E1482C8EA}" name="parameters">
+        <FILE id="XUeaSv" name="parameters.h" compile="0" resource="0" file="Source/parameters/parameters.h"/>
+        <FILE id="gS13k0" name="text_value_converter.cpp" compile="1" resource="0"
+              file="Source/parameters/text_value_converter.cpp"/>
+        <FILE id="kcXK3G" name="text_value_converter.h" compile="0" resource="0"
+              file="Source/parameters/text_value_converter.h"/>
+      </GROUP>
+      <GROUP id="{2FB63478-5F96-2F21-1510-028D9946F218}" name="settings">
+        <FILE id="rp2Tg1" name="constants.h" compile="0" resource="0" file="Source/settings/constants.h"/>
+      </GROUP>
       <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
         <FILE id="Xvpwgz" name="modulation_source_analyser.h" compile="0" resource="0"
               file="Source/analyser/modulation_source_analyser.h"/>
@@ -85,14 +95,6 @@
       <GROUP id="{9D77E879-A047-C5BD-EFA2-A41EF6C65944}" name="render">
         <FILE id="MMHouP" name="svg.cpp" compile="1" resource="0" file="Source/render/svg.cpp"/>
         <FILE id="djfw2S" name="svg.h" compile="0" resource="0" file="Source/render/svg.h"/>
-      </GROUP>
-      <GROUP id="{E4A99C46-1C12-C178-361D-EF4AD1B9F3BD}" name="utils">
-        <FILE id="oIuClN" name="constants.h" compile="0" resource="0" file="Source/utils/constants.h"/>
-        <FILE id="pEjPUY" name="parameters.h" compile="0" resource="0" file="Source/utils/parameters.h"/>
-        <FILE id="IxfZqZ" name="text_value_converter.cpp" compile="1" resource="0"
-              file="Source/utils/text_value_converter.cpp"/>
-        <FILE id="W4ENUw" name="text_value_converter.h" compile="0" resource="0"
-              file="Source/utils/text_value_converter.h"/>
       </GROUP>
       <GROUP id="{FD3FFB1B-0DCE-BD90-F50C-6E1B4F5A5C15}" name="view">
         <FILE id="MhQUCF" name="analyser_view.cpp" compile="1" resource="0"
