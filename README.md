@@ -82,7 +82,21 @@ cp build/modEQ.so ~/.vst
   - Reactivate
   - Fix drawing of LFO
   - Add waveforms
+- CI
+  - Pluginval
+  - Deploy binaries on tagged commit
+  - Unit test runner
 
-## Acknowledgment
+## License
 
-The project started with the code from Daniel Walz's github repository [ffAudio/Frequalizer](https://github.com/ffAudio/Frequalizer), which was released under the BSD 3-Clause license.
+This Project is released under the `GNU General Public License Version 3`. See the [license file](LICENSE.md) for details.
+
+### External
+
+#### JUCE
+
+JUCE is free open source projects released under the `GPL v3`. See [JUCE License](https://github.com/WeAreROLI/JUCE/blob/master/LICENSE.md) for details.
+
+#### ff_meters
+
+ffAudio's ff_meters is released under the `BSD 3-Clause` license. See [ff_meters license](https://github.com/ffAudio/ff_meters/blob/master/LICENSE.md) for details.
