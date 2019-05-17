@@ -37,11 +37,13 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         infoView.setVisible(false);
         settingsView.setVisible(!settingsView.isVisible());
         analyserView->setVisible(!settingsView.isVisible());
+        meter->setVisible(!settingsView.isVisible());
     };
     menuController.toggleInfo = [this]() {
         settingsView.setVisible(false);
         infoView.setVisible(!infoView.isVisible());
         analyserView->setVisible(!infoView.isVisible());
+        meter->setVisible(!infoView.isVisible());
     };
 
     // Settings & Info
@@ -78,7 +80,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     // Meter
     lnf = new tobanteAudio::TobanteMetersLookAndFeel();
     // adjust the colours to how you like them
-    lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+    lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, tobanteAudio::ORANGE);
 
     meter = new FFAU::LevelMeter();  // See FFAU::LevelMeter::MeterFlags for options
     meter->setLookAndFeel(lnf);
