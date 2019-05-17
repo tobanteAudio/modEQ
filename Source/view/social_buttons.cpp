@@ -25,23 +25,6 @@ SocialButtons::SocialButtons()
 
     const auto button_type = DrawableButton::ImageFitted;
 
-    // GITHUB PAGES
-    {
-        auto svg       = XmlDocument::parse(TobanteAudioData::outlinepublic24px_svg);
-        auto* drawable = Drawable::createFromSVG(*svg);
-
-        auto* b = buttons.add(new DrawableButton("Website", button_type));
-        b->addListener(this);
-        b->setComponentID("https://tobanteAudio.github.io");
-        b->setImages(drawable);
-        b->setTooltip(translate("Find us online"));
-
-        delete drawable;
-        delete svg;
-
-        addAndMakeVisible(b);
-    }
-
     // GITHUB
     {
         auto* svg      = XmlDocument::parse(TobanteAudioData::github_svg);
@@ -58,15 +41,34 @@ SocialButtons::SocialButtons()
 
         addAndMakeVisible(b);
     }
+
+    // GITHUB PAGES
+    {
+        auto svg       = XmlDocument::parse(TobanteAudioData::outlinepublic24px_svg);
+        auto* drawable = Drawable::createFromSVG(*svg);
+
+        auto* b = buttons.add(new DrawableButton("Website", button_type));
+        b->addListener(this);
+        b->setComponentID("https://tobanteAudio.github.io");
+        b->setImages(drawable);
+        b->setTooltip(translate("Find us online"));
+
+        delete drawable;
+        delete svg;
+
+        addAndMakeVisible(b);
+    }
 }
 
 void SocialButtons::paint(Graphics& g) { ignoreUnused(g); }
 
 void SocialButtons::resized()
 {
-    auto bounds = getLocalBounds();
+    auto bounds        = getLocalBounds();
+    const auto spacing = 3;
     for (auto* b : buttons)
     {
+        bounds.removeFromLeft(spacing);
         b->setBounds(bounds.removeFromLeft(bounds.getHeight()).reduced(3));
     }
 }
