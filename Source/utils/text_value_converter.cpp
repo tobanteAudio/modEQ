@@ -19,6 +19,72 @@
 
 namespace tobanteAudio
 {
+// ACTIVE / BYPASS
+String ActiveTextConverter::operator()(float const value) const
+{
+    return value > 0.5f ? translate("active") : translate("bypassed");
+}
+
+float ActiveTextConverter::operator()(const String& text) const
+{
+    return static_cast<float>(text == translate("active"));
+}
+
+// FREQUENCY
+String FrequencyTextConverter::operator()(float const value) const
+{
+    return (value < 1000) ? String(value, 0) + " Hz" : String(value / 1000.0, 2) + " kHz";
+}
+
+float FrequencyTextConverter::operator()(const String& text) const
+{
+    return text.endsWith(" kHz")
+               ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
+               : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
+}
+
+// QUALITY
+String QualityTextConverter::operator()(float const value) const
+{
+    return String(value, 1);
+}
+
+float QualityTextConverter::operator()(const String& text) const
+{
+    return text.getFloatValue();
+}
+
+// GAIN
+String GainTextConverter::operator()(float const value) const
+{
+    return String(Decibels::gainToDecibels(value), 1) + " dB";
+}
+
+float GainTextConverter::operator()(const String& text) const
+{
+    return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue());
+}
+
+// PHASE INVERT
+String InvertPhaseTextConverter::operator()(float const value) const
+{
+    return value < 0.5 ? "Normal" : "Inverted";
+}
+
+float InvertPhaseTextConverter::operator()(const String& text) const
+{
+    if (text == "Normal")
+    {
+        return 0.0f;
+    }
+    if (text == "Inverted")
+    {
+        return 1.0f;
+    }
+    return 0.0f;
+}
+
+// FILTER TYPE
 String FilterTypeTextConverter::operator()(float const value) const
 {
     using EP = tobanteAudio::EqualizerProcessor;

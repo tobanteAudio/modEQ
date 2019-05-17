@@ -24,15 +24,9 @@ namespace tobanteAudio
  */
 struct ActiveTextConverter
 {
-    String operator()(float const value) const
-    {
-        return value > 0.5f ? translate("active") : translate("bypassed");
-    }
+    String operator()(float value) const;
 
-    float operator()(const String& text) const
-    {
-        return static_cast<float>(text == translate("active"));
-    }
+    float operator()(const String& text) const;
 };
 
 /**
@@ -40,19 +34,9 @@ struct ActiveTextConverter
  */
 struct FrequencyTextConverter
 {
-    String operator()(float const value) const
-    {
-        return (value < 1000) ? String(value, 0) + " Hz"
-                              : String(value / 1000.0, 2) + " kHz";
-    }
+    String operator()(float value) const;
 
-    float operator()(const String& text) const
-    {
-        return text.endsWith(" kHz")
-                   ? static_cast<float>(text.dropLastCharacters(4).getFloatValue()
-                                        * 1000.0)
-                   : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
-    }
+    float operator()(const String& text) const;
 };
 
 /**
@@ -60,9 +44,9 @@ struct FrequencyTextConverter
  */
 struct QualityTextConverter
 {
-    String operator()(float const value) const { return String(value, 1); }
+    String operator()(float value) const;
 
-    float operator()(const String& text) const { return text.getFloatValue(); }
+    float operator()(const String& text) const;
 };
 
 /**
@@ -70,15 +54,9 @@ struct QualityTextConverter
  */
 struct GainTextConverter
 {
-    String operator()(float const value) const
-    {
-        return String(Decibels::gainToDecibels(value), 1) + " dB";
-    }
+    String operator()(float value) const;
 
-    float operator()(const String& text) const
-    {
-        return Decibels::decibelsToGain(text.dropLastCharacters(3).getFloatValue());
-    }
+    float operator()(const String& text) const;
 };
 
 /**
@@ -86,23 +64,9 @@ struct GainTextConverter
  */
 struct InvertPhaseTextConverter
 {
-    String operator()(float const value) const
-    {
-        return value < 0.5 ? "Normal" : "Inverted";
-    }
+    String operator()(float value) const;
 
-    float operator()(const String& text) const
-    {
-        if (text == "Normal")
-        {
-            return 0.0f;
-        }
-        if (text == "Inverted")
-        {
-            return 1.0f;
-        }
-        return 0.0f;
-    }
+    float operator()(const String& text) const;
 };
 
 /**
@@ -110,7 +74,7 @@ struct InvertPhaseTextConverter
  */
 struct FilterTypeTextConverter
 {
-    String operator()(float const value) const;
+    String operator()(float value) const;
 
     float operator()(const String& text) const;
 };
