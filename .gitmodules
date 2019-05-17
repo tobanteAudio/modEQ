@@ -1,3 +1,6 @@
 [submodule "3rd_party/JUCE"]
 	path = 3rd_party/JUCE
 	url = https://github.com/WeAreROLI/JUCE.git
+[submodule "3rd_party/ff_meters"]
+	path = 3rd_party/ff_meters
+	url = https://github.com/tobanteAudio/ff_meters
