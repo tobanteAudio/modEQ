@@ -2,7 +2,7 @@ var searchData=
 [
   ['menubarcontroller',['MenuBarController',['../classtobante_audio_1_1_menu_bar_controller.html#a7b64656161ade9c7c1a319764f33ae6d',1,'tobanteAudio::MenuBarController']]],
   ['menubarview',['MenuBarView',['../classtobante_audio_1_1_menu_bar_view.html#a75fd205a22014641f347d53c5538e8d9',1,'tobanteAudio::MenuBarView']]],
-  ['modeqeditor',['ModEQEditor',['../class_mod_e_q_editor.html#a620539dc35fd56c77a3b4511e07c549e',1,'ModEQEditor']]],
+  ['modeqeditor',['ModEQEditor',['../class_mod_e_q_editor.html#a7f623890ebd047ce0814f1d767b295db',1,'ModEQEditor']]],
   ['modeqprocessor',['ModEQProcessor',['../class_mod_e_q_processor.html#aa7896414eac9cf569bd3ffe4a11c3566',1,'ModEQProcessor']]],
   ['modulationconnectitemview',['ModulationConnectItemView',['../classtobante_audio_1_1_modulation_connect_item_view.html#a72fa72fc50a631537483028bcfbce5b5',1,'tobanteAudio::ModulationConnectItemView']]],
   ['modulationsourceanalyser',['ModulationSourceAnalyser',['../classtobante_audio_1_1_modulation_source_analyser.html#ae48f179a2ad56094cdd7c285466362b2',1,'tobanteAudio::ModulationSourceAnalyser']]],

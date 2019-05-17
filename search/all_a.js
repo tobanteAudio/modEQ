@@ -11,7 +11,7 @@ var searchData=
   ['modconnect2',['modConnect2',['../classtobante_audio_1_1_modulation_source_view.html#a0567fc358b56e9e6eb16c689a65d65e7',1,'tobanteAudio::ModulationSourceView']]],
   ['modeq_5feditor_2eh',['modEQ_editor.h',['../mod_e_q__editor_8h.html',1,'']]],
   ['modeq_5fprocessor_2eh',['modEQ_processor.h',['../mod_e_q__processor_8h.html',1,'']]],
-  ['modeqeditor',['ModEQEditor',['../class_mod_e_q_editor.html',1,'ModEQEditor'],['../class_mod_e_q_editor.html#a620539dc35fd56c77a3b4511e07c549e',1,'ModEQEditor::ModEQEditor()']]],
+  ['modeqeditor',['ModEQEditor',['../class_mod_e_q_editor.html',1,'ModEQEditor'],['../class_mod_e_q_editor.html#a7f623890ebd047ce0814f1d767b295db',1,'ModEQEditor::ModEQEditor()']]],
   ['modeqprocessor',['ModEQProcessor',['../class_mod_e_q_processor.html',1,'ModEQProcessor'],['../class_mod_e_q_processor.html#aa7896414eac9cf569bd3ffe4a11c3566',1,'ModEQProcessor::ModEQProcessor()']]],
   ['modsource',['modSource',['../class_mod_e_q_processor.html#afdb0c946918eee2e00503d8551434e65',1,'ModEQProcessor']]],
   ['modulation_5fconnect_5fitem_5fview_2eh',['modulation_connect_item_view.h',['../modulation__connect__item__view_8h.html',1,'']]],
