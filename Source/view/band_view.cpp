@@ -23,9 +23,9 @@ namespace tobanteAudio
 BandView::BandView(int const i, const Colour c)
     : index(i)
     , colour(c)
-    , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-    , quality(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
-    , gain(Slider::RotaryHorizontalVerticalDrag, Slider::TextBoxBelow)
+    , frequency(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
+    , quality(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
+    , gain(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
     , solo(translate("S"))
     , activate(translate("A"))
 {
@@ -45,6 +45,11 @@ BandView::BandView(int const i, const Colour c)
     addAndMakeVisible(frequency);
     addAndMakeVisible(activate);
     addAndMakeVisible(solo);
+
+    // Name
+    frequency.setName("Frequency");
+    quality.setName("Quality");
+    gain.setName("Gain");
 
     // Tooltip
     frequency.setTooltip(translate("Filter's frequency"));

@@ -41,6 +41,74 @@ public:
         setColour(Slider::thumbColourId, tobanteAudio::ORANGE);
     }
 
+    Label* createSliderTextBox(Slider& slider) override
+    {
+        Label* l = LookAndFeel_V4::createSliderTextBox(slider);
+        l->setBorderSize(BorderSize<int>(2, 2, 40, 2));
+        l->setColour(Label::outlineColourId, Colours::red);
+        l->setColour(Label::outlineWhenEditingColourId, Colours::pink);
+        return l;
+    }
+
+    /**
+     * @brief Draws a rotary slider.
+     */
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height,
+                          float sliderPos, const float rotaryStartAngle,
+                          const float rotaryEndAngle, Slider& slider) override
+    {
+        auto outline = slider.findColour(Slider::rotarySliderOutlineColourId);
+        auto fill    = slider.findColour(Slider::rotarySliderFillColourId);
+
+        auto bounds = Rectangle<int>(x, y, width, height).toFloat().reduced(5);
+
+        auto radius  = jmin(bounds.getWidth(), bounds.getHeight()) / 2.0f;
+        auto toAngle = rotaryStartAngle + sliderPos * (rotaryEndAngle - rotaryStartAngle);
+        auto lineW   = jmin(8.0f, radius * 0.5f);
+        auto arcRadius = radius - lineW * 0.5f;
+
+        Path backgroundArc;
+        backgroundArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius,
+                                    arcRadius, 0.0f, rotaryStartAngle, rotaryEndAngle,
+                                    true);
+
+        const auto label = [&]() -> String {
+            if (slider.getName() == String("Frequency"))
+            {
+                return String(slider.getValue());
+            }
+            return String::charToString(slider.getName()[0]);
+        }();
+
+        const auto stroke
+            = PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded);
+        g.setColour(outline);
+        g.strokePath(backgroundArc, stroke);
+        g.setFont(16.0f);
+        g.drawText(label, bounds, Justification::centred, true);
+
+        if (slider.isEnabled())
+        {
+            Path valueArc;
+            valueArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius,
+                                   arcRadius, 0.0f, rotaryStartAngle, toAngle, true);
+
+            g.setColour(fill);
+            g.strokePath(valueArc, PathStrokeType(lineW, PathStrokeType::curved,
+                                                  PathStrokeType::rounded));
+        }
+
+        auto thumbWidth = lineW * 1.5f;
+        Point<float> thumbPoint(
+            bounds.getCentreX()
+                + arcRadius * std::cos(toAngle - MathConstants<float>::halfPi),
+            bounds.getCentreY()
+                + arcRadius * std::sin(toAngle - MathConstants<float>::halfPi));
+
+        g.setColour(slider.findColour(Slider::thumbColourId));
+        g.fillEllipse(Rectangle<float>(thumbWidth, thumbWidth).withCentre(thumbPoint));
+    }
+
     /**
      * @brief Draws a ComboBox.
      */

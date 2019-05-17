@@ -86,11 +86,9 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(analyserView.get());
 
     //  Master Section
-    //outputSliderFrame.setText(translate("Master - Out"));
-    //outputSliderFrame.setTextLabelPosition(Justification::centred);
-    //addAndMakeVisible(outputSliderFrame);
     addAndMakeVisible(output);
     output.setTooltip(translate("Overall Gain"));
+    output.setName("M");
 
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = processor.getPluginState();
@@ -99,7 +97,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         new SliderAttachment(state, tobanteAudio::Parameters::Output, output));
 
     setResizable(true, true);
-    setResizeLimits(800, 450, 2990, 1800);
+    setResizeLimits(1000, 750, 2990, 1800);
     setSize(1000, 750);
     tooltipWindow->setMillisecondsBeforeTipAppears(1000);
 

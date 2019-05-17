@@ -179,8 +179,7 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
     }
 }
 
-String EqualizerProcessor::getFilterTypeName(
-    const tobanteAudio::EqualizerProcessor::FilterType type)
+String EqualizerProcessor::getFilterTypeName(const EqualizerProcessor::FilterType type)
 {
     switch (type)
     {
