@@ -36,6 +36,8 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
                                           const FFAU::LevelMeter::MeterFlags meterType,
                                           const juce::Rectangle<float> bounds) override
     {
+        ignoreUnused(g);
+        ignoreUnused(meterType);
         return bounds;
     }
 
@@ -49,25 +51,38 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
                                  const int numChannels,
                                  const int fixedNumChannels) override
     {
+        ignoreUnused(g);
+        ignoreUnused(meterType);
+        ignoreUnused(bounds);
+        ignoreUnused(numChannels);
+        ignoreUnused(fixedNumChannels);
     }
 
     /**
      * @brief This callback draws the clip indicator. The background has an extra
      * callback.
      */
-    void drawClipIndicator(juce::Graphics&, const FFAU::LevelMeter::MeterFlags meterType,
+    void drawClipIndicator(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
                            const juce::Rectangle<float> bounds,
                            const bool hasClipped) override
     {
+        ignoreUnused(g);
+        ignoreUnused(meterType);
+        ignoreUnused(bounds);
+        ignoreUnused(hasClipped);
     }
 
     /**
      * @brief This callback draws the number of maximum level. The background has an extra
      * callback.
      */
-    void drawMaxNumber(juce::Graphics&, const FFAU::LevelMeter::MeterFlags meterType,
+    void drawMaxNumber(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
                        const juce::Rectangle<float> bounds, const float maxGain) override
     {
+        ignoreUnused(g);
+        ignoreUnused(meterType);
+        ignoreUnused(bounds);
+        ignoreUnused(maxGain);
     }
 
     /*
@@ -78,6 +93,8 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
     getMeterTickmarksBounds(const juce::Rectangle<float> bounds,
                             const FFAU::LevelMeter::MeterFlags meterType) const override
     {
+        ignoreUnused(meterType);
+        ignoreUnused(bounds);
         return juce::Rectangle<float>();
     }
 
@@ -88,6 +105,7 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
     getMeterBarBounds(const juce::Rectangle<float> bounds,
                       const FFAU::LevelMeter::MeterFlags meterType) const override
     {
+        ignoreUnused(meterType);
         return bounds;
     }
 };
