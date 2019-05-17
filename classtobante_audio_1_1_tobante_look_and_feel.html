@@ -92,6 +92,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a48c4989d8a9073c862dc51db62aa7a50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtobante_audio_1_1_tobante_look_and_feel.html#a48c4989d8a9073c862dc51db62aa7a50">TobanteLookAndFeel</a> ()</td></tr>
 <tr class="memdesc:a48c4989d8a9073c862dc51db62aa7a50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets up the color scheme.  <a href="#a48c4989d8a9073c862dc51db62aa7a50">More...</a><br /></td></tr>
 <tr class="separator:a48c4989d8a9073c862dc51db62aa7a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9be49d497fa6b54c9a252147c91f7857"><td class="memItemLeft" align="right" valign="top">Label *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtobante_audio_1_1_tobante_look_and_feel.html#a9be49d497fa6b54c9a252147c91f7857">createSliderTextBox</a> (Slider &amp;slider) override</td></tr>
+<tr class="separator:a9be49d497fa6b54c9a252147c91f7857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6037a5a9b50f4daa17869227e11b434f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtobante_audio_1_1_tobante_look_and_feel.html#a6037a5a9b50f4daa17869227e11b434f">drawRotarySlider</a> (Graphics &amp;g, int x, int y, int width, int height, float sliderPos, const float rotaryStartAngle, const float rotaryEndAngle, Slider &amp;slider) override</td></tr>
+<tr class="memdesc:a6037a5a9b50f4daa17869227e11b434f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a rotary slider.  <a href="#a6037a5a9b50f4daa17869227e11b434f">More...</a><br /></td></tr>
+<tr class="separator:a6037a5a9b50f4daa17869227e11b434f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59c3f9b18c49c9caf95dcde6364d0742"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtobante_audio_1_1_tobante_look_and_feel.html#a59c3f9b18c49c9caf95dcde6364d0742">drawComboBox</a> (Graphics &amp;g, int width, int height, bool isButtonDown, int buttonX, int buttonY, int buttonW, int buttonH, ComboBox &amp;box) override</td></tr>
 <tr class="memdesc:a59c3f9b18c49c9caf95dcde6364d0742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a ComboBox.  <a href="#a59c3f9b18c49c9caf95dcde6364d0742">More...</a><br /></td></tr>
 <tr class="separator:a59c3f9b18c49c9caf95dcde6364d0742"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,6 +139,32 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9be49d497fa6b54c9a252147c91f7857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9be49d497fa6b54c9a252147c91f7857">&#9670;&nbsp;</a></span>createSliderTextBox()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Label* tobanteAudio::TobanteLookAndFeel::createSliderTextBox </td>
+          <td>(</td>
+          <td class="paramtype">Slider &amp;&#160;</td>
+          <td class="paramname"><em>slider</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a59c3f9b18c49c9caf95dcde6364d0742"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59c3f9b18c49c9caf95dcde6364d0742">&#9670;&nbsp;</a></span>drawComboBox()</h2>
 
@@ -255,6 +286,86 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Draws a PopupMenu background. </p>
+
+</div>
+</div>
+<a id="a6037a5a9b50f4daa17869227e11b434f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6037a5a9b50f4daa17869227e11b434f">&#9670;&nbsp;</a></span>drawRotarySlider()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void tobanteAudio::TobanteLookAndFeel::drawRotarySlider </td>
+          <td>(</td>
+          <td class="paramtype">Graphics &amp;&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>sliderPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>rotaryStartAngle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>rotaryEndAngle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Slider &amp;&#160;</td>
+          <td class="paramname"><em>slider</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Draws a rotary slider. </p>
 
 </div>
 </div>
