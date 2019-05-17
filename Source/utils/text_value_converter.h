@@ -104,4 +104,14 @@ struct InvertPhaseTextConverter
         return 0.0f;
     }
 };
+
+/**
+ * @brief Text & float converter for filter type.
+ */
+struct FilterTypeTextConverter
+{
+    String operator()(float const value) const;
+
+    float operator()(const String& text) const;
+};
 }  // namespace tobanteAudio

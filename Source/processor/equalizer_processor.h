@@ -235,6 +235,7 @@ private:
     tobanteAudio::ActiveTextConverter activeTextConverter;
     tobanteAudio::QualityTextConverter qualityTextConverter;
     tobanteAudio::FrequencyTextConverter frequencyTextConverter;
+    tobanteAudio::FilterTypeTextConverter filterTypeTextConverter;
 
     void setDefaults();
 
