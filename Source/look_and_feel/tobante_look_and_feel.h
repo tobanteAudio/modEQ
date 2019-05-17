@@ -62,7 +62,8 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
      * @brief This callback draws the clip indicator. The background has an extra
      * callback.
      */
-    void drawClipIndicator(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+    void drawClipIndicator(juce::Graphics& g,
+                           const FFAU::LevelMeter::MeterFlags meterType,
                            const juce::Rectangle<float> bounds,
                            const bool hasClipped) override
     {

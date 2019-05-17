@@ -182,7 +182,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     outputGain.process(context);
 
-	meterSource.measureBlock(buffer);
+    meterSource.measureBlock(buffer);
 }
 
 void ModEQProcessor::parameterChanged(const String& parameter, float newValue)
