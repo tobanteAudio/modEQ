@@ -28,9 +28,8 @@ void AnalyserView::paint(Graphics& g)
     Graphics::ScopedSaveState state(g);
 
     // Background
-    const auto backgroundColour
-        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
+    const auto bgColor = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.fillAll(bgColor.brighter().withAlpha(0.5f));
 
     // Vertical lines & frequency labels
     g.setFont(15.0f);
@@ -104,7 +103,7 @@ void AnalyserView::paint(Graphics& g)
 
     for (const auto& handle : handles)
     {
-        const int size {30};
+        const int size{30};
         g.setColour(handle.color);
         // Label
         g.drawFittedText(String(handle.id), static_cast<int>(handle.label_x),

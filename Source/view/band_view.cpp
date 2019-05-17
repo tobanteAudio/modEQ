@@ -80,16 +80,27 @@ void BandView::resized()
     auto bounds = getLocalBounds();
     bounds.reduce(10, 20);
 
-    type.setBounds(bounds.removeFromTop(20));
+    const auto height      = bounds.getHeight();
+    const auto type_height = static_cast<int>(height / 12);
+    // TYPE
+    type.setBounds(bounds.removeFromTop(type_height));
 
-    auto freqBounds = bounds.removeFromBottom(bounds.getHeight() * 2 / 4);
-    frequency.setBounds(freqBounds.withTop(freqBounds.getY() + 10));
+    // FREQUENCY
+    auto freq_bounds = bounds.removeFromBottom(bounds.getHeight() / 2);
+    frequency.setBounds(freq_bounds);
 
-    auto buttons = freqBounds.reduced(5).withHeight(20);
-    solo.setBounds(buttons.removeFromLeft(20));
-    activate.setBounds(buttons.removeFromRight(20));
+    // BUTTONS
+    const auto buttons_y = freq_bounds.getY() - type_height;
+    auto buttons         = freq_bounds.withTop(buttons_y).withHeight(type_height);
+    solo.setBounds(buttons.removeFromLeft(type_height));
+    activate.setBounds(buttons.removeFromRight(type_height));
 
-    quality.setBounds(bounds.removeFromLeft(bounds.getWidth() / 2));
-    gain.setBounds(bounds);
+    // GAIN & QUALITY
+    const auto quality_bounds = bounds.removeFromLeft(bounds.getWidth() / 2)
+                                    .withTop(bounds.getY() - type_height * 1.5);
+    const auto gain_bounds = bounds.withTop(bounds.getY() + type_height);
+
+    quality.setBounds(quality_bounds);
+    gain.setBounds(gain_bounds);
 }
 }  // namespace tobanteAudio

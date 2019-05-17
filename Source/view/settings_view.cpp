@@ -23,9 +23,8 @@ SettingsView::SettingsView() { rows.emplace_back(String("Settings")); }
 void SettingsView::paint(Graphics& g)
 {
     // Background
-    const auto backgroundColour
-        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
+    const auto bgColor = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.fillAll(bgColor.brighter().withAlpha(0.5f));
 
     // Draw rows
     g.setColour(Colours::black);
