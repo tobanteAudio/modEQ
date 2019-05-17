@@ -263,7 +263,7 @@ public:
     /**
      * @brief Draws a PopupMenu background.
      */
-    void drawPopupMenuBackground(Graphics& g, int width, int height)
+    void drawPopupMenuBackground(Graphics& g, int width, int height) override
     {
         ignoreUnused(width, height);
         g.fillAll(findColour(PopupMenu::backgroundColourId));
