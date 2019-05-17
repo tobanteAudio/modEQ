@@ -24,11 +24,13 @@ SocialButtons::SocialButtons()
     setOpaque(false);
 
     const auto button_type = DrawableButton::ImageFitted;
+    ScopedPointer<XmlElement> svg;
+    ScopedPointer<Drawable> drawable;
 
     // GITHUB
     {
-        auto* svg      = XmlDocument::parse(TobanteAudioData::github_svg);
-        auto* drawable = Drawable::createFromSVG(*svg);
+        svg      = XmlDocument::parse(TobanteAudioData::github_svg);
+        drawable = Drawable::createFromSVG(*svg);
 
         auto* b = buttons.add(new DrawableButton("Github", button_type));
         b->addListener(this);
@@ -36,25 +38,19 @@ SocialButtons::SocialButtons()
         b->setImages(drawable);
         b->setTooltip(translate("Github repository"));
 
-        delete drawable;
-        delete svg;
-
         addAndMakeVisible(b);
     }
 
     // GITHUB PAGES
     {
-        auto svg       = XmlDocument::parse(TobanteAudioData::outlinepublic24px_svg);
-        auto* drawable = Drawable::createFromSVG(*svg);
+        svg      = XmlDocument::parse(TobanteAudioData::outlinepublic24px_svg);
+        drawable = Drawable::createFromSVG(*svg);
 
         auto* b = buttons.add(new DrawableButton("Website", button_type));
         b->addListener(this);
         b->setComponentID("https://tobanteAudio.github.io");
         b->setImages(drawable);
         b->setTooltip(translate("Find us online"));
-
-        delete drawable;
-        delete svg;
 
         addAndMakeVisible(b);
     }
