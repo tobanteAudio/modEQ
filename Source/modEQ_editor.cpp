@@ -75,6 +75,17 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         addAndMakeVisible(bandView);
     }
 
+    // Meter
+    lnf = new tobanteAudio::TobanteMetersLookAndFeel();
+    // adjust the colours to how you like them
+    lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+
+    meter = new FFAU::LevelMeter();  // See FFAU::LevelMeter::MeterFlags for options
+    meter->setLookAndFeel(lnf);
+    meter->setMeterFlags(FFAU::LevelMeter::MaxNumber);
+    meter->setMeterSource(processor.getMeterSource());
+    addAndMakeVisible(meter);
+
     // Plot
     using tobanteAudio::AnalyserController;
     using tobanteAudio::AnalyserView;
@@ -84,16 +95,6 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     analyserController
         = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
-
-    // Meter
-    lnf = new FFAU::LevelMeterLookAndFeel();
-    // adjust the colours to how you like them
-    lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
-
-    meter = new FFAU::LevelMeter();  // See FFAU::LevelMeter::MeterFlags for options
-    meter->setLookAndFeel(lnf);
-    meter->setMeterSource(processor.getMeterSource());
-    addAndMakeVisible(meter);
 
     // Master Section
     addAndMakeVisible(output);
@@ -162,8 +163,10 @@ void ModEQEditor::resized()
     outputSliderFrame = bandSpace.removeFromBottom(bandSpace.getHeight() / 2).reduced(5);
     output.setBounds(outputSliderFrame.reduced(8));
 
-	// Meter
-    meter->setBounds(bandSpace);
+    // Meter
+    auto meter_area = area;
+    // meter->setBounds(bandSpace.reduced(5));
+    meter->setBounds(meter_area.removeFromRight(area.getWidth() / 12));
 
     // FFT
     analyserView->setBounds(area);
