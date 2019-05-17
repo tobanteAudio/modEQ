@@ -8,6 +8,7 @@ var searchData=
   ['tobante_5flook_5fand_5ffeel_2eh',['tobante_look_and_feel.h',['../tobante__look__and__feel_8h.html',1,'']]],
   ['tobanteaudio',['tobanteAudio',['../namespacetobante_audio.html',1,'']]],
   ['tobantelookandfeel',['TobanteLookAndFeel',['../classtobante_audio_1_1_tobante_look_and_feel.html',1,'tobanteAudio::TobanteLookAndFeel'],['../classtobante_audio_1_1_tobante_look_and_feel.html#a48c4989d8a9073c862dc51db62aa7a50',1,'tobanteAudio::TobanteLookAndFeel::TobanteLookAndFeel()']]],
+  ['tobantemeterslookandfeel',['TobanteMetersLookAndFeel',['../classtobante_audio_1_1_tobante_meters_look_and_feel.html',1,'tobanteAudio']]],
   ['togglebypass',['toggleBypass',['../classtobante_audio_1_1_menu_bar_controller.html#a5519aba140a99b90c590abe1661e0b67',1,'tobanteAudio::MenuBarController']]],
   ['toggleconnectview',['toggleConnectView',['../classtobante_audio_1_1_modulation_source_view.html#ad3479cde65b809bb8fccaeb9e2a66d0d',1,'tobanteAudio::ModulationSourceView']]],
   ['toggleinfo',['toggleInfo',['../classtobante_audio_1_1_menu_bar_controller.html#aa5b4b2fb4201710cd7bbf25bedcdd5ce',1,'tobanteAudio::MenuBarController']]],
