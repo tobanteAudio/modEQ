@@ -85,7 +85,17 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
 
-    //  Master Section
+    // Meter
+    lnf = new FFAU::LevelMeterLookAndFeel();
+    // adjust the colours to how you like them
+    lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, juce::Colours::green);
+
+    meter = new FFAU::LevelMeter();  // See FFAU::LevelMeter::MeterFlags for options
+    meter->setLookAndFeel(lnf);
+    meter->setMeterSource(processor.getMeterSource());
+    addAndMakeVisible(meter);
+
+    // Master Section
     addAndMakeVisible(output);
     output.setTooltip(translate("Overall Gain"));
     output.setName("M");
@@ -151,6 +161,9 @@ void ModEQEditor::resized()
     // Background
     outputSliderFrame = bandSpace.removeFromBottom(bandSpace.getHeight() / 2).reduced(5);
     output.setBounds(outputSliderFrame.reduced(8));
+
+	// Meter
+    meter->setBounds(bandSpace);
 
     // FFT
     analyserView->setBounds(area);

@@ -74,6 +74,7 @@ public:
     AudioProcessorValueTreeState& getPluginState() { return state; }
     UndoManager& getUndoManager() { return undo; }
     tobanteAudio::ModulationSourceProcessor modSource;
+    FFAU::LevelMeterSource* getMeterSource() { return &meterSource; }
 
 private:
     tobanteAudio::EqualizerProcessor equalizerProcessor;
@@ -84,6 +85,8 @@ private:
 
     tobanteAudio::GainTextConverter gainTextConverter;
     tobanteAudio::FrequencyTextConverter freqTextConverter;
+
+    FFAU::LevelMeterSource meterSource;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQProcessor)
