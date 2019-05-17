@@ -33,6 +33,7 @@ public:
     void resized() override;
 
 private:
+    std::vector<String> rows;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SettingsView)
 };
 

@@ -18,15 +18,38 @@
 
 namespace tobanteAudio
 {
-InfoView::InfoView() {}
+InfoView::InfoView()
+{
+    // tobanteAudio
+    rows.emplace_back(String("tobanteAudio"));
+    rows.emplace_back(String("modEQ"));
+
+    // Version
+    const String version = JucePlugin_VersionString;
+    rows.emplace_back(String("Version: " + version));
+
+    // License
+    rows.emplace_back(String("License: GPL v3"));
+    rows.emplace_back(String("2018-2019: Tobias Hienzsch"));
+}
 
 void InfoView::paint(Graphics& g)
 {
-    // Version footer
-    const String version = JucePlugin_VersionString;
+    // Background
+    const auto backgroundColour
+        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
+
+    // Draw rows
     g.setColour(Colours::black);
     g.setFont(32.0f);
-    g.drawText("Version: " + version, getLocalBounds(), Justification::centred, true);
+
+    auto bounds       = getLocalBounds();
+    const auto height = static_cast<int>(bounds.getHeight() / rows.size());
+    for (const auto& row : rows)
+    {
+        g.drawText(row, bounds.removeFromTop(height), Justification::centred, true);
+    }
 }
 
 void InfoView::resized() {}

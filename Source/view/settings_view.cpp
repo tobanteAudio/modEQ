@@ -18,13 +18,25 @@
 
 namespace tobanteAudio
 {
-SettingsView::SettingsView() {}
+SettingsView::SettingsView() { rows.emplace_back(String("Settings")); }
 
 void SettingsView::paint(Graphics& g)
 {
+    // Background
+    const auto backgroundColour
+        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.fillAll(backgroundColour.brighter().withAlpha(0.5f));
+
+    // Draw rows
     g.setColour(Colours::black);
     g.setFont(32.0f);
-    g.drawText("Settings", getLocalBounds(), Justification::centred, true);
+
+    auto bounds       = getLocalBounds();
+    const auto height = static_cast<int>(bounds.getHeight() / rows.size());
+    for (const auto& row : rows)
+    {
+        g.drawText(row, bounds.removeFromTop(height), Justification::centred, true);
+    }
 }
 
 void SettingsView::resized() {}
