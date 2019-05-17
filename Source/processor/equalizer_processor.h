@@ -72,7 +72,7 @@ public:
     ~EqualizerProcessor() override;
 
     /**
-     * @brief Prepare dsp with samplerate & frame size.
+     * @brief Prepare dsp with samplerate & outputSliderFrame size.
      */
     void prepareToPlay(double /*unused*/, int /*unused*/) override;
 

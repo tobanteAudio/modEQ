@@ -72,7 +72,7 @@ private:
 
     // Master - Out
     Slider output;
-    GroupComponent frame;  // for output slider
+    Rectangle<int> outputSliderFrame;
     OwnedArray<AudioProcessorValueTreeState::SliderAttachment> attachments;
 
     SharedResourcePointer<TooltipWindow> tooltipWindow;

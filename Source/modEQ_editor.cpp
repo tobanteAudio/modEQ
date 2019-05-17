@@ -86,9 +86,9 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     addAndMakeVisible(analyserView.get());
 
     //  Master Section
-    frame.setText(translate("Master - Out"));
-    frame.setTextLabelPosition(Justification::centred);
-    addAndMakeVisible(frame);
+    //outputSliderFrame.setText(translate("Master - Out"));
+    //outputSliderFrame.setTextLabelPosition(Justification::centred);
+    //addAndMakeVisible(outputSliderFrame);
     addAndMakeVisible(output);
     output.setTooltip(translate("Overall Gain"));
 
@@ -123,6 +123,10 @@ void ModEQEditor::paint(Graphics& g)
     const auto backgroundColour
         = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.fillAll(backgroundColour);
+
+    const auto color = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    g.setColour(color.brighter().withAlpha(0.5f));
+    g.fillRect(outputSliderFrame);
 }
 
 void ModEQEditor::resized()
@@ -146,8 +150,9 @@ void ModEQEditor::resized()
     for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
 
     // Frame around output
-    frame.setBounds(bandSpace.removeFromBottom(bandSpace.getHeight() / 2));
-    output.setBounds(frame.getBounds().reduced(8));
+    // Background
+    outputSliderFrame = bandSpace.removeFromBottom(bandSpace.getHeight() / 2).reduced(5);
+    output.setBounds(outputSliderFrame.reduced(8));
 
     // FFT
     analyserView->setBounds(area);
