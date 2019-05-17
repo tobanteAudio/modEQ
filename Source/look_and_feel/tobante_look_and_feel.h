@@ -163,10 +163,19 @@ public:
                                     true);
 
         const auto label = [&]() -> String {
+
+			// Show frequency value 
             if (slider.getName() == String("Frequency"))
             {
                 return String(slider.getValue());
             }
+			// Show "Master" on master gain slider
+            if (slider.getName() == String("Master"))
+            {
+                return slider.getName();
+            }
+
+			// Default show first char of name
             return String::charToString(slider.getName()[0]);
         }();
 

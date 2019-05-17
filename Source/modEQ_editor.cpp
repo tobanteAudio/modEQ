@@ -100,7 +100,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     // Master Section
     addAndMakeVisible(output);
     output.setTooltip(translate("Overall Gain"));
-    output.setName("M");
+    output.setName("Master");
 
     using SliderAttachment  = AudioProcessorValueTreeState::SliderAttachment;
     auto& state             = processor.getPluginState();

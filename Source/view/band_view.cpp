@@ -81,7 +81,9 @@ void BandView::resized()
     bounds.reduce(10, 20);
 
     const auto height      = bounds.getHeight();
+    const auto width       = bounds.getWidth();
     const auto type_height = static_cast<int>(height / 12);
+
     // TYPE
     type.setBounds(bounds.removeFromTop(type_height));
 
@@ -96,10 +98,9 @@ void BandView::resized()
     activate.setBounds(buttons.removeFromRight(type_height));
 
     // GAIN & QUALITY
-    const auto quality_bounds = bounds.removeFromLeft(bounds.getWidth() / 2)
-                                    .withTop(bounds.getY() - type_height * 1.5);
-    const auto gain_bounds = bounds.withTop(bounds.getY() + type_height);
-
+    const auto quality_top    = static_cast<int>(bounds.getY() - type_height * 1.5);
+    const auto quality_bounds = bounds.removeFromLeft(width / 2).withTop(quality_top);
+    const auto gain_bounds    = bounds.withTop(bounds.getY() + type_height);
     quality.setBounds(quality_bounds);
     gain.setBounds(gain_bounds);
 }
