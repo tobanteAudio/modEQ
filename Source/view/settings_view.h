@@ -29,7 +29,7 @@ public:
     SettingsView();
     ~SettingsView() override = default;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& g) override;
     void resized() override;
 
 private:

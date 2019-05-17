@@ -32,6 +32,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     // Menu
     addAndMakeVisible(menuButtons);
+	// Connect buttons
     menuController.toggleBypass   = [this]() { DBG("BYPASS"); };
     menuController.toggleSettings = [this]() {
         infoView.setVisible(false);
@@ -79,23 +80,21 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     // Meter
     lnf = new tobanteAudio::TobanteMetersLookAndFeel();
-    // adjust the colours to how you like them
     lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, tobanteAudio::ORANGE);
 
-    meter = new FFAU::LevelMeter();  // See FFAU::LevelMeter::MeterFlags for options
-    meter->setLookAndFeel(lnf);
+    meter = new FFAU::LevelMeter();
     meter->setMeterFlags(FFAU::LevelMeter::MaxNumber);
+    meter->setLookAndFeel(lnf);
     meter->setMeterSource(processor.getMeterSource());
     addAndMakeVisible(meter);
 
     // Plot
-    using tobanteAudio::AnalyserController;
-    using tobanteAudio::AnalyserView;
+    using AC = tobanteAudio::AnalyserController;
+    using AV = tobanteAudio::AnalyserView;
 
-    auto& eq     = processor.getEQ();
-    analyserView = std::make_unique<AnalyserView>();
-    analyserController
-        = std::make_unique<AnalyserController>(eq, bandControllers, *analyserView.get());
+    auto& eq           = processor.getEQ();
+    analyserView       = std::make_unique<AV>();
+    analyserController = std::make_unique<AC>(eq, bandControllers, *analyserView);
     addAndMakeVisible(analyserView.get());
 
     // Master Section
@@ -103,12 +102,12 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     output.setTooltip(translate("Overall Gain"));
     output.setName("M");
 
-    using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
-    auto& state            = processor.getPluginState();
+    using SliderAttachment  = AudioProcessorValueTreeState::SliderAttachment;
+    auto& state             = processor.getPluginState();
+    const auto output_param = tobanteAudio::Parameters::Output;
+    attachments.add(new SliderAttachment(state, output_param, output));
 
-    attachments.add(
-        new SliderAttachment(state, tobanteAudio::Parameters::Output, output));
-
+    // Window settings
     setResizable(true, true);
     setResizeLimits(1000, 750, 2990, 1800);
     setSize(1000, 750);
@@ -131,10 +130,12 @@ ModEQEditor::~ModEQEditor()
 
 void ModEQEditor::paint(Graphics& g)
 {
+    // Background
     const auto backgroundColour
         = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.fillAll(backgroundColour);
 
+    // Frame for master slider
     const auto color = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.setColour(color.brighter().withAlpha(0.5f));
     g.fillRect(outputSliderFrame);
@@ -149,29 +150,27 @@ void ModEQEditor::resized()
     socialButtons.setBounds(area.removeFromBottom(button_height));
     menuButtons.setBounds(area.removeFromTop(button_height));
 
-    // Modulators
-    // auto modArea              = area.removeFromBottom(getHeight() / 5);
-    // auto const modSourceWidth = modArea.getWidth() / 3;
-    // for (auto* modView : modViews)
-    // modView->setBounds(modArea.removeFromLeft(modSourceWidth));
-
     // EQ Bands
-    auto bandSpace   = area.removeFromBottom((getHeight() / 10) * 4);
-    auto const width = roundToInt(bandSpace.getWidth()) / (bandViews.size() + 1);
-    for (auto* bandView : bandViews) bandView->setBounds(bandSpace.removeFromLeft(width));
+    auto band_space  = area.removeFromBottom((getHeight() / 10) * 4);
+    auto const width = roundToInt(band_space.getWidth()) / (bandViews.size() + 1);
+    for (auto* bandView : bandViews)
+    {
+        bandView->setBounds(band_space.removeFromLeft(width));
+    }
 
-    // Frame around output
-    // Background
-    outputSliderFrame = bandSpace.removeFromBottom(bandSpace.getHeight() / 2).reduced(5);
+    // Master output
+    outputSliderFrame
+        = band_space.removeFromBottom(band_space.getHeight() / 2).reduced(5);
     output.setBounds(outputSliderFrame.reduced(8));
 
     // Meter
     auto meter_area = area;
-    // meter->setBounds(bandSpace.reduced(5));
     meter->setBounds(meter_area.removeFromRight(area.getWidth() / 12));
 
     // FFT
     analyserView->setBounds(area);
+
+    // Settings & Info
     infoView.setBounds(area);
     settingsView.setBounds(area);
 }

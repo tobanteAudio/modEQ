@@ -31,7 +31,7 @@ public:
     MenuBarView();
     ~MenuBarView() override = default;
 
-    void paint(Graphics&) override;
+    void paint(Graphics& g) override;
     void resized() override;
 
     DrawableButton undoButton;

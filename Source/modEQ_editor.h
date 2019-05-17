@@ -41,10 +41,10 @@
 class ModEQEditor : public AudioProcessorEditor
 {
 public:
-    ModEQEditor(ModEQProcessor&);
+    ModEQEditor(ModEQProcessor& p);
     ~ModEQEditor() override;
 
-    void paint(Graphics& /*g*/) override;
+    void paint(Graphics& g) override;
     void resized() override;
 
 private:

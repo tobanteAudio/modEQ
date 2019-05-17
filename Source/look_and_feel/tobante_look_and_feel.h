@@ -252,7 +252,9 @@ public:
             auto font = getPopupMenuFont();
 
             if (standardItemHeight > 0 && font.getHeight() > standardItemHeight / 1.3f)
+            {
                 font.setHeight(standardItemHeight / 1.3f);
+            }
 
             idealHeight = standardItemHeight > 0 ? standardItemHeight
                                                  : roundToInt(font.getHeight() * 1.3f);
