@@ -1,6 +1,10 @@
 # tobanteAudio - modEQ
 
-EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
+EQ audio effects plugin with modulation. Supports **macOS**, **Windows** & **Linux** with **VST**, **AudioUnits** & **Standalone** builds.
+
+Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
+
+[**Releases**](https://github.com/tobanteAudio/modEQ/releases)
 
 [**Github Repository**](https://github.com/tobanteaudio/modEQ/)
 
