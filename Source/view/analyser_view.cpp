@@ -80,7 +80,7 @@ void AnalyserView::paint(Graphics& g)
 
     // Analysers
     const Colour inputColour  = Colours::yellow;
-    const Colour outputColour = Colours::red;
+    const Colour outputColour = Colours::purple;
     g.setFont(18.0f);
 
     const float corner_radius = 10.0f;

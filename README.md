@@ -2,7 +2,9 @@
 
 EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
 
-[**Documentation**](https://tobanteaudio.github.io/modEQ/)
+[**Github Repository**](https://github.com/tobanteaudio/modEQ/)
+
+[**Developer Documentation**](https://tobanteaudio.github.io/modEQ/)
 
 ## Status
 
@@ -13,6 +15,12 @@ EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE
 ## Screenshot
 
 ![tobanteAudio modEQ](docs/modEQ_screenshot_plugin.png)
+
+## Clone
+
+```sh
+git clone --recursive https://github.com/tobanteAudio/modEQ.git
+```
 
 ## Features
 
@@ -37,10 +45,6 @@ EQ audio effects plugin with modulation. Used as a playground to learn the [JUCE
 - Bypass button
 
 ## Build
-
-```sh
-git clone --recursive https://github.com/tobanteAudio/modEQ.git
-```
 
 ### Windows
 
