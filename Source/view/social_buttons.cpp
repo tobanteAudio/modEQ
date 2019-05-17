@@ -44,7 +44,7 @@ SocialButtons::SocialButtons()
 
     // GITHUB
     {
-        auto* svg       = XmlDocument::parse(TobanteAudioData::github_svg);
+        auto* svg      = XmlDocument::parse(TobanteAudioData::github_svg);
         auto* drawable = Drawable::createFromSVG(*svg);
 
         auto* b = buttons.add(new DrawableButton("Github", button_type));

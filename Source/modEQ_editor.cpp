@@ -32,7 +32,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     // Menu
     addAndMakeVisible(menuButtons);
-	// Connect buttons
+    // Connect buttons
     menuController.toggleBypass   = [this]() { DBG("BYPASS"); };
     menuController.toggleSettings = [this]() {
         infoView.setVisible(false);

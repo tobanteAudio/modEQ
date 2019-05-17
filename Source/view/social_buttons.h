@@ -35,7 +35,6 @@ public:
     void buttonClicked(Button* b) override;
 
 private:
-    //OwnedArray<ImageButton> buttons;
     OwnedArray<DrawableButton> buttons;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(SocialButtons)
