@@ -83,7 +83,6 @@ cp build/modEQ.so ~/.vst
   - Fix drawing of LFO
   - Add waveforms
 - CI
-  - Pluginval
   - Deploy binaries on tagged commit
   - Unit test runner
 

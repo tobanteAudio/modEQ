@@ -85,7 +85,7 @@ script-anchors:
     - cd $TRAVIS_BUILD_DIR/PluginVal
     - curl -L "https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_macOS.zip" -o pluginval.zip
     - unzip pluginval
-    - pluginval.app/Contents/MacOS/pluginval --validate-in-process --output-dir "./bin" --validate "$TRAVIS_BUILD_DIR/Builds/MacOSX/build/Release/modEQ.vst3" || exit 1
+    - pluginval.app/Contents/MacOS/pluginval --validate-in-process --output-dir "./bin" --strictness-level 10 --validate "$TRAVIS_BUILD_DIR/Builds/MacOSX/build/Release/modEQ.vst3" || exit 1
     - ls bin
 
     # Package
