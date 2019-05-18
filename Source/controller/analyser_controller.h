@@ -40,6 +40,11 @@ public:
                        OwnedArray<tobanteAudio::BandController>&,
                        tobanteAudio::AnalyserView&);
 
+	/**
+     * @brief Destructor.
+     */
+	~AnalyserController();
+
     /**
      * @brief Listen to changes from the processor.
      */

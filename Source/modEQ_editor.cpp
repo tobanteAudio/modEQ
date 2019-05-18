@@ -94,7 +94,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
 
     auto& eq           = processor.getEQ();
     analyserView       = std::make_unique<AV>();
-    analyserController = std::make_unique<AC>(eq, bandControllers, *analyserView);
+    analyserController = std::make_unique<AC>(eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
 
     // Master Section

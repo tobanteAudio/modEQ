@@ -37,6 +37,12 @@ AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
 }
 
+AnalyserController::~AnalyserController()
+{
+    view.removeChangeListener(this);
+    processor.removeChangeListener(this);
+}
+
 void AnalyserController::changeListenerCallback(ChangeBroadcaster* sender)
 {
     ignoreUnused(sender);
