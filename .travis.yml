@@ -49,6 +49,8 @@ script-anchors:
     - make -j4 CONFIG=Release
     - ls -la
     - ls -la build
+
+    # Package
     - zip -r modEQ-$(git describe --tags --abbrev=0)-linux.zip build/modEQ build/modEQ.a
 
   - &script-macOS
@@ -77,6 +79,17 @@ script-anchors:
     - xcodebuild -project modEQ.xcodeproj/ clean
     - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
     - ls -la build/Release
+
+    # Test / PluginVal
+    - mkdir -p $TRAVIS_BUILD_DIR/PluginVal/bin
+    - cd $TRAVIS_BUILD_DIR/PluginVal
+    - curl -L "https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_macOS.zip" -o pluginval.zip
+    - unzip pluginval
+    - pluginval.app/Contents/MacOS/pluginval --validate-in-process --output-dir "./bin" --validate "$TRAVIS_BUILD_DIR/Builds/MacOSX/build/Release/modEQ.vst3" || exit 1
+    - ls bin
+
+    # Package
+    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
     - zip -r modEQ-$(git describe --tags --abbrev=0)-macOS.zip build/Release -x build/Release/libmodEQ.a 
 
 
