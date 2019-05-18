@@ -21,8 +21,7 @@ namespace tobanteAudio
 InfoView::InfoView()
 {
     // tobanteAudio
-    rows.emplace_back(String("tobanteAudio"));
-    rows.emplace_back(String("modEQ"));
+    rows.emplace_back(String("tobanteAudio modEQ"));
 
     // Version
     const String version = JucePlugin_VersionString;
@@ -30,7 +29,7 @@ InfoView::InfoView()
 
     // License
     rows.emplace_back(String("License: GPL v3"));
-    rows.emplace_back(String("2018-2019: Tobias Hienzsch"));
+    rows.emplace_back(String("Copyright 2018-2019 Tobias Hienzsch"));
 }
 
 void InfoView::paint(Graphics& g)
@@ -41,9 +40,10 @@ void InfoView::paint(Graphics& g)
 
     // Draw rows
     g.setColour(Colours::black);
-    g.setFont(32.0f);
+    g.setFont(24.0f);
 
-    auto bounds       = getLocalBounds();
+    auto bounds = getLocalBounds();
+    bounds.reduce(50, 100);
     const auto height = static_cast<int>(bounds.getHeight() / rows.size());
     for (const auto& row : rows)
     {
