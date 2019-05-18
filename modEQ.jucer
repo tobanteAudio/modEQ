@@ -1,234 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="5.4.3"
-              version="0.3.1" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio"
-              companyEmail="tobanteAudio@gmail.com" bundleIdentifier="com.tobanteAudio.modEQ"
-              pluginName="modEQ" pluginDesc="EQ with modulation" pluginManufacturer="tobanteAudio"
-              pluginManufacturerCode="toAu" pluginCode="tamq" pluginAUExportPrefix="modEQAU"
-              aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx"
-              binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17"
-              pluginFormats="buildAU,buildStandalone,buildVST3" companyCopyright="GNU GENERAL PUBLIC LICENSE Version 3"
-              displaySplashScreen="0" reportAppUsage="0" compilerFlagSchemes="NewScheme">
-  <MAINGROUP id="EssRVE" name="modEQ">
-    <GROUP id="{0C3DA829-D5EA-35DC-FD4E-83860C411AA3}" name="Tests">
-      <FILE id="zbZH1v" name="test_main.cpp" compile="1" resource="0" file="Tests/test_main.cpp"/>
-      <FILE id="BH4NHN" name="test_main.h" compile="0" resource="0" file="Tests/test_main.h"/>
-      <FILE id="mV36ev" name="test_text_converters.h" compile="0" resource="0"
-            file="Tests/test_text_converters.h"/>
-    </GROUP>
-    <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
-      <GROUP id="{D691D8BC-2439-0822-673D-2A189805C9DC}" name="social-media">
-        <FILE id="Wdr8yJ" name="github.svg" compile="0" resource="1" file="Resources/social-media/github.svg"/>
-      </GROUP>
-      <GROUP id="{ECB25120-D1BE-0A8C-D0EB-308823B55B20}" name="material-icons">
-        <FILE id="uTsSNg" name="outline-high_quality-24px.svg" compile="0"
-              resource="1" file="Resources/material-icons/outline-high_quality-24px.svg"/>
-        <FILE id="DSgX7y" name="outline-info-24px.svg" compile="0" resource="1"
-              file="Resources/material-icons/outline-info-24px.svg"/>
-        <FILE id="uKe7fq" name="outline-power_settings_new-24px.svg" compile="0"
-              resource="1" file="Resources/material-icons/outline-power_settings_new-24px.svg"/>
-        <FILE id="IZqwVZ" name="outline-public-24px.svg" compile="0" resource="1"
-              file="Resources/material-icons/outline-public-24px.svg"/>
-        <FILE id="DsnV3F" name="outline-redo-24px.svg" compile="0" resource="1"
-              file="Resources/material-icons/outline-redo-24px.svg"/>
-        <FILE id="aMh7LI" name="outline-settings-24px.svg" compile="0" resource="1"
-              file="Resources/material-icons/outline-settings-24px.svg"/>
-        <FILE id="Dbvi41" name="outline-settings_input_svideo-24px.svg" compile="0"
-              resource="1" file="Resources/material-icons/outline-settings_input_svideo-24px.svg"/>
-        <FILE id="XZ4nHt" name="outline-undo-24px.svg" compile="0" resource="1"
-              file="Resources/material-icons/outline-undo-24px.svg"/>
-      </GROUP>
-    </GROUP>
-    <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
-      <GROUP id="{B81443DB-0EAA-6143-049F-FE5E1482C8EA}" name="parameters">
-        <FILE id="XUeaSv" name="parameters.h" compile="0" resource="0" file="Source/parameters/parameters.h"/>
-        <FILE id="gS13k0" name="text_value_converter.cpp" compile="1" resource="0"
-              file="Source/parameters/text_value_converter.cpp"/>
-        <FILE id="kcXK3G" name="text_value_converter.h" compile="0" resource="0"
-              file="Source/parameters/text_value_converter.h"/>
-      </GROUP>
-      <GROUP id="{2FB63478-5F96-2F21-1510-028D9946F218}" name="settings">
-        <FILE id="rp2Tg1" name="constants.h" compile="0" resource="0" file="Source/settings/constants.h"/>
-      </GROUP>
-      <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
-        <FILE id="Xvpwgz" name="modulation_source_analyser.h" compile="0" resource="0"
-              file="Source/analyser/modulation_source_analyser.h"/>
-        <FILE id="YPzjeA" name="spectrum_analyser.h" compile="0" resource="0"
-              file="Source/analyser/spectrum_analyser.h"/>
-      </GROUP>
-      <GROUP id="{D1D70FC5-BC47-31EF-50DF-052ED29AE9A1}" name="controller">
-        <FILE id="pal29X" name="analyser_controller.cpp" compile="1" resource="0"
-              file="Source/controller/analyser_controller.cpp"/>
-        <FILE id="QwTZt6" name="analyser_controller.h" compile="0" resource="0"
-              file="Source/controller/analyser_controller.h"/>
-        <FILE id="PK42nw" name="band_controller.cpp" compile="1" resource="0"
-              file="Source/controller/band_controller.cpp"/>
-        <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0"
-              file="Source/controller/band_controller.h"/>
-        <FILE id="YQH2fK" name="menu_bar_controller.cpp" compile="1" resource="0"
-              file="Source/controller/menu_bar_controller.cpp"/>
-        <FILE id="EtINWV" name="menu_bar_controller.h" compile="0" resource="0"
-              file="Source/controller/menu_bar_controller.h"/>
-        <FILE id="Hte4ox" name="modulation_source_controller.cpp" compile="1"
-              resource="0" file="Source/controller/modulation_source_controller.cpp"/>
-        <FILE id="g0jlaN" name="modulation_source_controller.h" compile="0"
-              resource="0" file="Source/controller/modulation_source_controller.h"/>
-      </GROUP>
-      <GROUP id="{12FBCE62-A8E3-78E5-B4D1-40F0EAF9EB75}" name="look_and_feel">
-        <FILE id="YPsf5c" name="tobante_look_and_feel.cpp" compile="1" resource="0"
-              file="Source/look_and_feel/tobante_look_and_feel.cpp"/>
-        <FILE id="JFS7h9" name="tobante_look_and_feel.h" compile="0" resource="0"
-              file="Source/look_and_feel/tobante_look_and_feel.h"/>
-      </GROUP>
-      <GROUP id="{CDE0EA6F-D246-9914-9531-36D7C9EE98EB}" name="processor">
-        <FILE id="bHkOhA" name="base_processor.h" compile="0" resource="0"
-              file="Source/processor/base_processor.h"/>
-        <FILE id="hQHtcH" name="equalizer_processor.cpp" compile="1" resource="0"
-              file="Source/processor/equalizer_processor.cpp"/>
-        <FILE id="F9i1iV" name="equalizer_processor.h" compile="0" resource="0"
-              file="Source/processor/equalizer_processor.h"/>
-        <FILE id="pIZQs2" name="modulation_source_processor.cpp" compile="1"
-              resource="0" file="Source/processor/modulation_source_processor.cpp"/>
-        <FILE id="moOkIU" name="modulation_source_processor.h" compile="0"
-              resource="0" file="Source/processor/modulation_source_processor.h"/>
-      </GROUP>
-      <GROUP id="{9D77E879-A047-C5BD-EFA2-A41EF6C65944}" name="render">
-        <FILE id="MMHouP" name="svg.cpp" compile="1" resource="0" file="Source/render/svg.cpp"/>
-        <FILE id="djfw2S" name="svg.h" compile="0" resource="0" file="Source/render/svg.h"/>
-      </GROUP>
-      <GROUP id="{FD3FFB1B-0DCE-BD90-F50C-6E1B4F5A5C15}" name="view">
-        <FILE id="MhQUCF" name="analyser_view.cpp" compile="1" resource="0"
-              file="Source/view/analyser_view.cpp"/>
-        <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
-        <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
-        <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
-        <FILE id="Sn9EU7" name="info_view.cpp" compile="1" resource="0" file="Source/view/info_view.cpp"/>
-        <FILE id="pkFWee" name="info_view.h" compile="0" resource="0" file="Source/view/info_view.h"/>
-        <FILE id="UdUeB0" name="menu_bar_view.cpp" compile="1" resource="0"
-              file="Source/view/menu_bar_view.cpp"/>
-        <FILE id="GrxriU" name="menu_bar_view.h" compile="0" resource="0" file="Source/view/menu_bar_view.h"/>
-        <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1"
-              resource="0" file="Source/view/modulation_connect_item_view.cpp"/>
-        <FILE id="GhYL0T" name="modulation_connect_item_view.h" compile="0"
-              resource="0" file="Source/view/modulation_connect_item_view.h"/>
-        <FILE id="Sndw7F" name="modulation_source_view.cpp" compile="1" resource="0"
-              file="Source/view/modulation_source_view.cpp"/>
-        <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0"
-              file="Source/view/modulation_source_view.h"/>
-        <FILE id="qg5LZt" name="settings_view.cpp" compile="1" resource="0"
-              file="Source/view/settings_view.cpp"/>
-        <FILE id="mRCfaH" name="settings_view.h" compile="0" resource="0" file="Source/view/settings_view.h"/>
-        <FILE id="nCOPM9" name="social_buttons.cpp" compile="1" resource="0"
-              file="Source/view/social_buttons.cpp"/>
-        <FILE id="SFKS9r" name="social_buttons.h" compile="0" resource="0"
-              file="Source/view/social_buttons.h"/>
-      </GROUP>
-      <FILE id="R7sLSP" name="modEQ_editor.cpp" compile="1" resource="0"
-            file="Source/modEQ_editor.cpp"/>
-      <FILE id="b3Aodl" name="modEQ_editor.h" compile="0" resource="0" file="Source/modEQ_editor.h"/>
-      <FILE id="iVjDW0" name="modEQ_processor.cpp" compile="1" resource="0"
-            file="Source/modEQ_processor.cpp"/>
-      <FILE id="CH9QNv" name="modEQ_processor.h" compile="0" resource="0"
-            file="Source/modEQ_processor.h"/>
-    </GROUP>
-  </MAINGROUP>
-  <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug"/>
-        <CONFIGURATION isDebug="0" name="Release"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="ff_meters" path="3rd_party"/>
-      </MODULEPATHS>
-    </XCODE_MAC>
-    <VS2017 targetFolder="Builds/VisualStudio2017">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="0" winWarningLevel="4"
-                       multiProcessorCompilation="1"/>
-        <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="0" winWarningLevel="4"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_opengl" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party\JUCE\modules"/>
-        <MODULEPATH id="ff_meters" path="3rd_party"/>
-      </MODULEPATHS>
-    </VS2017>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" optimisation="4"/>
-        <CONFIGURATION isDebug="0" name="Release"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
-        <MODULEPATH id="ff_meters" path="3rd_party"/>
-      </MODULEPATHS>
-    </LINUX_MAKE>
-  </EXPORTFORMATS>
-  <MODULES>
-    <MODULE id="ff_meters" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
-            useGlobalPath="0"/>
-    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-  </MODULES>
-  <LIVE_SETTINGS>
-    <WINDOWS windowsTargetPlatformVersion="10.0.17763.0" buildEnabled="0"
-             defines="TOBANTEAUDIO_LIVE_MOCK=1"/>
-  </LIVE_SETTINGS>
-  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+<JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="5.4.3" version="0.4.0" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio" companyEmail="tobanteAudio@gmail.com" bundleIdentifier="com.tobanteAudio.modEQ" pluginName="modEQ" pluginDesc="EQ with modulation" pluginManufacturer="tobanteAudio" pluginManufacturerCode="toAu" pluginCode="tamq" pluginAUExportPrefix="modEQAU" aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx" binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17" pluginFormats="buildAU,buildStandalone,buildVST3" companyCopyright="GNU GENERAL PUBLIC LICENSE Version 3" displaySplashScreen="0" reportAppUsage="0" compilerFlagSchemes="NewScheme">
+      <MAINGROUP id="EssRVE" name="modEQ">
+            <GROUP id="{0C3DA829-D5EA-35DC-FD4E-83860C411AA3}" name="Tests">
+                  <FILE id="zbZH1v" name="test_main.cpp" compile="1" resource="0" file="Tests/test_main.cpp"/>
+                  <FILE id="BH4NHN" name="test_main.h" compile="0" resource="0" file="Tests/test_main.h"/>
+                  <FILE id="mV36ev" name="test_text_converters.h" compile="0" resource="0" file="Tests/test_text_converters.h"/>
+            </GROUP>
+            <GROUP id="{CDDD81A1-6CBB-8EB2-98AA-B228F3565A44}" name="Resources">
+                  <GROUP id="{D691D8BC-2439-0822-673D-2A189805C9DC}" name="social-media">
+                        <FILE id="Wdr8yJ" name="github.svg" compile="0" resource="1" file="Resources/social-media/github.svg"/>
+                  </GROUP>
+                  <GROUP id="{ECB25120-D1BE-0A8C-D0EB-308823B55B20}" name="material-icons">
+                        <FILE id="uTsSNg" name="outline-high_quality-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-high_quality-24px.svg"/>
+                        <FILE id="DSgX7y" name="outline-info-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-info-24px.svg"/>
+                        <FILE id="uKe7fq" name="outline-power_settings_new-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-power_settings_new-24px.svg"/>
+                        <FILE id="IZqwVZ" name="outline-public-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-public-24px.svg"/>
+                        <FILE id="DsnV3F" name="outline-redo-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-redo-24px.svg"/>
+                        <FILE id="aMh7LI" name="outline-settings-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-settings-24px.svg"/>
+                        <FILE id="Dbvi41" name="outline-settings_input_svideo-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-settings_input_svideo-24px.svg"/>
+                        <FILE id="XZ4nHt" name="outline-undo-24px.svg" compile="0" resource="1" file="Resources/material-icons/outline-undo-24px.svg"/>
+                  </GROUP>
+            </GROUP>
+            <GROUP id="{4485DC93-7900-43A3-8F38-A14AC8A39048}" name="Source">
+                  <GROUP id="{B81443DB-0EAA-6143-049F-FE5E1482C8EA}" name="parameters">
+                        <FILE id="XUeaSv" name="parameters.h" compile="0" resource="0" file="Source/parameters/parameters.h"/>
+                        <FILE id="gS13k0" name="text_value_converter.cpp" compile="1" resource="0" file="Source/parameters/text_value_converter.cpp"/>
+                        <FILE id="kcXK3G" name="text_value_converter.h" compile="0" resource="0" file="Source/parameters/text_value_converter.h"/>
+                  </GROUP>
+                  <GROUP id="{2FB63478-5F96-2F21-1510-028D9946F218}" name="settings">
+                        <FILE id="rp2Tg1" name="constants.h" compile="0" resource="0" file="Source/settings/constants.h"/>
+                  </GROUP>
+                  <GROUP id="{1DD29A67-F22D-9592-D8B3-29BDA8B543F6}" name="analyser">
+                        <FILE id="Xvpwgz" name="modulation_source_analyser.h" compile="0" resource="0" file="Source/analyser/modulation_source_analyser.h"/>
+                        <FILE id="YPzjeA" name="spectrum_analyser.h" compile="0" resource="0" file="Source/analyser/spectrum_analyser.h"/>
+                  </GROUP>
+                  <GROUP id="{D1D70FC5-BC47-31EF-50DF-052ED29AE9A1}" name="controller">
+                        <FILE id="pal29X" name="analyser_controller.cpp" compile="1" resource="0" file="Source/controller/analyser_controller.cpp"/>
+                        <FILE id="QwTZt6" name="analyser_controller.h" compile="0" resource="0" file="Source/controller/analyser_controller.h"/>
+                        <FILE id="PK42nw" name="band_controller.cpp" compile="1" resource="0" file="Source/controller/band_controller.cpp"/>
+                        <FILE id="JUtF54" name="band_controller.h" compile="0" resource="0" file="Source/controller/band_controller.h"/>
+                        <FILE id="YQH2fK" name="menu_bar_controller.cpp" compile="1" resource="0" file="Source/controller/menu_bar_controller.cpp"/>
+                        <FILE id="EtINWV" name="menu_bar_controller.h" compile="0" resource="0" file="Source/controller/menu_bar_controller.h"/>
+                        <FILE id="Hte4ox" name="modulation_source_controller.cpp" compile="1" resource="0" file="Source/controller/modulation_source_controller.cpp"/>
+                        <FILE id="g0jlaN" name="modulation_source_controller.h" compile="0" resource="0" file="Source/controller/modulation_source_controller.h"/>
+                  </GROUP>
+                  <GROUP id="{12FBCE62-A8E3-78E5-B4D1-40F0EAF9EB75}" name="look_and_feel">
+                        <FILE id="YPsf5c" name="tobante_look_and_feel.cpp" compile="1" resource="0" file="Source/look_and_feel/tobante_look_and_feel.cpp"/>
+                        <FILE id="JFS7h9" name="tobante_look_and_feel.h" compile="0" resource="0" file="Source/look_and_feel/tobante_look_and_feel.h"/>
+                  </GROUP>
+                  <GROUP id="{CDE0EA6F-D246-9914-9531-36D7C9EE98EB}" name="processor">
+                        <FILE id="bHkOhA" name="base_processor.h" compile="0" resource="0" file="Source/processor/base_processor.h"/>
+                        <FILE id="hQHtcH" name="equalizer_processor.cpp" compile="1" resource="0" file="Source/processor/equalizer_processor.cpp"/>
+                        <FILE id="F9i1iV" name="equalizer_processor.h" compile="0" resource="0" file="Source/processor/equalizer_processor.h"/>
+                        <FILE id="pIZQs2" name="modulation_source_processor.cpp" compile="1" resource="0" file="Source/processor/modulation_source_processor.cpp"/>
+                        <FILE id="moOkIU" name="modulation_source_processor.h" compile="0" resource="0" file="Source/processor/modulation_source_processor.h"/>
+                  </GROUP>
+                  <GROUP id="{9D77E879-A047-C5BD-EFA2-A41EF6C65944}" name="render">
+                        <FILE id="MMHouP" name="svg.cpp" compile="1" resource="0" file="Source/render/svg.cpp"/>
+                        <FILE id="djfw2S" name="svg.h" compile="0" resource="0" file="Source/render/svg.h"/>
+                  </GROUP>
+                  <GROUP id="{FD3FFB1B-0DCE-BD90-F50C-6E1B4F5A5C15}" name="view">
+                        <FILE id="MhQUCF" name="analyser_view.cpp" compile="1" resource="0" file="Source/view/analyser_view.cpp"/>
+                        <FILE id="oMBXeO" name="analyser_view.h" compile="0" resource="0" file="Source/view/analyser_view.h"/>
+                        <FILE id="qR52B7" name="band_view.cpp" compile="1" resource="0" file="Source/view/band_view.cpp"/>
+                        <FILE id="zSywuF" name="band_view.h" compile="0" resource="0" file="Source/view/band_view.h"/>
+                        <FILE id="Sn9EU7" name="info_view.cpp" compile="1" resource="0" file="Source/view/info_view.cpp"/>
+                        <FILE id="pkFWee" name="info_view.h" compile="0" resource="0" file="Source/view/info_view.h"/>
+                        <FILE id="UdUeB0" name="menu_bar_view.cpp" compile="1" resource="0" file="Source/view/menu_bar_view.cpp"/>
+                        <FILE id="GrxriU" name="menu_bar_view.h" compile="0" resource="0" file="Source/view/menu_bar_view.h"/>
+                        <FILE id="C2JDQj" name="modulation_connect_item_view.cpp" compile="1" resource="0" file="Source/view/modulation_connect_item_view.cpp"/>
+                        <FILE id="GhYL0T" name="modulation_connect_item_view.h" compile="0" resource="0" file="Source/view/modulation_connect_item_view.h"/>
+                        <FILE id="Sndw7F" name="modulation_source_view.cpp" compile="1" resource="0" file="Source/view/modulation_source_view.cpp"/>
+                        <FILE id="L02Gzu" name="modulation_source_view.h" compile="0" resource="0" file="Source/view/modulation_source_view.h"/>
+                        <FILE id="qg5LZt" name="settings_view.cpp" compile="1" resource="0" file="Source/view/settings_view.cpp"/>
+                        <FILE id="mRCfaH" name="settings_view.h" compile="0" resource="0" file="Source/view/settings_view.h"/>
+                        <FILE id="nCOPM9" name="social_buttons.cpp" compile="1" resource="0" file="Source/view/social_buttons.cpp"/>
+                        <FILE id="SFKS9r" name="social_buttons.h" compile="0" resource="0" file="Source/view/social_buttons.h"/>
+                  </GROUP>
+                  <FILE id="R7sLSP" name="modEQ_editor.cpp" compile="1" resource="0" file="Source/modEQ_editor.cpp"/>
+                  <FILE id="b3Aodl" name="modEQ_editor.h" compile="0" resource="0" file="Source/modEQ_editor.h"/>
+                  <FILE id="iVjDW0" name="modEQ_processor.cpp" compile="1" resource="0" file="Source/modEQ_processor.cpp"/>
+                  <FILE id="CH9QNv" name="modEQ_processor.h" compile="0" resource="0" file="Source/modEQ_processor.h"/>
+            </GROUP>
+      </MAINGROUP>
+      <EXPORTFORMATS>
+            <XCODE_MAC targetFolder="Builds/MacOSX">
+                  <CONFIGURATIONS>
+                        <CONFIGURATION isDebug="1" name="Debug"/>
+                        <CONFIGURATION isDebug="0" name="Release"/>
+                  </CONFIGURATIONS>
+                  <MODULEPATHS>
+                        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="ff_meters" path="3rd_party"/>
+                  </MODULEPATHS>
+            </XCODE_MAC>
+            <VS2017 targetFolder="Builds/VisualStudio2017">
+                  <CONFIGURATIONS>
+                        <CONFIGURATION isDebug="1" name="Debug" enablePluginBinaryCopyStep="0" winWarningLevel="4" multiProcessorCompilation="1"/>
+                        <CONFIGURATION isDebug="0" name="Release" enablePluginBinaryCopyStep="0" winWarningLevel="4"/>
+                  </CONFIGURATIONS>
+                  <MODULEPATHS>
+                        <MODULEPATH id="juce_audio_basics" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_audio_devices" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_audio_formats" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_audio_processors" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_audio_utils" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_core" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_cryptography" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_data_structures" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_events" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_graphics" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_gui_basics" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_gui_extra" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_opengl" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="juce_dsp" path="3rd_party\JUCE\modules"/>
+                        <MODULEPATH id="ff_meters" path="3rd_party"/>
+                  </MODULEPATHS>
+            </VS2017>
+            <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+                  <CONFIGURATIONS>
+                        <CONFIGURATION isDebug="1" name="Debug" optimisation="4"/>
+                        <CONFIGURATION isDebug="0" name="Release"/>
+                  </CONFIGURATIONS>
+                  <MODULEPATHS>
+                        <MODULEPATH id="juce_audio_basics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_devices" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_formats" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_plugin_client" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_processors" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_audio_utils" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_core" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_cryptography" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_data_structures" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_events" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_graphics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_gui_basics" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_gui_extra" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_opengl" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="juce_dsp" path="3rd_party/JUCE/modules"/>
+                        <MODULEPATH id="ff_meters" path="3rd_party"/>
+                  </MODULEPATHS>
+            </LINUX_MAKE>
+      </EXPORTFORMATS>
+      <MODULES>
+            <MODULE id="ff_meters" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+            <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+      </MODULES>
+      <LIVE_SETTINGS>
+            <WINDOWS windowsTargetPlatformVersion="10.0.17763.0" buildEnabled="0" defines="TOBANTEAUDIO_LIVE_MOCK=1"/>
+      </LIVE_SETTINGS>
+      <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>
