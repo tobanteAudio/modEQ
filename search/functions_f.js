@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['_7eanalysercontroller',['~AnalyserController',['../classtobante_audio_1_1_analyser_controller.html#af70f52ba9c5fbb3afdaea6cfc3e55002',1,'tobanteAudio::AnalyserController']]],
   ['_7eanalyserview',['~AnalyserView',['../classtobante_audio_1_1_analyser_view.html#a189edef013afd237f972b455db0175fa',1,'tobanteAudio::AnalyserView']]],
   ['_7ebandview',['~BandView',['../classtobante_audio_1_1_band_view.html#a6cb46848dae6d7843e5ea38128037a37',1,'tobanteAudio::BandView']]],
   ['_7ebaseprocessor',['~BaseProcessor',['../classtobante_audio_1_1_base_processor.html#a3724c1668831c7d4e5219798b7a15959',1,'tobanteAudio::BaseProcessor']]],
