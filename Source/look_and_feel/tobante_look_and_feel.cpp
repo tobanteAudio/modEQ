@@ -1,4 +1,4 @@
-/* Copyr / constants.h19 Tobias Hienzsch
+/* Copyright 2018-2019 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,8 +13,6 @@
  * You should have received a copy of the GNU General Public License
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
-
-#pragma once
 
 // tobanteAudio
 #include "tobante_look_and_feel.h"
