@@ -22,10 +22,10 @@ build_script:
   - cmd: msbuild c:/modEQ/Builds/VisualStudio2017/modEQ.sln /p:Platform=x64 /p:Configuration=Release /m
   - cmd: cd c:\modEQ
   - cmd: mkdir bin
-  - cmd: powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_Windows.zip -OutFile pluginval.zip"
-  - cmd: powershell -Command "Expand-Archive pluginval.zip -DestinationPath ."
-  - cmd: pluginval.exe --validate-in-process --output-dir "./bin" --validate --strictness-level 5 "c:/modEQ/Builds/VisualStudio2017/x64/Release/VST3/modEQ.vst3"
-  - cmd: if %ERRORLEVEL% neq 0 exit /b 1
+  # - cmd: powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_Windows.zip -OutFile pluginval.zip"
+  # - cmd: powershell -Command "Expand-Archive pluginval.zip -DestinationPath ."
+  # - cmd: pluginval.exe --validate-in-process --output-dir "./bin" --validate --strictness-level 5 "c:/modEQ/Builds/VisualStudio2017/x64/Release/VST3/modEQ.vst3"
+  # - cmd: if %ERRORLEVEL% neq 0 exit /b 1
   - cmd: 7z a modEQ-win.zip c:/modEQ/Builds/VisualStudio2017/x64/Release/VST3/modEQ.vst3
 
 # deploy:
