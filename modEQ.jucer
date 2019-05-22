@@ -8,7 +8,8 @@
               aaxIdentifier="com.tobanteAudio.modEQ" pluginVST3Category="Analyzer,EQ,Fx"
               binaryDataNamespace="TobanteAudioData" cppLanguageStandard="17"
               pluginFormats="buildAU,buildStandalone,buildVST3" companyCopyright="GNU GENERAL PUBLIC LICENSE Version 3"
-              displaySplashScreen="0" reportAppUsage="0" compilerFlagSchemes="NewScheme">
+              displaySplashScreen="0" reportAppUsage="0" compilerFlagSchemes="NewScheme"
+              projectLineFeed="&#10;">
   <MAINGROUP id="EssRVE" name="modEQ">
     <GROUP id="{0C3DA829-D5EA-35DC-FD4E-83860C411AA3}" name="Tests">
       <FILE id="zbZH1v" name="test_main.cpp" compile="1" resource="0" file="Tests/test_main.cpp"/>

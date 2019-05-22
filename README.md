@@ -18,7 +18,7 @@ Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) fram
 
 ## Screenshot
 
-![tobanteAudio modEQ](docs/modEQ_screenshot_plugin.png)
+![tobanteAudio modEQ](doc/modEQ_screenshot_plugin.png)
 
 ## Clone
 
