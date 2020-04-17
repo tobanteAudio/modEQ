@@ -28,15 +28,15 @@ MenuBarView::MenuBarView()
     , infoButton("info", DrawableButton::ImageStretched)
 {
     const auto color = Colour(255, 87, 34).withAlpha(0.9f);
-    ScopedPointer<XmlElement> svg;
-    ScopedPointer<Drawable> drawable;
+    std::unique_ptr<XmlElement> svg;
+    std::unique_ptr<Drawable> drawable;
 
     // UNDO
     svg = XmlDocument::parse(TobanteAudioData::outlineundo24px_svg);
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    undoButton.setImages(drawable);
+    undoButton.setImages(drawable.get());
     undoButton.setTooltip("Undo");
     addAndMakeVisible(undoButton);
 
@@ -45,7 +45,7 @@ MenuBarView::MenuBarView()
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    redoButton.setImages(drawable);
+    redoButton.setImages(drawable.get());
     redoButton.setTooltip("Redo");
     addAndMakeVisible(redoButton);
 
@@ -54,7 +54,7 @@ MenuBarView::MenuBarView()
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    bypassButton.setImages(drawable);
+    bypassButton.setImages(drawable.get());
     bypassButton.setTooltip("Toggle Bypass");
     addAndMakeVisible(bypassButton);
 
@@ -63,7 +63,7 @@ MenuBarView::MenuBarView()
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    settingButton.setImages(drawable);
+    settingButton.setImages(drawable.get());
     settingButton.setTooltip("Open Settings");
     addAndMakeVisible(settingButton);
 
@@ -72,7 +72,7 @@ MenuBarView::MenuBarView()
     jassert(svg != nullptr);
     drawable = Drawable::createFromSVG(*svg);
     drawable->replaceColour(Colours::black, color);
-    infoButton.setImages(drawable);
+    infoButton.setImages(drawable.get());
     infoButton.setTooltip("Open Info");
     addAndMakeVisible(infoButton);
 }

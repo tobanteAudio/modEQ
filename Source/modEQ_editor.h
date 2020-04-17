@@ -71,8 +71,8 @@ private:
     std::unique_ptr<tobanteAudio::AnalyserController> analyserController;
 
     // Meter
-    ScopedPointer<tobanteAudio::TobanteMetersLookAndFeel> lnf;
-    ScopedPointer<FFAU::LevelMeter> meter;
+    std::unique_ptr<tobanteAudio::TobanteMetersLookAndFeel> lnf;
+    std::unique_ptr<FFAU::LevelMeter> meter;
 
     // Master - Out
     Slider output;

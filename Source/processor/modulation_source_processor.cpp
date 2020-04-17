@@ -39,7 +39,7 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
     oscillator.prepare(spec);
     gain.prepare(spec);
 
-    auto freqValue = *state.getRawParameterValue(paramIDFrequency);
+    auto freqValue = state.getRawParameterValue(paramIDFrequency)->load();
     oscillator.setFrequency(freqValue);
 
     analyser.setupAnalyser(int(sampleRate), float(sampleRate));
@@ -47,8 +47,8 @@ void ModulationSourceProcessor::prepareToPlay(double newSampleRate, int samplesP
 
 void ModulationSourceProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer&)
 {
-    float freqValue = *state.getRawParameterValue(paramIDFrequency);
-    float gainValue = *state.getRawParameterValue(paramIDGain);
+    float freqValue = state.getRawParameterValue(paramIDFrequency)->load();
+    float gainValue = state.getRawParameterValue(paramIDGain)->load();
 
     oscillator.setFrequency(freqValue);
     gain.setGainLinear(gainValue);

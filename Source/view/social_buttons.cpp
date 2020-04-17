@@ -24,8 +24,8 @@ SocialButtons::SocialButtons()
     setOpaque(false);
 
     const auto button_type = DrawableButton::ImageFitted;
-    ScopedPointer<XmlElement> svg;
-    ScopedPointer<Drawable> drawable;
+    std::unique_ptr<XmlElement> svg;
+    std::unique_ptr<Drawable> drawable;
 
     // GITHUB
     {
@@ -35,7 +35,7 @@ SocialButtons::SocialButtons()
         auto* b = buttons.add(new DrawableButton("Github", button_type));
         b->addListener(this);
         b->setComponentID("https://github.com/tobanteAudio/modEQ");
-        b->setImages(drawable);
+        b->setImages(drawable.get());
         b->setTooltip(translate("Github repository"));
 
         addAndMakeVisible(b);
@@ -49,7 +49,7 @@ SocialButtons::SocialButtons()
         auto* b = buttons.add(new DrawableButton("Website", button_type));
         b->addListener(this);
         b->setComponentID("https://tobanteAudio.github.io");
-        b->setImages(drawable);
+        b->setImages(drawable.get());
         b->setTooltip(translate("Find us online"));
 
         addAndMakeVisible(b);

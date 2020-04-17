@@ -79,14 +79,14 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     }
 
     // Meter
-    lnf = new tobanteAudio::TobanteMetersLookAndFeel();
+    lnf = std::make_unique<tobanteAudio::TobanteMetersLookAndFeel>();
     lnf->setColour(FFAU::LevelMeter::lmMeterGradientLowColour, tobanteAudio::ORANGE);
 
-    meter = new FFAU::LevelMeter();
+    meter = std::make_unique<FFAU::LevelMeter>();
     meter->setMeterFlags(FFAU::LevelMeter::MaxNumber);
-    meter->setLookAndFeel(lnf);
+    meter->setLookAndFeel(lnf.get());
     meter->setMeterSource(processor.getMeterSource());
-    addAndMakeVisible(meter);
+    addAndMakeVisible(meter.get());
 
     // Plot
     using AC = tobanteAudio::AnalyserController;

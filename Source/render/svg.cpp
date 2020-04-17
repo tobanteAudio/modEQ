@@ -20,10 +20,10 @@ namespace tobanteAudio
 {
 void drawFromSVG(Graphics& g, const char* svgbinary, Colour color, Rectangle<float> pos)
 {
-    ScopedPointer<XmlElement> svg(XmlDocument::parse(svgbinary));
+    std::unique_ptr<XmlElement> svg(XmlDocument::parse(svgbinary));
     jassert(svg != nullptr);
 
-    ScopedPointer<Drawable> drawable;
+    std::unique_ptr<Drawable> drawable;
     if (svg != nullptr)
     {
         drawable = Drawable::createFromSVG(*svg);
