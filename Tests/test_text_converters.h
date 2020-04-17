@@ -17,7 +17,7 @@
 #pragma once
 
 // JUCE
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "modEQ.hpp"
 
 // tobanteAudio
 #include "../Source/parameters/text_value_converter.h"

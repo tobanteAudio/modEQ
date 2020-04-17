@@ -14,8 +14,6 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// JUCE
-#include "../../JuceLibraryCode/JuceHeader.h"
 
 // tobanteAudio
 #include "analyser_view.h"

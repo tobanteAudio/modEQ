@@ -14,8 +14,6 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../JuceLibraryCode/JuceHeader.h"
-
 #include "menu_bar_view.h"
 
 namespace tobanteAudio

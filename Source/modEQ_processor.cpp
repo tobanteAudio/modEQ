@@ -22,11 +22,13 @@
 
 #include "../Tests/test_main.h"
 
+using namespace juce;
+
 ModEQProcessor::ModEQProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-    : AudioProcessor(BusesProperties()
-                         .withInput("Input", AudioChannelSet::stereo(), true)
-                         .withOutput("Output", AudioChannelSet::stereo(), true))
+    : juce::AudioProcessor(BusesProperties()
+                               .withInput("Input", AudioChannelSet::stereo(), true)
+                               .withOutput("Output", AudioChannelSet::stereo(), true))
     ,
 #else
     :

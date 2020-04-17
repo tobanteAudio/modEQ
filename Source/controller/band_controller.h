@@ -16,7 +16,7 @@
 
 #pragma once
 // JUCE
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "modEQ.hpp"
 
 // tobanteAudio
 #include "../modEQ_processor.h"

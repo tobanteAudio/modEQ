@@ -17,7 +17,7 @@
 #pragma once
 
 // JUCE
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "modEQ.hpp"
 
 // tobanteAudio
 #include "analyser/spectrum_analyser.h"
@@ -28,13 +28,13 @@
 /**
  * @brief Entry point for processor thread. Inherites from juce::AudioProcessor
  */
-class ModEQProcessor : public AudioProcessor,
-                       public AudioProcessorValueTreeState::Listener,
-                       public ChangeBroadcaster
+class ModEQProcessor : public juce::AudioProcessor,
+                       public juce::AudioProcessorValueTreeState::Listener,
+                       public juce::ChangeBroadcaster
 {
 private:
-    UndoManager undo;
-    AudioProcessorValueTreeState state;
+    juce::UndoManager undo;
+    juce::AudioProcessorValueTreeState state;
 
 public:
     ModEQProcessor();
@@ -47,14 +47,14 @@ public:
     bool isBusesLayoutSupported(const BusesLayout& layouts) const override;
 #endif
 
-    void processBlock(AudioBuffer<float>& /*buffer*/,
-                      MidiBuffer& /*midiMessages*/) override;
+    void processBlock(juce::AudioBuffer<float>& /*buffer*/,
+                      juce::MidiBuffer& /*midiMessages*/) override;
     void parameterChanged(const String& parameter, float newValue) override;
 
-    AudioProcessorEditor* createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
 
-    const String getName() const override;
+    const juce::String getName() const override;
 
     bool acceptsMidi() const override;
     bool producesMidi() const override;
@@ -65,22 +65,22 @@ public:
     int getCurrentProgram() override;
     void setCurrentProgram(int index) override;
     const String getProgramName(int index) override;
-    void changeProgramName(int index, const String& newName) override;
+    void changeProgramName(int index, const juce::String& newName) override;
 
-    void getStateInformation(MemoryBlock& destData) override;
+    void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
     tobanteAudio::EqualizerProcessor& getEQ() { return equalizerProcessor; }
-    AudioProcessorValueTreeState& getPluginState() { return state; }
-    UndoManager& getUndoManager() { return undo; }
+    juce::AudioProcessorValueTreeState& getPluginState() { return state; }
+    juce::UndoManager& getUndoManager() { return undo; }
     tobanteAudio::ModulationSourceProcessor modSource;
     FFAU::LevelMeterSource* getMeterSource() { return &meterSource; }
 
 private:
     tobanteAudio::EqualizerProcessor equalizerProcessor;
-    AudioBuffer<float> modBuffer;
+    juce::AudioBuffer<float> modBuffer;
 
-    dsp::Gain<float> outputGain;
+    juce::dsp::Gain<float> outputGain;
     double sampleRate = 0;
 
     tobanteAudio::GainTextConverter gainTextConverter;

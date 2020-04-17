@@ -15,7 +15,7 @@
  */
 
 #pragma once
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "modEQ.hpp"
 
 namespace tobanteAudio
 {
