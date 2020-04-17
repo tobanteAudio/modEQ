@@ -14,7 +14,6 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 // tobanteAudio
 #include "analyser_view.h"
 

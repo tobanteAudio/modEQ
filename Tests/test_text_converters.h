@@ -27,7 +27,7 @@ namespace tobanteAudio::tests
 class TestTextValueConverters : public UnitTest
 {
 public:
-    TestTextValueConverters() : UnitTest("Text Value Converters") {}
+    TestTextValueConverters() : UnitTest("Text Value Converters") { }
     void runTest() override
     {
         {

@@ -14,7 +14,6 @@
  * along with modEQ. If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 // tobanteAudio
 #include "modulation_connect_item_view.h"
 
