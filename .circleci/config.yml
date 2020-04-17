@@ -1,0 +1,24 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: "tobante/gcc-cmake-juce:8.3"
+    resource_class: medium
+    environment:
+      DEBIAN_FRONTEND: noninteractive
+    steps:
+      - checkout
+      - run:
+          name: Installing dependecies
+          command: "apt-get update -qq && apt-get install -y -qq --no-install-recommends lcov libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libglu1-mesa-dev"
+      - run: "wget https://github.com/Kitware/CMake/releases/download/v3.17.1/cmake-3.17.1-Linux-x86_64.tar.gz"
+      - run: "tar xzf cmake-3.17.1-Linux-x86_64.tar.gz"
+      - run: "cp -r $PWD/cmake-3.17.1-Linux-x86_64/bin/* /usr/bin/"
+      - run: "cp -r $PWD/cmake-3.17.1-Linux-x86_64/share/* /usr/share/"
+      - run: "which cmake"
+      - run: "cmake --version"
+      - run: "git submodule update --init --recursive"
+      - run: "cmake -S. -Bbuild -GNinja"
+      - run: "cmake --build build"
+
