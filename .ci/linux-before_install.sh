@@ -19,7 +19,4 @@ sudo apt-get install -y \
     libasound2-dev \
     libsndfile1 \
     libjack-dev
-sudo add-apt-repository -y ppa:webkit-team/ppa
-sudo apt-get update
-sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
 sudo apt-get update --fix-missing
