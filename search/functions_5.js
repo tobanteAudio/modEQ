@@ -17,15 +17,15 @@ var searchData=
   ['getidealpopupmenuitemsize',['getIdealPopupMenuItemSize',['../classtobanteAudio_1_1TobanteLookAndFeel.html#afb1b60a6cbb20c235d5c89b49ad2a543',1,'tobanteAudio::TobanteLookAndFeel']]],
   ['getmagnitudes',['getMagnitudes',['../classtobanteAudio_1_1EqualizerProcessor.html#aa6b4b03992e555827c2cbeb2345cad7d',1,'tobanteAudio::EqualizerProcessor']]],
   ['getmetersource',['getMeterSource',['../classModEQProcessor.html#a6241604199eabd2fd61d57f8bdb4f517',1,'ModEQProcessor']]],
-  ['getname',['getName',['../classModEQProcessor.html#a885b8cfbdf4cd3ce73c0084c0f1aea59',1,'ModEQProcessor::getName()'],['../classtobanteAudio_1_1BaseProcessor.html#ac5f36f60b89f1e87ac924aa1b77912b4',1,'tobanteAudio::BaseProcessor::getName()'],['../classtobanteAudio_1_1EqualizerProcessor.html#a71775dce2b3ef5c8493f6e7ba4b160fe',1,'tobanteAudio::EqualizerProcessor::getName()']]],
+  ['getname',['getName',['../classModEQProcessor.html#a225ebddcd8ced4313043d812377cb391',1,'ModEQProcessor::getName()'],['../classtobanteAudio_1_1BaseProcessor.html#ac5f36f60b89f1e87ac924aa1b77912b4',1,'tobanteAudio::BaseProcessor::getName()'],['../classtobanteAudio_1_1EqualizerProcessor.html#a71775dce2b3ef5c8493f6e7ba4b160fe',1,'tobanteAudio::EqualizerProcessor::getName()']]],
   ['getnumbands',['getNumBands',['../classtobanteAudio_1_1EqualizerProcessor.html#ab3aeefebf0c23013ec6055c135ed11e1',1,'tobanteAudio::EqualizerProcessor']]],
   ['getnumprograms',['getNumPrograms',['../classModEQProcessor.html#aa243794566771feeb753bd0985055f46',1,'ModEQProcessor::getNumPrograms()'],['../classtobanteAudio_1_1BaseProcessor.html#a9a395b5570e1a9417368ad977f1fc377',1,'tobanteAudio::BaseProcessor::getNumPrograms()']]],
-  ['getpluginstate',['getPluginState',['../classModEQProcessor.html#afb6e473f66f067a9605f6a00d35c5c9f',1,'ModEQProcessor']]],
+  ['getpluginstate',['getPluginState',['../classModEQProcessor.html#a2ed3ea738a28bdd9f1c22ace62196924',1,'ModEQProcessor']]],
   ['getprogramname',['getProgramName',['../classModEQProcessor.html#ab0f2e6aa092ff5391d4c939f78e244dc',1,'ModEQProcessor::getProgramName()'],['../classtobanteAudio_1_1BaseProcessor.html#ab4e0db6ae8c07baf5ce952d4b4e65c00',1,'tobanteAudio::BaseProcessor::getProgramName()']]],
   ['getqualityparamid',['getQualityParamID',['../classtobanteAudio_1_1EqualizerProcessor.html#ae5c9902d21d52792d0596180b073fcdf',1,'tobanteAudio::EqualizerProcessor']]],
   ['getselectedband',['getSelectedBand',['../classtobanteAudio_1_1EqualizerProcessor.html#abb2e6560a19de50d0ee08255897ed8ef',1,'tobanteAudio::EqualizerProcessor']]],
-  ['getstateinformation',['getStateInformation',['../classModEQProcessor.html#adb35dbf451400f6e8ba95f1ac98d2b56',1,'ModEQProcessor::getStateInformation()'],['../classtobanteAudio_1_1BaseProcessor.html#a65f675976ad65f065b61746cc7ff525a',1,'tobanteAudio::BaseProcessor::getStateInformation()']]],
+  ['getstateinformation',['getStateInformation',['../classModEQProcessor.html#a951db3f1764e4c5b9820bad367f95967',1,'ModEQProcessor::getStateInformation()'],['../classtobanteAudio_1_1BaseProcessor.html#a65f675976ad65f065b61746cc7ff525a',1,'tobanteAudio::BaseProcessor::getStateInformation()']]],
   ['gettaillengthseconds',['getTailLengthSeconds',['../classModEQProcessor.html#a37e470eccd3b7419ed79e8e3c9b96548',1,'ModEQProcessor::getTailLengthSeconds()'],['../classtobanteAudio_1_1BaseProcessor.html#a2d281e6a6bfca1dc13d5475e87af7cd4',1,'tobanteAudio::BaseProcessor::getTailLengthSeconds()']]],
   ['gettypeparamid',['getTypeParamID',['../classtobanteAudio_1_1EqualizerProcessor.html#a116a82a388cb1594197f238f303e996d',1,'tobanteAudio::EqualizerProcessor']]],
-  ['getundomanager',['getUndoManager',['../classModEQProcessor.html#a92387537f1afd38502bfe0f55f2af3be',1,'ModEQProcessor']]]
+  ['getundomanager',['getUndoManager',['../classModEQProcessor.html#a016590cfa895123d9561f49ba3436cd4',1,'ModEQProcessor']]]
 ];

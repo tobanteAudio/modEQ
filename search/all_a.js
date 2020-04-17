@@ -9,6 +9,7 @@ var searchData=
   ['menubarview',['MenuBarView',['../classtobanteAudio_1_1MenuBarView.html',1,'tobanteAudio::MenuBarView'],['../classtobanteAudio_1_1MenuBarView.html#a75fd205a22014641f347d53c5538e8d9',1,'tobanteAudio::MenuBarView::MenuBarView()']]],
   ['modconnect1',['modConnect1',['../classtobanteAudio_1_1ModulationSourceView.html#ae643b5ef534b9688ade97deb8a701d05',1,'tobanteAudio::ModulationSourceView']]],
   ['modconnect2',['modConnect2',['../classtobanteAudio_1_1ModulationSourceView.html#a0567fc358b56e9e6eb16c689a65d65e7',1,'tobanteAudio::ModulationSourceView']]],
+  ['modeq_2ehpp',['modEQ.hpp',['../modEQ_8hpp.html',1,'']]],
   ['modeq_5feditor_2eh',['modEQ_editor.h',['../modEQ__editor_8h.html',1,'']]],
   ['modeq_5fprocessor_2eh',['modEQ_processor.h',['../modEQ__processor_8h.html',1,'']]],
   ['modeqeditor',['ModEQEditor',['../classModEQEditor.html',1,'ModEQEditor'],['../classModEQEditor.html#a7f623890ebd047ce0814f1d767b295db',1,'ModEQEditor::ModEQEditor()']]],
