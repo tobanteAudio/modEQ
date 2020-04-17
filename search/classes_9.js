@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['tobantelookandfeel',['TobanteLookAndFeel',['../classtobante_audio_1_1_tobante_look_and_feel.html',1,'tobanteAudio']]],
-  ['tobantemeterslookandfeel',['TobanteMetersLookAndFeel',['../classtobante_audio_1_1_tobante_meters_look_and_feel.html',1,'tobanteAudio']]]
+  ['tobantelookandfeel',['TobanteLookAndFeel',['../classtobanteAudio_1_1TobanteLookAndFeel.html',1,'tobanteAudio']]],
+  ['tobantemeterslookandfeel',['TobanteMetersLookAndFeel',['../classtobanteAudio_1_1TobanteMetersLookAndFeel.html',1,'tobanteAudio']]]
 ];

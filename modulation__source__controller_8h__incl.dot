@@ -1,0 +1,41 @@
+digraph "Source/controller/modulation_source_controller.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node0 [label="Source/controller/modulation\l_source_controller.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 [label="../../JuceLibraryCode\l/JuceHeader.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node0 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="../modEQ_processor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$modEQ__processor_8h.html"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="../JuceLibraryCode\l/JuceHeader.h",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="analyser/spectrum_analyser.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$spectrum__analyser_8h.html"];
+  Node4 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="parameters/text_value\l_converter.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$text__value__converter_8h.html"];
+  Node5 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="processor/equalizer\l_processor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$equalizer__processor_8h.html"];
+  Node6 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="base_processor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$base__processor_8h.html"];
+  Node7 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="processor/modulation\l_source_processor.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$modulation__source__processor_8h.html"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="../analyser/modulation\l_source_analyser.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$modulation__source__analyser_8h.html"];
+  Node9 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node0 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="../view/modulation\l_source_view.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$modulation__source__view_8h.html"];
+  Node10 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="modulation_connect\l_item_view.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$modulation__connect__item__view_8h.html"];
+  Node11 -> Node1 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}
