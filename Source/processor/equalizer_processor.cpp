@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,7 @@ EqualizerProcessor::EqualizerProcessor(AudioProcessorValueTreeState& vts)
 {
     frequencies.resize(300);
     for (size_t i = 0; i < frequencies.size(); ++i)
-    {
-        frequencies[i] = 20.0 * std::pow(2.0, i / 30.0);
-    }
+    { frequencies[i] = 20.0 * std::pow(2.0, i / 30.0); }
     magnitudes.resize(frequencies.size());
 
     // needs to be in sync with the ProcessorChain filter
@@ -113,10 +111,7 @@ void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlo
 {
     sampleRate = newSampleRate;
 
-    for (size_t i = 0; i < bands.size(); ++i)
-    {
-        updateBand(i);
-    }
+    for (size_t i = 0; i < bands.size(); ++i) { updateBand(i); }
 
     updatePlots();
 
@@ -153,9 +148,7 @@ void EqualizerProcessor::parameterChanged(const String& parameter, float newValu
         if (parameter.startsWith(getBandName(int(i)) + "-"))
         {
             if (parameter.endsWith(tobanteAudio::Parameters::Type))
-            {
-                bands[i].type = static_cast<FilterType>(static_cast<int>(newValue));
-            }
+            { bands[i].type = static_cast<FilterType>(static_cast<int>(newValue)); }
             else if (parameter.endsWith(tobanteAudio::Parameters::Frequency))
             {
                 bands[i].frequency = newValue;
@@ -206,18 +199,12 @@ int EqualizerProcessor::getNumBands() const { return static_cast<int>(bands.size
 
 String EqualizerProcessor::getBandName(const int index) const
 {
-    if (isPositiveAndBelow(index, bands.size()))
-    {
-        return bands[size_t(index)].name;
-    }
+    if (isPositiveAndBelow(index, bands.size())) { return bands[size_t(index)].name; }
     return translate("unknown");
 }
 Colour EqualizerProcessor::getBandColour(const int index) const
 {
-    if (isPositiveAndBelow(index, bands.size()))
-    {
-        return bands[size_t(index)].colour;
-    }
+    if (isPositiveAndBelow(index, bands.size())) { return bands[size_t(index)].colour; }
     return Colours::silver;
 }
 
@@ -282,10 +269,7 @@ void EqualizerProcessor::setSelectedBand(int index)
     std::for_each(bands.begin(), bands.end(), [](auto& item) { item.selected = false; });
 
     // Return if no band (-1) was selected
-    if (index == -1)
-    {
-        return;
-    }
+    if (index == -1) { return; }
 
     // Select new band
     bands.at(index).selected = true;
@@ -296,10 +280,7 @@ int EqualizerProcessor::getSelectedBand()
 {
     for (size_t i = 0; i < bands.size(); ++i)
     {
-        if (bands[i].selected)
-        {
-            return static_cast<int>(i);
-        }
+        if (bands[i].selected) { return static_cast<int>(i); }
     }
 
     return -1;
@@ -358,10 +339,7 @@ void EqualizerProcessor::setDefaults()
 
 EqualizerProcessor::Band* EqualizerProcessor::getBand(const int index)
 {
-    if (isPositiveAndBelow(index, bands.size()))
-    {
-        return &bands[size_t(index)];
-    }
+    if (isPositiveAndBelow(index, bands.size())) { return &bands[size_t(index)]; }
     return nullptr;
 }
 
@@ -412,10 +390,7 @@ void EqualizerProcessor::updateBand(const size_t index)
                 // minimise lock scope, get<0>() needs to be a  compile time
                 // constant
                 ScopedLock processLock(getCallbackLock());
-                if (index == 0)
-                {
-                    *filter.get<0>().state = *newCoefficients;
-                }
+                if (index == 0) { *filter.get<0>().state = *newCoefficients; }
                 else if (index == 1)
                 {
                     *filter.get<1>().state = *newCoefficients;
@@ -495,10 +470,7 @@ void EqualizerProcessor::createFrequencyPlot(Path& p, const std::vector<double>&
 void EqualizerProcessor::createAnalyserPlot(Path& p, const Rectangle<int> bounds,
                                             float minFreq, bool input)
 {
-    if (input)
-    {
-        inputAnalyser.createPath(p, bounds.toFloat(), minFreq);
-    }
+    if (input) { inputAnalyser.createPath(p, bounds.toFloat(), minFreq); }
     else
     {
         outputAnalyser.createPath(p, bounds.toFloat(), minFreq);

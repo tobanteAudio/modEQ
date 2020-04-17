@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,29 +29,14 @@ MenuBarController::MenuBarController(ModEQProcessor& p, tobanteAudio::MenuBarVie
 }
 void MenuBarController::buttonClicked(Button* b)
 {
-    if (b == &view.undoButton)
-    {
-        processor.getUndoManager().undo();
-    }
+    if (b == &view.undoButton) { processor.getUndoManager().undo(); }
 
-    if (b == &view.redoButton)
-    {
-        processor.getUndoManager().redo();
-    }
+    if (b == &view.redoButton) { processor.getUndoManager().redo(); }
 
-    if (b == &view.bypassButton)
-    {
-        toggleBypass();
-    }
+    if (b == &view.bypassButton) { toggleBypass(); }
 
-    if (b == &view.settingButton)
-    {
-        toggleSettings();
-    }
+    if (b == &view.settingButton) { toggleSettings(); }
 
-    if (b == &view.infoButton)
-    {
-        toggleInfo();
-    }
+    if (b == &view.infoButton) { toggleInfo(); }
 }
 }  // namespace tobanteAudio

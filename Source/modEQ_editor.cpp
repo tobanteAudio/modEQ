@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -154,9 +154,7 @@ void ModEQEditor::resized()
     auto band_space  = area.removeFromBottom((getHeight() / 10) * 4);
     auto const width = roundToInt(band_space.getWidth()) / (bandViews.size() + 1);
     for (auto* bandView : bandViews)
-    {
-        bandView->setBounds(band_space.removeFromLeft(width));
-    }
+    { bandView->setBounds(band_space.removeFromLeft(width)); }
 
     // Master output
     outputSliderFrame

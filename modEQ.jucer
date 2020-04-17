@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="5.4.3"
+<JUCERPROJECT id="jWny5A" name="modEQ" projectType="audioplug" jucerVersion="6.0.0"
               version="0.4.0" companyName="tobanteAudio" companyWebsite="https://github.com/tobanteAudio"
               companyEmail="tobanteAudio@gmail.com" bundleIdentifier="com.tobanteAudio.modEQ"
               pluginName="modEQ" pluginDesc="EQ with modulation" pluginManufacturer="tobanteAudio"
@@ -230,6 +230,8 @@
   <LIVE_SETTINGS>
     <WINDOWS windowsTargetPlatformVersion="10.0.17763.0" buildEnabled="0"
              defines="TOBANTEAUDIO_LIVE_MOCK=1"/>
+    <LINUX/>
   </LIVE_SETTINGS>
-  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+  <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"
+               JUCE_WEB_BROWSER="0"/>
 </JUCERPROJECT>

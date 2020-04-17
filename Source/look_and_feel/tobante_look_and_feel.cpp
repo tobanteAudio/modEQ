@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -118,15 +118,9 @@ void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width,
 
     const auto label = [&]() -> String {
         // Show frequency value
-        if (slider.getName() == String("Frequency"))
-        {
-            return String(slider.getValue());
-        }
+        if (slider.getName() == String("Frequency")) { return String(slider.getValue()); }
         // Show "Master" on master gain slider
-        if (slider.getName() == String("Master"))
-        {
-            return slider.getName();
-        }
+        if (slider.getName() == String("Master")) { return slider.getName(); }
 
         // Default show first char of name
         return String::charToString(slider.getName()[0]);
@@ -209,9 +203,7 @@ void TobanteLookAndFeel::getIdealPopupMenuItemSize(const String& text, bool isSe
         auto font = getPopupMenuFont();
 
         if (standardItemHeight > 0 && font.getHeight() > standardItemHeight / 1.3f)
-        {
-            font.setHeight(standardItemHeight / 1.3f);
-        }
+        { font.setHeight(standardItemHeight / 1.3f); }
 
         idealHeight = standardItemHeight > 0 ? standardItemHeight
                                              : roundToInt(font.getHeight() * 1.3f);

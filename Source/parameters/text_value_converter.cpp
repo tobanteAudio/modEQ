@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -73,14 +73,8 @@ String InvertPhaseTextConverter::operator()(float const value) const
 
 float InvertPhaseTextConverter::operator()(const String& text) const
 {
-    if (text == "Normal")
-    {
-        return 0.0f;
-    }
-    if (text == "Inverted")
-    {
-        return 1.0f;
-    }
+    if (text == "Normal") { return 0.0f; }
+    if (text == "Inverted") { return 1.0f; }
     return 0.0f;
 }
 
@@ -98,9 +92,7 @@ float FilterTypeTextConverter::operator()(const String& text) const
     for (int i = 0; i < EP::LastFilterID; ++i)
     {
         if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
-        {
-            return static_cast<float>(i);
-        }
+        { return static_cast<float>(i); }
     }
     return static_cast<float>(EP::NoFilter);
 }

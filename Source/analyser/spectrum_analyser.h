@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,10 +41,7 @@ public:
     void addAudioData(const AudioBuffer<Type>& buffer, int startChannel, int numChannels)
     {
         // Return if not enough space is available
-        if (abstractFifo.getFreeSpace() < buffer.getNumSamples())
-        {
-            return;
-        }
+        if (abstractFifo.getFreeSpace() < buffer.getNumSamples()) { return; }
 
         int start1 {};
         int block1 {};
@@ -63,9 +60,7 @@ public:
              ++channel)
         {
             if (block1 > 0)
-            {
-                audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1);
-            }
+            { audioFifo.addFrom(0, start1, buffer.getReadPointer(channel), block1); }
             if (block2 > 0)
             {
                 audioFifo.addFrom(0, start2, buffer.getReadPointer(channel, block1),
@@ -124,18 +119,12 @@ public:
                     1.0f / (averager.getNumSamples() * (averager.getNumChannels() - 1)));
                 averager.addFrom(0, 0, averager.getReadPointer(averagerPtr),
                                  averager.getNumSamples());
-                if (++averagerPtr == averager.getNumChannels())
-                {
-                    averagerPtr = 1;
-                }
+                if (++averagerPtr == averager.getNumChannels()) { averagerPtr = 1; }
 
                 newDataAvailable = true;
             }
 
-            if (abstractFifo.getNumReady() < fft.getSize())
-            {
-                waitForData.wait(100);
-            }
+            if (abstractFifo.getNumReady() < fft.getSize()) { waitForData.wait(100); }
         }
     }
 

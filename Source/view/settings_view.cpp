@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,11 +33,9 @@ void SettingsView::paint(Graphics& g)
     auto bounds       = getLocalBounds();
     const auto height = static_cast<int>(bounds.getHeight() / rows.size());
     for (const auto& row : rows)
-    {
-        g.drawText(row, bounds.removeFromTop(height), Justification::centred, true);
-    }
+    { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
 }
 
-void SettingsView::resized() {}
+void SettingsView::resized() { }
 
 }  // namespace tobanteAudio

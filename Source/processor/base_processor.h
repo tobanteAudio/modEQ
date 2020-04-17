@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,14 +25,14 @@ namespace tobanteAudio
 class BaseProcessor : public AudioProcessor
 {
 public:
-    BaseProcessor(AudioProcessorValueTreeState& vts) : state(vts) {}
+    BaseProcessor(AudioProcessorValueTreeState& vts) : state(vts) { }
     ~BaseProcessor() override = default;
 
     void prepareToPlay(double /*sampleRate*/,
                        int /*maximumExpectedSamplesPerBlock*/) override
     {
     }
-    void releaseResources() override {}
+    void releaseResources() override { }
     void processBlock(AudioBuffer<float>& /*buffer*/,
                       MidiBuffer& /*midiMessages*/) override
     {
@@ -48,12 +48,12 @@ public:
 
     int getNumPrograms() override { return 0; }
     int getCurrentProgram() override { return 0; }
-    void setCurrentProgram(int /*index*/) override {}
+    void setCurrentProgram(int /*index*/) override { }
     const String getProgramName(int /*index*/) override { return {}; }
-    void changeProgramName(int /*index*/, const String& /*newName*/) override {}
+    void changeProgramName(int /*index*/, const String& /*newName*/) override { }
 
-    void getStateInformation(MemoryBlock& /*destData*/) override {}
-    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override {}
+    void getStateInformation(MemoryBlock& /*destData*/) override { }
+    void setStateInformation(const void* /*data*/, int /*sizeInBytes*/) override { }
 
     AudioProcessorValueTreeState& state;
 

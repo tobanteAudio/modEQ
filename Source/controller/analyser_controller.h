@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,10 +40,10 @@ public:
                        OwnedArray<tobanteAudio::BandController>&,
                        tobanteAudio::AnalyserView&);
 
-	/**
+    /**
      * @brief Destructor.
      */
-	~AnalyserController();
+    ~AnalyserController();
 
     /**
      * @brief Listen to changes from the processor.

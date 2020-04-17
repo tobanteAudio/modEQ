@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ InfoView::InfoView()
 
     // License
     rows.emplace_back(String("License: GPL v3"));
-    rows.emplace_back(String("Copyright 2018-2019 Tobias Hienzsch"));
+    rows.emplace_back(String("Copyright 2018-2020 Tobias Hienzsch"));
 }
 
 void InfoView::paint(Graphics& g)
@@ -46,11 +46,9 @@ void InfoView::paint(Graphics& g)
     bounds.reduce(50, 100);
     const auto height = static_cast<int>(bounds.getHeight() / rows.size());
     for (const auto& row : rows)
-    {
-        g.drawText(row, bounds.removeFromTop(height), Justification::centred, true);
-    }
+    { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
 }
 
-void InfoView::resized() {}
+void InfoView::resized() { }
 
 }  // namespace tobanteAudio

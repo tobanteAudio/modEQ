@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -140,7 +140,7 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
         *state.getRawParameterValue(tobanteAudio::Parameters::Output));
 }
 
-void ModEQProcessor::releaseResources() {}
+void ModEQProcessor::releaseResources() { }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool ModEQProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
@@ -159,9 +159,7 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-    {
-        buffer.clear(i, 0, buffer.getNumSamples());
-    }
+    { buffer.clear(i, 0, buffer.getNumSamples()); }
 
     // modBuffer.clear();
     // modSource.processBlock(modBuffer, midiMessages);
@@ -215,10 +213,7 @@ void ModEQProcessor::getStateInformation(MemoryBlock& destData)
 void ModEQProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
     ValueTree tree = ValueTree::readFromData(data, static_cast<size_t>(sizeInBytes));
-    if (tree.isValid())
-    {
-        state.state = tree;
-    }
+    if (tree.isValid()) { state.state = tree; }
 }
 
 // This creates new instances of the plugin..

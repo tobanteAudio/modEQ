@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,9 +78,7 @@ void ModulationSourceController::sliderValueChanged(Slider* slider)
 void ModulationSourceController::timerCallback()
 {
     if (processor.checkForNewAnalyserData())
-    {
-        processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f);
-    }
+    { processor.createAnalyserPlot(view.modulationPath, view.plotFrame, 20.0f); }
     view.repaint(view.plotFrame);
 }
 

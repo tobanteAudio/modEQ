@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,10 +67,7 @@ void AnalyserController::mouseDown(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr)
-            {
-                return;
-            }
+            if (band == nullptr) { return; }
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
@@ -97,9 +94,7 @@ void AnalyserController::mouseDown(const MouseEvent& e)
                         {e.getScreenX(), e.getScreenY(), 1, 1}),
                     [this, i](int const selected) {
                         if (selected > 0)
-                        {
-                            bandControllers.getUnchecked(i)->setType(selected - 1);
-                        }
+                        { bandControllers.getUnchecked(i)->setType(selected - 1); }
                     });
             }  // If mouse x overlaps
         }      // For all bands
@@ -115,10 +110,7 @@ void AnalyserController::mouseMove(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)  //
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr)
-            {
-                return;
-            }
+            if (band == nullptr) { return; }
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
@@ -188,10 +180,7 @@ void AnalyserController::mouseDoubleClick(const MouseEvent& e)
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr)
-            {
-                return;
-            }
+            if (band == nullptr) { return; }
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();
@@ -222,10 +211,7 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event,
         for (int i = 0; i < bandControllers.size(); ++i)
         {
             const auto* band = processor.getBand(i);
-            if (band == nullptr)
-            {
-                return;
-            }
+            if (band == nullptr) { return; }
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();

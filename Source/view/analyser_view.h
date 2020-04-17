@@ -1,4 +1,4 @@
-/* Copyright 2018-2019 Tobias Hienzsch
+/* Copyright 2018-2020 Tobias Hienzsch
  *
  * modEQ is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,12 +35,12 @@ public:
      */
     struct BandHandle
     {
-        int id{};
-        float x{};
-        float y{};
-        float label_x{};
-        float label_y{};
-        Colour color{Colours::white};
+        int id {};
+        float x {};
+        float y {};
+        float label_x {};
+        float label_y {};
+        Colour color {Colours::white};
     };
 
     /**
