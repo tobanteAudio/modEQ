@@ -47,7 +47,7 @@ public:
     void resized() override;
 
 private:
-    ModEQProcessor& processor;
+    ModEQProcessor& mainProcessor;
 
     // Components
     tobanteAudio::TobanteLookAndFeel tobanteLookAndFeel;

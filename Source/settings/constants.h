@@ -22,31 +22,31 @@
 namespace tobanteAudio
 {
 // Audio
-const float MAX_DB   = 24.0f;
-const float MAX_GAIN = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
+constexpr auto MAX_DB   = 24.0f;
+inline auto const MAX_GAIN = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
 // Gain
-const float GAIN_MIN       = 0.0f;
-const float GAIN_MAX       = 2.0f;
-const float GAIN_STEP_SIZE = 0.01f;
-const float GAIN_DEFAULT   = 1.0f;
+constexpr auto GAIN_MIN       = 0.0f;
+constexpr auto GAIN_MAX       = 2.0f;
+constexpr auto GAIN_STEP_SIZE = 0.01f;
+constexpr auto GAIN_DEFAULT   = 1.0f;
 
 // Filter
-const float FILTER_GAIN_STEP_SIZE = 0.001f;
-const float FILTER_FREQ_MIN       = 20.0f;
-const float FILTER_FREQ_MAX       = 20'000.0f;
-const float FILTER_FREQ_STEP_SIZE = 0.1f;
-const float FILTER_Q_MIN          = 0.1f;
-const float FILTER_Q_MAX          = 10.0f;
-const float FILTER_Q_STEP_SIZE    = 0.1f;
+constexpr auto FILTER_GAIN_STEP_SIZE = 0.001f;
+constexpr auto FILTER_FREQ_MIN       = 20.0f;
+constexpr auto FILTER_FREQ_MAX       = 20'000.0f;
+constexpr auto FILTER_FREQ_STEP_SIZE = 0.1f;
+constexpr auto FILTER_Q_MIN          = 0.1f;
+constexpr auto FILTER_Q_MAX          = 10.0f;
+constexpr auto FILTER_Q_STEP_SIZE    = 0.1f;
 
 // LFO
-const float LFO_GAIN_MAX       = 1.0f;
-const float LFO_FREQ_MIN       = 0.01f;
-const float LFO_FREQ_MAX       = 10.0f;
-const float LFO_FREQ_STEP_SIZE = 0.01f;
-const float LFO_FREQ_SKEW      = 1.0f;
-const float LFO_FREQ_DEFAULT   = 0.3f;
+constexpr auto LFO_GAIN_MAX       = 1.0f;
+constexpr auto LFO_FREQ_MIN       = 0.01f;
+constexpr auto LFO_FREQ_MAX       = 10.0f;
+constexpr auto LFO_FREQ_STEP_SIZE = 0.01f;
+constexpr auto LFO_FREQ_SKEW      = 1.0f;
+constexpr auto LFO_FREQ_DEFAULT   = 0.3f;
 
 // UI
 /**

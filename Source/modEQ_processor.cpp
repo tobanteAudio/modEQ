@@ -22,21 +22,7 @@
 
 #include "../Tests/test_main.h"
 
-using namespace juce;
-
-ModEQProcessor::ModEQProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-    : juce::AudioProcessor(BusesProperties()
-                               .withInput("Input", AudioChannelSet::stereo(), true)
-                               .withOutput("Output", AudioChannelSet::stereo(), true))
-    ,
-#else
-    :
-#endif
-    state(*this, &undo)
-    , modSource(1, state)
-    , equalizerProcessor(state)
-
+auto CreateParameters() -> juce::AudioProcessorValueTreeState::ParameterLayout
 {
     using tobanteAudio::GAIN_DEFAULT;
     using tobanteAudio::GAIN_MAX;
@@ -50,40 +36,71 @@ ModEQProcessor::ModEQProcessor()
     using tobanteAudio::LFO_FREQ_STEP_SIZE;
     using tobanteAudio::LFO_GAIN_MAX;
 
-    using Parameter = AudioProcessorValueTreeState::Parameter;
-
-    auto const gainRange = NormalisableRange<float>(GAIN_MIN, GAIN_MAX, GAIN_STEP_SIZE);
-    auto const lfoGainRange
-        = NormalisableRange<float>(GAIN_MIN, LFO_GAIN_MAX, GAIN_STEP_SIZE);
+    auto const gainRange    = NormalisableRange {GAIN_MIN, GAIN_MAX, GAIN_STEP_SIZE};
+    auto const lfoGainRange = NormalisableRange {GAIN_MIN, LFO_GAIN_MAX, GAIN_STEP_SIZE};
     auto const lfoFreqRange = []() -> NormalisableRange<float> {
-        auto range
-            = NormalisableRange<float>(LFO_FREQ_MIN, LFO_FREQ_MAX, LFO_FREQ_STEP_SIZE);
+        auto range = NormalisableRange {LFO_FREQ_MIN, LFO_FREQ_MAX, LFO_FREQ_STEP_SIZE};
         range.setSkewForCentre(LFO_FREQ_SKEW);
         return range;
     }();
 
-    state.createAndAddParameter(std::make_unique<Parameter>(
-        tobanteAudio::Parameters::Output, translate("Output"), translate("Output level"),
-        gainRange, GAIN_DEFAULT, gainTextConverter, gainTextConverter, false, true,
-        false));
+    return {
+        std::make_unique<juce::AudioParameterFloat>(
+            "lfo_1_freq",                                     //
+            "lfo freq",                                       //
+            lfoFreqRange,                                     //
+            LFO_FREQ_DEFAULT,                                 //
+            juce::String {},                                  //
+            juce::AudioProcessorParameter::genericParameter,  //
+            nullptr,                                          //
+            nullptr                                           //
+            ),                                                //
 
-    state.createAndAddParameter(std::make_unique<Parameter>(
-        "lfo_1_freq", translate("lfo freq"), translate("lfo freq"), lfoFreqRange,
-        LFO_FREQ_DEFAULT, freqTextConverter, freqTextConverter, false, true, false));
+        std::make_unique<juce::AudioParameterFloat>(
+            "lfo_1_gain",                                     //
+            "lfo gain",                                       //
+            lfoGainRange,                                     //
+            GAIN_DEFAULT,                                     //
+            juce::String {},                                  //
+            juce::AudioProcessorParameter::genericParameter,  //
+            nullptr,                                          //
+            nullptr                                           //
+            ),                                                //
 
-    state.createAndAddParameter(std::make_unique<Parameter>(
-        "lfo_1_gain", translate("lfo gain"), translate("lfo gain"), lfoGainRange,
-        GAIN_DEFAULT, gainTextConverter, gainTextConverter, false, true, false));
+        std::make_unique<juce::AudioParameterFloat>(
+            tobanteAudio::Parameters::Output,                 //
+            "Output",                                         //
+            gainRange,                                        //
+            GAIN_DEFAULT,                                     //
+            juce::String {},                                  //
+            juce::AudioProcessorParameter::genericParameter,  //
+            nullptr,                                          //
+            nullptr                                           //
+            )                                                 //
+    };
+}
+using namespace juce;
 
+ModEQProcessor::ModEQProcessor()
+#ifndef JucePlugin_PreferredChannelConfigurations
+    : juce::AudioProcessor(BusesProperties()
+                               .withInput("Input", AudioChannelSet::stereo(), true)
+                               .withOutput("Output", AudioChannelSet::stereo(), true))
+    ,
+#else
+    :
+#endif
+    state(*this, &undo, "tobanteAudioModEQ", CreateParameters())
+    , modSource(1, state)
+    , equalizerProcessor(state)
+
+{
     state.addParameterListener(tobanteAudio::Parameters::Output, this);
-
-    state.state = ValueTree(JucePlugin_Name);
 
 #ifdef JUCE_DEBUG
     tobanteAudio::tests::run();
 #else
     // in release mode, default to not running tests.
-
 #endif
 }
 

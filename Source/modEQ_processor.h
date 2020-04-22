@@ -77,17 +77,13 @@ public:
     FFAU::LevelMeterSource* getMeterSource() { return &meterSource; }
 
 private:
+    double sampleRate = 0;
+
     tobanteAudio::EqualizerProcessor equalizerProcessor;
     juce::AudioBuffer<float> modBuffer;
 
     juce::dsp::Gain<float> outputGain;
-    double sampleRate = 0;
-
-    tobanteAudio::GainTextConverter gainTextConverter;
-    tobanteAudio::FrequencyTextConverter freqTextConverter;
-
     FFAU::LevelMeterSource meterSource;
 
-    //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ModEQProcessor)
 };

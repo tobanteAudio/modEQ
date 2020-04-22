@@ -20,8 +20,8 @@
 
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
-    , processor(p)
-    , menuController(processor, menuButtons)
+    , mainProcessor(p)
+    , menuController(mainProcessor, menuButtons)
     , output(Slider::RotaryHorizontalVerticalDrag, Slider::NoTextBox)
 {
     // Global look & feel
@@ -33,7 +33,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     // Menu
     addAndMakeVisible(menuButtons);
     // Connect buttons
-    menuController.toggleBypass   = [this]() { DBG("BYPASS"); };
+    menuController.toggleBypass   = []() { DBG("BYPASS"); };
     menuController.toggleSettings = [this]() {
         infoView.setVisible(false);
         settingsView.setVisible(!settingsView.isVisible());
@@ -60,20 +60,20 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
         using MSV = tobanteAudio::ModulationSourceView;
 
         auto* const modView = modViews.add(new MSV(i));
-        modController.add(new MSC(i, processor, processor.modSource, *modView));
+        modController.add(new MSC(i, mainProcessor, mainProcessor.modSource, *modView));
 
         addAndMakeVisible(modView);
     }
 
     // EQ bands
-    for (int i = 0; i < processor.getEQ().getNumBands(); ++i)
+    for (int i = 0; i < mainProcessor.getEQ().getNumBands(); ++i)
     {
         using BC = tobanteAudio::BandController;
         using BV = tobanteAudio::BandView;
 
-        const auto color     = processor.getEQ().getBand(i)->colour;
+        const auto color     = mainProcessor.getEQ().getBand(i)->colour;
         auto* const bandView = bandViews.add(new BV(i, color));
-        bandControllers.add(new BC(i, processor, processor.getEQ(), *bandView));
+        bandControllers.add(new BC(i, mainProcessor, mainProcessor.getEQ(), *bandView));
 
         addAndMakeVisible(bandView);
     }
@@ -85,14 +85,14 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     meter = std::make_unique<FFAU::LevelMeter>();
     meter->setMeterFlags(FFAU::LevelMeter::MaxNumber);
     meter->setLookAndFeel(lnf.get());
-    meter->setMeterSource(processor.getMeterSource());
+    meter->setMeterSource(mainProcessor.getMeterSource());
     addAndMakeVisible(meter.get());
 
     // Plot
     using AC = tobanteAudio::AnalyserController;
     using AV = tobanteAudio::AnalyserView;
 
-    auto& eq           = processor.getEQ();
+    auto& eq           = mainProcessor.getEQ();
     analyserView       = std::make_unique<AV>();
     analyserController = std::make_unique<AC>(eq, bandControllers, *analyserView.get());
     addAndMakeVisible(analyserView.get());
@@ -103,7 +103,7 @@ ModEQEditor::ModEQEditor(ModEQProcessor& p)
     output.setName("Master");
 
     using SliderAttachment  = AudioProcessorValueTreeState::SliderAttachment;
-    auto& state             = processor.getPluginState();
+    auto& state             = mainProcessor.getPluginState();
     const auto output_param = tobanteAudio::Parameters::Output;
     attachments.add(new SliderAttachment(state, output_param, output));
 
