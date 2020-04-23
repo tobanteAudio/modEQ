@@ -150,13 +150,15 @@ void ModEQProcessor::prepareToPlay(double newSampleRate, int newSamplesPerBlock)
     spec.maximumBlockSize = uint32(newSamplesPerBlock);
     spec.numChannels      = uint32(getTotalNumOutputChannels());
 
-    modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
-    equalizerProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
-    equalizerProcessor.prepare(spec);
+    auto const* const gain = state.getRawParameterValue(tobanteAudio::Parameters::Output);
+    outputGain.setGainLinear(gain->load());
     outputGain.prepare(spec);
 
-    outputGain.setGainLinear(
-        *state.getRawParameterValue(tobanteAudio::Parameters::Output));
+    modSource.setBusesLayout(getBusesLayout());
+    modSource.prepareToPlay(sampleRate, newSamplesPerBlock);
+
+    equalizerProcessor.setBusesLayout(getBusesLayout());
+    equalizerProcessor.prepareToPlay(newSampleRate, newSamplesPerBlock);
 }
 
 void ModEQProcessor::releaseResources() { }
@@ -204,7 +206,6 @@ void ModEQProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiMe
 
     dsp::AudioBlock<float> ioBuffer(buffer);
     dsp::ProcessContextReplacing<float> context(ioBuffer);
-
     outputGain.process(context);
 
     meterSource.measureBlock(buffer);

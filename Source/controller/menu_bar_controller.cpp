@@ -21,22 +21,11 @@ namespace tobanteAudio
 MenuBarController::MenuBarController(ModEQProcessor& p, tobanteAudio::MenuBarView& v)
     : processor(p), view(v)
 {
-    view.undoButton.addListener(this);
-    view.redoButton.addListener(this);
-    view.bypassButton.addListener(this);
-    view.settingButton.addListener(this);
-    view.infoButton.addListener(this);
+    view.undoButton.onClick    = [&]() { processor.getUndoManager().undo(); };
+    view.redoButton.onClick    = [&]() { processor.getUndoManager().redo(); };
+    view.bypassButton.onClick  = [&]() { toggleBypass(); };
+    view.settingButton.onClick = [&]() { toggleSettings(); };
+    view.infoButton.onClick    = [&]() { toggleInfo(); };
 }
-void MenuBarController::buttonClicked(Button* b)
-{
-    if (b == &view.undoButton) { processor.getUndoManager().undo(); }
 
-    if (b == &view.redoButton) { processor.getUndoManager().redo(); }
-
-    if (b == &view.bypassButton) { toggleBypass(); }
-
-    if (b == &view.settingButton) { toggleSettings(); }
-
-    if (b == &view.infoButton) { toggleInfo(); }
-}
 }  // namespace tobanteAudio

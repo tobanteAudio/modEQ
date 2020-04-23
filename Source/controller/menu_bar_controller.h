@@ -28,18 +28,13 @@ namespace tobanteAudio
 /**
  * @brief Controller for the MenuBarView component.
  */
-class MenuBarController : public Button::Listener
+class MenuBarController
 {
 public:
     /**
      * @brief Constructor.
      */
     MenuBarController(ModEQProcessor&, tobanteAudio::MenuBarView& /*v*/);
-
-    /**
-     * @brief Listens for button clicks from view. Dispatches function pointers.
-     */
-    void buttonClicked(Button* b) override;
 
     /**
      * @brief Called when the bypass button was pressed.

@@ -77,16 +77,6 @@ public:
     void prepareToPlay(double /*unused*/, int /*unused*/) override;
 
     /**
-     * @brief Prepare dsp with dsp::ProcessSpec from JUCE.
-     */
-    void prepare(const dsp::ProcessSpec& spec);
-
-    /**
-     * @brief Process block with dsp::ProcessContextReplacing from JUCE.
-     */
-    void process(const dsp::ProcessContextReplacing<float>& context);
-
-    /**
      * @brief Process audio & midi buffers.
      */
     void processBlock(AudioBuffer<float>& buffer, MidiBuffer& midi) override;

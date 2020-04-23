@@ -27,7 +27,7 @@ namespace tobanteAudio
 /**
  * @brief Controller for the BandView component.
  */
-class BandController : public Button::Listener
+class BandController
 {
 public:
     /**
@@ -36,11 +36,6 @@ public:
     BandController(int /*i*/, ModEQProcessor& /*p*/,
                    tobanteAudio::EqualizerProcessor& /*sub*/,
                    tobanteAudio::BandView& /*v*/);
-
-    /**
-     * @brief Listens to button clicks from view.
-     */
-    void buttonClicked(Button* b) override;
 
     /**
      * @brief Activates or deactivates UI controls depending on the selected

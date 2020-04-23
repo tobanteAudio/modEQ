@@ -47,7 +47,8 @@ BandController::BandController(const int i, ModEQProcessor& p,
     // Solo button
     const auto color = processor.getBandColour(index);
     view.solo.setColour(TextButton::buttonOnColourId, color);
-    view.solo.addListener(this);
+    view.solo.onClick
+        = [&]() { processor.setBandSolo(view.solo.getToggleState() ? index : -1); };
 }
 
 void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType type)
@@ -111,12 +112,6 @@ void BandController::setGain(float newGain)
 void BandController::setType(int newType)
 {
     view.type.setSelectedId(newType + 1, sendNotification);
-}
-
-void BandController::buttonClicked(Button* b)
-{
-    if (b == &view.solo)
-    { processor.setBandSolo(view.solo.getToggleState() ? index : -1); }
 }
 
 }  // namespace tobanteAudio

@@ -35,25 +35,20 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
         new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Button Connect
-    view.toggleConnectView.addListener(this);
     view.modConnect1.setVisible(connectViewActive);
     view.modConnect2.setVisible(connectViewActive);
+    view.toggleConnectView.onClick = [&]() {
+        connectViewActive = !connectViewActive;
+        view.modConnect1.setVisible(connectViewActive);
+        view.modConnect2.setVisible(connectViewActive);
+    };
+
     // Slider connect
     view.frequency.addListener(this);
     view.gain.addListener(this);
 
     // Start Timer
     startTimerHz(GLOBAL_REFRESH_RATE_HZ);
-}
-
-void ModulationSourceController::buttonClicked(Button* b)
-{
-    if (b == &view.toggleConnectView)
-    {
-        connectViewActive = !connectViewActive;
-        view.modConnect1.setVisible(connectViewActive);
-        view.modConnect2.setVisible(connectViewActive);
-    }
 }
 
 void ModulationSourceController::sliderValueChanged(Slider* slider)

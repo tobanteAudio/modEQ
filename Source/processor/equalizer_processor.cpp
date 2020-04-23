@@ -107,7 +107,7 @@ EqualizerProcessor::~EqualizerProcessor()
     outputAnalyser.stopThread(1000);
 }
 
-void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlock*/)
+void EqualizerProcessor::prepareToPlay(double newSampleRate, int samplesPerBlock)
 {
     sampleRate = newSampleRate;
 
@@ -117,11 +117,19 @@ void EqualizerProcessor::prepareToPlay(double newSampleRate, int /*samplesPerBlo
 
     inputAnalyser.setupAnalyser(int(sampleRate), float(sampleRate));
     outputAnalyser.setupAnalyser(int(sampleRate), float(sampleRate));
-}
-void EqualizerProcessor::prepare(const dsp::ProcessSpec& spec) { filter.prepare(spec); }
 
-void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& /*midi*/)
+    dsp::ProcessSpec spec;
+    spec.sampleRate       = newSampleRate;
+    spec.maximumBlockSize = static_cast<uint32>(samplesPerBlock);
+    spec.numChannels      = static_cast<uint32>(getTotalNumOutputChannels());
+
+    filter.prepare(spec);
+}
+
+void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& midiBuffer)
 {
+    juce::ignoreUnused(midiBuffer);
+
     inputAnalyser.addAudioData(buffer, 0, getTotalNumInputChannels());
 
     if (wasBypassed)
@@ -129,16 +137,12 @@ void EqualizerProcessor::processBlock(AudioBuffer<float>& buffer, MidiBuffer& /*
         filter.reset();
         wasBypassed = false;
     }
-    dsp::AudioBlock<float> ioBuffer(buffer);
-    dsp::ProcessContextReplacing<float> context(ioBuffer);
-    process(context);
+
+    auto ioBuffer = juce::dsp::AudioBlock<float> {buffer};
+    auto context  = juce::dsp::ProcessContextReplacing<float> {ioBuffer};
+    filter.process(context);
 
     outputAnalyser.addAudioData(buffer, 0, getTotalNumOutputChannels());
-}
-
-void EqualizerProcessor::process(const dsp::ProcessContextReplacing<float>& context)
-{
-    filter.process(context);
 }
 
 void EqualizerProcessor::parameterChanged(const String& parameter, float newValue)
