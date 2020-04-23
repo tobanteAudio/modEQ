@@ -81,6 +81,7 @@ target_compile_definitions(${PROJECT_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
         JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1
 )
+juce_generate_juce_header(${PROJECT_NAME})
 
 juce_add_binary_data(modEQData NAMESPACE TobanteAudioData SOURCES
         ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-high_quality-24px.svg
