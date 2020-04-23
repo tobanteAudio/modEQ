@@ -25,8 +25,7 @@ namespace tobanteAudio
 /**
  * @brief Processor class for a modulation source. Holds a dsp::Oscillator<float>.
  */
-class ModulationSourceProcessor : public BaseProcessor,
-                                  public AudioProcessorValueTreeState::Listener
+class ModulationSourceProcessor : public BaseProcessor, public AudioProcessorValueTreeState::Listener
 
 {
 public:

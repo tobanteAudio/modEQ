@@ -20,8 +20,7 @@
 
 namespace tobanteAudio
 {
-ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp,
-                                                       ModulationSourceProcessor& p,
+ModulationSourceController::ModulationSourceController(const int i, ModEQProcessor& mp, ModulationSourceProcessor& p,
                                                        ModulationSourceView& v)
     : index(i), connectViewActive(false), mainProcessor(mp), processor(p), view(v)
 {
@@ -29,10 +28,8 @@ ModulationSourceController::ModulationSourceController(const int i, ModEQProcess
     using SliderAttachment = AudioProcessorValueTreeState::SliderAttachment;
     auto& state            = mainProcessor.getPluginState();
 
-    attachments.add(
-        new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
-    attachments.add(
-        new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_freq", view.frequency));
+    attachments.add(new SliderAttachment(state, "lfo_" + String(index) + "_gain", view.gain));
 
     // Button Connect
     view.modConnect1.setVisible(connectViewActive);
@@ -59,16 +56,10 @@ void ModulationSourceController::sliderValueChanged(Slider* slider)
     auto& freqLabel = view.freqLabel;
 
     if (slider == &frequency)
-    {
-        freqLabel.setText(frequency.getTextFromValue(frequency.getValue()),
-                          NotificationType::dontSendNotification);
-    }
+    { freqLabel.setText(frequency.getTextFromValue(frequency.getValue()), NotificationType::dontSendNotification); }
 
     if (slider == &gain)
-    {
-        gainLabel.setText(gain.getTextFromValue(gain.getValue()),
-                          NotificationType::dontSendNotification);
-    }
+    { gainLabel.setText(gain.getTextFromValue(gain.getValue()), NotificationType::dontSendNotification); }
 }
 void ModulationSourceController::timerCallback()
 {

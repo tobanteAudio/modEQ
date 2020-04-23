@@ -36,8 +36,7 @@ public:
      * @brief Creates an AnalyserController connected to the EQ processor the
      * band controllers & the anaylser plot view.
      */
-    AnalyserController(tobanteAudio::EqualizerProcessor&,
-                       OwnedArray<tobanteAudio::BandController>&,
+    AnalyserController(tobanteAudio::EqualizerProcessor&, OwnedArray<tobanteAudio::BandController>&,
                        tobanteAudio::AnalyserView&);
 
     /**

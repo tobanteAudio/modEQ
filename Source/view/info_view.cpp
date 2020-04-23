@@ -45,8 +45,7 @@ void InfoView::paint(Graphics& g)
     auto bounds = getLocalBounds();
     bounds.reduce(50, 100);
     const auto height = static_cast<int>(bounds.getHeight() / rows.size());
-    for (const auto& row : rows)
-    { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
+    for (const auto& row : rows) { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
 }
 
 void InfoView::resized() { }

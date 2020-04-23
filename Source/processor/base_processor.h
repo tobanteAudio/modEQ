@@ -28,15 +28,9 @@ public:
     BaseProcessor(AudioProcessorValueTreeState& vts) : state(vts) { }
     ~BaseProcessor() override = default;
 
-    void prepareToPlay(double /*sampleRate*/,
-                       int /*maximumExpectedSamplesPerBlock*/) override
-    {
-    }
+    void prepareToPlay(double /*sampleRate*/, int /*maximumExpectedSamplesPerBlock*/) override { }
     void releaseResources() override { }
-    void processBlock(AudioBuffer<float>& /*buffer*/,
-                      MidiBuffer& /*midiMessages*/) override
-    {
-    }
+    void processBlock(AudioBuffer<float>& /*buffer*/, MidiBuffer& /*midiMessages*/) override { }
 
     AudioProcessorEditor* createEditor() override { return nullptr; }
     bool hasEditor() const override { return false; }

@@ -35,8 +35,7 @@ public:
     /**
      * @brief Constructor.
      */
-    ModulationSourceController(int, ModEQProcessor&,
-                               tobanteAudio::ModulationSourceProcessor&,
+    ModulationSourceController(int, ModEQProcessor&, tobanteAudio::ModulationSourceProcessor&,
                                tobanteAudio::ModulationSourceView&);
 
     /**

@@ -45,38 +45,35 @@ auto CreateParameters() -> juce::AudioProcessorValueTreeState::ParameterLayout
     }();
 
     return {
-        std::make_unique<juce::AudioParameterFloat>(
-            "lfo_1_freq",                                     //
-            "lfo freq",                                       //
-            lfoFreqRange,                                     //
-            LFO_FREQ_DEFAULT,                                 //
-            juce::String {},                                  //
-            juce::AudioProcessorParameter::genericParameter,  //
-            nullptr,                                          //
-            nullptr                                           //
-            ),                                                //
+        std::make_unique<juce::AudioParameterFloat>("lfo_1_freq",                                     //
+                                                    "lfo freq",                                       //
+                                                    lfoFreqRange,                                     //
+                                                    LFO_FREQ_DEFAULT,                                 //
+                                                    juce::String {},                                  //
+                                                    juce::AudioProcessorParameter::genericParameter,  //
+                                                    nullptr,                                          //
+                                                    nullptr                                           //
+                                                    ),                                                //
 
-        std::make_unique<juce::AudioParameterFloat>(
-            "lfo_1_gain",                                     //
-            "lfo gain",                                       //
-            lfoGainRange,                                     //
-            GAIN_DEFAULT,                                     //
-            juce::String {},                                  //
-            juce::AudioProcessorParameter::genericParameter,  //
-            nullptr,                                          //
-            nullptr                                           //
-            ),                                                //
+        std::make_unique<juce::AudioParameterFloat>("lfo_1_gain",                                     //
+                                                    "lfo gain",                                       //
+                                                    lfoGainRange,                                     //
+                                                    GAIN_DEFAULT,                                     //
+                                                    juce::String {},                                  //
+                                                    juce::AudioProcessorParameter::genericParameter,  //
+                                                    nullptr,                                          //
+                                                    nullptr                                           //
+                                                    ),                                                //
 
-        std::make_unique<juce::AudioParameterFloat>(
-            tobanteAudio::Parameters::Output,                 //
-            "Output",                                         //
-            gainRange,                                        //
-            GAIN_DEFAULT,                                     //
-            juce::String {},                                  //
-            juce::AudioProcessorParameter::genericParameter,  //
-            nullptr,                                          //
-            nullptr                                           //
-            )                                                 //
+        std::make_unique<juce::AudioParameterFloat>(tobanteAudio::Parameters::Output,                 //
+                                                    "Output",                                         //
+                                                    gainRange,                                        //
+                                                    GAIN_DEFAULT,                                     //
+                                                    juce::String {},                                  //
+                                                    juce::AudioProcessorParameter::genericParameter,  //
+                                                    nullptr,                                          //
+                                                    nullptr                                           //
+                                                    )                                                 //
     };
 }
 using namespace juce;

@@ -32,8 +32,7 @@ void SettingsView::paint(Graphics& g)
 
     auto bounds       = getLocalBounds();
     const auto height = static_cast<int>(bounds.getHeight() / rows.size());
-    for (const auto& row : rows)
-    { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
+    for (const auto& row : rows) { g.drawText(row, bounds.removeFromTop(height), Justification::centred, true); }
 }
 
 void SettingsView::resized() { }

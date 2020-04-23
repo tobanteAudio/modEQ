@@ -50,8 +50,7 @@ void ModulationSourceView::paint(Graphics& g)
     Graphics::ScopedSaveState state(g);
 
     // Background
-    const auto backgroundColour
-        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.setColour(backgroundColour.darker());
     g.fillRect(plotFrame.toFloat());
 
@@ -73,11 +72,9 @@ void ModulationSourceView::paint(Graphics& g)
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
 
     g.reduceClipRegion(plotFrame);
 

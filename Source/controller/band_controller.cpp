@@ -18,8 +18,7 @@
 
 namespace tobanteAudio
 {
-BandController::BandController(const int i, ModEQProcessor& p,
-                               tobanteAudio::EqualizerProcessor& sub,
+BandController::BandController(const int i, ModEQProcessor& p, tobanteAudio::EqualizerProcessor& sub,
                                tobanteAudio::BandView& v)
     : index(i), view(v), mainProcessor(p), processor(sub)
 {
@@ -47,8 +46,7 @@ BandController::BandController(const int i, ModEQProcessor& p,
     // Solo button
     const auto color = processor.getBandColour(index);
     view.solo.setColour(TextButton::buttonOnColourId, color);
-    view.solo.onClick
-        = [&]() { processor.setBandSolo(view.solo.getToggleState() ? index : -1); };
+    view.solo.onClick = [&]() { processor.setBandSolo(view.solo.getToggleState() ? index : -1); };
 }
 
 void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType type)
@@ -94,24 +92,12 @@ void BandController::setUIControls(tobanteAudio::EqualizerProcessor::FilterType 
     }
 }
 
-void BandController::setSolo(bool isSolo)
-{
-    view.solo.setToggleState(isSolo, dontSendNotification);
-}
+void BandController::setSolo(bool isSolo) { view.solo.setToggleState(isSolo, dontSendNotification); }
 
-void BandController::setFrequency(float newFreq)
-{
-    view.frequency.setValue(newFreq, sendNotification);
-}
+void BandController::setFrequency(float newFreq) { view.frequency.setValue(newFreq, sendNotification); }
 
-void BandController::setGain(float newGain)
-{
-    view.gain.setValue(newGain, sendNotification);
-}
+void BandController::setGain(float newGain) { view.gain.setValue(newGain, sendNotification); }
 
-void BandController::setType(int newType)
-{
-    view.type.setSelectedId(newType + 1, sendNotification);
-}
+void BandController::setType(int newType) { view.type.setSelectedId(newType + 1, sendNotification); }
 
 }  // namespace tobanteAudio

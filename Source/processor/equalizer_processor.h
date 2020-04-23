@@ -24,9 +24,7 @@ namespace tobanteAudio
  * @brief Main processor class for modEQ. Holds 6 JUCE dsp filters in a
  * ProcessorChain.
  */
-class EqualizerProcessor : public BaseProcessor,
-                           public ChangeBroadcaster,
-                           AudioProcessorValueTreeState::Listener
+class EqualizerProcessor : public BaseProcessor, public ChangeBroadcaster, AudioProcessorValueTreeState::Listener
 
 {
 public:
@@ -124,8 +122,7 @@ public:
     /**
      * @brief Daws the frequency response plot to a given path & area.
      */
-    void createFrequencyPlot(Path& p, const std::vector<double>& mags,
-                             Rectangle<int> bounds, float pixelsPerDouble);
+    void createFrequencyPlot(Path& p, const std::vector<double>& mags, Rectangle<int> bounds, float pixelsPerDouble);
 
     /**
      * @brief Draws the analyser plot to a given path & area.

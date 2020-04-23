@@ -31,28 +31,23 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
      * @brief Override this to draw background and if wanted a frame. If the frame takes
      * space away, it should return the reduced bounds.
      */
-    juce::Rectangle<float> drawBackground(juce::Graphics& g,
-                                          const FFAU::LevelMeter::MeterFlags meterType,
+    juce::Rectangle<float> drawBackground(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
                                           const juce::Rectangle<float> bounds) override;
 
     /**
      * @brief This draws the static background of the whole level meter group with all
      * channels.
      */
-    void drawMeterBarsBackground(juce::Graphics& g,
-                                 const FFAU::LevelMeter::MeterFlags meterType,
-                                 const juce::Rectangle<float> bounds,
-                                 const int numChannels,
+    void drawMeterBarsBackground(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+                                 const juce::Rectangle<float> bounds, const int numChannels,
                                  const int fixedNumChannels) override;
 
     /**
      * @brief This callback draws the clip indicator. The background has an extra
      * callback.
      */
-    void drawClipIndicator(juce::Graphics& g,
-                           const FFAU::LevelMeter::MeterFlags meterType,
-                           const juce::Rectangle<float> bounds,
-                           const bool hasClipped) override;
+    void drawClipIndicator(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+                           const juce::Rectangle<float> bounds, const bool hasClipped) override;
 
     /**
      * @brief This callback draws the number of maximum level. The background has an extra
@@ -65,16 +60,14 @@ class TobanteMetersLookAndFeel : public FFAU::LevelMeterLookAndFeel
      * @brief Override this callback to define the placement of the tickmarks. To disable
      * this feature return an empty rectangle.
      */
-    juce::Rectangle<float>
-    getMeterTickmarksBounds(const juce::Rectangle<float> bounds,
-                            const FFAU::LevelMeter::MeterFlags meterType) const override;
+    juce::Rectangle<float> getMeterTickmarksBounds(const juce::Rectangle<float> bounds,
+                                                   const FFAU::LevelMeter::MeterFlags meterType) const override;
 
     /*
      * @brief Override this callback to define the placement of the actual meter bar.
      */
-    juce::Rectangle<float>
-    getMeterBarBounds(const juce::Rectangle<float> bounds,
-                      const FFAU::LevelMeter::MeterFlags meterType) const override;
+    juce::Rectangle<float> getMeterBarBounds(const juce::Rectangle<float> bounds,
+                                             const FFAU::LevelMeter::MeterFlags meterType) const override;
 };
 
 /**
@@ -96,21 +89,19 @@ public:
     /**
      * @brief Draws a rotary slider.
      */
-    void drawRotarySlider(Graphics& g, int x, int y, int width, int height,
-                          float sliderPos, const float rotaryStartAngle,
-                          const float rotaryEndAngle, Slider& slider) override;
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+                          const float rotaryStartAngle, const float rotaryEndAngle, Slider& slider) override;
 
     /**
      * @brief Draws a ComboBox.
      */
-    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX,
-                      int buttonY, int buttonW, int buttonH, ComboBox& box) override;
+    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX, int buttonY, int buttonW,
+                      int buttonH, ComboBox& box) override;
 
     /**
      * @brief Sets the PopupMenuItem size.
      */
-    void getIdealPopupMenuItemSize(const String& text, bool isSeparator,
-                                   int standardItemHeight, int& idealWidth,
+    void getIdealPopupMenuItemSize(const String& text, bool isSeparator, int standardItemHeight, int& idealWidth,
                                    int& idealHeight) override;
 
     /**

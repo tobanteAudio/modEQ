@@ -43,34 +43,27 @@ void AnalyserView::paint(Graphics& g)
 
         const auto freq = get_frequency_for_position(i * 0.1f);
         g.setColour(Colour(0xffb9f6ca));
-        g.drawFittedText((freq < 1000) ? String(freq) + " Hz"
-                                       : String(freq / 1000, 1) + " kHz",
-                         roundToInt(x + 3), plotFrame.getBottom() - 18, 50, 15,
-                         Justification::left, 1);
+        g.drawFittedText((freq < 1000) ? String(freq) + " Hz" : String(freq / 1000, 1) + " kHz", roundToInt(x + 3),
+                         plotFrame.getBottom() - 18, 50, 15, Justification::left, 1);
     }
 
     // Horizontal lines
     g.setColour(Colours::silver.withAlpha(0.4f));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.25 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
     g.drawHorizontalLine(roundToInt(plotFrame.getY() + 0.75 * plotFrame.getHeight()),
-                         static_cast<float>(plotFrame.getX()),
-                         static_cast<float>(plotFrame.getRight()));
+                         static_cast<float>(plotFrame.getX()), static_cast<float>(plotFrame.getRight()));
 
     // dB labels
     g.setColour(Colours::silver);
-    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2,
-                     50, 14, Justification::left, 1);
+    g.drawFittedText(String(MAX_DB) + " dB", plotFrame.getX() + 3, plotFrame.getY() + 2, 50, 14, Justification::left,
+                     1);
     g.drawFittedText(String(MAX_DB / 2) + " dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50,
-                     14, Justification::left, 1);
-    g.drawFittedText(" 0 dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50,
+                     roundToInt(plotFrame.getY() + 2 + 0.25 * plotFrame.getHeight()), 50, 14, Justification::left, 1);
+    g.drawFittedText(" 0 dB", plotFrame.getX() + 3, roundToInt(plotFrame.getY() + 2 + 0.5 * plotFrame.getHeight()), 50,
                      14, Justification::left, 1);
     g.drawFittedText(String(-MAX_DB / 2) + " dB", plotFrame.getX() + 3,
-                     roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50,
-                     14, Justification::left, 1);
+                     roundToInt(plotFrame.getY() + 2 + 0.75 * plotFrame.getHeight()), 50, 14, Justification::left, 1);
 
     g.reduceClipRegion(plotFrame);
 
@@ -84,32 +77,27 @@ void AnalyserView::paint(Graphics& g)
     // Input Analyser
     g.setColour(inputColour);
     g.drawFittedText("Input", plotFrame.reduced(8), Justification::topRight, 1);
-    g.strokePath(in_analyser.createPathWithRoundedCorners(corner_radius),
-                 PathStrokeType(1.0));
+    g.strokePath(in_analyser.createPathWithRoundedCorners(corner_radius), PathStrokeType(1.0));
 
     // Output Analyser
     g.setColour(outputColour);
     g.drawFittedText("Output", plotFrame.reduced(8, 28), Justification::topRight, 1);
-    g.strokePath(out_analyser.createPathWithRoundedCorners(corner_radius),
-                 PathStrokeType(2.0));
+    g.strokePath(out_analyser.createPathWithRoundedCorners(corner_radius), PathStrokeType(2.0));
 
     // Frequency Response
     g.setColour(Colour(0xff00ff08).withMultipliedAlpha(0.9f).brighter());
-    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius),
-                 PathStrokeType(3.5f));
+    g.strokePath(frequencyResponse.createPathWithRoundedCorners(corner_radius), PathStrokeType(3.5f));
 
     for (const auto& handle : handles)
     {
         const int size {30};
         g.setColour(handle.color);
         // Label
-        g.drawFittedText(String(handle.id), static_cast<int>(handle.label_x),
-                         static_cast<int>(handle.label_y), size, size,
-                         Justification::left, 1);
+        g.drawFittedText(String(handle.id), static_cast<int>(handle.label_x), static_cast<int>(handle.label_y), size,
+                         size, Justification::left, 1);
 
         // Handle
-        g.drawEllipse(static_cast<float>(handle.x), static_cast<float>(handle.y), 8.0f,
-                      8.0f, 5.0f);
+        g.drawEllipse(static_cast<float>(handle.x), static_cast<float>(handle.y), 8.0f, 8.0f, 5.0f);
     }
 }
 

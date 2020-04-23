@@ -22,7 +22,7 @@
 namespace tobanteAudio
 {
 // Audio
-constexpr auto MAX_DB   = 24.0f;
+constexpr auto MAX_DB      = 24.0f;
 inline auto const MAX_GAIN = Decibels::decibelsToGain(tobanteAudio::MAX_DB);
 
 // Gain

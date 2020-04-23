@@ -19,8 +19,7 @@
 namespace tobanteAudio
 {
 AnalyserController::AnalyserController(tobanteAudio::EqualizerProcessor& p,
-                                       OwnedArray<tobanteAudio::BandController>& bc,
-                                       tobanteAudio::AnalyserView& v)
+                                       OwnedArray<tobanteAudio::BandController>& bc, tobanteAudio::AnalyserView& v)
     : processor(p), bandControllers(bc), view(v)
 {
     int i = 0;
@@ -71,9 +70,8 @@ void AnalyserController::mouseDown(const MouseEvent& e)
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
-            const auto bandPosition
-                = view.get_position_for_frequency(float(band->frequency));
-            const auto pos = plotFrameX + bandPosition * plotFrameWidth;
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
             if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
@@ -82,20 +80,18 @@ void AnalyserController::mouseDown(const MouseEvent& e)
                 contextMenu.clear();
                 for (int t = 0; t < tobanteAudio::EqualizerProcessor::LastFilterID; ++t)
                 {
-                    contextMenu.addItem(
-                        t + 1,
-                        tobanteAudio::EqualizerProcessor::getFilterTypeName(
-                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(t)),
-                        true, band->type == t);
+                    contextMenu.addItem(t + 1,
+                                        tobanteAudio::EqualizerProcessor::getFilterTypeName(
+                                            static_cast<tobanteAudio::EqualizerProcessor::FilterType>(t)),
+                                        true, band->type == t);
                 }
 
-                contextMenu.showMenuAsync(
-                    PopupMenu::Options().withTargetComponent(&view).withTargetScreenArea(
-                        {e.getScreenX(), e.getScreenY(), 1, 1}),
-                    [this, i](int const selected) {
-                        if (selected > 0)
-                        { bandControllers.getUnchecked(i)->setType(selected - 1); }
-                    });
+                contextMenu.showMenuAsync(PopupMenu::Options().withTargetComponent(&view).withTargetScreenArea(
+                                              {e.getScreenX(), e.getScreenY(), 1, 1}),
+                                          [this, i](int const selected) {
+                                              if (selected > 0)
+                                              { bandControllers.getUnchecked(i)->setType(selected - 1); }
+                                          });
             }  // If mouse x overlaps
         }      // For all bands
     }          // If in plotview
@@ -114,9 +110,8 @@ void AnalyserController::mouseMove(const MouseEvent& e)
 
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
-            const auto bandPosition
-                = view.get_position_for_frequency(float(band->frequency));
-            const auto pos = plotFrameX + bandPosition * plotFrameWidth;
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
             if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
@@ -124,17 +119,13 @@ void AnalyserController::mouseMove(const MouseEvent& e)
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
                 const auto gain        = static_cast<float>(band->gain);
-                const auto gainPos
-                    = view.get_position_for_gain(gain, frameY, frameBottom);
+                const auto gainPos     = view.get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (view.overlap_with_radius(gainPos, e.position.getY(),
-                                             HANDLE_CLICK_RADIUS))
+                if (view.overlap_with_radius(gainPos, e.position.getY(), HANDLE_CLICK_RADIUS))
                 {
-                    draggingGain
-                        = processor.state.getParameter(processor.getGainParamID(i));
-                    view.setMouseCursor(
-                        MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
+                    draggingGain = processor.state.getParameter(processor.getGainParamID(i));
+                    view.setMouseCursor(MouseCursor(MouseCursor::UpDownLeftRightResizeCursor));
                 }
                 else
                 {
@@ -166,8 +157,7 @@ void AnalyserController::mouseDrag(const MouseEvent& e)
         if (draggingGain)
         {
             bandControllers[draggingBand]->setGain(view.get_gain_for_position(
-                e.position.getY(), static_cast<float>(plotFrame.getY()),
-                static_cast<float>(plotFrame.getBottom())));
+                e.position.getY(), static_cast<float>(plotFrame.getY()), static_cast<float>(plotFrame.getBottom())));
         }
     }
 }
@@ -184,23 +174,18 @@ void AnalyserController::mouseDoubleClick(const MouseEvent& e)
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();
-            const auto bandPosition
-                = view.get_position_for_frequency(float(band->frequency));
-            const auto pos = plotFrameX + bandPosition * plotFrameWidth;
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             if (view.overlap_with_radius(pos, e.position.getX(), HANDLE_CLICK_RADIUS))
             {
-                if (auto* param
-                    = processor.state.getParameter(processor.getActiveParamID(i)))
-                {
-                    param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f : 0.0f);
-                }
+                if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
+                { param->setValueNotifyingHost(param->getValue() < 0.5f ? 1.0f : 0.0f); }
             }
         }
     }
 }
-void AnalyserController::mouseWheelMove(const MouseEvent& event,
-                                        const MouseWheelDetails& wheel)
+void AnalyserController::mouseWheelMove(const MouseEvent& event, const MouseWheelDetails& wheel)
 {
     auto& plotFrame = view.plotFrame;
 
@@ -215,9 +200,8 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event,
 
             const auto plotFrameX     = plotFrame.getX();
             const auto plotFrameWidth = plotFrame.getWidth();
-            const auto bandPosition
-                = view.get_position_for_frequency(float(band->frequency));
-            const auto pos = plotFrameX + bandPosition * plotFrameWidth;
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            const auto pos            = plotFrameX + bandPosition * plotFrameWidth;
 
             // If mouse & band match on x-axis
             if (view.overlap_with_radius(pos, event.position.getX(), HANDLE_CLICK_RADIUS))
@@ -225,12 +209,10 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event,
                 const auto frameY      = static_cast<float>(plotFrame.getY());
                 const auto frameBottom = static_cast<float>(plotFrame.getBottom());
                 const auto gain        = static_cast<float>(band->gain);
-                const auto gainPos
-                    = view.get_position_for_gain(gain, frameY, frameBottom);
+                const auto gainPos     = view.get_position_for_gain(gain, frameY, frameBottom);
 
                 // If mouse & band match on y-axis
-                if (view.overlap_with_radius(gainPos, event.position.getY(),
-                                             HANDLE_CLICK_RADIUS))
+                if (view.overlap_with_radius(gainPos, event.position.getY(), HANDLE_CLICK_RADIUS))
                 {
                     const auto paramID = processor.getQualityParamID(i);
                     if (auto* param = processor.state.getParameter(paramID))
@@ -246,9 +228,8 @@ void AnalyserController::mouseWheelMove(const MouseEvent& event,
 }
 void AnalyserController::updateFrequencyResponses()
 {
-    auto& plotFrame = view.plotFrame;
-    auto const pixelsPerDouble
-        = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(MAX_DB);
+    auto& plotFrame            = view.plotFrame;
+    auto const pixelsPerDouble = 2.0f * plotFrame.getHeight() / Decibels::decibelsToGain(MAX_DB);
 
     for (int i = 0; i < bandControllers.size(); ++i)
     {
@@ -258,31 +239,26 @@ void AnalyserController::updateFrequencyResponses()
         {
             bandController->setUIControls(band->type);
             bandController->frequencyResponse.clear();
-            processor.createFrequencyPlot(
-                bandController->frequencyResponse, band->magnitudes,
-                plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
+            processor.createFrequencyPlot(bandController->frequencyResponse, band->magnitudes,
+                                          plotFrame.withX(plotFrame.getX() + 1), pixelsPerDouble);
 
             // HANDLE
             auto& handle = view.handles[i];
             // X
             const auto plotFrameX     = static_cast<float>(plotFrame.getX());
             const auto plotFrameWidth = static_cast<float>(plotFrame.getWidth());
-            const auto bandPosition
-                = view.get_position_for_frequency(float(band->frequency));
-            handle.x = plotFrameX + bandPosition * plotFrameWidth;
+            const auto bandPosition   = view.get_position_for_frequency(float(band->frequency));
+            handle.x                  = plotFrameX + bandPosition * plotFrameWidth;
 
             // Y
             const auto frameY      = static_cast<float>(plotFrame.getY());
             const auto frameBottom = static_cast<float>(plotFrame.getBottom());
             const auto gain        = static_cast<float>(band->gain);
-            handle.y = view.get_position_for_gain(gain, frameY, frameBottom);
+            handle.y               = view.get_position_for_gain(gain, frameY, frameBottom);
 
             // Color (active || bypass)
             if (auto* param = processor.state.getParameter(processor.getActiveParamID(i)))
-            {
-                param->getValue() < 0.5f ? handle.color = Colours::grey
-                                         : handle.color = band->colour;
-            }
+            { param->getValue() < 0.5f ? handle.color = Colours::grey : handle.color = band->colour; }
 
             // Label
             const int offset {-20};
@@ -292,7 +268,6 @@ void AnalyserController::updateFrequencyResponses()
         bandController->setSolo(processor.getBandSolo(i));
     }
     view.frequencyResponse.clear();
-    processor.createFrequencyPlot(view.frequencyResponse, processor.getMagnitudes(),
-                                  plotFrame, pixelsPerDouble);
+    processor.createFrequencyPlot(view.frequencyResponse, processor.getMagnitudes(), plotFrame, pixelsPerDouble);
 }
 }  // namespace tobanteAudio

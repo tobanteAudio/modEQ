@@ -20,20 +20,18 @@
 
 namespace tobanteAudio
 {
-juce::Rectangle<float>
-TobanteMetersLookAndFeel::drawBackground(juce::Graphics& g,
-                                         const FFAU::LevelMeter::MeterFlags meterType,
-                                         const juce::Rectangle<float> bounds)
+juce::Rectangle<float> TobanteMetersLookAndFeel::drawBackground(juce::Graphics& g,
+                                                                const FFAU::LevelMeter::MeterFlags meterType,
+                                                                const juce::Rectangle<float> bounds)
 {
     ignoreUnused(g);
     ignoreUnused(meterType);
     return bounds;
 }
 
-void TobanteMetersLookAndFeel::drawMeterBarsBackground(
-    juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
-    const juce::Rectangle<float> bounds, const int numChannels,
-    const int fixedNumChannels)
+void TobanteMetersLookAndFeel::drawMeterBarsBackground(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+                                                       const juce::Rectangle<float> bounds, const int numChannels,
+                                                       const int fixedNumChannels)
 {
     ignoreUnused(g);
     ignoreUnused(meterType);
@@ -42,9 +40,8 @@ void TobanteMetersLookAndFeel::drawMeterBarsBackground(
     ignoreUnused(fixedNumChannels);
 }
 
-void TobanteMetersLookAndFeel::drawClipIndicator(
-    juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
-    const juce::Rectangle<float> bounds, const bool hasClipped)
+void TobanteMetersLookAndFeel::drawClipIndicator(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+                                                 const juce::Rectangle<float> bounds, const bool hasClipped)
 {
     ignoreUnused(g);
     ignoreUnused(meterType);
@@ -52,10 +49,8 @@ void TobanteMetersLookAndFeel::drawClipIndicator(
     ignoreUnused(hasClipped);
 }
 
-void TobanteMetersLookAndFeel::drawMaxNumber(juce::Graphics& g,
-                                             const FFAU::LevelMeter::MeterFlags meterType,
-                                             const juce::Rectangle<float> bounds,
-                                             const float maxGain)
+void TobanteMetersLookAndFeel::drawMaxNumber(juce::Graphics& g, const FFAU::LevelMeter::MeterFlags meterType,
+                                             const juce::Rectangle<float> bounds, const float maxGain)
 {
     ignoreUnused(g);
     ignoreUnused(meterType);
@@ -63,18 +58,17 @@ void TobanteMetersLookAndFeel::drawMaxNumber(juce::Graphics& g,
     ignoreUnused(maxGain);
 }
 
-juce::Rectangle<float> TobanteMetersLookAndFeel::getMeterTickmarksBounds(
-    const juce::Rectangle<float> bounds,
-    const FFAU::LevelMeter::MeterFlags meterType) const
+juce::Rectangle<float>
+TobanteMetersLookAndFeel::getMeterTickmarksBounds(const juce::Rectangle<float> bounds,
+                                                  const FFAU::LevelMeter::MeterFlags meterType) const
 {
     ignoreUnused(meterType);
     ignoreUnused(bounds);
     return juce::Rectangle<float>();
 }
 
-juce::Rectangle<float> TobanteMetersLookAndFeel::getMeterBarBounds(
-    const juce::Rectangle<float> bounds,
-    const FFAU::LevelMeter::MeterFlags meterType) const
+juce::Rectangle<float> TobanteMetersLookAndFeel::getMeterBarBounds(const juce::Rectangle<float> bounds,
+                                                                   const FFAU::LevelMeter::MeterFlags meterType) const
 {
     ignoreUnused(meterType);
     return bounds;
@@ -97,10 +91,8 @@ Label* TobanteLookAndFeel::createSliderTextBox(Slider& slider)
     return l;
 }
 
-void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width,
-                                          int height, float sliderPos,
-                                          const float rotaryStartAngle,
-                                          const float rotaryEndAngle, Slider& slider)
+void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos,
+                                          const float rotaryStartAngle, const float rotaryEndAngle, Slider& slider)
 {
     auto outline = slider.findColour(Slider::rotarySliderOutlineColourId);
     auto fill    = slider.findColour(Slider::rotarySliderFillColourId);
@@ -113,8 +105,8 @@ void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width,
     auto arcRadius = radius - lineW * 0.5f;
 
     Path backgroundArc;
-    backgroundArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius,
-                                arcRadius, 0.0f, rotaryStartAngle, rotaryEndAngle, true);
+    backgroundArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius, arcRadius, 0.0f, rotaryStartAngle,
+                                rotaryEndAngle, true);
 
     const auto label = [&]() -> String {
         // Show frequency value
@@ -126,8 +118,7 @@ void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width,
         return String::charToString(slider.getName()[0]);
     }();
 
-    const auto stroke
-        = PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded);
+    const auto stroke = PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded);
     g.setColour(outline);
     g.strokePath(backgroundArc, stroke);
     g.setFont(16.0f);
@@ -136,27 +127,22 @@ void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width,
     if (slider.isEnabled())
     {
         Path valueArc;
-        valueArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius,
-                               arcRadius, 0.0f, rotaryStartAngle, toAngle, true);
+        valueArc.addCentredArc(bounds.getCentreX(), bounds.getCentreY(), arcRadius, arcRadius, 0.0f, rotaryStartAngle,
+                               toAngle, true);
 
         g.setColour(fill);
-        g.strokePath(valueArc, PathStrokeType(lineW, PathStrokeType::curved,
-                                              PathStrokeType::rounded));
+        g.strokePath(valueArc, PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded));
     }
 
     auto thumbWidth = lineW * 1.5f;
-    Point<float> thumbPoint(
-        bounds.getCentreX()
-            + arcRadius * std::cos(toAngle - MathConstants<float>::halfPi),
-        bounds.getCentreY()
-            + arcRadius * std::sin(toAngle - MathConstants<float>::halfPi));
+    Point<float> thumbPoint(bounds.getCentreX() + arcRadius * std::cos(toAngle - MathConstants<float>::halfPi),
+                            bounds.getCentreY() + arcRadius * std::sin(toAngle - MathConstants<float>::halfPi));
 
     g.setColour(slider.findColour(Slider::thumbColourId));
     g.fillEllipse(Rectangle<float>(thumbWidth, thumbWidth).withCentre(thumbPoint));
 }
 
-void TobanteLookAndFeel::drawComboBox(Graphics& g, int width, int height,
-                                      bool isButtonDown, int buttonX, int buttonY,
+void TobanteLookAndFeel::drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX, int buttonY,
                                       int buttonW, int buttonH, ComboBox& box)
 {
     ignoreUnused(buttonH);
@@ -186,8 +172,7 @@ void TobanteLookAndFeel::drawComboBox(Graphics& g, int width, int height,
     g.strokePath(path, PathStrokeType(2.0f));
 }
 
-void TobanteLookAndFeel::getIdealPopupMenuItemSize(const String& text, bool isSeparator,
-                                                   int standardItemHeight,
+void TobanteLookAndFeel::getIdealPopupMenuItemSize(const String& text, bool isSeparator, int standardItemHeight,
                                                    int& idealWidth, int& idealHeight)
 {
     // This was added compared to the JUCE impl. The rest is the same
@@ -205,9 +190,8 @@ void TobanteLookAndFeel::getIdealPopupMenuItemSize(const String& text, bool isSe
         if (standardItemHeight > 0 && font.getHeight() > standardItemHeight / 1.3f)
         { font.setHeight(standardItemHeight / 1.3f); }
 
-        idealHeight = standardItemHeight > 0 ? standardItemHeight
-                                             : roundToInt(font.getHeight() * 1.3f);
-        idealWidth = font.getStringWidth(text) + idealHeight * 2;
+        idealHeight = standardItemHeight > 0 ? standardItemHeight : roundToInt(font.getHeight() * 1.3f);
+        idealWidth  = font.getStringWidth(text) + idealHeight * 2;
     }
 }
 

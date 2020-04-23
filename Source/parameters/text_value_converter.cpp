@@ -38,21 +38,14 @@ String FrequencyTextConverter::operator()(float const value) const
 
 float FrequencyTextConverter::operator()(const String& text) const
 {
-    return text.endsWith(" kHz")
-               ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
-               : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
+    return text.endsWith(" kHz") ? static_cast<float>(text.dropLastCharacters(4).getFloatValue() * 1000.0)
+                                 : static_cast<float>(text.dropLastCharacters(3).getFloatValue());
 }
 
 // QUALITY
-String QualityTextConverter::operator()(float const value) const
-{
-    return String(value, 1);
-}
+String QualityTextConverter::operator()(float const value) const { return String(value, 1); }
 
-float QualityTextConverter::operator()(const String& text) const
-{
-    return text.getFloatValue();
-}
+float QualityTextConverter::operator()(const String& text) const { return text.getFloatValue(); }
 
 // GAIN
 String GainTextConverter::operator()(float const value) const
@@ -66,10 +59,7 @@ float GainTextConverter::operator()(const String& text) const
 }
 
 // PHASE INVERT
-String InvertPhaseTextConverter::operator()(float const value) const
-{
-    return value < 0.5 ? "Normal" : "Inverted";
-}
+String InvertPhaseTextConverter::operator()(float const value) const { return value < 0.5 ? "Normal" : "Inverted"; }
 
 float InvertPhaseTextConverter::operator()(const String& text) const
 {
@@ -91,8 +81,7 @@ float FilterTypeTextConverter::operator()(const String& text) const
 
     for (int i = 0; i < EP::LastFilterID; ++i)
     {
-        if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i)))
-        { return static_cast<float>(i); }
+        if (text == EP::getFilterTypeName(static_cast<EP::FilterType>(i))) { return static_cast<float>(i); }
     }
     return static_cast<float>(EP::NoFilter);
 }

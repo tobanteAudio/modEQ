@@ -131,8 +131,7 @@ ModEQEditor::~ModEQEditor()
 void ModEQEditor::paint(Graphics& g)
 {
     // Background
-    const auto backgroundColour
-        = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
+    const auto backgroundColour = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     g.fillAll(backgroundColour);
 
     // Frame for master slider
@@ -153,12 +152,10 @@ void ModEQEditor::resized()
     // EQ Bands
     auto band_space  = area.removeFromBottom((getHeight() / 10) * 4);
     auto const width = roundToInt(band_space.getWidth()) / (bandViews.size() + 1);
-    for (auto* bandView : bandViews)
-    { bandView->setBounds(band_space.removeFromLeft(width)); }
+    for (auto* bandView : bandViews) { bandView->setBounds(band_space.removeFromLeft(width)); }
 
     // Master output
-    outputSliderFrame
-        = band_space.removeFromBottom(band_space.getHeight() / 2).reduced(5);
+    outputSliderFrame = band_space.removeFromBottom(band_space.getHeight() / 2).reduced(5);
     output.setBounds(outputSliderFrame.reduced(8));
 
     // Meter

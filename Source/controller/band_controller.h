@@ -33,8 +33,7 @@ public:
     /**
      * @brief Constructor.
      */
-    BandController(int /*i*/, ModEQProcessor& /*p*/,
-                   tobanteAudio::EqualizerProcessor& /*sub*/,
+    BandController(int /*i*/, ModEQProcessor& /*p*/, tobanteAudio::EqualizerProcessor& /*sub*/,
                    tobanteAudio::BandView& /*v*/);
 
     /**
