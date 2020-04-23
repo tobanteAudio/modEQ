@@ -20,5 +20,5 @@ jobs:
       - run: "cmake --version"
       - run: "git submodule update --init --recursive"
       - run: "cmake -S. -Bbuild -GNinja"
-      - run: "cmake --build build"
+      - run: "cmake --build build -- -j2"
 
