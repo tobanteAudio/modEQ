@@ -4,92 +4,80 @@ branches:
 
 language: cpp
 
-before_install:
-  # Install dependencies
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
+#before_install:
+#  # Install dependencies
+#  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ./.ci/linux-before_install.sh; fi
 
 script-anchors:
   - &script-documentation
     - cd $TRAVIS_BUILD_DIR
     - make documentation
 
-  - &script-linux # Fake display
-    - "export DISPLAY=:99.0"
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3 # give xvfb some time to start
-    - sudo apt-get install libsndfile1
-
-    # Set PROJUCER to GPL mode
-    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE
-    - cd extras/Projucer/JuceLibraryCode
-    - pwd
-    - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
-    - sed -i "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
-    - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
-    - cat AppConfig.h
-
-    # Build PROJUCER
-    - cd ../Builds/LinuxMakefile
-    - make -j4 CONFIG=Release
-    - cd $TRAVIS_BUILD_DIR
-
-    # Set gcc version
-    - ls
-    - cd $TRAVIS_BUILD_DIR
-    - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-    - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-    - gcc -v && g++ -v
-
-    # Generate Makefile
-    - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
-
-    # Build
-    - cd Builds/LinuxMakefile
-    - make -j4 CONFIG=Release
-    - ls -la
-    - ls -la build
-
-    # Package
-    - zip -r modEQ-$(git describe --tags --abbrev=0)-linux.zip build/modEQ build/modEQ.a
+#  - &script-linux # Fake display
+#    - "export DISPLAY=:99.0"
+#    - "sh -e /etc/init.d/xvfb start"
+#    - sleep 3 # give xvfb some time to start
+#    - sudo apt-get install libsndfile1
+#
+#    # Set PROJUCER to GPL mode
+#    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE
+#    - cd extras/Projucer/JuceLibraryCode
+#    - pwd
+#    - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
+#    - sed -i "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
+#    - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
+#    - cat AppConfig.h
+#
+#    # Build PROJUCER
+#    - cd ../Builds/LinuxMakefile
+#    - make -j4 CONFIG=Release
+#    - cd $TRAVIS_BUILD_DIR
+#
+#    # Set gcc version
+#    - ls
+#    - cd $TRAVIS_BUILD_DIR
+#    - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+#    - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+#    - gcc -v && g++ -v
+#
+#    # Generate Makefile
+#    - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/LinuxMakefile/build/Projucer --resave $TRAVIS_BUILD_DIR/modEQ.jucer
+#
+#    # Build
+#    - cd Builds/LinuxMakefile
+#    - make -j4 CONFIG=Release
+#    - ls -la
+#    - ls -la build
+#
+#    # Package
+#    - zip -r modEQ-$(git describe --tags --abbrev=0)-linux.zip build/modEQ build/modEQ.a
 
   - &script-macOS
-    - gem install xcpretty
-    - gem install xcpretty-travis-formatter
-
-    # Set PROJUCER to GPL mode
-    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/JuceLibraryCode
-    - pwd
-    - sed -i '' "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
-    - sed -i '' "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
-    - sed -i '' "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
-    - cat AppConfig.h
-
-    # Build PROJUCER
-    - cd $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/MacOSX/
-    - xcodebuild -project Projucer.xcodeproj | xcpretty -f `xcpretty-travis-formatter`
-
-    # Generate XCode project
     - cd $TRAVIS_BUILD_DIR
-    - $TRAVIS_BUILD_DIR/3rd_party/JUCE/extras/Projucer/Builds/MacOSX/build/Debug/Projucer.app/Contents/MacOS/Projucer --resave modEQ.jucer
+    - mkdir build
+    - cd build
+    - cmake --version
+    - cmake -GXcode -DCMAKE_BUILD_TYPE:STRING=Release ..
+    - cmake --build . --config Release | xcpretty -f `xcpretty-travis-formatter`
 
-    # Build Project
-    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
-    - ls
-    - xcodebuild -project modEQ.xcodeproj/ clean
-    - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
-    - ls -la build/Release
+#    # Build Project
+#    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
+#    - ls
+#    - xcodebuild -project modEQ.xcodeproj/ clean
+#    - xcodebuild -project modEQ.xcodeproj/ ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO -configuration Release | xcpretty -f `xcpretty-travis-formatter`
+#    - ls -la build/Release
 
-    # Test / PluginVal
-    - mkdir -p $TRAVIS_BUILD_DIR/PluginVal/bin
-    - cd $TRAVIS_BUILD_DIR/PluginVal
-    - curl -L "https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_macOS.zip" -o pluginval.zip
-    - unzip pluginval
-    - pluginval.app/Contents/MacOS/pluginval --validate-in-process --output-dir "./bin" --strictness-level 10 --validate "$TRAVIS_BUILD_DIR/Builds/MacOSX/build/Release/modEQ.vst3" || exit 1
-    - ls bin
-
-    # Package
-    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
-    - zip -r modEQ-$(git describe --tags --abbrev=0)-macOS.zip build/Release -x build/Release/libmodEQ.a
+#    # Test / PluginVal
+#    - mkdir -p $TRAVIS_BUILD_DIR/PluginVal/bin
+#    - cd $TRAVIS_BUILD_DIR/PluginVal
+#    - curl -L "https://github.com/Tracktion/pluginval/releases/download/latest_release/pluginval_macOS.zip" -o pluginval.zip
+#    - unzip pluginval
+#    - pluginval.app/Contents/MacOS/pluginval --validate-in-process --output-dir "./bin" --strictness-level 10 --validate "$TRAVIS_BUILD_DIR/Builds/MacOSX/build/Release/modEQ.vst3" || exit 1
+#    - ls bin
+#
+#    # Package
+#    - cd $TRAVIS_BUILD_DIR/Builds/MacOSX/
+#    - zip -r modEQ-$(git describe --tags --abbrev=0)-macOS.zip build/Release -x build/Release/libmodEQ.a
 
 matrix:
   include:
@@ -104,10 +92,10 @@ matrix:
       #   skip_cleanup: true
       #   on:
       #     all_branches: true
-    - os: linux
-      dist: bionic
-      sudo: required
-      script: *script-linux
+#    - os: linux
+#      dist: bionic
+#      sudo: required
+#      script: *script-linux
 
       # deploy:
       #   provider: releases
