@@ -110,7 +110,7 @@ matrix:
         apt:
           packages:
             - doxygen
-            - texlive-full
+            - texlive-base/
       script: *script-documentation
       deploy:
         provider: pages
