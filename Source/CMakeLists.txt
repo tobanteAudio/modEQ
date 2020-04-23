@@ -84,15 +84,15 @@ target_compile_definitions(${PROJECT_NAME}
 juce_generate_juce_header(${PROJECT_NAME})
 
 juce_add_binary_data(modEQData NAMESPACE TobanteAudioData SOURCES
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-high_quality-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-info-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-power_settings_new-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-public-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-redo-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-settings-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-settings_input_svideo-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/material-icons/outline-undo-24px.svg
-        ${CMAKE_SOURCE_DIR}/Resources/social-media/github.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-high_quality-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-info-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-power_settings_new-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-public-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-redo-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-settings-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-settings_input_svideo-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/material-icons/outline-undo-24px.svg
+        ${CMAKE_SOURCE_DIR}/resource/social-media/github.svg
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
