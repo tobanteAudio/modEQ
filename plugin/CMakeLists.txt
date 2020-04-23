@@ -65,12 +65,13 @@ target_sources(${PROJECT_NAME} PRIVATE
         view/info_view.h
         view/analyser_view.h
         modEQ_editor.h
-        ${CMAKE_SOURCE_DIR}/Tests/test_main.cpp
-        ${CMAKE_SOURCE_DIR}/Tests/test_main.h
-        ${CMAKE_SOURCE_DIR}/Tests/test_text_converters.h
+        ${CMAKE_SOURCE_DIR}/test/test_main.cpp
+        ${CMAKE_SOURCE_DIR}/test/test_main.h
+        ${CMAKE_SOURCE_DIR}/test/test_text_converters.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/test)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/3rd_party)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/3rd_party/JUCE/modules)
 

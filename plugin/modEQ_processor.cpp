@@ -20,7 +20,7 @@
 #include "settings/constants.h"
 #include "view/social_buttons.h"
 
-#include "../Tests/test_main.h"
+#include "test_main.h"
 
 auto CreateParameters() -> juce::AudioProcessorValueTreeState::ParameterLayout
 {

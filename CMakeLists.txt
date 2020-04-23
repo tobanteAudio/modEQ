@@ -54,7 +54,7 @@ set_directory_properties(PROPERTIES JUCE_COMPANY_WEBSITE "https://github.com/tob
 set_directory_properties(PROPERTIES JUCE_COMPANY_EMAIL "tobanteAudio@gmail.com")
 
 # Plugin
-add_subdirectory(Source)
+add_subdirectory(plugin)
 
 # Tests
 #if(TOBANTEAUDIO_BUILD_TESTS)

@@ -20,7 +20,7 @@
 #include "modEQ.hpp"
 
 // tobanteAudio
-#include "../Source/parameters/text_value_converter.h"
+#include "parameters/text_value_converter.h"
 
 namespace tobanteAudio::tests
 {
