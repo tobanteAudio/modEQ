@@ -1,8 +1,8 @@
 var searchData=
 [
   ['magnitudes',['magnitudes',['../structtobanteAudio_1_1EqualizerProcessor_1_1Band.html#ae9be19fd02585889c20ec31c0d11c419',1,'tobanteAudio::EqualizerProcessor::Band']]],
-  ['max_5fdb',['MAX_DB',['../namespacetobanteAudio.html#aef29565e6a3f92480759769e8ac9122a',1,'tobanteAudio']]],
-  ['max_5fgain',['MAX_GAIN',['../namespacetobanteAudio.html#ae0e9328c845350c6fc36de7970358904',1,'tobanteAudio']]],
+  ['max_5fdb',['MAX_DB',['../namespacetobanteAudio.html#a26e38c15e8c164a49dfbc0ad7ab5c9ce',1,'tobanteAudio']]],
+  ['max_5fgain',['MAX_GAIN',['../namespacetobanteAudio.html#a720324f80ef3440fa413fd0f688daf76',1,'tobanteAudio']]],
   ['menu_5fbar_5fcontroller_2eh',['menu_bar_controller.h',['../menu__bar__controller_8h.html',1,'']]],
   ['menu_5fbar_5fview_2eh',['menu_bar_view.h',['../menu__bar__view_8h.html',1,'']]],
   ['menubarcontroller',['MenuBarController',['../classtobanteAudio_1_1MenuBarController.html',1,'tobanteAudio::MenuBarController'],['../classtobanteAudio_1_1MenuBarController.html#a7b64656161ade9c7c1a319764f33ae6d',1,'tobanteAudio::MenuBarController::MenuBarController()']]],
