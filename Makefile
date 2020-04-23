@@ -1,5 +1,5 @@
-SOURCE_DIR = Source
-TEST_DIR = Tests
+SOURCE_DIR = plugin
+TEST_DIR = test
 
 # DOCS
 documentation:
@@ -8,7 +8,7 @@ documentation:
 	
 # MISC
 stats:
-	cloc $(SOURCE_DIR) $(TEST_DIR)
+	cloc cmake CMakeLists.txt README.md Doxyfile.in $(SOURCE_DIR) $(TEST_DIR)
 
 format:
 	find $(SOURCE_DIR) -iname '*.h' -o -iname '*.cpp' | xargs clang-format -i	
