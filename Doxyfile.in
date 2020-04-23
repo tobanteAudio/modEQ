@@ -19,4 +19,4 @@ GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
 
 # Set output directory
-OUTPUT_DIRECTORY = ./Builds/Documentation
+OUTPUT_DIRECTORY = ./build_documentation

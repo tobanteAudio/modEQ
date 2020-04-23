@@ -3,7 +3,7 @@ TEST_DIR = Tests
 
 # DOCS
 documentation:
-	mkdir -p Builds/Documentation
+	mkdir -p build_documentation
 	doxygen Doxyfile.in
 	
 # MISC
