@@ -2,7 +2,7 @@
 
 EQ audio effects plugin with modulation. Supports **macOS**, **Windows** & **Linux** with **VST**, **AudioUnits** & **Standalone** builds.
 
-Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework and modern C++.
+Used as a playground to learn the [JUCE](https://github.com/WeAreRoli/JUCE) framework.
 
 [**Releases**](https://github.com/tobanteAudio/modEQ/releases)
 
@@ -50,30 +50,12 @@ git clone --recursive https://github.com/tobanteAudio/modEQ.git
 
 ## Build
 
-### Windows
-
-- Download & Install Visual Studio 2017
-- Build Projucer from JUCE
-- Open & Resave modEQ.jucer with Projucer
-- Open in Visual Studio 2017 and select "Release"
-
-### macOS
-
-- Download & Install Xcode
-- Build Projucer from JUCE
-- Open & Resave modEQ.jucer with Projucer
-- Open in Xcode and select "Release"
-
-### Linux
-
-- Install dependencies
-- Build Projucer from JUCE
-- Resave modEQ.jucer with Projucer
+The project uses CMake as its build tool.
 
 ```sh
-cd $PROJECT_ROOT/Build/LinuxMakefile
-make config=Release -j8
-cp build/modEQ.so ~/.vst
+cd $PROJECT_ROOT
+cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ```
 
 ## ToDo
