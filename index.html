@@ -64,7 +64,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>EQ audio effects plugin with modulation. Supports <b>macOS</b>, <b>Windows</b> &amp; <b>Linux</b> with <b>VST</b>, <b>AudioUnits</b> &amp; <b>Standalone</b> builds.</p>
-<p>Used as a playground to learn the <a href="https://github.com/WeAreRoli/JUCE">JUCE</a> framework and modern C++.</p>
+<p>Used as a playground to learn the <a href="https://github.com/WeAreRoli/JUCE">JUCE</a> framework.</p>
 <p><a href="https://github.com/tobanteAudio/modEQ/releases"><b>Releases</b></a></p>
 <p><a href="https://github.com/tobanteaudio/modEQ/"><b>Github Repository</b></a></p>
 <p><a href="https://tobanteaudio.github.io/modEQ/"><b>Developer Documentation</b></a></p>
@@ -107,27 +107,8 @@ $(function() {
 <li>Bypass button</li>
 </ul>
 <h2>Build</h2>
-<h3>Windows</h3>
-<ul>
-<li>Download &amp; Install Visual Studio 2017</li>
-<li>Build Projucer from JUCE</li>
-<li>Open &amp; Resave modEQ.jucer with Projucer</li>
-<li>Open in Visual Studio 2017 and select "Release"</li>
-</ul>
-<h3>macOS</h3>
-<ul>
-<li>Download &amp; Install Xcode</li>
-<li>Build Projucer from JUCE</li>
-<li>Open &amp; Resave modEQ.jucer with Projucer</li>
-<li>Open in Xcode and select "Release"</li>
-</ul>
-<h3>Linux</h3>
-<ul>
-<li>Install dependencies</li>
-<li>Build Projucer from JUCE</li>
-<li>Resave modEQ.jucer with Projucer</li>
-</ul>
-<div class="fragment"><div class="line">cd $PROJECT_ROOT/Build/LinuxMakefile</div><div class="line">make config=Release -j8</div><div class="line">cp build/modEQ.so ~/.vst</div></div><!-- fragment --><h2>ToDo</h2>
+<p>The project uses CMake as its build tool.</p>
+<div class="fragment"><div class="line">cd $PROJECT_ROOT</div><div class="line">cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release</div><div class="line">cmake --build build --config Release</div></div><!-- fragment --><h2>ToDo</h2>
 <ul>
 <li>Modulation<ul>
 <li>Reactivate</li>
