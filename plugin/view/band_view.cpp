@@ -16,7 +16,8 @@
 
 #include "band_view.h"
 #include "../modEQ_processor.h"
-#include "../settings/constants.h"
+#include "settings/constants.h"
+#include "settings/theme.hpp"
 
 namespace tobanteAudio
 {
@@ -71,7 +72,7 @@ void BandView::paint(Graphics& g)
     // Background
     const auto color = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
     auto area        = getLocalBounds().reduced(5);
-    g.setColour(color.brighter().withAlpha(0.5f));
+    g.setColour(tobanteAudio::BLUE);
     g.fillRect(area);
 }
 

@@ -16,6 +16,7 @@
 
 // tobanteAudio
 #include "analyser_view.h"
+#include "settings/theme.hpp"
 
 namespace tobanteAudio
 {
@@ -26,7 +27,7 @@ void AnalyserView::paint(Graphics& g)
 
     // Background
     const auto bgColor = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.fillAll(bgColor.brighter().withAlpha(0.5f));
+    g.fillAll(tobanteAudio::BLUE);
 
     // Vertical lines & frequency labels
     g.setFont(15.0f);

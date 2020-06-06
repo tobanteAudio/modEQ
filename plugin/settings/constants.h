@@ -58,6 +58,4 @@ const int GLOBAL_REFRESH_RATE_HZ = 60;
  */
 const int HANDLE_CLICK_RADIUS = 10;
 
-// COLORS
-const auto ORANGE = Colour(255, 87, 34);
 }  // namespace tobanteAudio

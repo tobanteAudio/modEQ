@@ -17,6 +17,7 @@
 // tobanteAudio
 #include "tobante_look_and_feel.h"
 #include "../settings/constants.h"
+#include "../settings/theme.hpp"
 
 namespace tobanteAudio
 {
@@ -77,9 +78,11 @@ juce::Rectangle<float> TobanteMetersLookAndFeel::getMeterBarBounds(const juce::R
 TobanteLookAndFeel::TobanteLookAndFeel()
 {
     // General
-    setColour(ResizableWindow::backgroundColourId, Colour(55, 71, 79));
+    setColour(ResizableWindow::backgroundColourId, tobanteAudio::WHITESMOKE);
     // Slider
     setColour(Slider::thumbColourId, tobanteAudio::ORANGE);
+    setColour(Slider::rotarySliderOutlineColourId, tobanteAudio::WHITESMOKE);
+    setColour(Slider::rotarySliderFillColourId, tobanteAudio::ORANGE);
 }
 
 Label* TobanteLookAndFeel::createSliderTextBox(Slider& slider)
@@ -134,12 +137,12 @@ void TobanteLookAndFeel::drawRotarySlider(Graphics& g, int x, int y, int width, 
         g.strokePath(valueArc, PathStrokeType(lineW, PathStrokeType::curved, PathStrokeType::rounded));
     }
 
-    auto thumbWidth = lineW * 1.5f;
-    Point<float> thumbPoint(bounds.getCentreX() + arcRadius * std::cos(toAngle - MathConstants<float>::halfPi),
-                            bounds.getCentreY() + arcRadius * std::sin(toAngle - MathConstants<float>::halfPi));
+    // auto thumbWidth = lineW * 1.5f;
+    // Point<float> thumbPoint(bounds.getCentreX() + arcRadius * std::cos(toAngle - MathConstants<float>::halfPi),
+    //                         bounds.getCentreY() + arcRadius * std::sin(toAngle - MathConstants<float>::halfPi));
 
-    g.setColour(slider.findColour(Slider::thumbColourId));
-    g.fillEllipse(Rectangle<float>(thumbWidth, thumbWidth).withCentre(thumbPoint));
+    // g.setColour(slider.findColour(Slider::thumbColourId));
+    // g.fillEllipse(Rectangle<float>(thumbWidth, thumbWidth).withCentre(thumbPoint));
 }
 
 void TobanteLookAndFeel::drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX, int buttonY,

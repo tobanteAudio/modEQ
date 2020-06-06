@@ -17,6 +17,7 @@
 #include "modEQ_editor.h"
 #include "modEQ_processor.h"
 #include "parameters/parameters.h"
+#include "settings/theme.hpp"
 
 ModEQEditor::ModEQEditor(ModEQProcessor& p)
     : AudioProcessorEditor(&p)
@@ -135,8 +136,7 @@ void ModEQEditor::paint(Graphics& g)
     g.fillAll(backgroundColour);
 
     // Frame for master slider
-    const auto color = getLookAndFeel().findColour(ResizableWindow::backgroundColourId);
-    g.setColour(color.brighter().withAlpha(0.5f));
+    g.setColour(tobanteAudio::BLUE);
     g.fillRect(outputSliderFrame);
 }
 
